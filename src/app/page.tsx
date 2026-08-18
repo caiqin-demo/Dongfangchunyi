@@ -12,12 +12,11 @@ const content = {
       serviceButton: "了解服务",
     },
     about: {
-      label: "关于东方纯一",
-      title: "立足上海，连接全球生命科学创新",
-      lead: "上海睿星生物技术有限公司是日本 GNI Group Ltd. 旗下子公司。",
-      body: "我们专注于生命科学研究产品的生产与销售，以专业能力响应科研与产业客户的实际需求，持续为 B2B 合作伙伴提供可靠的产品和技术服务。",
-      art: "科学，连接重要之事。",
-      facts: [["GNI", "集团旗下企业"], ["B2B", "专业客户服务"], ["上海", "本地团队支持"]],
+      label: "ABOUT US",
+      title: "东方纯一株式会社成为上海睿星生物技术有限公司日本授权经销商",
+      body: "上海睿星生物技术有限公司是日本GNI Group Ltd. (www.gnipharma.com)旗下子公司。生产和销售标签抗体及相应填料偶联产品和ELISA试剂盒。同时也提供酵母双杂交技术服务。",
+      offerings: [["GNI", "抗体及相应填料产品", true], ["HannaH", "ELISA试剂盒", true], ["", "生命科学实验仪器", false], ["Yeast Two Hybrid", "技术服务", false]],
+      more: "了解更多",
     },
     products: {
       title: "核心产品",
@@ -52,12 +51,11 @@ const content = {
       serviceButton: "サービスを見る",
     },
     about: {
-      label: "東方純一について",
-      title: "上海を拠点に、世界のライフサイエンス革新へ",
-      lead: "上海睿星生物技術有限公司は、日本の GNI Group Ltd. 傘下企業です。",
-      body: "ライフサイエンス研究製品の製造・販売に注力し、研究機関および産業分野のお客様のニーズに応え、法人パートナーへ信頼できる製品と技術サービスを提供します。",
-      art: "科学が、大切なものをつなぐ。",
-      facts: [["GNI", "グループ傘下企業"], ["法人", "専門的な顧客対応"], ["上海", "現地チームの支援"]],
+      label: "ABOUT US",
+      title: "東方純一株式会社が上海睿星生物技術有限公司の日本正規販売代理店に",
+      body: "上海睿星生物技術有限公司は、日本のGNI Group Ltd. (www.gnipharma.com)の子会社です。タグ抗体および対応する担体結合製品、ELISAキットを製造・販売しています。また、酵母ツーハイブリッド技術サービスも提供しています。",
+      offerings: [["GNI", "抗体および対応する担体製品", true], ["HannaH", "ELISAキット", true], ["", "ライフサイエンス実験機器", false], ["Yeast Two Hybrid", "技術サービス", false]],
+      more: "詳しく見る",
     },
     products: {
       title: "主要製品",
@@ -130,23 +128,25 @@ export default async function Home({ searchParams }: HomeProps) {
       </section>
 
       <section className="about section-light" id="about" aria-labelledby="about-title">
-        <div className="section-marker" aria-hidden="true"><span>01</span><i /><small>ABOUT US</small></div>
         <div className="about-art" aria-hidden="true">
-          <div className="lab-window">
-            <span className="lab-line line-one" /><span className="lab-line line-two" />
-            <span className="lab-cell cell-one" /><span className="lab-cell cell-two" /><span className="lab-cell cell-three" />
-            <b>纯</b>
-          </div>
-          <p>{t.about.art}</p>
+          <Image className="about-image" src="/about-authorization.jpg" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" />
         </div>
         <div className="about-copy">
           <p className="eyebrow">{t.about.label}</p>
           <h2 id="about-title">{t.about.title}</h2>
-          <p className="about-lead">{t.about.lead}</p>
           <p>{t.about.body}</p>
-          <div className="about-facts">
-            {t.about.facts.map(([value, label]) => <div key={value}><strong>{value}</strong><span>{label}</span></div>)}
-          </div>
+          <ul className="about-offerings">
+            {t.about.offerings.map(([brand, description, registered]) => (
+              <li key={`${brand}-${description}`}>
+                <span className="offering-check" aria-hidden="true">✓</span>
+                <span>{brand}{registered && <sup>®</sup>}{brand && " "}{description}</span>
+              </li>
+            ))}
+          </ul>
+          <a className="about-more" href="#products">
+            <span>{t.about.more}</span>
+            <span className="about-more-arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </section>
 
