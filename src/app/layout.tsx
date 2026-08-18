@@ -1,7 +1,26 @@
 import type { Metadata } from "next";
+import { Noto_Sans_JP, Noto_Sans_SC } from "next/font/google";
 import type { ReactNode } from "react";
 
 import "./globals.css";
+
+const notoSansSc = Noto_Sans_SC({
+  variable: "--font-noto-sans-sc",
+  weight: "variable",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+  fallback: ["Arial", "PingFang SC", "Microsoft YaHei", "sans-serif"],
+});
+
+const notoSansJp = Noto_Sans_JP({
+  variable: "--font-noto-sans-jp",
+  weight: "variable",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+  fallback: ["Arial", "Hiragino Kaku Gothic ProN", "Yu Gothic", "sans-serif"],
+});
 
 export const metadata: Metadata = {
   title: "东方纯一 | 生命科学产品与技术服务",
@@ -16,7 +35,9 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="zh-CN">
-      <body>{children}</body>
+      <body className={`${notoSansSc.variable} ${notoSansJp.variable}`}>
+        {children}
+      </body>
     </html>
   );
 }
