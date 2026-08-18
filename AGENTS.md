@@ -7,6 +7,26 @@
 - Keep the application deployable on Vercel. Use standard Next.js build behavior and avoid machine-specific paths, persistent local filesystem state, or a custom server unless a requirement makes one necessary.
 - Run `npm run lint`, `npm run typecheck`, and `npm run build` before considering a change complete.
 
+## Repository location policy
+
+- Unless the user explicitly requests otherwise, make all code and documentation changes only in the user's main repository checkout.
+- Run development servers, browser checks, visual comparisons, linting, type checking, builds, and Git inspections against the main repository only.
+- Do not present changes or verification results from a Codex worktree as deliverables.
+- Before editing or validating, confirm that the working directory is the main checkout without writing its machine-specific absolute path into repository files. Base the final change summary and commit message exclusively on the main repository diff.
+
+## Privacy and repository safety
+
+- Never place local or personal information in code, documentation, configuration, Markdown, examples, fixtures, comments, or any other file that may be committed or pushed.
+- Prohibited information includes local usernames, home-directory names, absolute filesystem paths, temporary-directory paths, hostnames, local IP addresses, machine identifiers, account details, credentials, tokens, and secrets.
+- Use repository-relative paths, environment variables, or generic placeholders such as `<repository-root>` and `<username>` whenever an example needs a path or identity.
+- Before handing off changes, proactively scan the main repository diff for local paths, personal information, credentials, and secrets. Remove any accidental disclosure immediately rather than adding it to `.gitignore`.
+
+## Git ignore policy
+
+- Whenever work introduces or reveals a new generated artifact, cache, log, local environment file, editor/OS metadata file, or other machine-specific file that should not be versioned, proactively add the narrowest appropriate rule to `.gitignore` in the same change.
+- Before adding an ignore rule, classify the file. Source files and project configuration required to install, build, test, or deploy the application—including files such as `postcss.config.mjs`—must remain tracked and must not be ignored.
+- Do not use broad ignore patterns that could hide source code or required configuration. If a file is already tracked, remember that adding it to `.gitignore` does not untrack it; handle that case explicitly and preserve user work.
+
 ## Dependency policy
 
 Do not install the optional libraries below preemptively. Add one only when an implemented product requirement benefits from it, verify compatibility with the installed Next.js and React versions, and record the resulting package-lock change. Prefer the smallest dependency set that satisfies the requirement.

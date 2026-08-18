@@ -127,7 +127,7 @@ export default async function Home({ searchParams }: HomeProps) {
         <div className="hero-content relative z-2 mx-auto w-full max-w-[1120px] text-center max-[960px]:max-w-[780px]">
           <h1 className="m-0 text-hero-title max-[640px]:text-[36px]" id="hero-title">{t.hero.title}</h1>
           <p className={`hero-copy mx-auto mt-[38px] max-w-none leading-[1.6] whitespace-nowrap text-[#b7c5d6] max-[640px]:mt-[26px] max-[640px]:max-w-[320px] max-[640px]:text-lg max-[640px]:leading-[1.75] max-[640px]:whitespace-normal ${language === "ja" ? "text-[clamp(20px,1.7vw,24px)]" : "text-[clamp(22px,2.1vw,30px)]"}`}>{t.hero.description}</p>
-          <div className="hero-links mt-[50px] flex justify-center gap-3.5 max-[640px]:w-[min(100%,320px)] max-[640px]:flex-col" aria-label={language === "ja" ? "ページ案内" : "页面快速入口"}>
+          <div className="hero-links mt-[50px] flex justify-center gap-3.5 max-[640px]:mx-auto max-[640px]:w-[min(100%,320px)] max-[640px]:flex-col" aria-label={language === "ja" ? "ページ案内" : "页面快速入口"}>
             <a className={`${heroButtonClass} primary border-[rgba(49,157,238,.92)] bg-[rgba(39,145,229,.92)]`} href="#products">{t.hero.productButton}</a>
             <a className={`${heroButtonClass} secondary border-[rgba(43,151,230,.82)] bg-transparent text-[rgba(66,158,230,.95)]`} href="#services">{t.hero.serviceButton}</a>
           </div>
