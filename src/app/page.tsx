@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
+import { LuFlaskConical, LuGraduationCap, LuUsersRound } from "react-icons/lu";
 
 const content = {
   zh: {
@@ -27,15 +29,12 @@ const content = {
       ],
     },
     services: {
-      label: "技术服务",
-      title: "酵母双杂交技术服务",
-      intro: "Yeast Two-Hybrid 技术服务，面向蛋白互作研究需求，由专业团队协助推进实验项目。",
-      steps: [
-        ["01", "需求沟通", "围绕研究目标与实验需求进行前期沟通。"],
-        ["02", "技术实施", "由专业团队推进酵母双杂交实验流程。"],
-        ["03", "结果交付", "整理项目结果，为后续研究提供参考。"],
+      title: "核心服务",
+      items: [
+        ["Yeast Two Hybrid", "基于酵母转录基因子GAL4的双杂交系统，20年服务经验"],
+        ["企业咨询", "专注于企业人力资源系统的搭建"],
+        ["个人教练", "教练及领导力课程"],
       ],
-      art: "酵母双杂交",
     },
     footerCompany: "上海睿星生物技术有限公司",
     footerTagline: "生命科学产品与技术服务",
@@ -65,15 +64,12 @@ const content = {
       ],
     },
     services: {
-      label: "技術サービス",
-      title: "酵母ツーハイブリッド技術サービス",
-      intro: "Yeast Two-Hybrid 技術により、タンパク質間相互作用の研究プロジェクトを専門チームが支援します。",
-      steps: [
-        ["01", "要件確認", "研究目的と実験要件を事前に確認します。"],
-        ["02", "技術実施", "専門チームが酵母ツーハイブリッド実験を進行します。"],
-        ["03", "結果報告", "結果を整理し、その後の研究に役立つ情報を提供します。"],
+      title: "主要サービス",
+      items: [
+        ["Yeast Two Hybrid", "酵母転写因子GAL4を基盤とするツーハイブリッドシステム。20年のサービス実績"],
+        ["企業コンサルティング", "企業の人事システム構築に注力"],
+        ["パーソナルコーチング", "コーチングおよびリーダーシップ研修"],
       ],
-      art: "酵母ツーハイブリッド",
     },
     footerCompany: "上海睿星生物技術有限公司",
     footerTagline: "ライフサイエンス製品・技術サービス",
@@ -88,7 +84,28 @@ const navLinkClass = "whitespace-nowrap text-[clamp(15px,1.15vw,18px)] text-[#d5
 const languageLinkClass = "text-[#8f9caf] transition-colors duration-200 hover:text-[#4d91e4] focus-visible:text-[#4d91e4]";
 const heroButtonClass = "button inline-flex min-h-control min-w-[184px] items-center justify-center gap-[30px] rounded-control border px-7 text-lg font-normal transition-[transform,background-color] duration-200 hover:-translate-y-0.5 max-[640px]:min-h-control-mobile max-[640px]:w-full";
 const aboutPanelClass = "mx-auto mt-[2mm] min-h-[489.6px] w-[min(calc(100%-64px),1500px)] p-[clamp(25.92px,2.88vw,46.08px)] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
-const productPanelClass = "mx-auto mt-[2mm] h-[406.2px] w-[min(calc(100%-64px),1500px)] p-[clamp(20.736px,2.304vw,36.864px)] max-[960px]:h-auto max-[960px]:min-h-[489.6px] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
+const corePanelClass = "mx-auto mt-[2mm] h-[406.2px] w-[min(calc(100%-64px),1500px)] p-[clamp(20.736px,2.304vw,36.864px)] max-[960px]:h-auto max-[960px]:min-h-[489.6px] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
+const serviceIcons = [LuFlaskConical, LuUsersRound, LuGraduationCap] as const;
+
+type CoreCardProps = Readonly<{
+  description: string;
+  icon?: ReactNode;
+  isJapanese: boolean;
+  title: string;
+}>;
+
+function CoreCard({ description, icon, isJapanese, title }: CoreCardProps) {
+  return (
+    <article className="core-card relative flex min-h-0 flex-col overflow-hidden rounded-product-card border border-[#1c385d] px-[30px] py-[21.76px] max-[960px]:min-h-[312px]">
+      <div className={`core-card-icon relative mt-2.5 size-[50px] shrink-0 overflow-hidden rounded-control border border-[#4f9be8] max-[960px]:mt-3 ${icon ? "grid place-items-center bg-product-action text-[25px] text-white" : "bg-black"}`} aria-hidden="true">
+        {icon ?? <Image className="object-contain" src="/product-antibody.jpg" alt="" fill sizes="50px" />}
+      </div>
+      <h3 className={`mt-[19.2px] mb-[11.52px] text-[22.4px] font-bold max-[960px]:mt-6 max-[960px]:mb-[14.4px] max-[960px]:text-[28px] ${isJapanese ? "leading-[1.2]" : "leading-[1.25]"}`}>{title}</h3>
+      <p className="mt-0 mb-3 max-w-[360px] text-[13px] leading-[1.65] text-[#8f9db0] max-[960px]:text-[15px] max-[960px]:leading-[1.8]">{description}</p>
+      <span className="card-action relative z-1 mt-auto grid min-h-8 w-full shrink-0 place-items-center rounded-action bg-product-action text-[21px] leading-none font-extralight text-white" aria-hidden="true">+</span>
+    </article>
+  );
+}
 
 export default async function Home({ searchParams }: HomeProps) {
   const params = await searchParams;
@@ -157,40 +174,30 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
       </section>
 
-      <section className={`products section-dark bg-brand-products text-white ${productPanelClass}`} id="products" aria-labelledby="products-title">
+      <section className={`products section-dark bg-brand-products text-white ${corePanelClass}`} id="products" aria-labelledby="products-title">
         <div className="flex h-full flex-col max-[960px]:h-auto">
           <div className="section-heading centered mx-auto mb-[29.44px] max-w-[760px] text-center max-[960px]:mb-[36.8px] max-[640px]:text-left">
             <h2 className="m-0 text-about-title" id="products-title">{t.products.title}</h2>
           </div>
           <div className="product-grid grid flex-1 grid-cols-3 gap-[22px] max-[960px]:grid-cols-1">
             {t.products.items.map(([title, description]) => (
-              <article className="product-card relative flex min-h-0 flex-col overflow-hidden rounded-product-card border border-[#1c385d] px-[30px] py-[21.76px] max-[960px]:min-h-[312px]" key={title}>
-                <div className="product-symbol relative mt-2.5 size-[50px] shrink-0 overflow-hidden rounded-control border border-[#4f9be8] bg-black max-[960px]:mt-3" aria-hidden="true">
-                  <Image className="object-contain" src="/product-antibody.jpg" alt="" fill sizes="50px" />
-                </div>
-                <h3 className={`mt-[19.2px] mb-[11.52px] text-[22.4px] font-bold max-[960px]:mt-6 max-[960px]:mb-[14.4px] max-[960px]:text-[28px] ${language === "ja" ? "leading-[1.2]" : "leading-[1.25]"}`}>{title}</h3><p className="mt-0 mb-3 max-w-[360px] text-[13px] leading-[1.65] text-[#8f9db0] max-[960px]:text-[15px] max-[960px]:leading-[1.8]">{description}</p>
-                <span className="card-action relative z-1 mt-auto grid min-h-8 w-full shrink-0 place-items-center rounded-action bg-product-action text-[21px] leading-none font-extralight text-white" aria-hidden="true">+</span>
-              </article>
+              <CoreCard description={description} isJapanese={language === "ja"} key={title} title={title} />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="services section-light grid min-h-[720px] grid-cols-[1fr_.92fr] items-center gap-[clamp(70px,8vw,140px)] bg-brand-paper px-page-gutter py-section-y max-[960px]:grid-cols-1 max-[960px]:px-7 max-[960px]:py-[92px]" id="services" aria-labelledby="services-title">
-        <div className="services-copy">
-          <p className="eyebrow mb-6 text-xs font-extrabold tracking-[.22em] text-brand-blue">{t.services.label}</p>
-          <h2 className="m-0 max-w-[660px] text-[clamp(38px,4vw,62px)] leading-[1.15] font-bold tracking-[-.035em] max-[640px]:text-[38px]" id="services-title">{t.services.title}</h2>
-          <p className="service-intro mt-7 mb-[38px] max-w-[650px] text-base leading-[32.3px] text-brand-muted max-[960px]:text-[17px]">{t.services.intro}</p>
-          <div className="service-steps border-t border-brand-line">
-            {t.services.steps.map(([number, title, description]) => (
-              <div className="service-step grid grid-cols-[54px_1fr] items-start border-b border-brand-line py-[22px]" key={number}><span className="text-xs font-extrabold text-brand-blue">{number}</span><div><h3 className="mt-0 mb-[7px] text-lg leading-[25px] font-bold">{title}</h3><p className={`m-0 text-sm leading-[1.7] text-[#74808f] ${language === "ja" ? "max-[640px]:max-w-[250px]" : ""}`}>{description}</p></div></div>
-            ))}
+      <section className={`services section-dark bg-brand-products text-white ${corePanelClass}`} id="services" aria-labelledby="services-title">
+        <div className="flex h-full flex-col max-[960px]:h-auto">
+          <div className="section-heading centered mx-auto mb-[29.44px] max-w-[760px] text-center max-[960px]:mb-[36.8px] max-[640px]:text-left">
+            <h2 className="m-0 text-about-title" id="services-title">{t.services.title}</h2>
           </div>
-        </div>
-        <div className="service-art relative min-h-[480px] overflow-hidden shadow-service-offset max-[640px]:min-h-[390px] max-[640px]:shadow-service-offset-mobile" aria-hidden="true">
-          <div className="protein protein-one"><span /></div><div className="protein protein-two"><span /></div><div className="protein protein-three"><span /></div>
-          <div className="protein-link link-a" /><div className="protein-link link-b" />
-          <p className="absolute right-8 bottom-8 z-2 grid m-0 text-right text-white"><strong className="text-[64px] tracking-[-.06em]">Y2H</strong><span className="text-[10px] tracking-[.2em] text-[#6c90b8]">{t.services.art}</span></p>
+          <div className="service-grid grid flex-1 grid-cols-3 gap-[22px] max-[960px]:grid-cols-1">
+            {t.services.items.map(([title, description], index) => {
+              const ServiceIcon = serviceIcons[index];
+              return <CoreCard description={description} icon={<ServiceIcon />} isJapanese={language === "ja"} key={title} title={title} />;
+            })}
+          </div>
         </div>
       </section>
 

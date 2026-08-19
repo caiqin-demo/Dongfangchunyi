@@ -73,11 +73,11 @@
 /* Complex decorative gradients and pseudo-elements remain in CSS because
    expressing them as long arbitrary utility strings would obscure the visual
    composition without creating reusable layout primitives. */
-.product-card {
+.core-card {
   background: var(--color-product-card);
 }
 
-.product-card::before {
+.core-card::before {
   position: absolute;
   top: 0;
   right: 0;
@@ -87,51 +87,6 @@
   background: var(--color-product-card-corner);
   content: "";
 }
-
-.service-art {
-  background: linear-gradient(145deg, #0a1930, #102b50);
-}
-
-.service-art::before {
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(92, 161, 233, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(92, 161, 233, 0.08) 1px, transparent 1px);
-  background-size: 48px 48px;
-  content: "";
-}
-
-.protein {
-  position: absolute;
-  z-index: 2;
-  border: 1px solid #64a9ec;
-  border-radius: 50%;
-  background: rgba(52, 126, 206, 0.32);
-  box-shadow: 0 0 42px rgba(72, 151, 232, 0.28);
-}
-
-.protein span {
-  position: absolute;
-  inset: 25%;
-  border: 1px solid rgba(137, 197, 255, 0.65);
-  border-radius: 50%;
-}
-
-.protein-one { top: 95px; left: 70px; width: 130px; height: 130px; }
-.protein-two { top: 245px; left: 48%; width: 86px; height: 86px; }
-.protein-three { top: 82px; right: 62px; width: 52px; height: 52px; }
-
-.protein-link {
-  position: absolute;
-  z-index: 1;
-  height: 1px;
-  background: #438bd1;
-  transform-origin: left;
-}
-
-.link-a { top: 160px; left: 145px; width: 300px; transform: rotate(18deg); }
-.link-b { top: 280px; left: 55%; width: 225px; transform: rotate(-54deg); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
