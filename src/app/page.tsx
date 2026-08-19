@@ -36,8 +36,16 @@ const content = {
         ["个人教练", "教练及领导力课程"],
       ],
     },
-    footerCompany: "上海睿星生物技术有限公司",
-    footerTagline: "生命科学产品与技术服务",
+    footer: {
+      tagline: ["专注在生命科学领域的市场开拓", "并提供专业的企业管理咨询服务"],
+      productsTitle: "相关产品",
+      productLinks: ["抗体及相应填料产品", "ELISA 试剂盒", "实验室小仪器"],
+      servicesTitle: "相关服务",
+      serviceLinks: ["Yeast Two Hybrid", "企业咨询", "个人教练"],
+      aboutTitle: "关于我们",
+      aboutLinks: ["公司介绍", "联系我们"],
+      copyright: "© 2025 东方纯一 All rights reserved.",
+    },
   },
   ja: {
     brand: "東方純一株式会社",
@@ -71,8 +79,16 @@ const content = {
         ["パーソナルコーチング", "コーチングおよびリーダーシップ研修"],
       ],
     },
-    footerCompany: "上海睿星生物技術有限公司",
-    footerTagline: "ライフサイエンス製品・技術サービス",
+    footer: {
+      tagline: ["ライフサイエンス分野の市場開拓に注力し", "専門的な企業経営コンサルティングサービスを提供します"],
+      productsTitle: "関連製品",
+      productLinks: ["抗体および対応する担体製品", "ELISAキット", "実験室用小型機器"],
+      servicesTitle: "関連サービス",
+      serviceLinks: ["Yeast Two Hybrid", "企業コンサルティング", "パーソナルコーチング"],
+      aboutTitle: "会社案内",
+      aboutLinks: ["会社紹介", "お問い合わせ"],
+      copyright: "© 2025 東方純一 All rights reserved.",
+    },
   },
 } as const;
 
@@ -82,6 +98,7 @@ type HomeProps = Readonly<{
 
 const navLinkClass = "whitespace-nowrap text-[clamp(15px,1.15vw,18px)] text-[#d5dbe5] transition-colors duration-200 hover:text-[#4d91e4] focus-visible:text-[#4d91e4] max-[640px]:text-xs";
 const languageLinkClass = "text-[#8f9caf] transition-colors duration-200 hover:text-[#4d91e4] focus-visible:text-[#4d91e4]";
+const footerLinkClass = "text-[15px] leading-[1.7] text-[#9ba9ba] transition-colors duration-200 hover:text-product-action focus-visible:text-product-action";
 const heroButtonClass = "button inline-flex min-h-control min-w-[122.667px] items-center justify-center gap-5 rounded-[6.667px] border px-[18.667px] text-sm leading-[20.667px] font-normal transition-[transform,background-color] duration-200 hover:-translate-y-[1.333px] max-[640px]:min-h-control-mobile max-[640px]:w-full";
 const aboutPanelClass = "mx-auto mt-[2mm] min-h-[489.6px] w-[min(calc(100%-64px),1500px)] p-[clamp(25.92px,2.88vw,46.08px)] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
 const corePanelClass = "mx-auto mt-[2mm] h-[406.2px] w-[min(calc(100%-64px),1500px)] p-[clamp(20.736px,2.304vw,36.864px)] max-[960px]:h-auto max-[960px]:min-h-[489.6px] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
@@ -201,16 +218,45 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
       </section>
 
-      <footer className="site-footer bg-[#061021] px-page-gutter pt-16 pb-[26px] text-[#a5b2c2]" id="contact">
-        <div className="footer-brand flex items-center gap-[18px] text-white">
-          <Image className="footer-mark rounded-round object-cover shadow-[0_0_0_1px_rgba(255,255,255,.18)]" src="/eastern-purity-logo.jpg" width={76} height={76} alt="" />
-          <div className="grid gap-[7px]"><strong className="text-[23px] leading-[32px] tracking-[.1em]">{t.brand}</strong><span className="text-[10px] leading-[normal] tracking-[.22em] text-[#73849a]">{t.footerTagline}</span></div>
+      <footer className="site-footer mx-auto mt-[2mm] w-[min(calc(100%-64px),1500px)] bg-[#061021] px-[clamp(32px,4vw,64px)] pt-[52px] pb-7 text-[#a5b2c2] max-[960px]:w-[calc(100%-32px)] max-[960px]:px-8 max-[640px]:w-[calc(100%-24px)] max-[640px]:px-6 max-[640px]:pt-10" id="contact">
+        <div className="grid grid-cols-[1.4fr_1fr_1fr_.8fr] gap-[clamp(44px,5vw,88px)] max-[960px]:grid-cols-2 max-[960px]:gap-x-12 max-[960px]:gap-y-11 max-[640px]:grid-cols-1 max-[640px]:gap-10">
+          <section aria-labelledby="footer-company-title">
+            <div className="flex items-center gap-[11.5px] text-white">
+              <Image className="size-9 shrink-0 object-contain" src="/eastern-purity-logo.jpg" width={36} height={36} alt="" />
+              <h2 className="m-0 font-brand-serif text-base leading-[1.4] font-normal tracking-[.06em]" id="footer-company-title">{t.brand}</h2>
+            </div>
+            <p className="mt-7 mb-0 text-[15px] leading-[1.85] text-[#9ba9ba]">
+              <span className="block">{t.footer.tagline[0]}</span>
+              <span className="block">{t.footer.tagline[1]}</span>
+            </p>
+          </section>
+
+          <nav aria-labelledby="footer-products-title">
+            <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-products-title">{t.footer.productsTitle}</h2>
+            <ul className="m-0 grid list-none gap-3 p-0">
+              {t.footer.productLinks.map((label) => <li key={label}><a className={footerLinkClass} href="#products">{label}</a></li>)}
+            </ul>
+          </nav>
+
+          <nav aria-labelledby="footer-services-title">
+            <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-services-title">{t.footer.servicesTitle}</h2>
+            <ul className="m-0 grid list-none gap-3 p-0">
+              {t.footer.serviceLinks.map((label) => <li key={label}><a className={footerLinkClass} href="#services">{label}</a></li>)}
+            </ul>
+          </nav>
+
+          <nav aria-labelledby="footer-about-title">
+            <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-about-title">{t.footer.aboutTitle}</h2>
+            <ul className="m-0 grid list-none gap-3 p-0">
+              <li><a className={footerLinkClass} href="#about">{t.footer.aboutLinks[0]}</a></li>
+              <li><a className={footerLinkClass} href="#contact">{t.footer.aboutLinks[1]}</a></li>
+            </ul>
+          </nav>
         </div>
-        <p className="mt-7 mb-[34px] text-sm leading-[normal] text-[#73849a]">{t.footerCompany}</p>
-        <nav className="flex gap-[42px] border-t border-[#15253c] py-[26px] leading-[22px] text-[#d2d9e3] max-[640px]:flex-wrap max-[640px]:gap-x-[30px] max-[640px]:gap-y-5" aria-label={language === "ja" ? "フッターナビゲーション" : "页脚导航"}>
-          <a href="#about">{t.nav[1]}</a><a href="#products">{t.nav[2]}</a><a href="#services">{t.nav[3]}</a>
-        </nav>
-        <div className="footer-bottom flex justify-between border-t border-[#15253c] pt-[22px] text-xs leading-[normal] text-[#53637a] max-[640px]:flex-col max-[640px]:gap-[9px]"><span>© {new Date().getFullYear()} 东方纯一</span><span>{t.footerTagline}</span></div>
+
+        <div className="mt-11 border-t border-[#20324a] pt-7 text-center text-xs leading-[1.7] text-[#66778d]">
+          <p className="m-0">{t.footer.copyright}</p>
+        </div>
       </footer>
     </main>
   );
