@@ -29,8 +29,8 @@
   --spacing-page-gutter: max(32px, calc((100vw - 1400px) / 2));
   --spacing-section-y: 120px;
   --spacing-hero: 474px;
-  --spacing-control: 64px;
-  --spacing-control-mobile: 58px;
+  --spacing-control: 42.667px;
+  --spacing-control-mobile: 38.667px;
   --spacing-about-media: 424.8px;
 
   --radius-control: 10px;

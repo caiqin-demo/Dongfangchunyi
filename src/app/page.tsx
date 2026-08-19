@@ -82,7 +82,7 @@ type HomeProps = Readonly<{
 
 const navLinkClass = "whitespace-nowrap text-[clamp(15px,1.15vw,18px)] text-[#d5dbe5] transition-colors duration-200 hover:text-[#4d91e4] focus-visible:text-[#4d91e4] max-[640px]:text-xs";
 const languageLinkClass = "text-[#8f9caf] transition-colors duration-200 hover:text-[#4d91e4] focus-visible:text-[#4d91e4]";
-const heroButtonClass = "button inline-flex min-h-control min-w-[184px] items-center justify-center gap-[30px] rounded-control border px-7 text-lg font-normal transition-[transform,background-color] duration-200 hover:-translate-y-0.5 max-[640px]:min-h-control-mobile max-[640px]:w-full";
+const heroButtonClass = "button inline-flex min-h-control min-w-[122.667px] items-center justify-center gap-5 rounded-[6.667px] border px-[18.667px] text-sm leading-[20.667px] font-normal transition-[transform,background-color] duration-200 hover:-translate-y-[1.333px] max-[640px]:min-h-control-mobile max-[640px]:w-full";
 const aboutPanelClass = "mx-auto mt-[2mm] min-h-[489.6px] w-[min(calc(100%-64px),1500px)] p-[clamp(25.92px,2.88vw,46.08px)] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
 const corePanelClass = "mx-auto mt-[2mm] h-[406.2px] w-[min(calc(100%-64px),1500px)] p-[clamp(20.736px,2.304vw,36.864px)] max-[960px]:h-auto max-[960px]:min-h-[489.6px] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
 const serviceIcons = [LuFlaskConical, LuUsersRound, LuGraduationCap] as const;
@@ -101,7 +101,7 @@ function CoreCard({ description, icon, isJapanese, title }: CoreCardProps) {
         {icon ?? <Image className="object-contain" src="/product-antibody.jpg" alt="" fill sizes="50px" />}
       </div>
       <h3 className={`mt-[19.2px] mb-[11.52px] text-[22.4px] font-bold max-[960px]:mt-6 max-[960px]:mb-[14.4px] max-[960px]:text-[28px] ${isJapanese ? "leading-[1.2]" : "leading-[1.25]"}`}>{title}</h3>
-      <p className="mt-0 mb-3 max-w-[360px] text-[13px] leading-[1.65] text-[#8f9db0] max-[960px]:text-[15px] max-[960px]:leading-[1.8]">{description}</p>
+      <p className="mt-0 mb-3 max-w-[360px] text-[15px] leading-[1.65] text-[#8f9db0] max-[960px]:text-base max-[960px]:leading-[1.75]">{description}</p>
       <span className="card-action relative z-1 mt-auto grid min-h-8 w-full shrink-0 place-items-center rounded-action bg-product-action text-[21px] leading-none font-extralight text-white" aria-hidden="true">+</span>
     </article>
   );
@@ -144,7 +144,7 @@ export default async function Home({ searchParams }: HomeProps) {
         <div className="hero-content relative z-2 mx-auto w-full max-w-[1120px] text-center max-[960px]:max-w-[780px]">
           <h1 className={`m-0 text-hero-title max-[640px]:text-[36px] ${language === "ja" ? "min-[641px]:text-[clamp(44px,4.2vw,56px)]" : ""}`} id="hero-title">{t.hero.title}</h1>
           <p className={`hero-copy mx-auto mt-[38px] max-w-none leading-[1.6] whitespace-nowrap text-[#b7c5d6] max-[640px]:mt-[26px] max-[640px]:max-w-[320px] max-[640px]:text-lg max-[640px]:leading-[1.75] max-[640px]:whitespace-normal ${language === "ja" ? "text-[clamp(20px,1.7vw,24px)]" : "text-[clamp(22px,2.1vw,30px)]"}`}>{t.hero.description}</p>
-          <div className="hero-links mt-[50px] flex justify-center gap-3.5 max-[640px]:mx-auto max-[640px]:mt-[18px] max-[640px]:w-[min(100%,320px)] max-[640px]:flex-col" aria-label={language === "ja" ? "ページ案内" : "页面快速入口"}>
+          <div className="hero-links mt-[50px] flex justify-center gap-[9.333px] max-[640px]:mx-auto max-[640px]:mt-[18px] max-[640px]:w-[min(100%,213.333px)] max-[640px]:flex-col" aria-label={language === "ja" ? "ページ案内" : "页面快速入口"}>
             <a className={`${heroButtonClass} primary border-[rgba(49,157,238,.92)] bg-[rgba(39,145,229,.92)]`} href="#products">{t.hero.productButton}</a>
             <a className={`${heroButtonClass} secondary border-[rgba(43,151,230,.82)] bg-transparent text-[rgba(66,158,230,.95)]`} href="#services">{t.hero.serviceButton}</a>
           </div>
