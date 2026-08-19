@@ -20,11 +20,10 @@ const content = {
     },
     products: {
       title: "核心产品",
-      intro: "围绕蛋白研究与实验检测，提供专业、清晰的产品组合。",
       items: [
-        ["01", "标签抗体", "抗体产品", "面向生命科学研究场景的标签抗体产品，为蛋白表达、检测与分析提供稳定支持。", "抗"],
-        ["02", "填料偶联产品", "纯化产品", "提供与标签抗体相匹配的填料偶联产品，服务于目标蛋白的分离与纯化流程。", "填"],
-        ["03", "ELISA 试剂盒", "检测试剂", "面向实验室检测需求的 ELISA 试剂盒，为研究工作提供清晰、便捷的实验工具。", "酶"],
+        ["抗体及相应填料产品", "明星产品：Anti-Flag单抗/Anti-Flag Affinity Gel/Anti-Flag Magnetic Beads"],
+        ["ELISA试剂盒", "涵盖检测近300种不同种类基因的ELISA试剂盒"],
+        ["实验室小仪器", "销售多种生命科学常用实验仪器和移液器"],
       ],
     },
     services: {
@@ -59,11 +58,10 @@ const content = {
     },
     products: {
       title: "主要製品",
-      intro: "タンパク質研究と実験検出を支える、専門的で明確な製品群を提供します。",
       items: [
-        ["01", "タグ抗体", "抗体製品", "タンパク質の発現・検出・解析など、ライフサイエンス研究を支えるタグ抗体製品です。", "抗"],
-        ["02", "担体結合製品", "精製製品", "タグ抗体に対応する担体結合製品を提供し、標的タンパク質の分離・精製工程を支援します。", "担"],
-        ["03", "ELISA キット", "検出試薬", "研究現場での検出ニーズに応える、明確で使いやすい ELISA キットです。", "酵"],
+        ["抗体および対応する担体製品", "注目製品：Anti-Flagモノクローナル抗体 / Anti-Flag Affinity Gel / Anti-Flag Magnetic Beads"],
+        ["ELISAキット", "約300種類の異なる遺伝子を検出するELISAキットを取り揃えています"],
+        ["実験室用小型機器", "ライフサイエンス分野で一般的に使用される各種実験機器およびピペットを販売しています"],
       ],
     },
     services: {
@@ -89,6 +87,8 @@ type HomeProps = Readonly<{
 const navLinkClass = "whitespace-nowrap text-[clamp(15px,1.15vw,18px)] text-[#d5dbe5] transition-colors duration-200 hover:text-[#4d91e4] focus-visible:text-[#4d91e4] max-[640px]:text-xs";
 const languageLinkClass = "text-[#8f9caf] transition-colors duration-200 hover:text-[#4d91e4] focus-visible:text-[#4d91e4]";
 const heroButtonClass = "button inline-flex min-h-control min-w-[184px] items-center justify-center gap-[30px] rounded-control border px-7 text-lg font-normal transition-[transform,background-color] duration-200 hover:-translate-y-0.5 max-[640px]:min-h-control-mobile max-[640px]:w-full";
+const aboutPanelClass = "mx-auto mt-[2mm] min-h-[489.6px] w-[min(calc(100%-64px),1500px)] p-[clamp(25.92px,2.88vw,46.08px)] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
+const productPanelClass = "mx-auto mt-[2mm] h-[406.2px] w-[min(calc(100%-64px),1500px)] p-[clamp(20.736px,2.304vw,36.864px)] max-[960px]:h-auto max-[960px]:min-h-[489.6px] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
 
 export default async function Home({ searchParams }: HomeProps) {
   const params = await searchParams;
@@ -123,55 +123,56 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
       </header>
 
-      <section className="hero relative grid min-h-hero grid-cols-1 items-center justify-items-center overflow-hidden bg-[#0b203f] bg-[url('/hero-background.png')] bg-cover bg-center bg-no-repeat px-page-gutter pt-[190px] pb-[120px] text-white max-[960px]:min-h-[720px] max-[960px]:px-7 max-[960px]:pt-40 max-[960px]:pb-[100px] max-[640px]:min-h-[760px] max-[640px]:pt-[190px]" id="top" aria-labelledby="hero-title">
+      <section className={`hero relative grid min-h-hero grid-cols-1 items-center justify-items-center overflow-hidden bg-[#0b203f] bg-[url('/hero-background.png')] bg-cover bg-center bg-no-repeat px-page-gutter pt-[114px] pb-[72px] text-white max-[960px]:min-h-[432px] max-[960px]:px-7 max-[960px]:pt-24 max-[960px]:pb-[60px] max-[640px]:min-h-[456px] ${language === "ja" ? "max-[640px]:pb-[10px]" : "max-[640px]:pb-[38.7px]"}`} id="top" aria-labelledby="hero-title">
         <div className="hero-content relative z-2 mx-auto w-full max-w-[1120px] text-center max-[960px]:max-w-[780px]">
-          <h1 className="m-0 text-hero-title max-[640px]:text-[36px]" id="hero-title">{t.hero.title}</h1>
+          <h1 className={`m-0 text-hero-title max-[640px]:text-[36px] ${language === "ja" ? "min-[641px]:text-[clamp(44px,4.2vw,56px)]" : ""}`} id="hero-title">{t.hero.title}</h1>
           <p className={`hero-copy mx-auto mt-[38px] max-w-none leading-[1.6] whitespace-nowrap text-[#b7c5d6] max-[640px]:mt-[26px] max-[640px]:max-w-[320px] max-[640px]:text-lg max-[640px]:leading-[1.75] max-[640px]:whitespace-normal ${language === "ja" ? "text-[clamp(20px,1.7vw,24px)]" : "text-[clamp(22px,2.1vw,30px)]"}`}>{t.hero.description}</p>
-          <div className="hero-links mt-[50px] flex justify-center gap-3.5 max-[640px]:mx-auto max-[640px]:w-[min(100%,320px)] max-[640px]:flex-col" aria-label={language === "ja" ? "ページ案内" : "页面快速入口"}>
+          <div className="hero-links mt-[50px] flex justify-center gap-3.5 max-[640px]:mx-auto max-[640px]:mt-[18px] max-[640px]:w-[min(100%,320px)] max-[640px]:flex-col" aria-label={language === "ja" ? "ページ案内" : "页面快速入口"}>
             <a className={`${heroButtonClass} primary border-[rgba(49,157,238,.92)] bg-[rgba(39,145,229,.92)]`} href="#products">{t.hero.productButton}</a>
             <a className={`${heroButtonClass} secondary border-[rgba(43,151,230,.82)] bg-transparent text-[rgba(66,158,230,.95)]`} href="#services">{t.hero.serviceButton}</a>
           </div>
         </div>
       </section>
 
-      <section className="about relative mx-auto mt-[2mm] grid min-h-[680px] w-[min(calc(100%-64px),1500px)] grid-cols-2 items-stretch gap-[clamp(44px,5vw,80px)] bg-white p-[clamp(36px,4vw,64px)] shadow-about max-[960px]:w-[calc(100%-32px)] max-[960px]:grid-cols-1 max-[960px]:p-[34px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[22px]" id="about" aria-labelledby="about-title">
-        <div className="about-art relative min-h-about-media overflow-hidden rounded-control border border-[#e3e7eb] bg-[#f7f8f9] shadow-media max-[960px]:h-[430px] max-[640px]:min-h-[330px]" aria-hidden="true">
+      <section className={`about relative grid grid-cols-2 items-stretch gap-[clamp(44px,5vw,80px)] bg-white shadow-about max-[960px]:grid-cols-1 ${aboutPanelClass}`} id="about" aria-labelledby="about-title">
+        <div className="about-art relative min-h-about-media overflow-hidden rounded-control border border-[#e3e7eb] bg-[#f7f8f9] shadow-media max-[960px]:h-[309.6px] max-[640px]:min-h-[237.6px]" aria-hidden="true">
           <Image className="about-image p-3 object-contain object-center" src="/about-authorization.jpg" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" />
         </div>
         <div className="about-copy flex min-w-0 flex-col justify-center">
-          <p className="eyebrow mb-[18px] text-[15px] leading-[17px] font-extrabold tracking-[.22em] text-brand-blue-about">{t.about.label}</p>
-          <h2 className="m-0 max-w-[680px] text-about-title text-balance max-[640px]:text-[32px]" id="about-title">{t.about.title}</h2>
-          <p className="my-[17px] text-[17px] leading-[1.8] font-normal text-brand-muted">{t.about.body}</p>
-          <ul className="about-offerings mt-6 grid list-none gap-[13px] p-0">
+          <p className="eyebrow mb-2 text-[15px] leading-[17px] font-extrabold tracking-[.22em] text-brand-blue-about">{t.about.label}</p>
+          <h2 className={`m-0 max-w-[680px] text-about-title text-balance max-[640px]:text-[32px] ${language === "ja" ? "leading-[1.05]" : ""}`} id="about-title">{t.about.title}</h2>
+          <p className={`my-2 text-[17px] font-normal text-brand-muted ${language === "ja" ? "leading-[1.6]" : "leading-[1.8]"}`}>{t.about.body}</p>
+          <ul className="about-offerings mt-2.5 grid list-none gap-[9.5px] p-0">
             {t.about.offerings.map(([brand, description, registered]) => (
-              <li className="flex items-center gap-[13px] text-lg leading-[1.55] font-normal text-[#37404d]" key={`${brand}-${description}`}>
+              <li className={`flex items-center gap-[13px] text-lg font-normal text-[#37404d] ${language === "ja" ? "leading-[1.4]" : "leading-[1.55]"}`} key={`${brand}-${description}`}>
                 <span className="offering-check grid size-[26px] flex-[0_0_26px] place-items-center rounded-round border-[5px] border-brand-blue-about bg-white text-xs leading-none font-extrabold text-brand-blue-about" aria-hidden="true">✓</span>
                 <span>{brand}{registered && <sup className="relative top-[-.2em] ml-px text-[.62em] leading-none">®</sup>}{brand && " "}{description}</span>
               </li>
             ))}
           </ul>
-          <a className="about-more mt-7 inline-flex min-h-[54px] w-fit min-w-[168px] items-center justify-center gap-3.5 rounded-action bg-brand-blue-about px-7 text-lg leading-none font-normal text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-[#3f7ed8]" href="#products">
+          <a className="about-more mt-3 inline-flex min-h-[43.2px] w-fit min-w-[168px] items-center justify-center gap-3.5 rounded-action bg-brand-blue-about px-7 text-lg leading-none font-normal text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-[#3f7ed8]" href="#products">
             <span>{t.about.more}</span>
             <span className="about-more-arrow text-[25px] leading-none font-light" aria-hidden="true">→</span>
           </a>
         </div>
       </section>
 
-      <section className="products section-dark bg-brand-navy-950 px-page-gutter py-section-y text-white max-[960px]:px-7 max-[960px]:py-[92px]" id="products" aria-labelledby="products-title">
-        <div className="section-heading centered mx-auto mb-[60px] max-w-[760px] text-center max-[640px]:text-left">
-          <h2 className="m-0 text-[clamp(42px,5vw,66px)] leading-[1.394] font-bold" id="products-title">{t.products.title}</h2>
-          <p className="mt-4 mb-0 text-base leading-[22px] text-[#8292a8]">{t.products.intro}</p>
-        </div>
-        <div className="product-grid grid grid-cols-3 gap-[22px] max-[960px]:grid-cols-1">
-          {t.products.items.map(([number, title, label, description, symbol]) => (
-            <article className="product-card relative min-h-[470px] overflow-hidden border border-[#1c385d] p-[34px] max-[960px]:min-h-[390px] max-[640px]:p-[26px]" key={number}>
-              <div className="product-topline flex items-center gap-[18px] text-[11px] text-[#657995]"><span>{number}</span><i className="h-px flex-1 bg-[#223a59]" /></div>
-              <div className="product-symbol mt-11 grid size-[76px] place-items-center border border-[#4f9be8] bg-[linear-gradient(145deg,#347ed0,#164d88)] font-symbol text-[28px] text-[#86c3ff]" aria-hidden="true">{symbol}</div>
-              <p className="product-kicker mt-[30px] mb-2 text-[13px] tracking-[.08em] text-[#518ed3]">{label}</p>
-              <h3 className="mt-0 mb-[18px] text-[28px] leading-[normal] font-bold">{title}</h3><p className="m-0 max-w-[360px] text-[15px] leading-[1.8] text-[#8f9db0]">{description}</p>
-              <span className="card-corner absolute right-0 bottom-0 grid size-[60px] place-items-center bg-brand-blue text-[26px] font-extralight text-white" aria-hidden="true">+</span>
-            </article>
-          ))}
+      <section className={`products section-dark bg-brand-products text-white ${productPanelClass}`} id="products" aria-labelledby="products-title">
+        <div className="flex h-full flex-col max-[960px]:h-auto">
+          <div className="section-heading centered mx-auto mb-[29.44px] max-w-[760px] text-center max-[960px]:mb-[36.8px] max-[640px]:text-left">
+            <h2 className="m-0 text-about-title" id="products-title">{t.products.title}</h2>
+          </div>
+          <div className="product-grid grid flex-1 grid-cols-3 gap-[22px] max-[960px]:grid-cols-1">
+            {t.products.items.map(([title, description]) => (
+              <article className="product-card relative flex min-h-0 flex-col overflow-hidden rounded-product-card border border-[#1c385d] px-[30px] py-[21.76px] max-[960px]:min-h-[312px]" key={title}>
+                <div className="product-symbol relative mt-2.5 size-[50px] shrink-0 overflow-hidden rounded-control border border-[#4f9be8] bg-black max-[960px]:mt-3" aria-hidden="true">
+                  <Image className="object-contain" src="/product-antibody.jpg" alt="" fill sizes="50px" />
+                </div>
+                <h3 className={`mt-[19.2px] mb-[11.52px] text-[22.4px] font-bold max-[960px]:mt-6 max-[960px]:mb-[14.4px] max-[960px]:text-[28px] ${language === "ja" ? "leading-[1.2]" : "leading-[1.25]"}`}>{title}</h3><p className="mt-0 mb-3 max-w-[360px] text-[13px] leading-[1.65] text-[#8f9db0] max-[960px]:text-[15px] max-[960px]:leading-[1.8]">{description}</p>
+                <span className="card-action relative z-1 mt-auto grid min-h-8 w-full shrink-0 place-items-center rounded-action bg-product-action text-[21px] leading-none font-extralight text-white" aria-hidden="true">+</span>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

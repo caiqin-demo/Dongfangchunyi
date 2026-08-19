@@ -4,6 +4,10 @@
   --color-brand-navy-950: #071224;
   --color-brand-navy-900: #0a1830;
   --color-brand-navy-800: #102442;
+  --color-brand-products: #0c1528;
+  --color-product-card: #192233;
+  --color-product-card-corner: #1c273b;
+  --color-product-action: #4989e5;
   --color-brand-blue: #387fd5;
   --color-brand-blue-bright: #5da7f1;
   --color-brand-blue-about: #4888e5;
@@ -19,18 +23,19 @@
   --font-brand-serif: "Songti SC", "STSong", "SimSun", serif;
   --font-symbol: Georgia, serif;
 
-  --spacing-header: 80px;
-  --spacing-header-mobile: 126px;
+  --spacing-header: 60px;
+  --spacing-header-mobile: 94.5px;
   --spacing-header-gutter: clamp(28px, 3vw, 58px);
   --spacing-page-gutter: max(32px, calc((100vw - 1400px) / 2));
   --spacing-section-y: 120px;
-  --spacing-hero: 790px;
+  --spacing-hero: 474px;
   --spacing-control: 64px;
   --spacing-control-mobile: 58px;
-  --spacing-about-media: 590px;
+  --spacing-about-media: 424.8px;
 
   --radius-control: 10px;
   --radius-action: 6px;
+  --radius-product-card: 12px;
   --radius-round: 9999px;
 
   --shadow-about: 0 24px 70px rgba(0, 0, 0, 0.2);
@@ -69,17 +74,17 @@
    expressing them as long arbitrary utility strings would obscure the visual
    composition without creating reusable layout primitives. */
 .product-card {
-  background: linear-gradient(145deg, #111f35, #0d192c);
+  background: var(--color-product-card);
 }
 
 .product-card::before {
   position: absolute;
-  top: -110px;
-  right: -90px;
-  width: 200px;
-  height: 200px;
-  border: 1px solid rgba(73, 132, 200, 0.18);
-  border-radius: 50%;
+  top: 0;
+  right: 0;
+  width: clamp(58px, 5.1vw, 76px);
+  aspect-ratio: 1;
+  border-radius: 0 0 0 100%;
+  background: var(--color-product-card-corner);
   content: "";
 }
 
