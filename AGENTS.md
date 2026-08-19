@@ -2,7 +2,7 @@
 
 ## Project baseline
 
-- This repository is a Node.js 22.x, Next.js 16 App Router, React, and TypeScript project.
+- This repository is a Node.js 24.x, Next.js 16 App Router, React, and TypeScript project.
 - Keep TypeScript strict. Prefer Server Components; add `"use client"` only when a component needs state, effects, event handlers, or browser-only APIs.
 - Keep the application deployable on Vercel. Use standard Next.js build behavior and avoid machine-specific paths, persistent local filesystem state, or a custom server unless a requirement makes one necessary.
 - Run `npm run lint`, `npm run typecheck`, and `npm run build` before considering a change complete.
