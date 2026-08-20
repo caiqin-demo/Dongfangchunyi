@@ -96,12 +96,13 @@ type HomeProps = Readonly<{
   searchParams: Promise<{ lang?: string | string[] }>;
 }>;
 
-const navLinkClass = "whitespace-nowrap text-[clamp(15px,1.15vw,18px)] text-on-dark/85 transition-colors duration-200 hover:text-accent focus-visible:text-accent max-[640px]:text-xs";
+const navLinkClass = "inline-flex min-h-6 items-center justify-center whitespace-nowrap text-[clamp(15px,1.15vw,18px)] text-on-dark/85 transition-colors duration-200 hover:text-accent focus-visible:text-accent max-[640px]:text-xs";
 const languageLinkClass = "text-on-dark-muted/85 transition-colors duration-200 hover:text-accent focus-visible:text-accent";
 const footerLinkClass = "text-[15px] leading-[1.7] text-on-dark-muted/90 transition-colors duration-200 hover:text-accent focus-visible:text-accent";
-const heroButtonClass = "button inline-flex min-h-12 min-w-36 items-center justify-center rounded-[6.667px] border px-6 text-base leading-6 font-normal transition-[transform,background-color] duration-200 hover:-translate-y-[1.333px] max-[640px]:w-full";
-const aboutPanelClass = "mx-auto mt-[2mm] min-h-[489.6px] w-[min(calc(100%-64px),1500px)] p-[clamp(25.92px,2.88vw,46.08px)] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
-const corePanelClass = "mx-auto mt-[2mm] h-[406.2px] w-[min(calc(100%-64px),1500px)] p-[clamp(20.736px,2.304vw,36.864px)] max-[960px]:h-auto max-[960px]:min-h-[489.6px] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
+const heroButtonClass = "button inline-flex min-h-12 min-w-36 items-center justify-center rounded-action border px-6 text-base leading-6 font-normal transition-[transform,background-color] duration-200 hover:-translate-y-px max-[640px]:w-full";
+const panelContainerClass = "mx-auto mt-panel-gap w-[calc(100%-4rem)] max-w-panel max-[960px]:w-[calc(100%-2rem)] max-[640px]:w-[calc(100%-1.5rem)]";
+const aboutPanelClass = `${panelContainerClass} min-h-panel-min-height p-[clamp(1.5rem,3vw,3rem)] max-[960px]:p-6 max-[640px]:p-4`;
+const corePanelClass = `${panelContainerClass} grid min-h-core-panel-min-height p-[clamp(1.25rem,2.3vw,2.25rem)] max-[960px]:min-h-panel-min-height max-[960px]:p-6 max-[640px]:p-4`;
 const serviceIcons = [LuFlaskConical, LuUsersRound, LuGraduationCap] as const;
 
 type CoreCardProps = Readonly<{
@@ -113,11 +114,11 @@ type CoreCardProps = Readonly<{
 
 function CoreCard({ description, icon, isJapanese, title }: CoreCardProps) {
   return (
-    <article className="core-card relative flex min-h-0 flex-col overflow-hidden rounded-product-card border border-line-dark px-[30px] py-[21.76px] max-[960px]:min-h-[312px]">
+    <article className="core-card relative flex min-h-0 flex-col overflow-hidden rounded-product-card border border-line-dark px-7 py-5.5 max-[960px]:min-h-78">
       <div className={`core-card-icon relative mt-2.5 size-[50px] shrink-0 overflow-hidden rounded-control border border-accent max-[960px]:mt-3 ${icon ? "grid place-items-center bg-accent text-[25px] text-white" : "bg-black"}`} aria-hidden="true">
         {icon ?? <Image className="object-contain" src="/product-antibody.jpg" alt="" fill sizes="50px" />}
       </div>
-      <h3 className={`mt-[19.2px] mb-[11.52px] text-[22.4px] font-bold max-[960px]:mt-6 max-[960px]:mb-[14.4px] max-[960px]:text-[28px] ${isJapanese ? "leading-[1.2]" : "leading-[1.25]"}`}>{title}</h3>
+      <h3 className={`mt-5 mb-3 text-[22px] font-bold max-[960px]:mt-6 max-[960px]:mb-3.5 max-[960px]:text-[28px] ${isJapanese ? "leading-[1.2]" : "leading-[1.25]"}`}>{title}</h3>
       <p className="mt-0 mb-3 max-w-[360px] text-[15px] leading-[1.65] text-on-dark-muted/90 max-[960px]:text-base max-[960px]:leading-[1.75]">{description}</p>
       <span className="card-action relative z-1 mt-auto grid min-h-8 w-full shrink-0 place-items-center rounded-action bg-accent text-[21px] leading-none font-extralight text-white" aria-hidden="true">+</span>
     </article>
@@ -135,7 +136,7 @@ export default async function Home({ searchParams }: HomeProps) {
       className={`${language === "ja" ? "font-sans-jp" : "font-sans-sc"} bg-ui-canvas`}
       lang={language === "ja" ? "ja" : "zh-CN"}
     >
-      <header className="site-header absolute top-0 left-0 z-10 flex h-header w-full items-center justify-between border-b border-accent/20 bg-ui-footer/96 px-header-gutter text-white max-[960px]:px-6 max-[640px]:h-header-mobile max-[640px]:items-start max-[640px]:px-5 max-[640px]:pt-3">
+      <header className="site-header absolute top-0 left-0 z-10 flex h-header w-full items-center justify-between border-b border-accent/20 bg-ui-footer/96 px-header-gutter text-white max-[960px]:px-6 max-[799px]:h-header-mobile max-[799px]:items-start max-[799px]:px-5 max-[799px]:pt-3">
         <a className="brand flex items-center gap-4" href="#top" aria-label={t.brand}>
           <span className="brand-logo relative grid size-12 flex-[0_0_48px] place-items-center overflow-hidden max-[640px]:size-[46px] max-[640px]:flex-[0_0_46px]">
             <Image className="brand-mark h-full w-auto object-contain" src="/Logo.png" width={530} height={539} alt="东方纯一 Logo" priority />
@@ -143,14 +144,14 @@ export default async function Home({ searchParams }: HomeProps) {
           <span className="brand-name block"><strong className={`${brandFontClass} text-[clamp(20px,1.45vw,26px)] font-normal tracking-[.06em] whitespace-nowrap text-on-dark max-[960px]:text-xl max-[640px]:text-[19px]`}>{t.brand}</strong></span>
         </a>
         <div className="header-actions flex items-center gap-[clamp(20px,2vw,32px)] max-[960px]:gap-3.5 max-[640px]:static">
-          <nav className="main-nav flex items-center gap-[clamp(26px,2.7vw,48px)] max-[960px]:gap-5 max-[640px]:absolute max-[640px]:top-[70px] max-[640px]:left-5 max-[640px]:w-[calc(100%-40px)] max-[640px]:justify-between max-[640px]:gap-0 max-[640px]:overflow-visible max-[640px]:pb-3" aria-label={language === "ja" ? "メインナビゲーション" : "主要导航"}>
+          <nav className="main-nav flex items-center gap-[clamp(26px,2.7vw,48px)] max-[960px]:gap-5 max-[799px]:absolute max-[799px]:top-16 max-[799px]:left-5 max-[799px]:w-[calc(100%-2.5rem)] max-[799px]:justify-between max-[799px]:gap-0 max-[799px]:overflow-visible max-[799px]:pb-3" aria-label={language === "ja" ? "メインナビゲーション" : "主要导航"}>
             <a className={`${navLinkClass} active !text-accent`} href="#top">{t.nav[0]}</a>
             <a className={navLinkClass} href="#about">{t.nav[1]}</a>
             <a className={navLinkClass} href="#products">{t.nav[2]}</a>
             <a className={navLinkClass} href="#services">{t.nav[3]}</a>
             <a className={navLinkClass} href="#contact">{t.nav[4]}</a>
           </nav>
-          <nav className="language-switcher flex items-center gap-1.5 text-xs whitespace-nowrap text-on-dark-muted/85 max-[960px]:text-[11px] max-[640px]:absolute max-[640px]:top-[27px] max-[640px]:right-5" aria-label="语言 / 言語">
+          <nav className="language-switcher flex items-center gap-1.5 text-xs whitespace-nowrap text-on-dark-muted/85 max-[960px]:text-[11px] max-[799px]:absolute max-[799px]:top-7 max-[799px]:right-5" aria-label="语言 / 言語">
             <Link className={`${languageLinkClass} ${language === "zh" ? "active !text-accent" : ""}`} href="/?lang=zh">中文</Link>
             <span aria-hidden="true">/</span>
             <Link className={`${languageLinkClass} ${language === "ja" ? "active !text-accent" : ""}`} href="/?lang=ja">日本語</Link>
@@ -158,11 +159,11 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
       </header>
 
-      <section className={`hero relative grid min-h-hero grid-cols-1 items-center justify-items-center overflow-hidden bg-ui-hero bg-[url('/hero-background.png')] bg-cover bg-center bg-no-repeat px-page-gutter pt-[114px] pb-[72px] text-white max-[960px]:min-h-[432px] max-[960px]:px-7 max-[960px]:pt-24 max-[960px]:pb-[60px] max-[640px]:min-h-[456px] ${language === "ja" ? "max-[640px]:pb-[10px]" : "max-[640px]:pb-[38.7px]"}`} id="top" aria-labelledby="hero-title">
+      <section className={`hero relative grid min-h-hero grid-cols-1 items-center justify-items-center overflow-hidden bg-ui-hero bg-[url('/hero-background.png')] bg-cover bg-center bg-no-repeat px-page-gutter pt-[114px] pb-[72px] text-white max-[960px]:min-h-[432px] max-[960px]:px-7 max-[960px]:pt-24 max-[960px]:pb-[60px] max-[799px]:pt-28 max-[640px]:min-h-[456px] ${language === "ja" ? "max-[640px]:pb-2.5" : "max-[640px]:pb-10"}`} id="top" aria-labelledby="hero-title">
         <div className="hero-content relative z-2 mx-auto w-full max-w-[1120px] text-center max-[960px]:max-w-[780px]">
           <h1 className={`m-0 text-hero-title max-[640px]:text-[36px] ${language === "ja" ? "min-[641px]:text-[clamp(44px,4.2vw,56px)]" : ""}`} id="hero-title">{t.hero.title}</h1>
           <p className={`hero-copy mx-auto mt-[38px] max-w-[1120px] leading-[1.6] text-on-dark-muted max-[960px]:max-w-[780px] max-[640px]:mt-[26px] max-[640px]:max-w-[320px] max-[640px]:text-lg max-[640px]:leading-[1.75] ${language === "ja" ? "text-[clamp(20px,1.7vw,24px)]" : "text-[clamp(22px,2.1vw,30px)]"}`}>{t.hero.description}</p>
-          <div className="hero-links mt-[50px] flex justify-center gap-[9.333px] max-[640px]:mx-auto max-[640px]:mt-[18px] max-[640px]:w-[min(100%,213.333px)] max-[640px]:flex-col" aria-label={language === "ja" ? "ページ案内" : "页面快速入口"}>
+          <div className="hero-links mt-12.5 flex justify-center gap-2.5 max-[640px]:mx-auto max-[640px]:mt-4.5 max-[640px]:w-54 max-[640px]:max-w-full max-[640px]:flex-col" aria-label={language === "ja" ? "ページ案内" : "页面快速入口"}>
             <a className={`${heroButtonClass} primary border-accent/90 bg-accent/90`} href="#products">{t.hero.productButton}</a>
             <a className={`${heroButtonClass} secondary border-accent/80 bg-transparent text-accent`} href="#services">{t.hero.serviceButton}</a>
           </div>
@@ -170,7 +171,7 @@ export default async function Home({ searchParams }: HomeProps) {
       </section>
 
       <section className={`about relative grid grid-cols-2 items-stretch gap-[clamp(44px,5vw,80px)] bg-white shadow-about max-[960px]:grid-cols-1 ${aboutPanelClass}`} id="about" aria-labelledby="about-title">
-        <div className="about-art relative min-h-about-media overflow-hidden rounded-control border border-line bg-ui-subtle shadow-media max-[960px]:h-[309.6px] max-[640px]:min-h-[237.6px]" aria-hidden="true">
+        <div className="about-art relative min-h-about-media overflow-hidden rounded-control border border-line bg-ui-subtle shadow-media max-[960px]:h-78 max-[640px]:min-h-60" aria-hidden="true">
           <Image className="about-image p-3 object-contain object-center" src="/about-authorization.jpg" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" />
         </div>
         <div className="about-copy flex min-w-0 flex-col justify-center">
@@ -185,7 +186,7 @@ export default async function Home({ searchParams }: HomeProps) {
               </li>
             ))}
           </ul>
-          <a className="about-more mt-3 inline-flex min-h-[43.2px] w-fit min-w-[168px] items-center justify-center gap-3.5 rounded-action bg-accent px-7 text-lg leading-none font-normal text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-accent-hover" href="#products">
+          <a className="about-more mt-3 inline-flex min-h-11 w-fit min-w-42 items-center justify-center gap-3.5 rounded-action bg-accent px-7 text-lg leading-none font-normal text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-accent-hover" href="#products">
             <span>{t.about.more}</span>
             <span className="about-more-arrow text-[25px] leading-none font-light" aria-hidden="true">→</span>
           </a>
@@ -194,10 +195,10 @@ export default async function Home({ searchParams }: HomeProps) {
 
       <section className={`products section-dark bg-ui-section text-white ${corePanelClass}`} id="products" aria-labelledby="products-title">
         <div className="flex h-full flex-col max-[960px]:h-auto">
-          <div className="section-heading centered mx-auto mb-[29.44px] max-w-[760px] text-center max-[960px]:mb-[36.8px] max-[640px]:text-left">
+          <div className="section-heading centered mx-auto mb-7.5 max-w-[760px] text-center max-[960px]:mb-9 max-[640px]:text-left">
             <h2 className="m-0 text-about-title" id="products-title">{t.products.title}</h2>
           </div>
-          <div className="product-grid grid flex-1 grid-cols-3 gap-[22px] max-[960px]:grid-cols-1">
+          <div className="product-grid grid flex-1 grid-cols-3 gap-5.5 max-[960px]:grid-cols-1">
             {t.products.items.map(([title, description]) => (
               <CoreCard description={description} isJapanese={language === "ja"} key={title} title={title} />
             ))}
@@ -207,10 +208,10 @@ export default async function Home({ searchParams }: HomeProps) {
 
       <section className={`services section-dark bg-ui-section text-white ${corePanelClass}`} id="services" aria-labelledby="services-title">
         <div className="flex h-full flex-col max-[960px]:h-auto">
-          <div className="section-heading centered mx-auto mb-[29.44px] max-w-[760px] text-center max-[960px]:mb-[36.8px] max-[640px]:text-left">
+          <div className="section-heading centered mx-auto mb-7.5 max-w-[760px] text-center max-[960px]:mb-9 max-[640px]:text-left">
             <h2 className="m-0 text-about-title" id="services-title">{t.services.title}</h2>
           </div>
-          <div className="service-grid grid flex-1 grid-cols-3 gap-[22px] max-[960px]:grid-cols-1">
+          <div className="service-grid grid flex-1 grid-cols-3 gap-5.5 max-[960px]:grid-cols-1">
             {t.services.items.map(([title, description], index) => {
               const ServiceIcon = serviceIcons[index];
               return <CoreCard description={description} icon={<ServiceIcon />} isJapanese={language === "ja"} key={title} title={title} />;
@@ -219,7 +220,7 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
       </section>
 
-      <footer className="site-footer mx-auto mt-[2mm] w-[min(calc(100%-64px),1500px)] bg-ui-footer px-[clamp(32px,4vw,64px)] pt-[52px] pb-7 text-on-dark-muted max-[960px]:w-[calc(100%-32px)] max-[960px]:px-8 max-[640px]:w-[calc(100%-24px)] max-[640px]:px-6 max-[640px]:pt-10" id="contact">
+      <footer className={`site-footer ${panelContainerClass} bg-ui-footer px-[clamp(2rem,4vw,4rem)] pt-13 pb-7 text-on-dark-muted max-[960px]:px-8 max-[640px]:px-6 max-[640px]:pt-10`} id="contact">
         <div className="grid grid-cols-[1.4fr_1fr_1fr_.8fr] gap-[clamp(44px,5vw,88px)] max-[960px]:grid-cols-2 max-[960px]:gap-x-12 max-[960px]:gap-y-11 max-[640px]:grid-cols-1 max-[640px]:gap-10">
           <section aria-labelledby="footer-company-title">
             <div className="flex items-center gap-[11.5px] text-white">

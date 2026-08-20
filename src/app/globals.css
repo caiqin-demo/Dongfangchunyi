@@ -24,14 +24,16 @@
   --font-symbol: Georgia, serif;
 
   --spacing-header: 60px;
-  --spacing-header-mobile: 94.5px;
+  --spacing-header-mobile: 6.5rem;
   --spacing-header-gutter: clamp(28px, 3vw, 58px);
   --spacing-page-gutter: max(32px, calc((100vw - 1400px) / 2));
-  --spacing-section-y: 120px;
+  --spacing-panel-gap: 0.5rem;
+  --spacing-panel-min-height: 30.5rem;
+  --spacing-core-panel-min-height: 25.5rem;
   --spacing-hero: 474px;
-  --spacing-control: 42.667px;
-  --spacing-control-mobile: 38.667px;
-  --spacing-about-media: 424.8px;
+  --spacing-about-media: 26.5rem;
+
+  --container-panel: 93.75rem;
 
   --radius-control: 10px;
   --radius-action: 6px;
