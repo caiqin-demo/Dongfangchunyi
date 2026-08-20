@@ -136,8 +136,8 @@ export default async function Home({ searchParams }: HomeProps) {
     >
       <header className="site-header absolute top-0 left-0 z-10 flex h-header w-full items-center justify-between border-b border-[rgba(80,117,166,.24)] bg-[rgba(6,17,35,.96)] px-header-gutter text-white max-[960px]:px-6 max-[640px]:h-header-mobile max-[640px]:items-start max-[640px]:px-5 max-[640px]:pt-3">
         <a className="brand flex items-center gap-4" href="#top" aria-label={t.brand}>
-          <span className="brand-logo relative block size-12 flex-[0_0_48px] overflow-hidden bg-white max-[640px]:size-[46px] max-[640px]:flex-[0_0_46px]">
-            <Image className="brand-mark absolute top-1/2 left-1/2 size-[88px] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover max-[640px]:size-[84px]" src="/eastern-purity-logo.jpg" width={100} height={100} alt="东方纯一 Logo" priority />
+          <span className="brand-logo relative grid size-12 flex-[0_0_48px] place-items-center overflow-hidden max-[640px]:size-[46px] max-[640px]:flex-[0_0_46px]">
+            <Image className="brand-mark h-full w-auto object-contain" src="/Logo.png" width={530} height={539} alt="东方纯一 Logo" priority />
           </span>
           <span className="brand-name block"><strong className="font-brand-serif text-[clamp(20px,1.45vw,26px)] font-normal tracking-[.06em] whitespace-nowrap text-[#f4f6fa] max-[960px]:text-xl max-[640px]:text-[19px]">{t.brand}</strong></span>
         </a>
@@ -222,7 +222,7 @@ export default async function Home({ searchParams }: HomeProps) {
         <div className="grid grid-cols-[1.4fr_1fr_1fr_.8fr] gap-[clamp(44px,5vw,88px)] max-[960px]:grid-cols-2 max-[960px]:gap-x-12 max-[960px]:gap-y-11 max-[640px]:grid-cols-1 max-[640px]:gap-10">
           <section aria-labelledby="footer-company-title">
             <div className="flex items-center gap-[11.5px] text-white">
-              <Image className="size-9 shrink-0 object-contain" src="/eastern-purity-logo.jpg" width={36} height={36} alt="" />
+              <Image className="h-9 w-auto shrink-0 object-contain" src="/Logo.png" width={36} height={37} alt="" />
               <h2 className="m-0 font-brand-serif text-base leading-[1.4] font-normal tracking-[.06em]" id="footer-company-title">{t.brand}</h2>
             </div>
             <p className="mt-7 mb-0 text-[15px] leading-[1.85] text-[#9ba9ba]">
