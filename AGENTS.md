@@ -6,6 +6,16 @@
 - Keep TypeScript strict. Prefer Server Components; add `"use client"` only when a component needs state, effects, event handlers, or browser-only APIs.
 - Keep the application deployable on Vercel. Use standard Next.js build behavior and avoid machine-specific paths, persistent local filesystem state, or a custom server unless a requirement makes one necessary.
 - Run `npm run lint`, `npm run typecheck`, and `npm run build` before considering a change complete.
+- After completing any user-requested implementation task, include a proposed Git commit message in the final handoff, regardless of whether the user asked Codex to create a commit.
+
+## Landing page Hero UI requirements
+
+- Hero headings and supporting copy must remain fully visible in every supported locale. Localized or otherwise variable-length copy must wrap naturally when it exceeds the available width; do not apply `white-space: nowrap`, Tailwind `whitespace-nowrap`, or an equivalent rule unless all supported locales and required viewports have been verified to fit.
+- Do not use `overflow: hidden` as a substitute for responsive text layout. Hero content is unacceptable if any heading, supporting copy, or call to action is clipped, silently hidden, overlaps another element, or creates unintended horizontal page scrolling.
+- Verify Hero text after every relevant layout, typography, copy, or localization change in both Chinese and Japanese at minimum viewport widths of 390px, 641px, 700px, 800px, 950px, and 1440px. Breakpoint-adjacent checks must confirm both sides of any changed breakpoint.
+- Primary and secondary Hero calls to action must have a pointer target at least 48 CSS pixels high, use text at least 16 CSS pixels in size, and be at least 144 CSS pixels wide on desktop. On compact screens they may expand to the available container width, but their target height and text size must not be reduced below these minimums.
+- CTA labels and destination changes require an explicit product or content decision. Do not claim that a visual size change improves conversion without analytics or an approved experiment; UI acceptance should instead verify prominence, legibility, target size, keyboard access, and correct destinations.
+- Browser verification must inspect computed element dimensions and overflow, not screenshots alone. A Hero change passes only when Chinese and Japanese copy has no horizontal overflow or clipping, every CTA meets the minimum computed target dimensions, and all Hero content remains inside the section at the required viewports.
 
 ## Repository location policy
 
