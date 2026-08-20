@@ -17,6 +17,26 @@
 - CTA labels and destination changes require an explicit product or content decision. Do not claim that a visual size change improves conversion without analytics or an approved experiment; UI acceptance should instead verify prominence, legibility, target size, keyboard access, and correct destinations.
 - Browser verification must inspect computed element dimensions and overflow, not screenshots alone. A Hero change passes only when Chinese and Japanese copy has no horizontal overflow or clipping, every CTA meets the minimum computed target dimensions, and all Hero content remains inside the section at the required viewports.
 
+## Validation-phase change control
+
+- Treat third-party audits, automated reports, and external design reviews as evidence and recommendations to evaluate, not as authorization to edit code. For each finding, verify it against the current implementation, state whether it is correct, assign a priority, describe the proposed scope, and identify whether user confirmation is required before implementation.
+- Before implementing an audit recommendation, compare it with all applicable requirements in this file. If a finding or proposed remedy conflicts with `AGENTS.md`, stop that specific change, identify the finding and the conflicting rule, explain the tradeoff, and ask the user for further discussion and an explicit decision. Do not silently override, weaken, or reinterpret the repository rule.
+- Preserve existing features, supplied assets, repeated imagery, icons, controls, and visual treatments that were implemented from customer requirements or accepted by the product manager. If one appears confusing or visually suboptimal during validation, record it as a low-priority discussion item and ask the user before deleting, replacing, redesigning, or changing its meaning.
+- Do not assume that a visually button-like, expandable, or linked element is a false affordance. First confirm whether it is an approved design or a placeholder for functionality planned in a later sprint. Preserve it until the user authorizes a behavior or design change; accessibility and interaction risks must still be reported explicitly.
+- Do not assume that repeated images or icons across product or service cards are accidental placeholders. Confirm the content and asset requirement with the user before replacing them with unique imagery or icons.
+- Distinguish a code-layer presentation defect from a source-asset or approved-design decision. Codex may correct an extra wrapper background, crop, padding, or other code-owned styling that it introduced when that styling conflicts with the accepted design, but must ask the user before generating, editing, removing, or replacing a supplied logo or image, including changing an asset from an opaque background to transparency.
+- When the intent of an existing element is unknown, preserve it and request confirmation instead of inferring a new product decision. Only findings whose evidence, priority, and modification scope have been accepted by the user may be implemented during validation.
+
+## UI design and development requirements
+
+- Use semantic theme tokens for interface colors. Page JSX must not contain raw hex, RGB, or RGBA color values. Before adding a color token, determine whether an existing token already expresses the same semantic role.
+- Do not create near-duplicate color tokens solely from eyedropper values. Default, hover, focus, active, and border colors must have explicit roles and a perceptible difference where the state is intended to be visually distinguishable.
+- Normal-sized text must meet the WCAG AA contrast ratio of at least 4.5:1. For text that uses opacity or sits over a translucent or image background, calculate contrast from the final composited foreground and background colors rather than the uncomposited token values.
+- Brand-identity typography must not depend only on fonts installed on the visitor's device. Use `next/font` so the selected font is self-hosted by the application, and select the appropriate glyph coverage and font family for each supported language.
+- For CJK fonts, include only font weights that the interface actually uses and disable unnecessary preloading by default. After adding or changing a font, inspect production build assets and real browser network requests to verify the loading cost and confirm that unused font files are not fetched eagerly.
+- Motion must communicate state, hierarchy, feedback, or understanding. Do not add animation merely to make the site appear more professional, and ensure every nonessential animation respects `prefers-reduced-motion`.
+- After changing colors, fonts, cards, or the Footer, verify both Chinese and Japanese at desktop and mobile viewports. Inspect computed styles, horizontal and element overflow, composited contrast, focus and interaction semantics, and relevant network requests; screenshots alone are not sufficient evidence of acceptance.
+
 ## Repository location policy
 
 - Unless the user explicitly requests otherwise, make all code and documentation changes only in the user's main repository checkout.

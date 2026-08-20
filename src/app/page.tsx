@@ -96,9 +96,9 @@ type HomeProps = Readonly<{
   searchParams: Promise<{ lang?: string | string[] }>;
 }>;
 
-const navLinkClass = "whitespace-nowrap text-[clamp(15px,1.15vw,18px)] text-[#d5dbe5] transition-colors duration-200 hover:text-[#4d91e4] focus-visible:text-[#4d91e4] max-[640px]:text-xs";
-const languageLinkClass = "text-[#8f9caf] transition-colors duration-200 hover:text-[#4d91e4] focus-visible:text-[#4d91e4]";
-const footerLinkClass = "text-[15px] leading-[1.7] text-[#9ba9ba] transition-colors duration-200 hover:text-product-action focus-visible:text-product-action";
+const navLinkClass = "whitespace-nowrap text-[clamp(15px,1.15vw,18px)] text-on-dark/85 transition-colors duration-200 hover:text-accent focus-visible:text-accent max-[640px]:text-xs";
+const languageLinkClass = "text-on-dark-muted/85 transition-colors duration-200 hover:text-accent focus-visible:text-accent";
+const footerLinkClass = "text-[15px] leading-[1.7] text-on-dark-muted/90 transition-colors duration-200 hover:text-accent focus-visible:text-accent";
 const heroButtonClass = "button inline-flex min-h-12 min-w-36 items-center justify-center rounded-[6.667px] border px-6 text-base leading-6 font-normal transition-[transform,background-color] duration-200 hover:-translate-y-[1.333px] max-[640px]:w-full";
 const aboutPanelClass = "mx-auto mt-[2mm] min-h-[489.6px] w-[min(calc(100%-64px),1500px)] p-[clamp(25.92px,2.88vw,46.08px)] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
 const corePanelClass = "mx-auto mt-[2mm] h-[406.2px] w-[min(calc(100%-64px),1500px)] p-[clamp(20.736px,2.304vw,36.864px)] max-[960px]:h-auto max-[960px]:min-h-[489.6px] max-[960px]:w-[calc(100%-32px)] max-[960px]:p-[24.48px] max-[640px]:w-[calc(100%-24px)] max-[640px]:p-[15.84px]";
@@ -113,13 +113,13 @@ type CoreCardProps = Readonly<{
 
 function CoreCard({ description, icon, isJapanese, title }: CoreCardProps) {
   return (
-    <article className="core-card relative flex min-h-0 flex-col overflow-hidden rounded-product-card border border-[#1c385d] px-[30px] py-[21.76px] max-[960px]:min-h-[312px]">
-      <div className={`core-card-icon relative mt-2.5 size-[50px] shrink-0 overflow-hidden rounded-control border border-[#4f9be8] max-[960px]:mt-3 ${icon ? "grid place-items-center bg-product-action text-[25px] text-white" : "bg-black"}`} aria-hidden="true">
+    <article className="core-card relative flex min-h-0 flex-col overflow-hidden rounded-product-card border border-line-dark px-[30px] py-[21.76px] max-[960px]:min-h-[312px]">
+      <div className={`core-card-icon relative mt-2.5 size-[50px] shrink-0 overflow-hidden rounded-control border border-accent max-[960px]:mt-3 ${icon ? "grid place-items-center bg-accent text-[25px] text-white" : "bg-black"}`} aria-hidden="true">
         {icon ?? <Image className="object-contain" src="/product-antibody.jpg" alt="" fill sizes="50px" />}
       </div>
       <h3 className={`mt-[19.2px] mb-[11.52px] text-[22.4px] font-bold max-[960px]:mt-6 max-[960px]:mb-[14.4px] max-[960px]:text-[28px] ${isJapanese ? "leading-[1.2]" : "leading-[1.25]"}`}>{title}</h3>
-      <p className="mt-0 mb-3 max-w-[360px] text-[15px] leading-[1.65] text-[#8f9db0] max-[960px]:text-base max-[960px]:leading-[1.75]">{description}</p>
-      <span className="card-action relative z-1 mt-auto grid min-h-8 w-full shrink-0 place-items-center rounded-action bg-product-action text-[21px] leading-none font-extralight text-white" aria-hidden="true">+</span>
+      <p className="mt-0 mb-3 max-w-[360px] text-[15px] leading-[1.65] text-on-dark-muted/90 max-[960px]:text-base max-[960px]:leading-[1.75]">{description}</p>
+      <span className="card-action relative z-1 mt-auto grid min-h-8 w-full shrink-0 place-items-center rounded-action bg-accent text-[21px] leading-none font-extralight text-white" aria-hidden="true">+</span>
     </article>
   );
 }
@@ -128,70 +128,71 @@ export default async function Home({ searchParams }: HomeProps) {
   const params = await searchParams;
   const language = params.lang === "ja" ? "ja" : "zh";
   const t = content[language];
+  const brandFontClass = language === "ja" ? "font-brand-serif-jp" : "font-brand-serif-sc";
 
   return (
     <main
-      className={`${language === "ja" ? "font-sans-jp" : "font-sans-sc"} bg-brand-canvas`}
+      className={`${language === "ja" ? "font-sans-jp" : "font-sans-sc"} bg-ui-canvas`}
       lang={language === "ja" ? "ja" : "zh-CN"}
     >
-      <header className="site-header absolute top-0 left-0 z-10 flex h-header w-full items-center justify-between border-b border-[rgba(80,117,166,.24)] bg-[rgba(6,17,35,.96)] px-header-gutter text-white max-[960px]:px-6 max-[640px]:h-header-mobile max-[640px]:items-start max-[640px]:px-5 max-[640px]:pt-3">
+      <header className="site-header absolute top-0 left-0 z-10 flex h-header w-full items-center justify-between border-b border-accent/20 bg-ui-footer/96 px-header-gutter text-white max-[960px]:px-6 max-[640px]:h-header-mobile max-[640px]:items-start max-[640px]:px-5 max-[640px]:pt-3">
         <a className="brand flex items-center gap-4" href="#top" aria-label={t.brand}>
           <span className="brand-logo relative grid size-12 flex-[0_0_48px] place-items-center overflow-hidden max-[640px]:size-[46px] max-[640px]:flex-[0_0_46px]">
             <Image className="brand-mark h-full w-auto object-contain" src="/Logo.png" width={530} height={539} alt="东方纯一 Logo" priority />
           </span>
-          <span className="brand-name block"><strong className="font-brand-serif text-[clamp(20px,1.45vw,26px)] font-normal tracking-[.06em] whitespace-nowrap text-[#f4f6fa] max-[960px]:text-xl max-[640px]:text-[19px]">{t.brand}</strong></span>
+          <span className="brand-name block"><strong className={`${brandFontClass} text-[clamp(20px,1.45vw,26px)] font-normal tracking-[.06em] whitespace-nowrap text-on-dark max-[960px]:text-xl max-[640px]:text-[19px]`}>{t.brand}</strong></span>
         </a>
         <div className="header-actions flex items-center gap-[clamp(20px,2vw,32px)] max-[960px]:gap-3.5 max-[640px]:static">
           <nav className="main-nav flex items-center gap-[clamp(26px,2.7vw,48px)] max-[960px]:gap-5 max-[640px]:absolute max-[640px]:top-[70px] max-[640px]:left-5 max-[640px]:w-[calc(100%-40px)] max-[640px]:justify-between max-[640px]:gap-0 max-[640px]:overflow-visible max-[640px]:pb-3" aria-label={language === "ja" ? "メインナビゲーション" : "主要导航"}>
-            <a className={`${navLinkClass} active !text-[#4d91e4]`} href="#top">{t.nav[0]}</a>
+            <a className={`${navLinkClass} active !text-accent`} href="#top">{t.nav[0]}</a>
             <a className={navLinkClass} href="#about">{t.nav[1]}</a>
             <a className={navLinkClass} href="#products">{t.nav[2]}</a>
             <a className={navLinkClass} href="#services">{t.nav[3]}</a>
             <a className={navLinkClass} href="#contact">{t.nav[4]}</a>
           </nav>
-          <nav className="language-switcher flex items-center gap-1.5 text-xs whitespace-nowrap text-[#72839b] max-[960px]:text-[11px] max-[640px]:absolute max-[640px]:top-[27px] max-[640px]:right-5" aria-label="语言 / 言語">
-            <Link className={`${languageLinkClass} ${language === "zh" ? "active !text-[#4d91e4]" : ""}`} href="/?lang=zh">中文</Link>
+          <nav className="language-switcher flex items-center gap-1.5 text-xs whitespace-nowrap text-on-dark-muted/85 max-[960px]:text-[11px] max-[640px]:absolute max-[640px]:top-[27px] max-[640px]:right-5" aria-label="语言 / 言語">
+            <Link className={`${languageLinkClass} ${language === "zh" ? "active !text-accent" : ""}`} href="/?lang=zh">中文</Link>
             <span aria-hidden="true">/</span>
-            <Link className={`${languageLinkClass} ${language === "ja" ? "active !text-[#4d91e4]" : ""}`} href="/?lang=ja">日本語</Link>
+            <Link className={`${languageLinkClass} ${language === "ja" ? "active !text-accent" : ""}`} href="/?lang=ja">日本語</Link>
           </nav>
         </div>
       </header>
 
-      <section className={`hero relative grid min-h-hero grid-cols-1 items-center justify-items-center overflow-hidden bg-[#0b203f] bg-[url('/hero-background.png')] bg-cover bg-center bg-no-repeat px-page-gutter pt-[114px] pb-[72px] text-white max-[960px]:min-h-[432px] max-[960px]:px-7 max-[960px]:pt-24 max-[960px]:pb-[60px] max-[640px]:min-h-[456px] ${language === "ja" ? "max-[640px]:pb-[10px]" : "max-[640px]:pb-[38.7px]"}`} id="top" aria-labelledby="hero-title">
+      <section className={`hero relative grid min-h-hero grid-cols-1 items-center justify-items-center overflow-hidden bg-ui-hero bg-[url('/hero-background.png')] bg-cover bg-center bg-no-repeat px-page-gutter pt-[114px] pb-[72px] text-white max-[960px]:min-h-[432px] max-[960px]:px-7 max-[960px]:pt-24 max-[960px]:pb-[60px] max-[640px]:min-h-[456px] ${language === "ja" ? "max-[640px]:pb-[10px]" : "max-[640px]:pb-[38.7px]"}`} id="top" aria-labelledby="hero-title">
         <div className="hero-content relative z-2 mx-auto w-full max-w-[1120px] text-center max-[960px]:max-w-[780px]">
           <h1 className={`m-0 text-hero-title max-[640px]:text-[36px] ${language === "ja" ? "min-[641px]:text-[clamp(44px,4.2vw,56px)]" : ""}`} id="hero-title">{t.hero.title}</h1>
-          <p className={`hero-copy mx-auto mt-[38px] max-w-[1120px] leading-[1.6] text-[#b7c5d6] max-[960px]:max-w-[780px] max-[640px]:mt-[26px] max-[640px]:max-w-[320px] max-[640px]:text-lg max-[640px]:leading-[1.75] ${language === "ja" ? "text-[clamp(20px,1.7vw,24px)]" : "text-[clamp(22px,2.1vw,30px)]"}`}>{t.hero.description}</p>
+          <p className={`hero-copy mx-auto mt-[38px] max-w-[1120px] leading-[1.6] text-on-dark-muted max-[960px]:max-w-[780px] max-[640px]:mt-[26px] max-[640px]:max-w-[320px] max-[640px]:text-lg max-[640px]:leading-[1.75] ${language === "ja" ? "text-[clamp(20px,1.7vw,24px)]" : "text-[clamp(22px,2.1vw,30px)]"}`}>{t.hero.description}</p>
           <div className="hero-links mt-[50px] flex justify-center gap-[9.333px] max-[640px]:mx-auto max-[640px]:mt-[18px] max-[640px]:w-[min(100%,213.333px)] max-[640px]:flex-col" aria-label={language === "ja" ? "ページ案内" : "页面快速入口"}>
-            <a className={`${heroButtonClass} primary border-[rgba(49,157,238,.92)] bg-[rgba(39,145,229,.92)]`} href="#products">{t.hero.productButton}</a>
-            <a className={`${heroButtonClass} secondary border-[rgba(43,151,230,.82)] bg-transparent text-[rgba(66,158,230,.95)]`} href="#services">{t.hero.serviceButton}</a>
+            <a className={`${heroButtonClass} primary border-accent/90 bg-accent/90`} href="#products">{t.hero.productButton}</a>
+            <a className={`${heroButtonClass} secondary border-accent/80 bg-transparent text-accent`} href="#services">{t.hero.serviceButton}</a>
           </div>
         </div>
       </section>
 
       <section className={`about relative grid grid-cols-2 items-stretch gap-[clamp(44px,5vw,80px)] bg-white shadow-about max-[960px]:grid-cols-1 ${aboutPanelClass}`} id="about" aria-labelledby="about-title">
-        <div className="about-art relative min-h-about-media overflow-hidden rounded-control border border-[#e3e7eb] bg-[#f7f8f9] shadow-media max-[960px]:h-[309.6px] max-[640px]:min-h-[237.6px]" aria-hidden="true">
+        <div className="about-art relative min-h-about-media overflow-hidden rounded-control border border-line bg-ui-subtle shadow-media max-[960px]:h-[309.6px] max-[640px]:min-h-[237.6px]" aria-hidden="true">
           <Image className="about-image p-3 object-contain object-center" src="/about-authorization.jpg" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" />
         </div>
         <div className="about-copy flex min-w-0 flex-col justify-center">
-          <p className="eyebrow mb-2 text-[15px] leading-[17px] font-extrabold tracking-[.22em] text-brand-blue-about">{t.about.label}</p>
+          <p className="eyebrow mb-2 text-[15px] leading-[17px] font-extrabold tracking-[.22em] text-accent">{t.about.label}</p>
           <h2 className={`m-0 max-w-[680px] text-about-title text-balance max-[640px]:text-[32px] ${language === "ja" ? "leading-[1.05]" : ""}`} id="about-title">{t.about.title}</h2>
-          <p className={`my-2 text-[17px] font-normal text-brand-muted ${language === "ja" ? "leading-[1.6]" : "leading-[1.8]"}`}>{t.about.body}</p>
+          <p className={`my-2 text-[17px] font-normal text-ink-muted ${language === "ja" ? "leading-[1.6]" : "leading-[1.8]"}`}>{t.about.body}</p>
           <ul className="about-offerings mt-2.5 grid list-none gap-[9.5px] p-0">
             {t.about.offerings.map(([brand, description, registered]) => (
-              <li className={`flex items-center gap-[13px] text-lg font-normal text-[#37404d] ${language === "ja" ? "leading-[1.4]" : "leading-[1.55]"}`} key={`${brand}-${description}`}>
-                <span className="offering-check grid size-[26px] flex-[0_0_26px] place-items-center rounded-round border-[5px] border-brand-blue-about bg-white text-xs leading-none font-extrabold text-brand-blue-about" aria-hidden="true">✓</span>
+              <li className={`flex items-center gap-[13px] text-lg font-normal text-ink/80 ${language === "ja" ? "leading-[1.4]" : "leading-[1.55]"}`} key={`${brand}-${description}`}>
+                <span className="offering-check grid size-[26px] flex-[0_0_26px] place-items-center rounded-round border-[5px] border-accent bg-white text-xs leading-none font-extrabold text-accent" aria-hidden="true">✓</span>
                 <span>{brand}{registered && <sup className="relative top-[-.2em] ml-px text-[.62em] leading-none">®</sup>}{brand && " "}{description}</span>
               </li>
             ))}
           </ul>
-          <a className="about-more mt-3 inline-flex min-h-[43.2px] w-fit min-w-[168px] items-center justify-center gap-3.5 rounded-action bg-brand-blue-about px-7 text-lg leading-none font-normal text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-[#3f7ed8]" href="#products">
+          <a className="about-more mt-3 inline-flex min-h-[43.2px] w-fit min-w-[168px] items-center justify-center gap-3.5 rounded-action bg-accent px-7 text-lg leading-none font-normal text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-accent-hover" href="#products">
             <span>{t.about.more}</span>
             <span className="about-more-arrow text-[25px] leading-none font-light" aria-hidden="true">→</span>
           </a>
         </div>
       </section>
 
-      <section className={`products section-dark bg-brand-products text-white ${corePanelClass}`} id="products" aria-labelledby="products-title">
+      <section className={`products section-dark bg-ui-section text-white ${corePanelClass}`} id="products" aria-labelledby="products-title">
         <div className="flex h-full flex-col max-[960px]:h-auto">
           <div className="section-heading centered mx-auto mb-[29.44px] max-w-[760px] text-center max-[960px]:mb-[36.8px] max-[640px]:text-left">
             <h2 className="m-0 text-about-title" id="products-title">{t.products.title}</h2>
@@ -204,7 +205,7 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
       </section>
 
-      <section className={`services section-dark bg-brand-products text-white ${corePanelClass}`} id="services" aria-labelledby="services-title">
+      <section className={`services section-dark bg-ui-section text-white ${corePanelClass}`} id="services" aria-labelledby="services-title">
         <div className="flex h-full flex-col max-[960px]:h-auto">
           <div className="section-heading centered mx-auto mb-[29.44px] max-w-[760px] text-center max-[960px]:mb-[36.8px] max-[640px]:text-left">
             <h2 className="m-0 text-about-title" id="services-title">{t.services.title}</h2>
@@ -218,14 +219,14 @@ export default async function Home({ searchParams }: HomeProps) {
         </div>
       </section>
 
-      <footer className="site-footer mx-auto mt-[2mm] w-[min(calc(100%-64px),1500px)] bg-[#061021] px-[clamp(32px,4vw,64px)] pt-[52px] pb-7 text-[#a5b2c2] max-[960px]:w-[calc(100%-32px)] max-[960px]:px-8 max-[640px]:w-[calc(100%-24px)] max-[640px]:px-6 max-[640px]:pt-10" id="contact">
+      <footer className="site-footer mx-auto mt-[2mm] w-[min(calc(100%-64px),1500px)] bg-ui-footer px-[clamp(32px,4vw,64px)] pt-[52px] pb-7 text-on-dark-muted max-[960px]:w-[calc(100%-32px)] max-[960px]:px-8 max-[640px]:w-[calc(100%-24px)] max-[640px]:px-6 max-[640px]:pt-10" id="contact">
         <div className="grid grid-cols-[1.4fr_1fr_1fr_.8fr] gap-[clamp(44px,5vw,88px)] max-[960px]:grid-cols-2 max-[960px]:gap-x-12 max-[960px]:gap-y-11 max-[640px]:grid-cols-1 max-[640px]:gap-10">
           <section aria-labelledby="footer-company-title">
             <div className="flex items-center gap-[11.5px] text-white">
               <Image className="h-9 w-auto shrink-0 object-contain" src="/Logo.png" width={36} height={37} alt="" />
-              <h2 className="m-0 font-brand-serif text-base leading-[1.4] font-normal tracking-[.06em]" id="footer-company-title">{t.brand}</h2>
+              <h2 className={`m-0 ${brandFontClass} text-base leading-[1.4] font-normal tracking-[.06em]`} id="footer-company-title">{t.brand}</h2>
             </div>
-            <p className="mt-7 mb-0 text-[15px] leading-[1.85] text-[#9ba9ba]">
+            <p className="mt-7 mb-0 text-[15px] leading-[1.85] text-on-dark-muted/90">
               <span className="block">{t.footer.tagline[0]}</span>
               <span className="block">{t.footer.tagline[1]}</span>
             </p>
@@ -254,7 +255,7 @@ export default async function Home({ searchParams }: HomeProps) {
           </nav>
         </div>
 
-        <div className="mt-11 border-t border-[#20324a] pt-7 text-center text-xs leading-[1.7] text-[#66778d]">
+        <div className="mt-11 border-t border-line-dark/70 pt-7 text-center text-xs leading-[1.7] text-on-dark-muted/85">
           <p className="m-0">{t.footer.copyright}</p>
         </div>
       </footer>

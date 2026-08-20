@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Sans_SC } from "next/font/google";
+import { Noto_Sans_JP, Noto_Sans_SC, Noto_Serif_JP, Noto_Serif_SC } from "next/font/google";
 import type { ReactNode } from "react";
 
 import "./globals.css";
@@ -22,6 +22,24 @@ const notoSansJp = Noto_Sans_JP({
   fallback: ["Arial", "Hiragino Kaku Gothic ProN", "Yu Gothic", "sans-serif"],
 });
 
+const notoSerifSc = Noto_Serif_SC({
+  variable: "--font-noto-serif-sc",
+  weight: "400",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+  fallback: ["Songti SC", "STSong", "SimSun", "serif"],
+});
+
+const notoSerifJp = Noto_Serif_JP({
+  variable: "--font-noto-serif-jp",
+  weight: "400",
+  display: "swap",
+  preload: false,
+  adjustFontFallback: false,
+  fallback: ["Hiragino Mincho ProN", "Yu Mincho", "serif"],
+});
+
 export const metadata: Metadata = {
   title: "东方纯一 | 生命科学产品与技术服务",
   description:
@@ -35,7 +53,7 @@ type RootLayoutProps = Readonly<{
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="zh-CN">
-      <body className={`${notoSansSc.variable} ${notoSansJp.variable}`}>
+      <body className={`${notoSansSc.variable} ${notoSansJp.variable} ${notoSerifSc.variable} ${notoSerifJp.variable}`}>
         {children}
       </body>
     </html>
