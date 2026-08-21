@@ -2,6 +2,7 @@ import type { HomeContent } from "@/content/types";
 
 export const jaContent = {
   brand: "東方純一株式会社",
+  skipToContent: "メインコンテンツへ移動",
   nav: [
     { id: "home", label: "ホーム", href: "#top" },
     { id: "about", label: "会社案内", href: "#about" },

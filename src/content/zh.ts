@@ -2,6 +2,7 @@ import type { HomeContent } from "@/content/types";
 
 export const zhContent = {
   brand: "东方纯一株式会社",
+  skipToContent: "跳到主要内容",
   nav: [
     { id: "home", label: "首页", href: "#top" },
     { id: "about", label: "关于我们", href: "#about" },
