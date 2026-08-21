@@ -23,12 +23,12 @@ const aboutPanelClass = `${panelContainerClass} min-h-panel-min-height p-[clamp(
 const corePanelClass = `${panelContainerClass} grid min-h-core-panel-min-height p-[clamp(1.25rem,2.3vw,2.25rem)] max-[960px]:min-h-panel-min-height max-[960px]:p-6 max-[640px]:p-4`;
 const productImages = {
   "antibody-products": "/product-antibody.jpg",
-  "elisa-kits": "/product-elisa.jpg",
-  "lab-instruments": "/product-lab-instrument.jpg",
+  "elisa-kits": "/product-elisa.webp",
+  "lab-instruments": "/product-lab-instrument.webp",
 } satisfies Record<ProductCardId, string>;
 const serviceImages = {
-  "yeast-two-hybrid": "/service-yeast-two-hybrid.jpg",
-  "genome-sequencing": "/service-genome-sequencing.jpg",
+  "yeast-two-hybrid": "/service-yeast-two-hybrid.webp",
+  "genome-sequencing": "/service-genome-sequencing.webp",
   "other-business-services": null,
 } satisfies Record<ServiceCardId, string | null>;
 const serviceIcons = {
@@ -114,7 +114,7 @@ export default async function Home({ params }: HomeProps) {
 
         <section className={`relative grid grid-cols-2 items-stretch gap-[clamp(44px,5vw,80px)] bg-white shadow-about max-[960px]:grid-cols-1 ${aboutPanelClass}`} id="about" aria-labelledby="about-title">
           <div className="relative min-h-about-media overflow-hidden rounded-control border border-line bg-ui-subtle shadow-media max-[960px]:h-78 max-[640px]:min-h-60" aria-hidden="true">
-            <Image className="object-cover object-center" src="/about-dna.jpg" alt="" fill loading="eager" sizes="(max-width: 960px) 100vw, 50vw" />
+            <Image className="object-cover object-center" src="/about-dna.webp" alt="" fill loading="eager" sizes="(max-width: 960px) 100vw, 50vw" />
           </div>
           <div className="flex min-w-0 flex-col justify-center">
             <p className="mb-2 text-[15px] leading-[17px] font-extrabold tracking-[.22em] text-accent">{t.about.label}</p>
