@@ -1,37 +1,39 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-brand-navy-950: #071224;
-  --color-brand-navy-900: #0a1830;
-  --color-brand-navy-800: #102442;
-  --color-brand-products: #0c1528;
-  --color-product-card: #192233;
-  --color-product-card-corner: #1c273b;
-  --color-product-action: #4989e5;
-  --color-brand-blue: #387fd5;
-  --color-brand-blue-bright: #5da7f1;
-  --color-brand-blue-about: #4888e5;
-  --color-brand-ink: #0c1729;
-  --color-brand-muted: #5f6876;
-  --color-brand-line: #dce4ed;
-  --color-brand-paper: #f7f9fc;
-  --color-brand-canvas: #23282a;
-  --color-brand-red: #b6101a;
+  --color-ui-canvas: #23282a;
+  --color-ui-hero: #0b203f;
+  --color-ui-section: #0c1528;
+  --color-ui-card: #192233;
+  --color-ui-card-accent: #1c273b;
+  --color-ui-footer: #061021;
+  --color-ui-subtle: #f7f9fc;
+  --color-ink: #0c1729;
+  --color-ink-muted: #5f6876;
+  --color-on-dark: #f4f6fa;
+  --color-on-dark-muted: #a5b2c2;
+  --color-accent: #4989e5;
+  --color-accent-hover: #3f7ed8;
+  --color-line: #dce4ed;
+  --color-line-dark: #1c385d;
 
   --font-sans-sc: var(--font-noto-sans-sc);
   --font-sans-jp: var(--font-noto-sans-jp);
-  --font-brand-serif: "Songti SC", "STSong", "SimSun", serif;
+  --font-brand-serif-sc: var(--font-noto-serif-sc);
+  --font-brand-serif-jp: var(--font-noto-serif-jp);
   --font-symbol: Georgia, serif;
 
   --spacing-header: 60px;
-  --spacing-header-mobile: 94.5px;
+  --spacing-header-mobile: 6.5rem;
   --spacing-header-gutter: clamp(28px, 3vw, 58px);
   --spacing-page-gutter: max(32px, calc((100vw - 1400px) / 2));
-  --spacing-section-y: 120px;
+  --spacing-panel-gap: 0.5rem;
+  --spacing-panel-min-height: 30.5rem;
+  --spacing-core-panel-min-height: 25.5rem;
   --spacing-hero: 474px;
-  --spacing-control: 42.667px;
-  --spacing-control-mobile: 38.667px;
-  --spacing-about-media: 424.8px;
+  --spacing-about-media: 26.5rem;
+
+  --container-panel: 93.75rem;
 
   --radius-control: 10px;
   --radius-action: 6px;
@@ -64,8 +66,8 @@
 
   body {
     margin: 0;
-    color: var(--color-brand-ink);
-    background: var(--color-brand-paper);
+    color: var(--color-ink);
+    background: var(--color-ui-subtle);
     text-rendering: optimizeLegibility;
   }
 }
@@ -74,7 +76,7 @@
    expressing them as long arbitrary utility strings would obscure the visual
    composition without creating reusable layout primitives. */
 .core-card {
-  background: var(--color-product-card);
+  background: var(--color-ui-card);
 }
 
 .core-card::before {
@@ -84,7 +86,7 @@
   width: clamp(58px, 5.1vw, 76px);
   aspect-ratio: 1;
   border-radius: 0 0 0 100%;
-  background: var(--color-product-card-corner);
+  background: var(--color-ui-card-accent);
   content: "";
 }
 
