@@ -2,10 +2,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
-import { LuFlaskConical, LuGraduationCap, LuUsersRound } from "react-icons/lu";
+import { LuGraduationCap } from "react-icons/lu";
 
 import { contentByLocale } from "@/content";
-import type { ServiceCardId } from "@/content/types";
+import type { ProductCardId, ServiceCardId } from "@/content/types";
 import { isLocale } from "@/i18n/config";
 
 type HomeProps = Readonly<{
@@ -21,24 +21,35 @@ const skipLinkClass = `fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg
 const panelContainerClass = "mx-auto mt-panel-gap w-[calc(100%-4rem)] max-w-panel max-[960px]:w-[calc(100%-2rem)] max-[640px]:w-[calc(100%-1.5rem)]";
 const aboutPanelClass = `${panelContainerClass} min-h-panel-min-height p-[clamp(1.5rem,3vw,3rem)] max-[960px]:p-6 max-[640px]:p-4`;
 const corePanelClass = `${panelContainerClass} grid min-h-core-panel-min-height p-[clamp(1.25rem,2.3vw,2.25rem)] max-[960px]:min-h-panel-min-height max-[960px]:p-6 max-[640px]:p-4`;
+const productImages = {
+  "antibody-products": "/product-antibody.jpg",
+  "elisa-kits": "/product-elisa.jpg",
+  "lab-instruments": "/product-lab-instrument.jpg",
+} satisfies Record<ProductCardId, string>;
+const serviceImages = {
+  "yeast-two-hybrid": "/service-yeast-two-hybrid.jpg",
+  "genome-sequencing": "/service-genome-sequencing.jpg",
+  "other-business-services": null,
+} satisfies Record<ServiceCardId, string | null>;
 const serviceIcons = {
-  "yeast-two-hybrid": LuFlaskConical,
-  "business-consulting": LuUsersRound,
-  "personal-coaching": LuGraduationCap,
-} satisfies Record<ServiceCardId, typeof LuFlaskConical>;
+  "yeast-two-hybrid": null,
+  "genome-sequencing": null,
+  "other-business-services": LuGraduationCap,
+} satisfies Record<ServiceCardId, typeof LuGraduationCap | null>;
 
 type CoreCardProps = Readonly<{
   description: string;
   icon?: ReactNode;
+  imageSrc?: string;
   isJapanese: boolean;
   title: string;
 }>;
 
-function CoreCard({ description, icon, isJapanese, title }: CoreCardProps) {
+function CoreCard({ description, icon, imageSrc, isJapanese, title }: CoreCardProps) {
   return (
     <article className="core-card relative flex min-h-0 flex-col overflow-hidden rounded-product-card border border-line-dark px-7 py-5.5 max-[960px]:min-h-78">
       <div className={`relative mt-2.5 size-[50px] shrink-0 overflow-hidden rounded-control border border-accent max-[960px]:mt-3 ${icon ? "grid place-items-center bg-accent text-[25px] text-white" : "bg-black"}`} aria-hidden="true">
-        {icon ?? <Image className="object-contain" src="/product-antibody.jpg" alt="" fill sizes="50px" />}
+        {imageSrc ? <Image className="object-cover" src={imageSrc} alt="" fill sizes="50px" /> : icon}
       </div>
       <h3 className={`mt-5 mb-3 text-[22px] font-bold max-[960px]:mt-6 max-[960px]:mb-3.5 max-[960px]:text-[28px] ${isJapanese ? "leading-[1.2]" : "leading-[1.25]"}`}>{title}</h3>
       <p className="mt-0 mb-3 max-w-[360px] text-[15px] leading-[1.65] text-on-dark-muted/90 max-[960px]:text-base max-[960px]:leading-[1.75]">{description}</p>
@@ -103,7 +114,7 @@ export default async function Home({ params }: HomeProps) {
 
         <section className={`relative grid grid-cols-2 items-stretch gap-[clamp(44px,5vw,80px)] bg-white shadow-about max-[960px]:grid-cols-1 ${aboutPanelClass}`} id="about" aria-labelledby="about-title">
           <div className="relative min-h-about-media overflow-hidden rounded-control border border-line bg-ui-subtle shadow-media max-[960px]:h-78 max-[640px]:min-h-60" aria-hidden="true">
-            <Image className="p-3 object-contain object-center" src="/about-authorization.jpg" alt="" fill sizes="(max-width: 960px) 100vw, 50vw" />
+            <Image className="object-cover object-center" src="/about-dna.jpg" alt="" fill loading="eager" sizes="(max-width: 960px) 100vw, 50vw" />
           </div>
           <div className="flex min-w-0 flex-col justify-center">
             <p className="mb-2 text-[15px] leading-[17px] font-extrabold tracking-[.22em] text-accent">{t.about.label}</p>
@@ -131,7 +142,7 @@ export default async function Home({ params }: HomeProps) {
             </div>
             <div className="grid flex-1 grid-cols-3 gap-5.5 max-[960px]:grid-cols-1">
               {t.products.items.map((item) => (
-                <CoreCard description={item.description} isJapanese={language === "ja"} key={item.id} title={item.title} />
+                <CoreCard description={item.description} imageSrc={productImages[item.id]} isJapanese={language === "ja"} key={item.id} title={item.title} />
               ))}
             </div>
           </div>
@@ -145,7 +156,7 @@ export default async function Home({ params }: HomeProps) {
             <div className="grid flex-1 grid-cols-3 gap-5.5 max-[960px]:grid-cols-1">
               {t.services.items.map((item) => {
                 const ServiceIcon = serviceIcons[item.id];
-                return <CoreCard description={item.description} icon={<ServiceIcon />} isJapanese={language === "ja"} key={item.id} title={item.title} />;
+                return <CoreCard description={item.description} icon={ServiceIcon ? <ServiceIcon /> : undefined} imageSrc={serviceImages[item.id] ?? undefined} isJapanese={language === "ja"} key={item.id} title={item.title} />;
               })}
             </div>
           </div>

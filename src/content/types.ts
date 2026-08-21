@@ -3,7 +3,7 @@ type SectionHref = `#${string}`;
 export type NavigationItemId = "home" | "about" | "products" | "services" | "contact";
 export type OfferingId = "gni" | "hannah" | "instruments" | "yeast-two-hybrid";
 export type ProductCardId = "antibody-products" | "elisa-kits" | "lab-instruments";
-export type ServiceCardId = "yeast-two-hybrid" | "business-consulting" | "personal-coaching";
+export type ServiceCardId = "yeast-two-hybrid" | "genome-sequencing" | "other-business-services";
 
 type NavigationItem<Id extends NavigationItemId> = Readonly<{
   href: SectionHref;
@@ -53,8 +53,8 @@ type ProductCards = readonly [
 
 type ServiceCards = readonly [
   CoreCard<"yeast-two-hybrid">,
-  CoreCard<"business-consulting">,
-  CoreCard<"personal-coaching">,
+  CoreCard<"genome-sequencing">,
+  CoreCard<"other-business-services">,
 ];
 
 type ProductFooterLinks = readonly [
@@ -65,8 +65,8 @@ type ProductFooterLinks = readonly [
 
 type ServiceFooterLinks = readonly [
   FooterLink<"yeast-two-hybrid">,
-  FooterLink<"business-consulting">,
-  FooterLink<"personal-coaching">,
+  FooterLink<"genome-sequencing">,
+  FooterLink<"other-business-services">,
 ];
 
 type AboutFooterLinks = readonly [

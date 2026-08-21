@@ -40,8 +40,8 @@ export const zhContent = {
     title: "核心服务",
     items: [
       { id: "yeast-two-hybrid", title: "Yeast Two Hybrid", description: "基于酵母转录基因子GAL4的双杂交系统，20年服务经验" },
-      { id: "business-consulting", title: "企业咨询", description: "专注于企业人力资源系统的搭建" },
-      { id: "personal-coaching", title: "个人教练", description: "教练及领导力课程" },
+      { id: "genome-sequencing", title: "基因组测序", description: "专注于动植物和微生物领域的二代/三代基因组及转录组测序相关服务" },
+      { id: "other-business-services", title: "其它企业服务", description: "HR 效能提升，包含教练及领导力课程" },
     ],
   },
   footer: {
@@ -58,8 +58,8 @@ export const zhContent = {
     servicesTitle: "相关服务",
     serviceLinks: [
       { id: "yeast-two-hybrid", label: "Yeast Two Hybrid", href: "#services" },
-      { id: "business-consulting", label: "企业咨询", href: "#services" },
-      { id: "personal-coaching", label: "个人教练", href: "#services" },
+      { id: "genome-sequencing", label: "基因组测序", href: "#services" },
+      { id: "other-business-services", label: "其它企业服务", href: "#services" },
     ],
     aboutTitle: "关于我们",
     aboutLinks: [

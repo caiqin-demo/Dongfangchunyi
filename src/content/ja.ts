@@ -40,8 +40,8 @@ export const jaContent = {
     title: "主要サービス",
     items: [
       { id: "yeast-two-hybrid", title: "Yeast Two Hybrid", description: "酵母転写因子GAL4を基盤とするツーハイブリッドシステム。20年のサービス実績" },
-      { id: "business-consulting", title: "企業コンサルティング", description: "企業の人事システム構築に注力" },
-      { id: "personal-coaching", title: "パーソナルコーチング", description: "コーチングおよびリーダーシップ研修" },
+      { id: "genome-sequencing", title: "ゲノムシーケンシング", description: "動植物および微生物分野における第二・第三世代ゲノムおよびトランスクリプトームシーケンシング関連サービスに注力" },
+      { id: "other-business-services", title: "その他の企業向けサービス", description: "HRの有効性向上（コーチングおよびリーダーシップ研修を含む）" },
     ],
   },
   footer: {
@@ -58,8 +58,8 @@ export const jaContent = {
     servicesTitle: "関連サービス",
     serviceLinks: [
       { id: "yeast-two-hybrid", label: "Yeast Two Hybrid", href: "#services" },
-      { id: "business-consulting", label: "企業コンサルティング", href: "#services" },
-      { id: "personal-coaching", label: "パーソナルコーチング", href: "#services" },
+      { id: "genome-sequencing", label: "ゲノムシーケンシング", href: "#services" },
+      { id: "other-business-services", label: "その他の企業向けサービス", href: "#services" },
     ],
     aboutTitle: "会社案内",
     aboutLinks: [
