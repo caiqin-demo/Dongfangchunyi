@@ -4,96 +4,9 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { LuFlaskConical, LuGraduationCap, LuUsersRound } from "react-icons/lu";
 
+import { contentByLocale } from "@/content";
+import type { ServiceCardId } from "@/content/types";
 import { isLocale } from "@/i18n/config";
-
-const content = {
-  zh: {
-    brand: "东方纯一株式会社",
-    nav: ["首页", "关于我们", "关于产品", "关于服务", "联系我们"],
-    hero: {
-      title: "协助企业开拓日本市场的初始引擎",
-      description: "专注在生命科学领域的市场开拓并提供专业的企业管理咨询服务",
-      productButton: "了解产品",
-      serviceButton: "了解服务",
-    },
-    about: {
-      label: "ABOUT US",
-      title: "东方纯一株式会社成为上海睿星生物技术有限公司日本授权经销商",
-      body: "上海睿星生物技术有限公司是日本GNI Group Ltd. (www.gnipharma.com)旗下子公司。生产和销售标签抗体及相应填料偶联产品和ELISA试剂盒。同时也提供酵母双杂交技术服务。",
-      offerings: [["GNI", "抗体及相应填料产品", true], ["HannaH", "ELISA试剂盒", true], ["", "生命科学实验仪器", false], ["Yeast Two Hybrid", "技术服务", false]],
-      more: "了解更多",
-    },
-    products: {
-      title: "核心产品",
-      items: [
-        ["抗体及相应填料产品", "明星产品：Anti-Flag单抗/Anti-Flag Affinity Gel/Anti-Flag Magnetic Beads"],
-        ["ELISA试剂盒", "涵盖检测近300种不同种类基因的ELISA试剂盒"],
-        ["实验室小仪器", "销售多种生命科学常用实验仪器和移液器"],
-      ],
-    },
-    services: {
-      title: "核心服务",
-      items: [
-        ["Yeast Two Hybrid", "基于酵母转录基因子GAL4的双杂交系统，20年服务经验"],
-        ["企业咨询", "专注于企业人力资源系统的搭建"],
-        ["个人教练", "教练及领导力课程"],
-      ],
-    },
-    footer: {
-      tagline: ["专注在生命科学领域的市场开拓", "并提供专业的企业管理咨询服务"],
-      productsTitle: "相关产品",
-      productLinks: ["抗体及相应填料产品", "ELISA 试剂盒", "实验室小仪器"],
-      servicesTitle: "相关服务",
-      serviceLinks: ["Yeast Two Hybrid", "企业咨询", "个人教练"],
-      aboutTitle: "关于我们",
-      aboutLinks: ["公司介绍", "联系我们"],
-      copyright: "© 2025 东方纯一 All rights reserved.",
-    },
-  },
-  ja: {
-    brand: "東方純一株式会社",
-    nav: ["ホーム", "会社案内", "製品情報", "サービス", "お問い合わせ"],
-    hero: {
-      title: "日本市場開拓を支援する最初のエンジン",
-      description: "ライフサイエンス分野の市場開拓に注力し、専門的な企業経営コンサルティングサービスを提供します",
-      productButton: "製品を見る",
-      serviceButton: "サービスを見る",
-    },
-    about: {
-      label: "ABOUT US",
-      title: "東方純一株式会社が上海睿星生物技術有限公司の日本正規販売代理店に",
-      body: "上海睿星生物技術有限公司は、日本のGNI Group Ltd. (www.gnipharma.com)の子会社です。タグ抗体および対応する担体結合製品、ELISAキットを製造・販売しています。また、酵母ツーハイブリッド技術サービスも提供しています。",
-      offerings: [["GNI", "抗体および対応する担体製品", true], ["HannaH", "ELISAキット", true], ["", "ライフサイエンス実験機器", false], ["Yeast Two Hybrid", "技術サービス", false]],
-      more: "詳しく見る",
-    },
-    products: {
-      title: "主要製品",
-      items: [
-        ["抗体および対応する担体製品", "注目製品：Anti-Flagモノクローナル抗体 / Anti-Flag Affinity Gel / Anti-Flag Magnetic Beads"],
-        ["ELISAキット", "約300種類の異なる遺伝子を検出するELISAキットを取り揃えています"],
-        ["実験室用小型機器", "ライフサイエンス分野で一般的に使用される各種実験機器およびピペットを販売しています"],
-      ],
-    },
-    services: {
-      title: "主要サービス",
-      items: [
-        ["Yeast Two Hybrid", "酵母転写因子GAL4を基盤とするツーハイブリッドシステム。20年のサービス実績"],
-        ["企業コンサルティング", "企業の人事システム構築に注力"],
-        ["パーソナルコーチング", "コーチングおよびリーダーシップ研修"],
-      ],
-    },
-    footer: {
-      tagline: ["ライフサイエンス分野の市場開拓に注力し", "専門的な企業経営コンサルティングサービスを提供します"],
-      productsTitle: "関連製品",
-      productLinks: ["抗体および対応する担体製品", "ELISAキット", "実験室用小型機器"],
-      servicesTitle: "関連サービス",
-      serviceLinks: ["Yeast Two Hybrid", "企業コンサルティング", "パーソナルコーチング"],
-      aboutTitle: "会社案内",
-      aboutLinks: ["会社紹介", "お問い合わせ"],
-      copyright: "© 2025 東方純一 All rights reserved.",
-    },
-  },
-} as const;
 
 type HomeProps = Readonly<{
   params: Promise<{ lang: string }>;
@@ -106,7 +19,11 @@ const heroButtonClass = "inline-flex min-h-12 min-w-36 items-center justify-cent
 const panelContainerClass = "mx-auto mt-panel-gap w-[calc(100%-4rem)] max-w-panel max-[960px]:w-[calc(100%-2rem)] max-[640px]:w-[calc(100%-1.5rem)]";
 const aboutPanelClass = `${panelContainerClass} min-h-panel-min-height p-[clamp(1.5rem,3vw,3rem)] max-[960px]:p-6 max-[640px]:p-4`;
 const corePanelClass = `${panelContainerClass} grid min-h-core-panel-min-height p-[clamp(1.25rem,2.3vw,2.25rem)] max-[960px]:min-h-panel-min-height max-[960px]:p-6 max-[640px]:p-4`;
-const serviceIcons = [LuFlaskConical, LuUsersRound, LuGraduationCap] as const;
+const serviceIcons = {
+  "yeast-two-hybrid": LuFlaskConical,
+  "business-consulting": LuUsersRound,
+  "personal-coaching": LuGraduationCap,
+} satisfies Record<ServiceCardId, typeof LuFlaskConical>;
 
 type CoreCardProps = Readonly<{
   description: string;
@@ -136,7 +53,7 @@ export default async function Home({ params }: HomeProps) {
   }
 
   const language = lang;
-  const t = content[language];
+  const t = contentByLocale[language];
   const brandFontClass = language === "ja" ? "font-brand-serif-jp" : "font-brand-serif-sc";
 
   return (
@@ -153,11 +70,16 @@ export default async function Home({ params }: HomeProps) {
         </a>
         <div className="flex items-center gap-[clamp(20px,2vw,32px)] max-[960px]:gap-3.5 max-[640px]:static">
           <nav className="flex items-center gap-[clamp(26px,2.7vw,48px)] max-[960px]:gap-5 max-[799px]:absolute max-[799px]:top-16 max-[799px]:left-5 max-[799px]:w-[calc(100%-2.5rem)] max-[799px]:justify-between max-[799px]:gap-0 max-[799px]:overflow-visible max-[799px]:pb-3" aria-label={language === "ja" ? "メインナビゲーション" : "主要导航"}>
-            <a aria-current="page" className={`${navLinkClass} !text-accent`} href="#top">{t.nav[0]}</a>
-            <a className={navLinkClass} href="#about">{t.nav[1]}</a>
-            <a className={navLinkClass} href="#products">{t.nav[2]}</a>
-            <a className={navLinkClass} href="#services">{t.nav[3]}</a>
-            <a className={navLinkClass} href="#contact">{t.nav[4]}</a>
+            {t.nav.map((item) => (
+              <a
+                aria-current={item.id === "home" ? "page" : undefined}
+                className={`${navLinkClass} ${item.id === "home" ? "!text-accent" : ""}`}
+                href={item.href}
+                key={item.id}
+              >
+                {item.label}
+              </a>
+            ))}
           </nav>
           <nav className="flex items-center gap-1.5 text-xs whitespace-nowrap text-on-dark-muted/85 max-[960px]:text-[11px] max-[799px]:absolute max-[799px]:top-7 max-[799px]:right-5" aria-label="语言 / 言語">
             <Link aria-current={language === "zh" ? "page" : undefined} className={`${languageLinkClass} ${language === "zh" ? "!text-accent" : ""}`} href="/zh">中文</Link>
@@ -187,8 +109,8 @@ export default async function Home({ params }: HomeProps) {
           <h2 className={`m-0 max-w-[680px] text-about-title text-balance max-[640px]:text-[32px] ${language === "ja" ? "leading-[1.05]" : ""}`} id="about-title">{t.about.title}</h2>
           <p className={`my-2 text-[17px] font-normal text-ink-muted ${language === "ja" ? "leading-[1.6]" : "leading-[1.8]"}`}>{t.about.body}</p>
           <ul className="mt-2.5 grid list-none gap-[9.5px] p-0">
-            {t.about.offerings.map(([brand, description, registered]) => (
-              <li className={`flex items-center gap-[13px] text-lg font-normal text-ink/80 ${language === "ja" ? "leading-[1.4]" : "leading-[1.55]"}`} key={`${brand}-${description}`}>
+            {t.about.offerings.map(({ brand, description, id, registered }) => (
+              <li className={`flex items-center gap-[13px] text-lg font-normal text-ink/80 ${language === "ja" ? "leading-[1.4]" : "leading-[1.55]"}`} key={id}>
                 <span className="grid size-[26px] flex-[0_0_26px] place-items-center rounded-round border-[5px] border-accent bg-white text-xs leading-none font-extrabold text-accent" aria-hidden="true">✓</span>
                 <span>{brand}{registered && <sup className="relative top-[-.2em] ml-px text-[.62em] leading-none">®</sup>}{brand && " "}{description}</span>
               </li>
@@ -207,8 +129,8 @@ export default async function Home({ params }: HomeProps) {
             <h2 className="m-0 text-about-title" id="products-title">{t.products.title}</h2>
           </div>
           <div className="grid flex-1 grid-cols-3 gap-5.5 max-[960px]:grid-cols-1">
-            {t.products.items.map(([title, description]) => (
-              <CoreCard description={description} isJapanese={language === "ja"} key={title} title={title} />
+            {t.products.items.map((item) => (
+              <CoreCard description={item.description} isJapanese={language === "ja"} key={item.id} title={item.title} />
             ))}
           </div>
         </div>
@@ -220,9 +142,9 @@ export default async function Home({ params }: HomeProps) {
             <h2 className="m-0 text-about-title" id="services-title">{t.services.title}</h2>
           </div>
           <div className="grid flex-1 grid-cols-3 gap-5.5 max-[960px]:grid-cols-1">
-            {t.services.items.map(([title, description], index) => {
-              const ServiceIcon = serviceIcons[index];
-              return <CoreCard description={description} icon={<ServiceIcon />} isJapanese={language === "ja"} key={title} title={title} />;
+            {t.services.items.map((item) => {
+              const ServiceIcon = serviceIcons[item.id];
+              return <CoreCard description={item.description} icon={<ServiceIcon />} isJapanese={language === "ja"} key={item.id} title={item.title} />;
             })}
           </div>
         </div>
@@ -236,30 +158,29 @@ export default async function Home({ params }: HomeProps) {
               <h2 className={`m-0 ${brandFontClass} text-base leading-[1.4] font-normal tracking-[.06em]`} id="footer-company-title">{t.brand}</h2>
             </div>
             <p className="mt-7 mb-0 text-[15px] leading-[1.85] text-on-dark-muted/90">
-              <span className="block">{t.footer.tagline[0]}</span>
-              <span className="block">{t.footer.tagline[1]}</span>
+              <span className="block">{t.footer.tagline.primary}</span>
+              <span className="block">{t.footer.tagline.secondary}</span>
             </p>
           </section>
 
           <nav aria-labelledby="footer-products-title">
             <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-products-title">{t.footer.productsTitle}</h2>
             <ul className="m-0 grid list-none gap-3 p-0">
-              {t.footer.productLinks.map((label) => <li key={label}><a className={footerLinkClass} href="#products">{label}</a></li>)}
+              {t.footer.productLinks.map((item) => <li key={item.id}><a className={footerLinkClass} href={item.href}>{item.label}</a></li>)}
             </ul>
           </nav>
 
           <nav aria-labelledby="footer-services-title">
             <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-services-title">{t.footer.servicesTitle}</h2>
             <ul className="m-0 grid list-none gap-3 p-0">
-              {t.footer.serviceLinks.map((label) => <li key={label}><a className={footerLinkClass} href="#services">{label}</a></li>)}
+              {t.footer.serviceLinks.map((item) => <li key={item.id}><a className={footerLinkClass} href={item.href}>{item.label}</a></li>)}
             </ul>
           </nav>
 
           <nav aria-labelledby="footer-about-title">
             <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-about-title">{t.footer.aboutTitle}</h2>
             <ul className="m-0 grid list-none gap-3 p-0">
-              <li><a className={footerLinkClass} href="#about">{t.footer.aboutLinks[0]}</a></li>
-              <li><a className={footerLinkClass} href="#contact">{t.footer.aboutLinks[1]}</a></li>
+              {t.footer.aboutLinks.map((item) => <li key={item.id}><a className={footerLinkClass} href={item.href}>{item.label}</a></li>)}
             </ul>
           </nav>
         </div>
