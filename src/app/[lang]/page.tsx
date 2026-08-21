@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { LuFlaskConical, LuGraduationCap, LuUsersRound } from "react-icons/lu";
+
+import { isLocale } from "@/i18n/config";
 
 const content = {
   zh: {
@@ -93,7 +96,7 @@ const content = {
 } as const;
 
 type HomeProps = Readonly<{
-  searchParams: Promise<{ lang?: string | string[] }>;
+  params: Promise<{ lang: string }>;
 }>;
 
 const navLinkClass = "inline-flex min-h-6 items-center justify-center whitespace-nowrap text-[clamp(15px,1.15vw,18px)] text-on-dark/85 transition-colors duration-200 hover:text-accent focus-visible:text-accent max-[640px]:text-xs";
@@ -125,9 +128,14 @@ function CoreCard({ description, icon, isJapanese, title }: CoreCardProps) {
   );
 }
 
-export default async function Home({ searchParams }: HomeProps) {
-  const params = await searchParams;
-  const language = params.lang === "ja" ? "ja" : "zh";
+export default async function Home({ params }: HomeProps) {
+  const { lang } = await params;
+
+  if (!isLocale(lang)) {
+    notFound();
+  }
+
+  const language = lang;
   const t = content[language];
   const brandFontClass = language === "ja" ? "font-brand-serif-jp" : "font-brand-serif-sc";
 
@@ -152,9 +160,9 @@ export default async function Home({ searchParams }: HomeProps) {
             <a className={navLinkClass} href="#contact">{t.nav[4]}</a>
           </nav>
           <nav className="flex items-center gap-1.5 text-xs whitespace-nowrap text-on-dark-muted/85 max-[960px]:text-[11px] max-[799px]:absolute max-[799px]:top-7 max-[799px]:right-5" aria-label="语言 / 言語">
-            <Link aria-current={language === "zh" ? "page" : undefined} className={`${languageLinkClass} ${language === "zh" ? "!text-accent" : ""}`} href="/?lang=zh">中文</Link>
+            <Link aria-current={language === "zh" ? "page" : undefined} className={`${languageLinkClass} ${language === "zh" ? "!text-accent" : ""}`} href="/zh">中文</Link>
             <span aria-hidden="true">/</span>
-            <Link aria-current={language === "ja" ? "page" : undefined} className={`${languageLinkClass} ${language === "ja" ? "!text-accent" : ""}`} href="/?lang=ja">日本語</Link>
+            <Link aria-current={language === "ja" ? "page" : undefined} className={`${languageLinkClass} ${language === "ja" ? "!text-accent" : ""}`} href="/ja">日本語</Link>
           </nav>
         </div>
       </header>
