@@ -101,7 +101,7 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
     : `${notoSansSc.variable} ${notoSerifSc.variable}`;
 
   return (
-    <html lang={documentLanguages[lang]}>
+    <html data-scroll-behavior="smooth" lang={documentLanguages[lang]}>
       <body className={fontVariables}>{children}</body>
     </html>
   );
