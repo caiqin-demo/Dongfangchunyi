@@ -151,7 +151,7 @@ export default async function AntibodyProductsPage({ params }: PageProps) {
           <article className="mt-6 min-w-0 rounded-product-card border border-line bg-white p-[clamp(1rem,2.5vw,2rem)] shadow-media" aria-labelledby="matrix-title">
             <h2 className="m-0 text-[clamp(1.55rem,2.7vw,2.25rem)] leading-[1.2] font-extrabold" id="matrix-title">{t.matrix.title}</h2>
             <div className={`mt-7 overflow-x-auto rounded-control border border-line [contain:paint] ${focusRingClass}`} role="region" aria-labelledby="matrix-title" tabIndex={0}>
-              <table className="w-full min-w-[540px] table-fixed border-collapse text-left text-sm">
+              <table className="w-full min-w-[540px] table-fixed border-collapse text-center text-sm">
                 <thead className="bg-table-header text-ink">
                   <tr>
                     {(["left", "right"] as const).map((group) => (
