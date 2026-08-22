@@ -37,6 +37,15 @@
 - Motion must communicate state, hierarchy, feedback, or understanding. Do not add animation merely to make the site appear more professional, and ensure every nonessential animation respects `prefers-reduced-motion`.
 - After changing colors, fonts, cards, or the Footer, verify every supported locale at desktop and mobile viewports. Inspect computed styles, horizontal and element overflow, composited contrast, focus and interaction semantics, and relevant network requests; screenshots alone are not sufficient evidence of acceptance.
 
+## Page image asset requirements
+
+- Evaluate every supplied image before choosing its repository format. Inspect its purpose, source format, transparency, color fidelity, dimensions, animation, scientific or brand significance, and authorization constraints; do not apply one automatic conversion rule to every asset.
+- Prefer WebP for ordinary photographic, decorative, and content imagery when it provides a meaningful size reduction, the target browsers support the required features, and visual comparison confirms that the conversion preserves the intended appearance. Keep SVG for suitable vector artwork and retain another source format when it is materially more appropriate.
+- Preserve user-supplied logos, wordmarks, trademarks, certification marks, and other brand-identity assets in their original file and original format. Do not convert, re-encode, trace, redraw, crop, recolor, remove their background, add transparency, or otherwise alter them unless the user explicitly approves that exact transformation.
+- Treat scientific figures, experimental images, charts, diagrams, screenshots used as evidence, and other meaning-bearing source images as fidelity-sensitive assets. Do not use lossy conversion or visual editing when it could change labels, boundaries, intensities, measurements, annotations, or scientific meaning; ask the user before creating a derivative when fidelity cannot be proven.
+- Keep an authorized original source asset unchanged when creating an approved optimized derivative. Give derivatives distinct repository-relative names, document which version the page uses when that choice is not self-evident, and never overwrite the only original with a converted file.
+- After adding or changing a page image, verify intrinsic dimensions, aspect ratio, transparency where applicable, responsive rendering, crop behavior, alternative text, decoded file type, browser requests, and visual fidelity at the required locale and viewport checks. File-size reduction alone is not evidence that a conversion is acceptable.
+
 ## Multilingual visual consistency requirements
 
 - Treat one semantic UI role as one visual style across every supported locale. Corresponding Hero headings, section headings, body copy, card titles, card descriptions, labels, controls, navigation items, and Footer text must use the same semantic typography and spacing tokens by default.

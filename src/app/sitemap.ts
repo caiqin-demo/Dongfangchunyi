@@ -5,16 +5,31 @@ import { getSiteUrl } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
-  const languages = {
+  const homeLanguages = {
     "zh-CN": new URL("/zh", siteUrl).toString(),
     ja: new URL("/ja", siteUrl).toString(),
     "x-default": new URL("/zh", siteUrl).toString(),
   };
 
-  return locales.map((lang) => ({
-    url: new URL(`/${lang}`, siteUrl).toString(),
-    changeFrequency: "monthly",
-    priority: 1,
-    alternates: { languages },
-  }));
+  const productPath = "/products/antibody-products";
+  const antibodyProductLanguages = {
+    "zh-CN": new URL(`/zh${productPath}`, siteUrl).toString(),
+    ja: new URL(`/ja${productPath}`, siteUrl).toString(),
+    "x-default": new URL(`/zh${productPath}`, siteUrl).toString(),
+  };
+
+  return locales.flatMap((lang) => [
+    {
+      url: new URL(`/${lang}`, siteUrl).toString(),
+      changeFrequency: "monthly" as const,
+      priority: 1,
+      alternates: { languages: homeLanguages },
+    },
+    {
+      url: new URL(`/${lang}${productPath}`, siteUrl).toString(),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+      alternates: { languages: antibodyProductLanguages },
+    },
+  ]);
 }

@@ -38,13 +38,15 @@ const serviceIcons = {
 } satisfies Record<ServiceCardId, typeof LuGraduationCap | null>;
 
 type CoreCardProps = Readonly<{
+  actionHref?: string;
+  actionLabel?: string;
   description: string;
   icon?: ReactNode;
   imageSrc?: string;
   title: string;
 }>;
 
-function CoreCard({ description, icon, imageSrc, title }: CoreCardProps) {
+function CoreCard({ actionHref, actionLabel, description, icon, imageSrc, title }: CoreCardProps) {
   return (
     <article className="core-card relative flex min-h-0 flex-col overflow-hidden rounded-product-card border border-line-dark px-7 py-5.5 max-[960px]:min-h-78">
       <div className={`relative mt-2.5 size-[50px] shrink-0 overflow-hidden rounded-control border border-accent max-[960px]:mt-3 ${icon ? "grid place-items-center bg-accent text-[25px] text-white" : "bg-black"}`} aria-hidden="true">
@@ -52,7 +54,11 @@ function CoreCard({ description, icon, imageSrc, title }: CoreCardProps) {
       </div>
       <h3 className="mt-5 mb-3 text-[22px] leading-[1.25] font-bold max-[960px]:mt-6 max-[960px]:mb-3.5 max-[960px]:text-[28px]">{title}</h3>
       <p className="mt-0 mb-3 max-w-[360px] text-[15px] leading-[1.65] text-on-dark-muted/90 max-[960px]:text-base max-[960px]:leading-[1.75]">{description}</p>
-      <span className="card-action relative z-1 mt-auto grid min-h-8 w-full shrink-0 place-items-center rounded-action bg-accent text-[21px] leading-none font-extralight text-white" aria-hidden="true">+</span>
+      {actionHref ? (
+        <Link className={`card-action relative z-1 mt-auto grid min-h-8 w-full shrink-0 place-items-center rounded-action bg-accent text-[21px] leading-none font-extralight text-white transition-colors hover:bg-accent-hover ${focusRingClass}`} href={actionHref} aria-label={actionLabel}>+</Link>
+      ) : (
+        <span className="card-action relative z-1 mt-auto grid min-h-8 w-full shrink-0 place-items-center rounded-action bg-accent text-[21px] leading-none font-extralight text-white" aria-hidden="true">+</span>
+      )}
     </article>
   );
 }
@@ -141,7 +147,14 @@ export default async function Home({ params }: HomeProps) {
             </div>
             <div className="grid flex-1 grid-cols-3 gap-5.5 max-[960px]:grid-cols-1">
               {t.products.items.map((item) => (
-                <CoreCard description={item.description} imageSrc={productImages[item.id]} key={item.id} title={item.title} />
+                <CoreCard
+                  actionHref={item.id === "antibody-products" ? `/${language}/products/antibody-products` : undefined}
+                  actionLabel={item.id === "antibody-products" ? item.title : undefined}
+                  description={item.description}
+                  imageSrc={productImages[item.id]}
+                  key={item.id}
+                  title={item.title}
+                />
               ))}
             </div>
           </div>
@@ -178,7 +191,13 @@ export default async function Home({ params }: HomeProps) {
           <nav aria-labelledby="footer-products-title">
             <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-products-title">{t.footer.productsTitle}</h2>
             <ul className="m-0 grid list-none gap-3 p-0">
-              {t.footer.productLinks.map((item) => <li key={item.id}><a className={footerLinkClass} href={item.href}>{item.label}</a></li>)}
+              {t.footer.productLinks.map((item) => (
+                <li key={item.id}>
+                  {item.id === "antibody-products"
+                    ? <Link className={footerLinkClass} href={`/${language}/products/antibody-products`}>{item.label}</Link>
+                    : <a className={footerLinkClass} href={item.href}>{item.label}</a>}
+                </li>
+              ))}
             </ul>
           </nav>
 
