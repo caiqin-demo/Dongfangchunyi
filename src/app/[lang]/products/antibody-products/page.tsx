@@ -151,13 +151,13 @@ export default async function AntibodyProductsPage({ params }: PageProps) {
           <article className="mt-6 min-w-0 rounded-product-card border border-line bg-white p-[clamp(1rem,2.5vw,2rem)] shadow-media" aria-labelledby="matrix-title">
             <h2 className="m-0 text-[clamp(1.55rem,2.7vw,2.25rem)] leading-[1.2] font-extrabold" id="matrix-title">{t.matrix.title}</h2>
             <div className={`mt-7 overflow-x-auto rounded-control border border-line [contain:paint] ${focusRingClass}`} role="region" aria-labelledby="matrix-title" tabIndex={0}>
-              <table className="w-full min-w-[1260px] border-collapse text-left">
+              <table className="w-full min-w-[540px] table-fixed border-collapse text-left text-sm">
                 <thead className="bg-table-header text-ink">
                   <tr>
                     {(["left", "right"] as const).map((group) => (
                       <Fragment key={group}>
-                        <th className="px-5 py-4" id={`${group}-tag-type`} scope="col">{t.matrix.tagType}</th>
-                        {productIds.map((id) => <th className="px-5 py-4 text-center" id={`${group}-${id}`} key={`${group}-${id}`} scope="col">{t.matrix.productLabels[id]}</th>)}
+                        <th className="w-[14%] px-2 py-4 [overflow-wrap:anywhere]" id={`${group}-tag-type`} scope="col">{t.matrix.tagType}</th>
+                        {productIds.map((id) => <th className="w-[9%] px-1.5 py-4 text-center leading-snug [overflow-wrap:anywhere]" id={`${group}-${id}`} key={`${group}-${id}`} scope="col">{t.matrix.productLabels[id]}</th>)}
                       </Fragment>
                     ))}
                   </tr>
@@ -171,9 +171,9 @@ export default async function AntibodyProductsPage({ params }: PageProps) {
                           const group = groupIndex === 0 ? "left" : "right";
                           return (
                           <Fragment key={row.id}>
-                            <th className="px-5 py-3 font-semibold whitespace-nowrap" id={`${group}-tag-${row.id}`} scope="row">{row.label}</th>
+                            <th className="px-2 py-3 font-semibold [overflow-wrap:anywhere]" id={`${group}-tag-${row.id}`} scope="row">{row.label}</th>
                             {productIds.map((productId) => (
-                              <td className="px-5 py-3 text-center" headers={`${group}-tag-${row.id} ${group}-${productId}`} key={productId}>
+                              <td className="px-1.5 py-3 text-center" headers={`${group}-tag-${row.id} ${group}-${productId}`} key={productId}>
                                 <span aria-hidden="true" className="text-xl font-bold text-accent">{row.availability[productId] ? "✓" : ""}</span>
                                 <span className="sr-only">{row.availability[productId] ? t.matrix.available : t.matrix.unavailable}</span>
                               </td>
