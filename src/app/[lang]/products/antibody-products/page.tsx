@@ -103,7 +103,12 @@ export default async function AntibodyProductsPage({ params }: PageProps) {
                     {(["left", "right"] as const).map((group) => (
                       <Fragment key={group}>
                         <th className="w-[14%] px-2 py-4 [overflow-wrap:anywhere]" id={`${group}-tag-type`} scope="col">{t.matrix.tagType}</th>
-                        {productIds.map((id) => <th className="w-[9%] px-1.5 py-4 text-center leading-snug [overflow-wrap:anywhere]" id={`${group}-${id}`} key={`${group}-${id}`} scope="col">{t.matrix.productLabels[id]}</th>)}
+                        {productIds.map((id) => (
+                          <th className="w-[9%] px-1.5 py-4 text-center leading-snug [overflow-wrap:anywhere]" id={`${group}-${id}`} key={`${group}-${id}`} scope="col">
+                            <span className="block font-bold">{t.matrix.productLabels[id]}</span>
+                            <span className="mt-1 block font-normal" lang="en">{t.matrix.availabilityHeader}</span>
+                          </th>
+                        ))}
                       </Fragment>
                     ))}
                   </tr>

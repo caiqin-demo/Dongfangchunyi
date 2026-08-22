@@ -42,6 +42,7 @@ export type AntibodyProductsContent = Readonly<{
     title: string;
     originNote: string;
     tagType: string;
+    availabilityHeader: string;
     productLabels: Record<AntibodyProductId, string>;
     available: string;
     unavailable: string;

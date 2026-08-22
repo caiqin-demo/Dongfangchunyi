@@ -107,6 +107,7 @@ export const zhAntibodyProductsContent = {
     title: "全系列抗体",
     originNote: "抗体由小鼠制备。",
     tagType: "标签类型",
+    availabilityHeader: "Available",
     productLabels: { mab: "MAB", hrp: "HRP", "affinity-gel": "Affinity Gel", "magnetic-beads": "Magnetic Beads" },
     available: "可提供",
     unavailable: "资料未标注",

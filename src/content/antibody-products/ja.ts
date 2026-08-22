@@ -88,6 +88,7 @@ export const jaAntibodyProductsContent = {
     title: "全抗体シリーズ",
     originNote: "抗体はマウスで作製されています。",
     tagType: "タグタイプ",
+    availabilityHeader: "Available",
     productLabels: { mab: "MAB", hrp: "HRP", "affinity-gel": "Affinity Gel", "magnetic-beads": "Magnetic Beads" },
     available: "提供可",
     unavailable: "資料に記載なし",
