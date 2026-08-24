@@ -8,6 +8,7 @@ type ElisaKitDetail = Readonly<{
 
 export type ElisaKitSku = Readonly<{
   availability: string;
+  catalogNumber?: string;
   id: "48-tests" | "96-tests";
   packSize: string;
   shippingOrigin: string;
@@ -22,6 +23,7 @@ export type ElisaKitsContent = SimpleProductPageContent & Readonly<{
   }>;
   skuLabels: Readonly<{
     availability: string;
+    catalogNumber: string;
     packSize: string;
     shippingOrigin: string;
     title: string;

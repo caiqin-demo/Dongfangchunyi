@@ -24,15 +24,16 @@ export const jaElisaKitsContent = {
       { id: "packing", label: "PACKING", value: "KIT OF 96 WELLS (12 STRIPS X 8 WELLS)" },
     ],
     skus: [
-      { id: "48-tests", packSize: "48 Tests", availability: "在庫あり", shippingOrigin: "中国本土のみ／上海から発送" },
-      { id: "96-tests", packSize: "96 Tests", availability: "在庫あり", shippingOrigin: "上海／大阪から発送" },
+      { id: "48-tests", packSize: "48 Tests", availability: "在庫あり", shippingOrigin: "上海" },
+      { id: "96-tests", packSize: "96 Tests", availability: "在庫あり", shippingOrigin: "上海／大阪" },
     ],
   },
   skuLabels: {
-    title: "包装規格・供給情報",
+    title: "包装規格・カタログ番号",
     packSize: "規格",
+    catalogNumber: "カタログ番号",
     availability: "在庫状況",
-    shippingOrigin: "供給範囲／出荷地",
+    shippingOrigin: "出荷地",
   },
   contact: {
     title: "製品情報を問い合わせる",

@@ -3,13 +3,16 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
+import {
+  ProductSkuTable,
+  type ProductSkuTableColumn,
+} from "@/components/product-pages/ProductSkuTable";
 import { ProductSpecificationCard } from "@/components/product-pages/ProductSpecificationCard";
 import { elisaKitsContentByLocale } from "@/content/elisa-kits";
+import type { ElisaKitSku } from "@/content/elisa-kits/types";
 import { defaultLocale, isLocale, locales } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
 import { getSiteUrl } from "@/lib/site-url";
-
-import { ElisaSkuTable } from "./ElisaSkuTable";
 
 type PageProps = Readonly<{ params: Promise<{ lang: string }> }>;
 
@@ -44,6 +47,35 @@ export default async function ElisaKitsPage({ params }: PageProps) {
   if (!isLocale(lang)) notFound();
 
   const t = elisaKitsContentByLocale[lang];
+  const skuColumns: readonly ProductSkuTableColumn<ElisaKitSku>[] = [
+    {
+      id: "pack-size",
+      label: t.skuLabels.packSize,
+      getValue: (sku) => sku.packSize,
+      cellClassName: "font-semibold",
+      rowHeader: true,
+      weight: 28,
+    },
+    {
+      id: "catalog-number",
+      label: t.skuLabels.catalogNumber,
+      getValue: (sku) => sku.catalogNumber,
+      weight: 24,
+    },
+    {
+      id: "availability",
+      label: t.skuLabels.availability,
+      getValue: (sku) => sku.availability,
+      weight: 22,
+    },
+    {
+      id: "shipping-origin",
+      label: t.skuLabels.shippingOrigin,
+      getValue: (sku) => sku.shippingOrigin,
+      cellClassName: "leading-5 text-ink-muted",
+      weight: 50,
+    },
+  ];
 
   return (
     <ProductPageTemplate
@@ -72,7 +104,14 @@ export default async function ElisaKitsPage({ params }: PageProps) {
           subtitle={t.product.subtitle}
           title={t.product.title}
         >
-          <ElisaSkuTable labels={t.skuLabels} productTitle={t.product.title} skus={t.product.skus} />
+          <ProductSkuTable
+            ariaLabel={`${t.product.title} ${t.skuLabels.title}`}
+            columns={skuColumns}
+            getRowKey={(sku) => sku.id}
+            rows={t.product.skus}
+            title={t.skuLabels.title}
+            titleId="elisa-sku-title"
+          />
         </ProductSpecificationCard>
       </section>
     </ProductPageTemplate>

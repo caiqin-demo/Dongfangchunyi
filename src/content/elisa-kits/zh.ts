@@ -24,15 +24,16 @@ export const zhElisaKitsContent = {
       { id: "packing", label: "PACKING", value: "KIT OF 96 WELLS (12 STRIPS X 8 WELLS)" },
     ],
     skus: [
-      { id: "48-tests", packSize: "48 Tests", availability: "现货", shippingOrigin: "仅供中国大陆；发货地：上海" },
-      { id: "96-tests", packSize: "96 Tests", availability: "现货", shippingOrigin: "发货地：上海／大阪" },
+      { id: "48-tests", packSize: "48 Tests", availability: "现货", shippingOrigin: "上海" },
+      { id: "96-tests", packSize: "96 Tests", availability: "现货", shippingOrigin: "上海／大阪" },
     ],
   },
   skuLabels: {
-    title: "规格与供货信息",
+    title: "规格与货号",
     packSize: "规格",
+    catalogNumber: "货号",
     availability: "是否有货",
-    shippingOrigin: "供货范围／发货地",
+    shippingOrigin: "发货地",
   },
   contact: {
     title: "索取更多产品信息",

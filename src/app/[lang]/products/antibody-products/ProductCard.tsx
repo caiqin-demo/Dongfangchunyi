@@ -1,13 +1,15 @@
 import Image from "next/image";
 
+import {
+  ProductSkuTable,
+  type ProductSkuTableColumn,
+} from "@/components/product-pages/ProductSkuTable";
 import { ProductSpecificationCard } from "@/components/product-pages/ProductSpecificationCard";
 import type {
   AntibodyProductContent,
   AntibodyProductId,
   AntibodyProductsContent,
 } from "@/content/antibody-products/types";
-
-import { SkuTable } from "./SkuTable";
 
 const experimentImages = {
   mab: { src: "/antibody-products/experiment-mab-unified.png", width: 1024, height: 1024 },
@@ -23,6 +25,37 @@ type ProductCardProps = Readonly<{
 
 export function ProductCard({ product, skuLabels }: ProductCardProps) {
   const experimentImage = experimentImages[product.id];
+  const skuColumns: readonly ProductSkuTableColumn<AntibodyProductContent["skus"][number]>[] = [
+    {
+      id: "pack-size",
+      label: skuLabels.packSize,
+      getValue: (sku) => sku.packSize,
+      cellClassName: "font-semibold",
+      rowHeader: true,
+      weight: 18,
+    },
+    {
+      id: "catalog-number",
+      label: skuLabels.catalogNumber,
+      getValue: (sku) => sku.catalogNumber,
+      weight: 24,
+    },
+    {
+      id: "shipping-origin",
+      label: skuLabels.shippingOrigin,
+      getValue: (sku) => sku.shippingOrigin,
+      headerClassName: "whitespace-nowrap",
+      cellClassName: "whitespace-nowrap",
+      weight: 17,
+    },
+    {
+      id: "availability",
+      label: skuLabels.availability,
+      getValue: () => skuLabels.availabilityNote,
+      cellClassName: "leading-5 text-ink-muted",
+      weight: 41,
+    },
+  ];
 
   return (
     <ProductSpecificationCard
@@ -44,11 +77,16 @@ export function ProductCard({ product, skuLabels }: ProductCardProps) {
       subtitle={product.subtitle}
       title={product.title}
     >
-      <SkuTable
-        labels={skuLabels}
-        productId={product.id}
-        productTitle={product.title}
-        skus={product.skus}
+      <ProductSkuTable
+        ariaLabel={`${product.title} ${skuLabels.title}`}
+        columns={skuColumns}
+        emptyMessage={skuLabels.incompleteSource}
+        getRowKey={(sku) => sku.catalogNumber}
+        rows={product.skus}
+        sectionClassName="h-[21rem] max-[800px]:h-auto"
+        tableMinWidthClassName="min-w-[560px]"
+        title={skuLabels.title}
+        titleId={`${product.id}-sku-title`}
       />
     </ProductSpecificationCard>
   );
