@@ -6,6 +6,8 @@ import type {
   AntibodyProductsContent,
 } from "@/content/antibody-products/types";
 
+import { SkuTable } from "./SkuTable";
+
 const experimentImages = {
   mab: { src: "/antibody-products/experiment-mab-unified.png", width: 1024, height: 1024 },
   hrp: { src: "/antibody-products/experiment-hrp-unified.png", width: 1024, height: 1024 },
@@ -28,48 +30,23 @@ export function ProductCard({ product, skuLabels }: ProductCardProps) {
         <p className="mt-2 mb-0 text-base leading-[1.6] font-semibold text-ink-muted" lang="en">{product.subtitle}</p>
       </header>
 
-      <dl className="grid min-h-0 flex-1 content-start gap-0 border-y border-line max-[800px]:mt-6">
-        {product.details.map((detail) => (
-          <div className="grid grid-cols-[minmax(7rem,.38fr)_1fr] gap-4 border-b border-line py-3 last:border-b-0 max-[500px]:grid-cols-1 max-[500px]:gap-1" key={detail.id}>
-            <dt className="font-bold text-ink">{detail.label}</dt>
-            <dd className="m-0 min-w-0 leading-[1.65] text-ink-muted">{detail.value}</dd>
-          </div>
-        ))}
-      </dl>
+      {product.details.length > 0 ? (
+        <dl className="grid min-h-0 flex-1 content-start gap-0 border-y border-line max-[800px]:mt-6" lang="en">
+          {product.details.map((detail) => (
+            <div className="grid grid-cols-[minmax(7rem,.38fr)_1fr] gap-4 border-b border-line py-3 last:border-b-0 max-[500px]:grid-cols-1 max-[500px]:gap-1" key={detail.id}>
+              <dt className="font-bold text-ink">{detail.label}</dt>
+              <dd className="m-0 min-w-0 leading-[1.65] whitespace-pre-line text-ink-muted">{detail.value}</dd>
+            </div>
+          ))}
+        </dl>
+      ) : null}
 
-      <section className="h-[21rem] shrink-0 pt-7 max-[800px]:h-auto" aria-labelledby={`${product.id}-sku-title`}>
-        <h3 className="mb-3 text-lg font-bold" id={`${product.id}-sku-title`}>{skuLabels.title}</h3>
-        {product.skus.length > 0 ? (
-          <div className="overflow-x-auto rounded-control border border-line [contain:paint]" role="region" aria-label={`${product.title} ${skuLabels.title}`} tabIndex={0}>
-            <table className="w-full min-w-[560px] table-fixed border-collapse text-left text-sm">
-              <colgroup>
-                <col className="w-[18%]" />
-                <col className="w-[24%]" />
-                <col className="w-[17%]" />
-                <col className="w-[41%]" />
-              </colgroup>
-              <thead className="bg-ui-card text-on-dark">
-                <tr className="h-14">
-                  <th className="px-3 py-2" scope="col">{skuLabels.packSize}</th>
-                  <th className="px-3 py-2" scope="col">{skuLabels.catalogNumber}</th>
-                  <th className="px-3 py-2 whitespace-nowrap" scope="col">{skuLabels.shippingOrigin}</th>
-                  <th className="px-3 py-2" scope="col">{skuLabels.availability}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {product.skus.map((sku) => (
-                  <tr className="h-16 border-t border-line" key={sku.catalogNumber}>
-                    <td className="px-3 py-2 font-semibold">{sku.packSize}</td>
-                    <td className="px-3 py-2">{sku.catalogNumber}</td>
-                    <td className="px-3 py-2 whitespace-nowrap">{sku.shippingOrigin}</td>
-                    <td className="px-3 py-2 leading-5 text-ink-muted">{skuLabels.availabilityNote}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ) : <p className="rounded-control border border-line bg-ui-subtle p-4 leading-[1.7] text-ink-muted">{skuLabels.incompleteSource}</p>}
-      </section>
+      <SkuTable
+        labels={skuLabels}
+        productId={product.id}
+        productTitle={product.title}
+        skus={product.skus}
+      />
 
       <div className="mt-6 flex h-60 shrink-0 items-end justify-between gap-4 max-[800px]:min-h-60">
         <Image className="h-auto w-28 shrink-0 bg-transparent max-[900px]:w-16" src="/antibody-products/gni-logo.png" width={398} height={156} alt="" aria-hidden="true" />

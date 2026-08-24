@@ -1,4 +1,5 @@
 import type { AntibodyProductsContent } from "@/content/antibody-products/types";
+import { createAntibodyProducts } from "@/content/antibody-products/source-products";
 
 const allFour = { mab: true, hrp: true, "affinity-gel": true, "magnetic-beads": true } as const;
 const mabAndHrp = { mab: true, hrp: true, "affinity-gel": false, "magnetic-beads": false } as const;
@@ -13,93 +14,30 @@ export const zhAntibodyProductsContent = {
   title: "抗体及相应填料产品",
   intro: "标签抗体、HRP 偶联抗体、Affinity Gel 与 Magnetic Beads 产品信息。以下技术参数按所提供的产品资料整理；实时库存与发货安排请联系确认。",
   backToProducts: "返回核心产品",
-  products: [
-    {
-      id: "mab",
+  products: createAntibodyProducts({
+    mab: {
       title: "Anti-Flag 鼠单克隆抗体",
-      subtitle: "Anti-Flag Mouse Monoclonal Antibody",
       experimentImageAlt: "Anti-Flag 鼠单克隆抗体实验条带图",
-      details: [
-        { id: "product-name", label: "产品名称", value: "Anti-Flag Tag (1E6) Monoclonal Antibody" },
-        { id: "source", label: "来源", value: "以偶联 KLH 的合成 Flag 标签肽免疫动物制备" },
-        { id: "concentration", label: "浓度", value: "0.5 mg/ml；PBS，pH 7.4，含 50% glycerol" },
-        { id: "applications", label: "应用", value: "WB、Dot、ELISA" },
-        { id: "dilution", label: "建议稀释", value: "1:500–1:5000" },
-        { id: "isotype", label: "亚型", value: "Mouse IgG2b" },
-        { id: "storage", label: "形态 / 储存 / 特异性", value: "液体 / −20°C / All species" },
-      ],
-      skus: [
-        { packSize: "50 μg / 100 μl", catalogNumber: "GNI4110-FG-S", shippingOrigin: "大阪" },
-        { packSize: "1 mg / 2 ml", catalogNumber: "GNI4110-FG-L", shippingOrigin: "大阪" },
-        { packSize: "5 mg–1 g", catalogNumber: "GNI4110-FG-Bulk", shippingOrigin: "上海" },
-      ],
     },
-    {
-      id: "hrp",
+    hrp: {
       title: "Anti-Flag-HRP 鼠单克隆抗体",
-      subtitle: "Anti-Flag-HRP Mouse Monoclonal Antibody",
       experimentImageAlt: "Anti-Flag-HRP 鼠单克隆抗体实验条带图",
-      details: [
-        { id: "product-name", label: "产品名称", value: "Anti-Flag-Tag Antibody Peroxidase (HRP) Conjugated" },
-        { id: "source", label: "来源", value: "小鼠单克隆抗体在优化条件下与 HRP 偶联" },
-        { id: "concentration", label: "浓度", value: "1 mg/ml；PBS，pH 7.4，含 50% glycerol" },
-        { id: "applications", label: "应用", value: "WB、Dot、ELISA" },
-        { id: "dilution", label: "建议稀释", value: "1:500–1:5000" },
-        { id: "isotype", label: "亚型", value: "Mouse IgG2b" },
-        { id: "storage", label: "形态 / 储存 / 特异性", value: "液体 / −20°C / All species" },
-      ],
-      skus: [
-        { packSize: "100 μl", catalogNumber: "GNI4310-FG-S", shippingOrigin: "大阪" },
-        { packSize: "1 ml", catalogNumber: "GNI4310-FG-L", shippingOrigin: "大阪" },
-        { packSize: "5–10 ml", catalogNumber: "GNI4310-FG-Bulk", shippingOrigin: "上海" },
-      ],
     },
-    {
-      id: "affinity-gel",
+    "affinity-gel": {
       title: "Anti-Flag 亲和凝胶",
-      subtitle: "Anti-Flag Affinity Gel",
       experimentImageAlt: "Anti-Flag 亲和凝胶实验图",
-      details: [
-        { id: "product-name", label: "产品名称", value: "Anti-Flag Tag (1E6) Affinity Gel" },
-        { id: "source", label: "来源", value: "Protein A 纯化的小鼠 IgG2b 单克隆抗体，共价偶联 Sepharose 4B" },
-        { id: "concentration", label: "组成", value: "50% 悬液；50% glycerol、10 mM sodium phosphate、150 mM sodium chloride，pH 7.4，含 0.02% (v/v) ProClin 300" },
-        { id: "applications", label: "应用", value: "重组蛋白纯化、免疫沉淀" },
-        { id: "storage", label: "储存 / 抗体结合量", value: "−20°C / 每升凝胶不少于 7.5 g 抗体" },
-        { id: "capacity", label: "结合能力", value: "每 ml packed resin 至少洗脱 1.1 mg Flag 融合蛋白；IP：5 μl gel / 500 μl 粗蛋白溶液" },
-      ],
-      skus: [
-        { packSize: "1 ml / PV 2 ml", catalogNumber: "GNI4510-FG-S", shippingOrigin: "大阪" },
-        { packSize: "5 ml / PV 10 ml", catalogNumber: "GNI4510-FG-M", shippingOrigin: "大阪" },
-        { packSize: "10 ml–1 L", catalogNumber: "GNI4510-FG-Bulk", shippingOrigin: "上海" },
-      ],
     },
-    {
-      id: "magnetic-beads",
+    "magnetic-beads": {
       title: "Anti-Flag 磁珠",
-      subtitle: "Anti-Flag Magnetic Beads",
       experimentImageAlt: "Anti-Flag 磁珠酸洗脱实验图",
-      details: [
-        { id: "product-name", label: "产品名称", value: "Anti-Flag Tag (1E6) Monoclonal Antibody conjugate with Magnetic Beads" },
-        { id: "bead-size", label: "磁珠粒径", value: "200 nm" },
-        { id: "concentration", label: "浓度", value: "10 mg/ml；PBS，pH 7.4，含 ProClin 300" },
-        { id: "applications", label: "应用", value: "Affinity Chromatography、Immunoprecipitation (IP)" },
-        { id: "capacity", label: "结合能力", value: "≥0.6 mg/ml" },
-        { id: "isotype", label: "亚型", value: "Mouse IgG2b" },
-        { id: "storage", label: "形态 / 储存 / 特异性", value: "悬液 / 2–8°C / All species" },
-      ],
-      skus: [
-        { packSize: "1 ml", catalogNumber: "GNI4710-FG-S", shippingOrigin: "大阪" },
-        { packSize: "5 ml", catalogNumber: "GNI4710-FG-M", shippingOrigin: "大阪" },
-        { packSize: "10 ml–100 ml", catalogNumber: "GNI4710-FG-Bulk", shippingOrigin: "上海" },
-      ],
     },
-  ],
+  }),
   skuLabels: {
     title: "规格与货号",
     packSize: "规格",
     catalogNumber: "货号",
-    availability: "库存说明",
-    availabilityNote: "参考资料标注为现货；实时库存请联系确认",
+    availability: "是否有货",
+    availabilityNote: "现货",
     shippingOrigin: "发货地",
     incompleteSource: "源图中的规格与货号未完整显示，需由产品方确认后补充。",
   },
@@ -136,7 +74,7 @@ export const zhAntibodyProductsContent = {
     title: "索取更多产品信息",
     description: "如需规格、实时库存、发货安排或批量包装信息，请通过所提供的业务邮箱联系。",
     emailLabel: "产品咨询邮箱",
-    email: "Haidiyu@easternpurity.com",
+    email: "market@easternpurity.com",
   },
   publications: {
     title: "使用GNI抗体系列产品发表的文章",

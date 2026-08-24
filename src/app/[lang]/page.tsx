@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { LuGraduationCap } from "react-icons/lu";
 
+import { SiteHeader } from "@/components/SiteHeader";
 import { contentByLocale } from "@/content";
 import type { ProductCardId, ServiceCardId } from "@/content/types";
 import { isLocale } from "@/i18n/config";
@@ -13,8 +14,6 @@ type HomeProps = Readonly<{
 }>;
 
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-const navLinkClass = `inline-flex min-h-6 items-center justify-center rounded-action whitespace-nowrap text-[clamp(15px,1.15vw,18px)] text-on-dark/85 transition-colors duration-200 hover:text-accent focus-visible:text-accent max-[640px]:text-xs ${focusRingClass}`;
-const languageLinkClass = `inline-flex min-h-6 min-w-6 items-center justify-center rounded-action text-on-dark-muted/85 transition-colors duration-200 hover:text-accent focus-visible:text-accent ${focusRingClass}`;
 const footerLinkClass = `inline-flex min-h-6 items-center rounded-action text-[15px] leading-[1.7] text-on-dark-muted/90 transition-colors duration-200 hover:text-accent focus-visible:text-accent ${focusRingClass}`;
 const heroButtonClass = `inline-flex min-h-12 min-w-36 items-center justify-center rounded-action border px-6 text-base leading-6 font-normal transition-[transform,background-color] duration-200 hover:-translate-y-px max-[640px]:w-full ${focusRingClass}`;
 const skipLinkClass = `fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-base font-semibold text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`;
@@ -77,33 +76,7 @@ export default async function Home({ params }: HomeProps) {
   return (
     <div className={`${language === "ja" ? "font-sans-jp" : "font-sans-sc"} bg-ui-canvas`}>
       <a className={skipLinkClass} href="#main-content">{t.skipToContent}</a>
-      <header className="absolute top-0 left-0 z-10 flex h-header w-full items-center justify-between border-b border-accent/20 bg-ui-footer/96 px-header-gutter text-white max-[960px]:px-6 max-[799px]:h-header-mobile max-[799px]:items-start max-[799px]:px-5 max-[799px]:pt-3">
-        <a className={`flex items-center gap-4 rounded-action ${focusRingClass}`} href="#top" aria-label={t.brand}>
-          <span className="relative grid size-12 flex-[0_0_48px] place-items-center overflow-hidden max-[640px]:size-[46px] max-[640px]:flex-[0_0_46px]">
-            <Image className="h-full w-auto object-contain" src="/Logo.png" width={530} height={539} alt="东方纯一 Logo" priority />
-          </span>
-          <span className="block"><strong className={`${brandFontClass} text-[clamp(20px,1.45vw,26px)] font-normal tracking-[.06em] whitespace-nowrap text-on-dark max-[960px]:text-xl max-[640px]:text-[19px]`}>{t.brand}</strong></span>
-        </a>
-        <div className="flex items-center gap-[clamp(20px,2vw,32px)] max-[960px]:gap-3.5 max-[640px]:static">
-          <nav className="flex items-center gap-[clamp(26px,2.7vw,48px)] max-[960px]:gap-5 max-[799px]:absolute max-[799px]:top-16 max-[799px]:left-5 max-[799px]:w-[calc(100%-2.5rem)] max-[799px]:justify-between max-[799px]:gap-0 max-[799px]:overflow-visible max-[799px]:pb-3" aria-label={language === "ja" ? "メインナビゲーション" : "主要导航"}>
-            {t.nav.map((item) => (
-              <a
-                aria-current={item.id === "home" ? "page" : undefined}
-                className={`${navLinkClass} ${item.id === "home" ? "!text-accent" : ""}`}
-                href={item.href}
-                key={item.id}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-          <nav className="flex items-center gap-1.5 text-xs whitespace-nowrap text-on-dark-muted/85 max-[960px]:text-[11px] max-[799px]:absolute max-[799px]:top-7 max-[799px]:right-5" aria-label="语言 / 言語">
-            <Link aria-current={language === "zh" ? "page" : undefined} className={`${languageLinkClass} ${language === "zh" ? "!text-accent" : ""}`} href="/zh" hrefLang="zh-CN" lang="zh-CN">中文</Link>
-            <span aria-hidden="true">/</span>
-            <Link aria-current={language === "ja" ? "page" : undefined} className={`${languageLinkClass} ${language === "ja" ? "!text-accent" : ""}`} href="/ja" hrefLang="ja" lang="ja">日本語</Link>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader lang={language} variant="landing" />
 
       <main id="main-content" tabIndex={-1}>
         <section className={`relative grid min-h-hero grid-cols-1 items-center justify-items-center overflow-hidden bg-ui-hero bg-[url('/hero-background.png')] bg-cover bg-center bg-no-repeat px-page-gutter pt-[114px] pb-[72px] text-white max-[960px]:min-h-[432px] max-[960px]:px-7 max-[960px]:pt-24 max-[960px]:pb-[60px] max-[799px]:pt-28 max-[640px]:min-h-[456px] ${language === "ja" ? "max-[640px]:pb-2.5" : "max-[640px]:pb-10"}`} id="top" aria-labelledby="hero-title">

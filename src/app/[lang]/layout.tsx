@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Noto_Sans_JP, Noto_Sans_SC, Noto_Serif_JP, Noto_Serif_SC } from "next/font/google";
 import type { ReactNode } from "react";
 
-import { documentLanguages, isLocale, locales, type Locale } from "@/i18n/config";
+import { defaultLocale, documentLanguages, isLocale, locales, type Locale } from "@/i18n/config";
 import { getSiteUrl } from "@/lib/site-url";
 
 import "../globals.css";
@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: Pick<RootLayoutProps, "params
       languages: {
         "zh-CN": "/zh",
         ja: "/ja",
-        "x-default": "/zh",
+        "x-default": `/${defaultLocale}`,
       },
     },
   };
