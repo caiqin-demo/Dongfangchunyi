@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
+import { SiteHeader } from "@/components/SiteHeader";
 import { antibodyProductsContentByLocale } from "@/content/antibody-products";
 import type { AntibodyProductId } from "@/content/antibody-products/types";
 import { contentByLocale } from "@/content";
@@ -59,24 +60,7 @@ export default async function AntibodyProductsPage({ params }: PageProps) {
         {home.skipToContent}
       </a>
 
-      <header className="border-b border-line-dark bg-ui-footer text-on-dark">
-        <div className="mx-auto flex min-h-20 w-[calc(100%-4rem)] max-w-panel items-center justify-between gap-6 py-3 max-[640px]:w-[calc(100%-1.5rem)] max-[640px]:flex-wrap max-[640px]:gap-3">
-          <Link className={`flex min-h-12 items-center gap-3 rounded-action ${focusRingClass}`} href={homeHref} aria-label={home.brand}>
-            <Image className="h-11 w-auto object-contain" src="/Logo.png" width={44} height={45} alt="" priority />
-            <span className={`${brandFontClass} text-xl tracking-[.06em]`}>{home.brand}</span>
-          </Link>
-          <div className="flex items-center gap-5 max-[640px]:w-full max-[640px]:justify-between">
-            <Link className={`inline-flex min-h-11 items-center rounded-action text-sm text-on-dark-muted transition-colors hover:text-accent ${focusRingClass}`} href={`${homeHref}#products`}>
-              ← {t.backToProducts}
-            </Link>
-            <nav className="flex items-center gap-1.5 text-xs text-on-dark-muted" aria-label="语言 / 言語">
-              <Link aria-current={lang === "zh" ? "page" : undefined} className={`inline-flex min-h-8 min-w-8 items-center justify-center rounded-action hover:text-accent ${lang === "zh" ? "text-accent" : ""} ${focusRingClass}`} href={`/zh${productPath}`} hrefLang="zh-CN" lang="zh-CN">中文</Link>
-              <span aria-hidden="true">/</span>
-              <Link aria-current={lang === "ja" ? "page" : undefined} className={`inline-flex min-h-8 min-w-8 items-center justify-center rounded-action hover:text-accent ${lang === "ja" ? "text-accent" : ""} ${focusRingClass}`} href={`/ja${productPath}`} hrefLang="ja" lang="ja">日本語</Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <SiteHeader backLinkLabel={t.backToProducts} lang={lang} localePath={productPath} variant="subpage" />
 
       <main id="main-content" tabIndex={-1}>
         <section className="bg-ui-section px-8 py-[clamp(3.5rem,7vw,7rem)] text-on-dark max-[640px]:px-4" aria-labelledby="page-title">
