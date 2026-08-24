@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { locales } from "@/i18n/config";
+import { defaultLocale, locales } from "@/i18n/config";
 import { getSiteUrl } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -8,14 +8,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const homeLanguages = {
     "zh-CN": new URL("/zh", siteUrl).toString(),
     ja: new URL("/ja", siteUrl).toString(),
-    "x-default": new URL("/zh", siteUrl).toString(),
+    "x-default": new URL(`/${defaultLocale}`, siteUrl).toString(),
   };
 
   const productPath = "/products/antibody-products";
   const antibodyProductLanguages = {
     "zh-CN": new URL(`/zh${productPath}`, siteUrl).toString(),
     ja: new URL(`/ja${productPath}`, siteUrl).toString(),
-    "x-default": new URL(`/zh${productPath}`, siteUrl).toString(),
+    "x-default": new URL(`/${defaultLocale}${productPath}`, siteUrl).toString(),
   };
 
   return locales.flatMap((lang) => [

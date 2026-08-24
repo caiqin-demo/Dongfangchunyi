@@ -2,7 +2,7 @@ export const locales = ["zh", "ja"] as const;
 
 export type Locale = (typeof locales)[number];
 
-export const defaultLocale: Locale = "zh";
+export const defaultLocale: Locale = "ja";
 
 export const documentLanguages: Record<Locale, string> = {
   zh: "zh-CN",

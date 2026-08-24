@@ -7,7 +7,7 @@ import { Fragment } from "react";
 import { antibodyProductsContentByLocale } from "@/content/antibody-products";
 import type { AntibodyProductId } from "@/content/antibody-products/types";
 import { contentByLocale } from "@/content";
-import { isLocale, locales } from "@/i18n/config";
+import { defaultLocale, isLocale, locales } from "@/i18n/config";
 import { getSiteUrl } from "@/lib/site-url";
 
 import { ProductCard } from "./ProductCard";
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       languages: {
         "zh-CN": `/zh${productPath}`,
         ja: `/ja${productPath}`,
-        "x-default": `/zh${productPath}`,
+        "x-default": `/${defaultLocale}${productPath}`,
       },
     },
   };
