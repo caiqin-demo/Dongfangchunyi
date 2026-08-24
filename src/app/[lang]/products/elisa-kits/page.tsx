@@ -63,16 +63,16 @@ export default async function ElisaKitsPage({ params }: PageProps) {
       weight: 24,
     },
     {
-      id: "availability",
-      label: t.skuLabels.availability,
-      getValue: (sku) => sku.availability,
-      weight: 22,
-    },
-    {
       id: "shipping-origin",
       label: t.skuLabels.shippingOrigin,
       getValue: (sku) => sku.shippingOrigin,
       cellClassName: "leading-5 text-ink-muted",
+      weight: 22,
+    },
+    {
+      id: "availability",
+      label: t.skuLabels.availability,
+      getValue: (sku) => sku.availability,
       weight: 50,
     },
   ];
