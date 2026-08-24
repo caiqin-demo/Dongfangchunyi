@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 export type ProductSpecificationDetail = Readonly<{
@@ -6,10 +7,18 @@ export type ProductSpecificationDetail = Readonly<{
   value: string;
 }>;
 
+export type ProductSpecificationImage = Readonly<{
+  alt: string;
+  height: number;
+  src: string;
+  width: number;
+}>;
+
 type ProductSpecificationCardProps = Readonly<{
   children: ReactNode;
   details: readonly ProductSpecificationDetail[];
-  footer?: ReactNode;
+  experimentImage?: ProductSpecificationImage;
+  logo?: ProductSpecificationImage;
   subtitle: string;
   title: string;
 }>;
@@ -17,10 +26,17 @@ type ProductSpecificationCardProps = Readonly<{
 export function ProductSpecificationCard({
   children,
   details,
-  footer,
+  experimentImage,
+  logo,
   subtitle,
   title,
 }: ProductSpecificationCardProps) {
+  const mediaAlignment = logo && experimentImage
+    ? "justify-between"
+    : experimentImage
+      ? "justify-end max-[1100px]:justify-start"
+      : "justify-start";
+
   return (
     <article className="flex h-full min-w-0 flex-col rounded-product-card border border-line bg-white p-[clamp(1rem,2.5vw,2rem)] shadow-media">
       <header className="min-h-36 shrink-0 max-[800px]:min-h-0">
@@ -40,7 +56,34 @@ export function ProductSpecificationCard({
       ) : null}
 
       {children}
-      {footer}
+      {logo || experimentImage ? (
+        <div className={`mt-6 flex shrink-0 items-end gap-4 max-[1100px]:flex-col max-[1100px]:items-start ${mediaAlignment}`}>
+          {logo ? (
+            <div className="h-16 w-40 max-w-full shrink-0">
+              <Image
+                className="h-full w-full object-contain object-left-bottom"
+                src={logo.src}
+                width={logo.width}
+                height={logo.height}
+                alt={logo.alt}
+                sizes="160px"
+              />
+            </div>
+          ) : null}
+          {experimentImage ? (
+            <div className="aspect-square w-60 max-w-full shrink-0">
+              <Image
+                className="h-full w-full object-contain object-right-bottom max-[1100px]:object-left-bottom"
+                src={experimentImage.src}
+                width={experimentImage.width}
+                height={experimentImage.height}
+                alt={experimentImage.alt}
+                sizes="240px"
+              />
+            </div>
+          ) : null}
+        </div>
+      ) : null}
     </article>
   );
 }

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
@@ -90,17 +89,12 @@ export default async function ElisaKitsPage({ params }: PageProps) {
       <section className="mx-auto w-[calc(100%-4rem)] max-w-panel py-16 max-[960px]:w-[calc(100%-2rem)] max-[640px]:w-[calc(100%-1.5rem)] max-[640px]:py-10" aria-label={t.product.title}>
         <ProductSpecificationCard
           details={t.product.details}
-          footer={(
-            <div className="mt-6 flex h-60 shrink-0 items-end">
-              <Image
-                className="h-auto w-40 max-w-full object-contain object-left-bottom"
-                src="/elisa-kits/hannah-logo.png"
-                width={342}
-                height={132}
-                alt="HannaH®"
-              />
-            </div>
-          )}
+          logo={{
+            alt: "HannaH®",
+            height: 132,
+            src: "/elisa-kits/hannah-logo.png",
+            width: 342,
+          }}
           subtitle={t.product.subtitle}
           title={t.product.title}
         >
