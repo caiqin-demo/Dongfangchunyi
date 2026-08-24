@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { ProductPageSection } from "@/components/product-pages/ProductPageSection";
 import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
 import {
   ProductSkuTable,
@@ -86,7 +87,7 @@ export default async function ElisaKitsPage({ params }: PageProps) {
       productPath={productPath}
       title={t.title}
     >
-      <section className="mx-auto w-[calc(100%-4rem)] max-w-panel py-16 max-[960px]:w-[calc(100%-2rem)] max-[640px]:w-[calc(100%-1.5rem)] max-[640px]:py-10" aria-label={t.product.title}>
+      <ProductPageSection aria-label={t.product.title}>
         <ProductSpecificationCard
           details={t.product.details}
           logo={{
@@ -107,7 +108,7 @@ export default async function ElisaKitsPage({ params }: PageProps) {
             titleId="elisa-sku-title"
           />
         </ProductSpecificationCard>
-      </section>
+      </ProductPageSection>
     </ProductPageTemplate>
   );
 }

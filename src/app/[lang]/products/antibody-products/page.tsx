@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Fragment } from "react";
 
+import { ProductPageSection } from "@/components/product-pages/ProductPageSection";
 import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
 import { antibodyProductsContentByLocale } from "@/content/antibody-products";
 import type { AntibodyProductId } from "@/content/antibody-products/types";
@@ -71,14 +72,14 @@ export default async function AntibodyProductsPage({ params }: PageProps) {
       productPath={productPath}
       title={t.title}
     >
-        <section className="mx-auto w-[calc(100%-4rem)] max-w-panel py-16 max-[960px]:w-[calc(100%-2rem)] max-[640px]:w-[calc(100%-1.5rem)] max-[640px]:py-10">
-          <div className="grid auto-rows-fr grid-cols-2 items-stretch gap-6 max-[800px]:grid-cols-1">
-            {t.products.map((product) => (
-              <ProductCard key={product.id} product={product} skuLabels={t.skuLabels} />
-            ))}
-          </div>
+      <ProductPageSection>
+        <div className="grid auto-rows-fr grid-cols-2 items-stretch gap-6 max-[800px]:grid-cols-1">
+          {t.products.map((product) => (
+            <ProductCard key={product.id} product={product} skuLabels={t.skuLabels} />
+          ))}
+        </div>
 
-          <article className="mt-6 min-w-0 rounded-product-card border border-line bg-white p-[clamp(1rem,2.5vw,2rem)] shadow-media" aria-labelledby="matrix-title">
+        <article className="mt-6 min-w-0 rounded-product-card border border-line bg-white p-[clamp(1rem,2.5vw,2rem)] shadow-media" aria-labelledby="matrix-title">
             <h2 className="m-0 text-[clamp(1.55rem,2.7vw,2.25rem)] leading-[1.2] font-extrabold" id="matrix-title">{t.matrix.title}</h2>
             <div className={`mt-7 overflow-x-auto rounded-control border border-line [contain:paint] ${focusRingClass}`} role="region" aria-labelledby="matrix-title" tabIndex={0}>
               <table className="w-full min-w-[540px] table-fixed border-collapse text-center text-sm">
@@ -123,8 +124,8 @@ export default async function AntibodyProductsPage({ params }: PageProps) {
               </table>
             </div>
             <p className="mt-4 mb-0 font-semibold text-ink">{t.matrix.originNote}</p>
-          </article>
-        </section>
+        </article>
+      </ProductPageSection>
     </ProductPageTemplate>
   );
 }
