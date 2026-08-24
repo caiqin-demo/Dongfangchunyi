@@ -48,9 +48,9 @@ export function ProductCard({ product, skuLabels }: ProductCardProps) {
         skus={product.skus}
       />
 
-      <div className="mt-6 flex h-60 shrink-0 items-end justify-between gap-4 max-[800px]:min-h-60">
+      <div className="mt-6 flex h-60 shrink-0 items-end justify-between gap-4 max-[800px]:min-h-60 max-[500px]:h-auto max-[500px]:min-h-0 max-[500px]:flex-col max-[500px]:items-start">
         <Image className="h-auto w-28 shrink-0 bg-transparent max-[900px]:w-16" src="/antibody-products/gni-logo.png" width={398} height={156} alt="" aria-hidden="true" />
-        <div className="h-60 w-60 shrink-0">
+        <div className="h-60 w-60 shrink-0 max-[500px]:h-52 max-[500px]:w-full">
           <Image
             className="h-full w-full object-contain object-right-bottom"
             src={experimentImage.src}

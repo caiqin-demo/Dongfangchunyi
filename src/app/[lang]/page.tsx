@@ -8,6 +8,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { contentByLocale } from "@/content";
 import type { ProductCardId, ServiceCardId } from "@/content/types";
 import { isLocale } from "@/i18n/config";
+import { productPaths } from "@/lib/product-paths";
 
 type HomeProps = Readonly<{
   params: Promise<{ lang: string }>;
@@ -121,8 +122,8 @@ export default async function Home({ params }: HomeProps) {
             <div className="grid flex-1 grid-cols-3 gap-5.5 max-[960px]:grid-cols-1">
               {t.products.items.map((item) => (
                 <CoreCard
-                  actionHref={item.id === "antibody-products" ? `/${language}/products/antibody-products` : undefined}
-                  actionLabel={item.id === "antibody-products" ? item.title : undefined}
+                  actionHref={`/${language}${productPaths[item.id]}`}
+                  actionLabel={item.title}
                   description={item.description}
                   imageSrc={productImages[item.id]}
                   key={item.id}
@@ -166,9 +167,7 @@ export default async function Home({ params }: HomeProps) {
             <ul className="m-0 grid list-none gap-3 p-0">
               {t.footer.productLinks.map((item) => (
                 <li key={item.id}>
-                  {item.id === "antibody-products"
-                    ? <Link className={footerLinkClass} href={`/${language}/products/antibody-products`}>{item.label}</Link>
-                    : <a className={footerLinkClass} href={item.href}>{item.label}</a>}
+                  <Link className={footerLinkClass} href={`/${language}${productPaths[item.id]}`}>{item.label}</Link>
                 </li>
               ))}
             </ul>
