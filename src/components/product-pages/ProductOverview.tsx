@@ -17,8 +17,8 @@ export function ProductOverview({ description, heading, imageSrc, title }: Produ
       </div>
       <article className="flex min-w-0 flex-col justify-center rounded-product-card border border-line bg-white p-[clamp(1.5rem,4vw,3rem)] shadow-media">
         <p className="mb-3 text-sm font-extrabold tracking-[.2em] text-accent">{heading}</p>
-        <h2 className="m-0 text-about-title" id="overview-title">{title}</h2>
-        <p className="mt-6 mb-0 text-[clamp(1rem,1.5vw,1.125rem)] leading-[1.8] text-ink-muted">{description}</p>
+        <h2 className="m-0 text-product-section-title" id="overview-title">{title}</h2>
+        <p className="mt-6 mb-0 text-product-section-body text-ink-muted">{description}</p>
       </article>
     </ProductPageSection>
   );

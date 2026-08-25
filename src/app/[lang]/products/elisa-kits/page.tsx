@@ -14,6 +14,8 @@ import { defaultLocale, isLocale, locales } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
+import { ElisaManualSeries } from "./ElisaManualSeries";
+
 type PageProps = Readonly<{ params: Promise<{ lang: string }> }>;
 
 const productPath = productPaths["elisa-kits"];
@@ -76,7 +78,6 @@ export default async function ElisaKitsPage({ params }: PageProps) {
       weight: 50,
     },
   ];
-
   return (
     <ProductPageTemplate
       backToProducts={t.backToProducts}
@@ -87,7 +88,7 @@ export default async function ElisaKitsPage({ params }: PageProps) {
       productPath={productPath}
       title={t.title}
     >
-      <ProductPageSection aria-label={t.product.title}>
+      <ProductPageSection className="grid gap-6" aria-label={t.product.title}>
         <ProductSpecificationCard
           details={t.product.details}
           logo={{
@@ -108,6 +109,7 @@ export default async function ElisaKitsPage({ params }: PageProps) {
             titleId="elisa-sku-title"
           />
         </ProductSpecificationCard>
+        <ElisaManualSeries content={t.reference} />
       </ProductPageSection>
     </ProductPageTemplate>
   );

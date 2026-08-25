@@ -1,3 +1,4 @@
+import { elisaReferenceProducts } from "@/content/elisa-kits/source-reference-products";
 import type { ElisaKitsContent } from "@/content/elisa-kits/types";
 
 export const zhElisaKitsContent = {
@@ -34,6 +35,27 @@ export const zhElisaKitsContent = {
     catalogNumber: "货号",
     availability: "是否有货",
     shippingOrigin: "发货地",
+  },
+  reference: {
+    title: "ELISA试剂盒产品资料",
+    regionLabel: "五种ELISA试剂盒产品资料，可横向滚动查看",
+    labels: {
+      series: "ELISA Kit Series",
+      userManual: "User Manual",
+      sensitivity: "Sensitivity",
+      range: "Range",
+      storage: "Storage",
+      standard: "标准品",
+      otherReagents: "其它试剂",
+    },
+    productCopy: {
+      "tnf-beta-human": { kitTitle: "TNF-β（人）ELISA Kit", manualLabel: "试剂盒操作手册", chartAlt: "TNF-β（人）ELISA试剂盒标准曲线" },
+      "ifn-gamma-human": { kitTitle: "IFN-γ（人）ELISA Kit", manualLabel: "试剂盒操作手册", chartAlt: "IFN-γ（人）ELISA试剂盒标准曲线" },
+      "il-1-beta-mouse": { kitTitle: "IL-1β（小鼠）ELISA Kit", manualLabel: "试剂盒操作手册", chartAlt: "IL-1β（小鼠）ELISA试剂盒标准曲线" },
+      "il-10-mouse": { kitTitle: "IL-10（小鼠）ELISA Kit", manualLabel: "试剂盒操作手册", chartAlt: "IL-10（小鼠）ELISA试剂盒标准曲线" },
+      "il-17a-monkey": { kitTitle: "IL-17A（非人灵长类）ELISA Kit", manualLabel: "试剂盒操作手册", chartAlt: "IL-17A（非人灵长类）ELISA试剂盒标准曲线" },
+    },
+    products: elisaReferenceProducts,
   },
   contact: {
     title: "索取更多产品信息",

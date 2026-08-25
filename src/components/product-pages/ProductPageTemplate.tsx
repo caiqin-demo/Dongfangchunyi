@@ -62,8 +62,8 @@ export function ProductPageTemplate({
 
         <section className={`mx-auto grid w-[calc(100%-4rem)] max-w-panel gap-12 py-16 max-[960px]:w-[calc(100%-2rem)] max-[640px]:w-[calc(100%-1.5rem)] max-[640px]:py-10 ${contactSupplement ? "grid-cols-[.8fr_1.2fr] max-[800px]:grid-cols-1" : "grid-cols-1"}`} aria-label={contact.title}>
           <div>
-            <h2 className="m-0 text-about-title">{contact.title}</h2>
-            <p className="mt-4 leading-[1.75] text-ink-muted">{contact.description}</p>
+            <h2 className="m-0 text-product-section-title">{contact.title}</h2>
+            <p className="mt-4 text-product-section-body text-ink-muted">{contact.description}</p>
             <a className={`mt-6 inline-flex min-h-12 max-w-full items-center rounded-action border border-accent bg-ui-footer px-6 text-base font-semibold break-all text-on-dark transition-colors hover:bg-ui-hero ${focusRingClass}`} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>{contact.email}</a>
           </div>
           {contactSupplement}

@@ -9,12 +9,14 @@
   --color-ui-footer: #061021;
   --color-ui-subtle: #f7f9fc;
   --color-table-header: #dbf2d0;
+  --color-manual-panel-warm: #ffdebf;
   --color-ink: #0c1729;
   --color-ink-muted: #5f6876;
   --color-on-dark: #f4f6fa;
   --color-on-dark-muted: #a5b2c2;
   --color-accent: #4989e5;
   --color-accent-hover: #3f7ed8;
+  --color-brand-wordmark-accent: #ee8532;
   --color-line: #dce4ed;
   --color-line-dark: #1c385d;
 
@@ -54,6 +56,12 @@
   --text-about-title--line-height: 1.18;
   --text-about-title--letter-spacing: -0.025em;
   --text-about-title--font-weight: 800;
+  --text-product-section-title: clamp(1.55rem, 2.7vw, 2.25rem);
+  --text-product-section-title--line-height: 1.2;
+  --text-product-section-title--font-weight: 800;
+  --text-product-section-body: 1rem;
+  --text-product-section-body--line-height: 1.65;
+  --text-product-section-body--font-weight: 400;
 }
 
 @layer base {

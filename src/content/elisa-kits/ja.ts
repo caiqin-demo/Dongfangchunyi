@@ -1,3 +1,4 @@
+import { elisaReferenceProducts } from "@/content/elisa-kits/source-reference-products";
 import type { ElisaKitsContent } from "@/content/elisa-kits/types";
 
 export const jaElisaKitsContent = {
@@ -34,6 +35,27 @@ export const jaElisaKitsContent = {
     catalogNumber: "カタログ番号",
     availability: "在庫状況",
     shippingOrigin: "出荷地",
+  },
+  reference: {
+    title: "ELISAキット製品資料",
+    regionLabel: "5種類のELISAキット製品資料、横方向にスクロールして閲覧できます",
+    labels: {
+      series: "ELISA Kit Series",
+      userManual: "User Manual",
+      sensitivity: "Sensitivity",
+      range: "Range",
+      storage: "Storage",
+      standard: "標準品",
+      otherReagents: "その他試薬",
+    },
+    productCopy: {
+      "tnf-beta-human": { kitTitle: "TNF-β（ヒト）ELISA Kit", manualLabel: "操作マニュアル", chartAlt: "TNF-β（ヒト）ELISAキットの標準曲線" },
+      "ifn-gamma-human": { kitTitle: "IFN-γ（ヒト）ELISA Kit", manualLabel: "操作マニュアル", chartAlt: "IFN-γ（ヒト）ELISAキットの標準曲線" },
+      "il-1-beta-mouse": { kitTitle: "IL-1β（マウス）ELISA Kit", manualLabel: "操作マニュアル", chartAlt: "IL-1β（マウス）ELISAキットの標準曲線" },
+      "il-10-mouse": { kitTitle: "IL-10（マウス）ELISA Kit", manualLabel: "操作マニュアル", chartAlt: "IL-10（マウス）ELISAキットの標準曲線" },
+      "il-17a-monkey": { kitTitle: "IL-17A（サル）ELISA Kit", manualLabel: "操作マニュアル", chartAlt: "IL-17A（サル）ELISAキットの標準曲線" },
+    },
+    products: elisaReferenceProducts,
   },
   contact: {
     title: "製品情報を問い合わせる",
