@@ -10,51 +10,6 @@ import type {
   LabInstrumentSku,
 } from "@/content/lab-instruments/types";
 
-type SourceCropProps = Readonly<{
-  alt: string;
-  crop: Readonly<{ height: number; width: number; x: number; y: number }>;
-  source: Readonly<{ height: number; src: `/${string}`; width: number }>;
-}>;
-
-const sourceSheets = {
-  instrumentsTwo: {
-    height: 1713,
-    src: "/lab-instruments/instrument-2.jpg",
-    width: 2717,
-  },
-} as const;
-
-const crops = {
-  domi: { x: 55, y: 1080, width: 1010, height: 535 },
-  curling: { x: 1090, y: 990, width: 1570, height: 675 },
-} as const;
-
-function SourceCrop({ alt, crop, source }: SourceCropProps) {
-  const imageWidth = (source.width / crop.width) * 100;
-  const translateX = (crop.x / source.width) * 100;
-  const translateY = (crop.y / source.height) * 100;
-
-  return (
-    <div
-      className="relative overflow-hidden bg-white"
-      style={{ aspectRatio: `${crop.width} / ${crop.height}` }}
-    >
-      <Image
-        alt={alt}
-        className="absolute top-0 left-0 h-auto max-w-none"
-        height={source.height}
-        sizes="(max-width: 640px) 100vw, 720px"
-        src={source.src}
-        style={{
-          transform: `translate(-${translateX}%, -${translateY}%)`,
-          width: `${imageWidth}%`,
-        }}
-        width={source.width}
-      />
-    </div>
-  );
-}
-
 function FeatureList({
   features,
   showAccent = true,
@@ -185,11 +140,11 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
 
             return (
               <article className="flex min-w-0 flex-col rounded-product-card border border-line bg-ui-subtle p-[clamp(1rem,2.5vw,2rem)]" key={product.id}>
-                <h3 className={`m-0 text-[clamp(1.6rem,3vw,2.6rem)] leading-[1.15] font-extrabold ${isDomi ? "text-accent" : "text-brand-wordmark-accent"}`}>
+                <h3 className={`m-0 text-[clamp(1.6rem,3vw,2.6rem)] leading-[1.15] font-extrabold ${isDomi ? "text-brand-domi" : "text-brand-wordmark-accent"}`}>
                   {product.title}
                 </h3>
                 <div className="mt-6">
-                  <FeatureList features={product.features} />
+                  <FeatureList features={product.features} showAccent={false} />
                 </div>
                 <ProductSkuTable
                   ariaLabel={`${product.title} ${content.skuLabels.title}`}
@@ -200,13 +155,16 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
                   title={content.skuLabels.title}
                   titleId={`compact-sku-title-${product.id}`}
                 />
-                <div className={`mt-7 overflow-hidden rounded-control border border-line bg-white ${isDomi ? "mx-auto w-full max-w-[34rem]" : "w-full"}`}>
-                  <SourceCrop
-                    alt={product.imageAlt}
-                    crop={isDomi ? crops.domi : crops.curling}
-                    source={sourceSheets.instrumentsTwo}
-                  />
-                </div>
+                <Image
+                  alt={product.imageAlt}
+                  className="mt-7 h-auto w-full object-contain"
+                  height={isDomi ? 546 : 1332}
+                  sizes="(max-width: 800px) 100vw, 50vw"
+                  src={isDomi
+                    ? "/lab-instruments/domi-metal-bath-transparent.webp"
+                    : "/lab-instruments/curling-vortex-mixer-transparent.webp"}
+                  width={isDomi ? 1628 : 3086}
+                />
               </article>
             );
           })}
