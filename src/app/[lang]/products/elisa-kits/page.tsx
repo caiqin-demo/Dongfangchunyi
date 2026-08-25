@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+import { ProductAvailabilityMatrix } from "@/components/product-pages/ProductAvailabilityMatrix";
 import { ProductPageSection } from "@/components/product-pages/ProductPageSection";
 import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
 import {
@@ -9,6 +10,7 @@ import {
 } from "@/components/product-pages/ProductSkuTable";
 import { ProductSpecificationCard } from "@/components/product-pages/ProductSpecificationCard";
 import { elisaKitsContentByLocale } from "@/content/elisa-kits";
+import { elisaCatalogColumnIds } from "@/content/elisa-kits/source-catalog";
 import type { ElisaKitSku } from "@/content/elisa-kits/types";
 import { defaultLocale, isLocale, locales } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
@@ -49,6 +51,10 @@ export default async function ElisaKitsPage({ params }: PageProps) {
   if (!isLocale(lang)) notFound();
 
   const t = elisaKitsContentByLocale[lang];
+  const catalogColumns = elisaCatalogColumnIds.map((id) => ({
+    id,
+    label: t.catalog.columnLabels[id],
+  }));
   const skuColumns: readonly ProductSkuTableColumn<ElisaKitSku>[] = [
     {
       id: "pack-size",
@@ -110,6 +116,19 @@ export default async function ElisaKitsPage({ params }: PageProps) {
           />
         </ProductSpecificationCard>
         <ElisaManualSeries content={t.reference} />
+        <ProductAvailabilityMatrix
+          availableLabel={t.catalog.available}
+          columnLanguage="en"
+          columns={catalogColumns}
+          idPrefix="elisa-catalog"
+          note={t.catalog.note}
+          regionLabel={t.catalog.regionLabel}
+          rows={t.catalog.rows}
+          rowHeaderLabel={t.catalog.rowHeaderLabel}
+          tableMinWidthClassName="min-w-[1040px]"
+          title={t.catalog.title}
+          unavailableLabel={t.catalog.unavailable}
+        />
       </ProductPageSection>
     </ProductPageTemplate>
   );

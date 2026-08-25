@@ -1,4 +1,5 @@
 import type { SimpleProductPageContent } from "@/content/simple-product-pages/types";
+import type { ElisaCatalogColumnId, ElisaCatalogRow } from "@/content/elisa-kits/source-catalog";
 
 type ElisaKitDetail = Readonly<{
   id: string;
@@ -69,5 +70,15 @@ export type ElisaKitsContent = SimpleProductPageContent & Readonly<{
     products: readonly ElisaReferenceProduct[];
     regionLabel: string;
     title: string;
+  }>;
+  catalog: Readonly<{
+    available: string;
+    columnLabels: Readonly<Record<ElisaCatalogColumnId, string>>;
+    note: string;
+    regionLabel: string;
+    rowHeaderLabel: string;
+    rows: readonly ElisaCatalogRow[];
+    title: string;
+    unavailable: string;
   }>;
 }>;

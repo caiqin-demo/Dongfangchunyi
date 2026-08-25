@@ -1,3 +1,4 @@
+import { elisaCatalogRows } from "@/content/elisa-kits/source-catalog";
 import { elisaReferenceProducts } from "@/content/elisa-kits/source-reference-products";
 import type { ElisaKitsContent } from "@/content/elisa-kits/types";
 
@@ -56,6 +57,27 @@ export const zhElisaKitsContent = {
       "il-17a-monkey": { kitTitle: "IL-17A（非人灵长类）ELISA Kit", manualLabel: "试剂盒操作手册", chartAlt: "IL-17A（非人灵长类）ELISA试剂盒标准曲线" },
     },
     products: elisaReferenceProducts,
+  },
+  catalog: {
+    title: "ELISA试剂盒供货目录",
+    regionLabel: "ELISA试剂盒细胞因子与物种供货矩阵，可横向滚动查看",
+    rowHeaderLabel: "细胞因子",
+    columnLabels: {
+      human: "Human",
+      mouse: "Mouse",
+      rat: "Rat",
+      bovine: "Bovine",
+      canine: "Canine",
+      chicken: "Chicken",
+      goat: "Goat",
+      monkey: "Monkey",
+      porcine: "Porcine",
+      "non-human": "Non-Human",
+    },
+    available: "可提供",
+    unavailable: "资料未标注",
+    note: "货号、产品具体信息、价格与货期请咨询 market@easternpurity.com。",
+    rows: elisaCatalogRows,
   },
   contact: {
     title: "索取更多产品信息",

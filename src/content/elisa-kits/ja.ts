@@ -1,3 +1,4 @@
+import { elisaCatalogRows } from "@/content/elisa-kits/source-catalog";
 import { elisaReferenceProducts } from "@/content/elisa-kits/source-reference-products";
 import type { ElisaKitsContent } from "@/content/elisa-kits/types";
 
@@ -56,6 +57,27 @@ export const jaElisaKitsContent = {
       "il-17a-monkey": { kitTitle: "IL-17A（サル）ELISA Kit", manualLabel: "操作マニュアル", chartAlt: "IL-17A（サル）ELISAキットの標準曲線" },
     },
     products: elisaReferenceProducts,
+  },
+  catalog: {
+    title: "ELISAキット供給カタログ",
+    regionLabel: "ELISAキットのサイトカインと生物種別の供給マトリクス。横方向にスクロールして閲覧できます",
+    rowHeaderLabel: "サイトカイン",
+    columnLabels: {
+      human: "Human",
+      mouse: "Mouse",
+      rat: "Rat",
+      bovine: "Bovine",
+      canine: "Canine",
+      chicken: "Chicken",
+      goat: "Goat",
+      monkey: "Monkey",
+      porcine: "Porcine",
+      "non-human": "Non-Human",
+    },
+    available: "提供可能",
+    unavailable: "資料に記載なし",
+    note: "カタログ番号、製品の詳細、価格、納期については market@easternpurity.com までお問い合わせください。",
+    rows: elisaCatalogRows,
   },
   contact: {
     title: "製品情報を問い合わせる",
