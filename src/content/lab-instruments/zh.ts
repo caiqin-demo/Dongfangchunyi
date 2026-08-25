@@ -11,7 +11,7 @@ export const zhLabInstrumentsContent = {
     title: "实验室小仪器 | 东方纯一",
     description: "CISTRO 移液器、Domi 迷你金属浴与 Curling 迷你涡旋仪产品信息。",
   },
-  eyebrow: "生命科学实验仪器",
+  eyebrow: "",
   title: "实验室小仪器",
   intro: "让实验桌面变得更加多彩和生动",
   backToProducts: "返回核心产品",

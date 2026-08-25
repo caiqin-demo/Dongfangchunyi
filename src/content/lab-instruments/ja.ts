@@ -11,7 +11,7 @@ export const jaLabInstrumentsContent = {
     title: "実験室用小型機器 | 東方純一",
     description: "CISTRO ピペット、Domi ミニメタルバス、Curling ミニボルテックスミキサーの製品情報。",
   },
-  eyebrow: "ライフサイエンス実験機器",
+  eyebrow: "",
   title: "実験室用小型機器",
   intro: "実験台をもっとカラフルで生き生きと",
   backToProducts: "主要製品へ戻る",
