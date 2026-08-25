@@ -76,7 +76,7 @@ export const jaElisaKitsContent = {
     },
     available: "提供可能",
     unavailable: "資料に記載なし",
-    note: "カタログ番号、製品の詳細、価格、納期については market@easternpurity.com までお問い合わせください。",
+    note: "",
     rows: elisaCatalogRows,
   },
   contact: {

@@ -76,7 +76,7 @@ export const zhElisaKitsContent = {
     },
     available: "可提供",
     unavailable: "资料未标注",
-    note: "货号、产品具体信息、价格与货期请咨询 market@easternpurity.com。",
+    note: "",
     rows: elisaCatalogRows,
   },
   contact: {
