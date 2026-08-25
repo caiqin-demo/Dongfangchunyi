@@ -54,7 +54,7 @@ export function ProductSkuTable<Row>({
                 />
               ))}
             </colgroup>
-            <thead className="bg-ui-card text-on-dark">
+            <thead className="bg-product-sku-header text-on-dark">
               <tr className="h-14">
                 {visibleColumns.map((column) => (
                   <th className={`px-3 py-2 ${column.headerClassName ?? ""}`} key={column.id} scope="col">
