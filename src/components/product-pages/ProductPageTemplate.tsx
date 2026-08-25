@@ -64,7 +64,7 @@ export function ProductPageTemplate({
           <div>
             <h2 className="m-0 text-product-section-title">{contact.title}</h2>
             <p className="mt-4 text-product-section-body text-ink-muted">{contact.description}</p>
-            <a className={`mt-6 inline-flex min-h-12 max-w-full items-center rounded-action border border-accent bg-ui-footer px-6 text-base font-semibold break-all text-on-dark transition-colors hover:bg-ui-hero ${focusRingClass}`} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>{contact.email}</a>
+            <a className={`mt-6 inline-flex min-h-12 max-w-full items-center rounded-action border border-accent bg-brand-red px-6 text-base font-semibold break-all text-on-dark transition-colors hover:bg-brand-red-hover ${focusRingClass}`} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>{contact.email}</a>
           </div>
           {contactSupplement}
         </section>
