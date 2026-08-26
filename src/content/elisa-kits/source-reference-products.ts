@@ -14,6 +14,10 @@ export const elisaReferenceProducts = [
   {
     id: "tnf-beta-human",
     chart: {
+      responsiveSources: [
+        { src: "/elisa-kits/charts/tnf-beta-human-standard-curve-288w.webp", width: 288 },
+        { src: "/elisa-kits/charts/tnf-beta-human-standard-curve-576w.webp", width: 576 },
+      ],
       src: "/elisa-kits/charts/tnf-beta-human-standard-curve.webp",
       width: 824,
       height: 680,
@@ -29,6 +33,10 @@ export const elisaReferenceProducts = [
   {
     id: "ifn-gamma-human",
     chart: {
+      responsiveSources: [
+        { src: "/elisa-kits/charts/ifn-gamma-human-standard-curve-288w.webp", width: 288 },
+        { src: "/elisa-kits/charts/ifn-gamma-human-standard-curve-576w.webp", width: 576 },
+      ],
       src: "/elisa-kits/charts/ifn-gamma-human-standard-curve-v2.webp",
       width: 1010,
       height: 814,
@@ -44,6 +52,10 @@ export const elisaReferenceProducts = [
   {
     id: "il-1-beta-mouse",
     chart: {
+      responsiveSources: [
+        { src: "/elisa-kits/charts/il-1-beta-mouse-standard-curve-288w.webp", width: 288 },
+        { src: "/elisa-kits/charts/il-1-beta-mouse-standard-curve-576w.webp", width: 576 },
+      ],
       src: "/elisa-kits/charts/il-1-beta-mouse-standard-curve-v2.webp",
       width: 1038,
       height: 824,
@@ -59,6 +71,10 @@ export const elisaReferenceProducts = [
   {
     id: "il-10-mouse",
     chart: {
+      responsiveSources: [
+        { src: "/elisa-kits/charts/il-10-mouse-standard-curve-288w.webp", width: 288 },
+        { src: "/elisa-kits/charts/il-10-mouse-standard-curve-576w.webp", width: 576 },
+      ],
       src: "/elisa-kits/charts/il-10-mouse-standard-curve-v2.webp",
       width: 1038,
       height: 834,
@@ -74,6 +90,10 @@ export const elisaReferenceProducts = [
   {
     id: "il-17a-monkey",
     chart: {
+      responsiveSources: [
+        { src: "/elisa-kits/charts/il-17a-monkey-standard-curve-288w.webp", width: 288 },
+        { src: "/elisa-kits/charts/il-17a-monkey-standard-curve-576w.webp", width: 576 },
+      ],
       src: "/elisa-kits/charts/il-17a-monkey-standard-curve-v2.webp",
       width: 1188,
       height: 856,

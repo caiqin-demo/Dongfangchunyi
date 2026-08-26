@@ -56,8 +56,6 @@ export function ProductAvailabilityMatrix<RowId extends string, ColumnId extends
     caption: string,
     rowHeaderWidthClassName: string,
   ) {
-    const rowHeaderId = `${tableId}-row-header`;
-
     return (
       <table className="w-full table-fixed border-collapse text-center text-sm" key={tableId}>
         <caption className="sr-only">{caption}</caption>
@@ -65,7 +63,6 @@ export function ProductAvailabilityMatrix<RowId extends string, ColumnId extends
           <tr>
             <th
               className={`sticky top-0 left-0 z-30 bg-table-header px-2 py-4 [overflow-wrap:anywhere] ${rowHeaderWidthClassName}`}
-              id={rowHeaderId}
               scope="col"
             >
               {rowHeaderLabel}
@@ -73,7 +70,6 @@ export function ProductAvailabilityMatrix<RowId extends string, ColumnId extends
             {visibleColumns.map((column) => (
               <th
                 className="sticky top-0 z-20 bg-table-header px-1.5 py-4 text-center leading-snug [overflow-wrap:anywhere]"
-                id={`${tableId}-column-${column.id}`}
                 key={column.id}
                 lang={columnLanguage}
                 scope="col"
@@ -89,7 +85,6 @@ export function ProductAvailabilityMatrix<RowId extends string, ColumnId extends
             <tr key={row.id}>
               <th
                 className={`sticky left-0 z-10 border-t border-line bg-white px-2 py-3 font-semibold [overflow-wrap:anywhere] ${rowHeaderWidthClassName}`}
-                id={`${tableId}-row-${row.id}`}
                 scope="row"
               >
                 {row.label}
@@ -98,12 +93,11 @@ export function ProductAvailabilityMatrix<RowId extends string, ColumnId extends
                 const isAvailable = row.availableFor.includes(column.id);
                 return (
                   <td
+                    aria-label={isAvailable ? availableLabel : unavailableLabel}
                     className="border-t border-line px-1.5 py-3 text-center"
-                    headers={`${tableId}-row-${row.id} ${tableId}-column-${column.id}`}
                     key={column.id}
                   >
                     <span aria-hidden="true" className="text-xl font-bold text-accent">{isAvailable ? "✓" : ""}</span>
-                    <span className="sr-only">{isAvailable ? availableLabel : unavailableLabel}</span>
                   </td>
                 );
               })}
