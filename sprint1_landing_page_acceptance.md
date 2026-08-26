@@ -1070,7 +1070,7 @@ V-05 建立固定 CI 环境的首版 golden screenshots
 
 值得关注的原始素材：
 
-- `hero-background.png`：约 1.1MB，CSS 背景会直接加载该文件。
+- `hero-background.png`：约 1.1MB 的原始素材保留；页面使用响应式 `hero-background.webp`。
 - `about-authorization.jpg`：未被页面引用，已作为无效旧素材删除。
 - `Logo.png`：约 200KB。
 - `icon.png`：约 200KB。

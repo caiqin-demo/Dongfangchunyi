@@ -80,7 +80,17 @@ export default async function Home({ params }: HomeProps) {
       <SiteHeader lang={language} variant="landing" />
 
       <main id="main-content" tabIndex={-1}>
-        <section className={`relative grid min-h-hero grid-cols-1 items-center justify-items-center overflow-hidden bg-ui-hero bg-[url('/hero-background.png')] bg-cover bg-center bg-no-repeat px-page-gutter pt-[114px] pb-[72px] text-white max-page:min-h-[432px] max-page:px-7 max-page:pt-24 max-page:pb-[60px] max-stack:pt-28 max-sm:min-h-[456px] ${language === "ja" ? "max-sm:pb-2.5" : "max-sm:pb-10"}`} id="top" aria-labelledby="hero-title">
+        <section className={`relative grid min-h-hero grid-cols-1 items-center justify-items-center overflow-hidden bg-ui-hero px-page-gutter pt-[114px] pb-[72px] text-white max-page:min-h-[432px] max-page:px-7 max-page:pt-24 max-page:pb-[60px] max-stack:pt-28 max-sm:min-h-[456px] ${language === "ja" ? "max-sm:pb-2.5" : "max-sm:pb-10"}`} id="top" aria-labelledby="hero-title">
+          <Image
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none object-cover object-center"
+            fetchPriority="high"
+            fill
+            loading="eager"
+            sizes="100vw"
+            src="/hero-background.webp"
+          />
           <div className="relative z-2 mx-auto w-full max-w-[1120px] text-center max-page:max-w-[780px]">
             <h1 className="m-0 text-hero-title max-sm:text-[36px]" id="hero-title">{t.hero.title}</h1>
             <p className="mx-auto mt-[38px] max-w-[1120px] text-[clamp(22px,2.1vw,30px)] leading-[1.6] text-on-dark-muted max-page:max-w-[780px] max-sm:mt-[26px] max-sm:max-w-[320px] max-sm:text-lg max-sm:leading-[1.75]">{t.hero.description}</p>
