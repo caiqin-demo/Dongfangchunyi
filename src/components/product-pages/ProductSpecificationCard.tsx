@@ -47,10 +47,10 @@ export function ProductSpecificationCard({
       </header>
 
       {details.length > 0 ? (
-        <dl className="grid min-h-0 flex-1 content-start gap-0 border-y border-line max-stack:mt-6" lang="en">
+        <dl className="@container/details-card grid min-h-0 flex-1 content-start gap-0 border-y border-line max-stack:mt-6" lang="en">
           {details.map((detail) => (
-            <div className="grid grid-cols-[minmax(7rem,.38fr)_1fr] gap-4 border-b border-line py-3 last:border-b-0 max-compact:grid-cols-1 max-compact:gap-1" key={detail.id}>
-              <dt className="font-bold [overflow-wrap:anywhere] text-ink">{detail.label}</dt>
+            <div className="grid grid-cols-1 gap-1 border-b border-line py-3 last:border-b-0 @card-details/details-card:grid-cols-[minmax(8.5rem,.38fr)_1fr] @card-details/details-card:gap-4" key={detail.id}>
+              <dt className="font-bold text-ink">{detail.label}</dt>
               <dd className="m-0 min-w-0 text-product-section-body whitespace-pre-line [overflow-wrap:anywhere] text-ink-muted">{detail.value}</dd>
             </div>
           ))}
