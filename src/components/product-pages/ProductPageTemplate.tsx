@@ -50,11 +50,13 @@ export function ProductPageTemplate({
       <SiteHeader backLinkLabel={backToProducts} lang={lang} localePath={productPath} variant="subpage" />
 
       <main id="main-content" tabIndex={-1}>
-        <section className="bg-ui-section px-8 py-[clamp(3.5rem,7vw,7rem)] text-on-dark max-sm:px-4" aria-labelledby="page-title">
-          <div className="mx-auto max-w-[1120px]">
-            <p className="mb-4 text-sm font-extrabold tracking-[.2em] text-accent">{eyebrow}</p>
-            <h1 className="m-0 max-w-[900px] text-[clamp(2.5rem,6vw,5rem)] leading-[1.08] font-extrabold tracking-[-.04em]" id="page-title">{title}</h1>
-            <p className="mt-7 max-w-[860px] text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.8] text-on-dark-muted">{intro}</p>
+        <section className="bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
+          <div className="mx-auto w-[calc(100%-4rem)] max-w-panel max-page:w-[calc(100%-2rem)] max-sm:w-[calc(100%-1.5rem)]">
+            <div className="max-w-[1120px]">
+              <p className="mb-4 text-sm font-extrabold tracking-[.2em] text-accent">{eyebrow}</p>
+              <h1 className="m-0 max-w-[900px] text-[clamp(2.5rem,6vw,5rem)] leading-[1.08] font-extrabold tracking-[-.04em]" id="page-title">{title}</h1>
+              <p className="mt-7 max-w-[860px] text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.8] text-on-dark-muted">{intro}</p>
+            </div>
           </div>
         </section>
 
