@@ -36,7 +36,7 @@ export function ProductSpecificationCard({
   const mediaAlignment = logo && experimentImage
     ? "justify-between"
     : experimentImage
-      ? "justify-end max-[1100px]:justify-start"
+      ? "justify-start @card-media/spec-card:justify-end"
       : "justify-start";
 
   return (
@@ -59,31 +59,33 @@ export function ProductSpecificationCard({
 
       {children}
       {logo || experimentImage ? (
-        <div className={`mt-6 flex shrink-0 items-end gap-4 max-[1100px]:flex-col max-[1100px]:items-start ${alignRows ? "stack:mt-0" : ""} ${mediaAlignment}`}>
-          {logo ? (
-            <div className="h-16 w-40 max-w-full shrink-0">
-              <Image
-                className="h-full w-full object-contain object-left-bottom"
-                src={logo.src}
-                width={logo.width}
-                height={logo.height}
-                alt={logo.alt}
-                sizes="160px"
-              />
-            </div>
-          ) : null}
-          {experimentImage ? (
-            <div className="aspect-square w-60 max-w-full shrink-0">
-              <Image
-                className="h-full w-full object-contain object-right-bottom max-[1100px]:object-left-bottom"
-                src={experimentImage.src}
-                width={experimentImage.width}
-                height={experimentImage.height}
-                alt={experimentImage.alt}
-                sizes="240px"
-              />
-            </div>
-          ) : null}
+        <div className={`@container/spec-card mt-6 ${alignRows ? "stack:mt-0" : ""}`}>
+          <div className={`flex shrink-0 flex-col items-start gap-4 @card-media/spec-card:flex-row @card-media/spec-card:items-end ${mediaAlignment}`}>
+            {logo ? (
+              <div className="h-16 w-40 max-w-full shrink-0">
+                <Image
+                  className="h-full w-full object-contain object-left-bottom"
+                  src={logo.src}
+                  width={logo.width}
+                  height={logo.height}
+                  alt={logo.alt}
+                  sizes="160px"
+                />
+              </div>
+            ) : null}
+            {experimentImage ? (
+              <div className="aspect-square w-60 max-w-full shrink-0">
+                <Image
+                  className="h-full w-full object-contain object-left-bottom @card-media/spec-card:object-right-bottom"
+                  src={experimentImage.src}
+                  width={experimentImage.width}
+                  height={experimentImage.height}
+                  alt={experimentImage.alt}
+                  sizes="240px"
+                />
+              </div>
+            ) : null}
+          </div>
         </div>
       ) : null}
     </article>
