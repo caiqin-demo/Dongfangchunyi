@@ -1,17 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { LuGraduationCap } from "react-icons/lu";
 
 import { SiteHeader } from "@/components/SiteHeader";
 import { contentByLocale } from "@/content";
 import type { ProductCardId, ServiceCardId } from "@/content/types";
-import { isLocale } from "@/i18n/config";
+import type { Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
 
 type HomeProps = Readonly<{
-  params: Promise<{ lang: string }>;
+  lang: Locale;
 }>;
 
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
@@ -63,13 +62,7 @@ function CoreCard({ actionHref, actionLabel, description, icon, imageSrc, title 
   );
 }
 
-export default async function Home({ params }: HomeProps) {
-  const { lang } = await params;
-
-  if (!isLocale(lang)) {
-    notFound();
-  }
-
+export function LandingPage({ lang }: HomeProps) {
   const language = lang;
   const t = contentByLocale[language];
   const brandFontClass = language === "ja" ? "font-brand-serif-jp" : "font-brand-serif-sc";

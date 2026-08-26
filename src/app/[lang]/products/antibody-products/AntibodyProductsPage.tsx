@@ -1,32 +1,22 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 import { ProductAvailabilityMatrix } from "@/components/product-pages/ProductAvailabilityMatrix";
 import { ProductPageSection } from "@/components/product-pages/ProductPageSection";
 import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
 import { antibodyProductsContentByLocale } from "@/content/antibody-products";
 import type { AntibodyProductId } from "@/content/antibody-products/types";
-import { defaultLocale, isLocale, locales } from "@/i18n/config";
+import { defaultLocale, type Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
 import { ProductCard } from "./ProductCard";
 
-type PageProps = Readonly<{ params: Promise<{ lang: string }> }>;
+type PageProps = Readonly<{ lang: Locale }>;
 
 const productPath = productPaths["antibody-products"];
 const productIds = ["mab", "hrp", "affinity-gel", "magnetic-beads"] as const satisfies readonly AntibodyProductId[];
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return locales.map((lang) => ({ lang }));
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { lang } = await params;
-  if (!isLocale(lang)) notFound();
-
+export function getAntibodyProductsMetadata(lang: Locale): Metadata {
   const metadata = antibodyProductsContentByLocale[lang].metadata;
   return {
     ...metadata,
@@ -42,10 +32,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function AntibodyProductsPage({ params }: PageProps) {
-  const { lang } = await params;
-  if (!isLocale(lang)) notFound();
-
+export function AntibodyProductsPage({ lang }: PageProps) {
   const t = antibodyProductsContentByLocale[lang];
   const matrixColumns = productIds.map((id) => ({
     id,
