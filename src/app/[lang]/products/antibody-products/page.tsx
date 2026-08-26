@@ -82,7 +82,7 @@ export default async function AntibodyProductsPage({ params }: PageProps) {
       title={t.title}
     >
       <ProductPageSection>
-        <div className="grid auto-rows-fr grid-cols-2 items-stretch gap-6 max-[800px]:grid-cols-1">
+        <div className="grid auto-rows-fr grid-cols-2 items-stretch gap-6 max-stack:grid-cols-1">
           {t.products.map((product) => (
             <ProductCard key={product.id} product={product} skuLabels={t.skuLabels} />
           ))}

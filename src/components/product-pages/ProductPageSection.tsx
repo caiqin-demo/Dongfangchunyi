@@ -7,7 +7,7 @@ type ProductPageSectionProps = Omit<ComponentPropsWithoutRef<"section">, "classN
 export function ProductPageSection({ className, ...props }: ProductPageSectionProps) {
   return (
     <section
-      className={`mx-auto w-[calc(100%-4rem)] max-w-panel pt-6 pb-16 max-[960px]:w-[calc(100%-2rem)] max-[640px]:w-[calc(100%-1.5rem)] max-[640px]:pb-10 ${className ?? ""}`}
+      className={`mx-auto w-[calc(100%-4rem)] max-w-panel pt-6 pb-16 max-page:w-[calc(100%-2rem)] max-sm:w-[calc(100%-1.5rem)] max-sm:pb-10 ${className ?? ""}`}
       {...props}
     />
   );

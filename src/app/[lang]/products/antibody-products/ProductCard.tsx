@@ -79,7 +79,7 @@ export function ProductCard({ product, skuLabels }: ProductCardProps) {
         emptyMessage={skuLabels.incompleteSource}
         getRowKey={(sku) => sku.catalogNumber}
         rows={product.skus}
-        sectionClassName="h-[21rem] max-[800px]:h-auto"
+        sectionClassName="h-[21rem] max-stack:h-auto"
         tableMinWidthClassName="min-w-[560px]"
         title={skuLabels.title}
         titleId={`${product.id}-sku-title`}

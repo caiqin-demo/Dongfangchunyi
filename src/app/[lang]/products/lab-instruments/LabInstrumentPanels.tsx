@@ -66,10 +66,10 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
   const skuColumns = createSkuColumns(content.skuLabels);
 
   return (
-    <div className="grid gap-8 max-[640px]:gap-6">
+    <div className="grid gap-8 max-sm:gap-6">
       <article className="overflow-hidden rounded-product-card border border-line bg-white shadow-media" aria-labelledby="pipette-title">
-        <div className="grid grid-cols-[.82fr_1.18fr] max-[800px]:grid-cols-1">
-          <div className="relative isolate min-h-[30rem] overflow-hidden bg-ui-footer max-[800px]:aspect-[8/5] max-[800px]:min-h-0 max-[500px]:aspect-[4/3]">
+        <div className="grid grid-cols-[.82fr_1.18fr] max-stack:grid-cols-1">
+          <div className="relative isolate min-h-[30rem] overflow-hidden bg-ui-footer max-stack:aspect-[8/5] max-stack:min-h-0 max-compact:aspect-[4/3]">
             <Image
               alt={content.pipette.imageAlt}
               className="-z-10 object-cover object-center"
@@ -88,7 +88,7 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
             </header>
           </div>
 
-          <div className="grid grid-cols-[minmax(8rem,.38fr)_1fr] items-center gap-6 border-l border-line p-[clamp(1.25rem,3vw,2.5rem)] max-[800px]:border-t max-[800px]:border-l-0 max-[500px]:grid-cols-1">
+          <div className="grid grid-cols-[minmax(8rem,.38fr)_1fr] items-center gap-6 border-l border-line p-[clamp(1.25rem,3vw,2.5rem)] max-stack:border-t max-stack:border-l-0 max-compact:grid-cols-1">
             <div className="mx-auto w-full max-w-52">
               <Image
                 alt=""
@@ -134,7 +134,7 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
 
       <section className="rounded-product-card border border-line bg-white p-[clamp(1.25rem,3vw,2.5rem)] shadow-media" aria-labelledby="compact-instruments-title">
         <h2 className="m-0 text-product-section-title" id="compact-instruments-title">{content.compactInstruments.title}</h2>
-        <div className="mt-7 grid grid-cols-2 gap-6 max-[800px]:grid-cols-1">
+        <div className="mt-7 grid grid-cols-2 gap-6 max-stack:grid-cols-1">
           {content.compactInstruments.products.map((product) => {
             const isDomi = product.id === "domi-metal-bath";
 

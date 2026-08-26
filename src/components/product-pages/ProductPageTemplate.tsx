@@ -50,7 +50,7 @@ export function ProductPageTemplate({
       <SiteHeader backLinkLabel={backToProducts} lang={lang} localePath={productPath} variant="subpage" />
 
       <main id="main-content" tabIndex={-1}>
-        <section className="bg-ui-section px-8 py-[clamp(3.5rem,7vw,7rem)] text-on-dark max-[640px]:px-4" aria-labelledby="page-title">
+        <section className="bg-ui-section px-8 py-[clamp(3.5rem,7vw,7rem)] text-on-dark max-sm:px-4" aria-labelledby="page-title">
           <div className="mx-auto max-w-[1120px]">
             <p className="mb-4 text-sm font-extrabold tracking-[.2em] text-accent">{eyebrow}</p>
             <h1 className="m-0 max-w-[900px] text-[clamp(2.5rem,6vw,5rem)] leading-[1.08] font-extrabold tracking-[-.04em]" id="page-title">{title}</h1>
@@ -60,7 +60,7 @@ export function ProductPageTemplate({
 
         {children}
 
-        <section className={`mx-auto grid w-[calc(100%-4rem)] max-w-panel gap-12 py-16 max-[960px]:w-[calc(100%-2rem)] max-[640px]:w-[calc(100%-1.5rem)] max-[640px]:py-10 ${contactSupplement ? "grid-cols-[.8fr_1.2fr] max-[800px]:grid-cols-1" : "grid-cols-1"}`} aria-label={contact.title}>
+        <section className={`mx-auto grid w-[calc(100%-4rem)] max-w-panel gap-12 py-16 max-page:w-[calc(100%-2rem)] max-sm:w-[calc(100%-1.5rem)] max-sm:py-10 ${contactSupplement ? "grid-cols-[.8fr_1.2fr] max-stack:grid-cols-1" : "grid-cols-1"}`} aria-label={contact.title}>
           <div>
             <h2 className="m-0 text-product-section-title">{contact.title}</h2>
             <p className="mt-4 text-product-section-body text-ink-muted">{contact.description}</p>
@@ -70,7 +70,7 @@ export function ProductPageTemplate({
         </section>
       </main>
 
-      <footer className="bg-ui-footer px-8 py-10 text-on-dark-muted max-[640px]:px-4">
+      <footer className="bg-ui-footer px-8 py-10 text-on-dark-muted max-sm:px-4">
         <div className="mx-auto flex max-w-panel items-center justify-between gap-8 max-[700px]:flex-col max-[700px]:items-start">
           <div className="flex items-center gap-3 text-on-dark">
             <Image className="h-9 w-auto object-contain" src="/Logo.png" width={36} height={37} alt="" />
