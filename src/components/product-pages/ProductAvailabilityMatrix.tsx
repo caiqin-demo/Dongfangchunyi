@@ -1,7 +1,3 @@
-"use client";
-
-import { Fragment, type UIEvent } from "react";
-
 type AvailabilityMatrixColumn<ColumnId extends string> = Readonly<{
   id: ColumnId;
   label: string;
@@ -32,10 +28,6 @@ type ProductAvailabilityMatrixProps<RowId extends string, ColumnId extends strin
 
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
-function keepFirstColumnVisible(event: UIEvent<HTMLDivElement>) {
-  event.currentTarget.style.setProperty("--matrix-scroll-left", `${event.currentTarget.scrollLeft}px`);
-}
-
 export function ProductAvailabilityMatrix<RowId extends string, ColumnId extends string>({
   availableLabel,
   className,
@@ -53,10 +45,74 @@ export function ProductAvailabilityMatrix<RowId extends string, ColumnId extends
 }: ProductAvailabilityMatrixProps<RowId, ColumnId>) {
   const visibleColumns = columns.filter((column) => rows.some((row) => row.availableFor.includes(column.id)));
   const rowsPerGroup = Math.ceil(rows.length / columnGroupCount);
-  const groupedRows = Array.from({ length: rowsPerGroup }, (_, rowIndex) => (
-    Array.from({ length: columnGroupCount }, (_, groupIndex) => rows[(groupIndex * rowsPerGroup) + rowIndex])
+  const rowGroups = Array.from({ length: columnGroupCount }, (_, groupIndex) => (
+    rows.slice(groupIndex * rowsPerGroup, (groupIndex + 1) * rowsPerGroup)
   ));
   const titleId = `${idPrefix}-title`;
+
+  function renderTable(
+    tableRows: readonly AvailabilityMatrixRow<RowId, ColumnId>[],
+    tableId: string,
+    caption: string,
+    rowHeaderWidthClassName: string,
+  ) {
+    const rowHeaderId = `${tableId}-row-header`;
+
+    return (
+      <table className="w-full table-fixed border-collapse text-center text-sm" key={tableId}>
+        <caption className="sr-only">{caption}</caption>
+        <thead className="bg-table-header text-ink">
+          <tr>
+            <th
+              className={`sticky top-0 left-0 z-30 bg-table-header px-2 py-4 [overflow-wrap:anywhere] ${rowHeaderWidthClassName}`}
+              id={rowHeaderId}
+              scope="col"
+            >
+              {rowHeaderLabel}
+            </th>
+            {visibleColumns.map((column) => (
+              <th
+                className="sticky top-0 z-20 bg-table-header px-1.5 py-4 text-center leading-snug [overflow-wrap:anywhere]"
+                id={`${tableId}-column-${column.id}`}
+                key={column.id}
+                lang={columnLanguage}
+                scope="col"
+              >
+                <span className="block font-bold">{column.label}</span>
+                {column.sublabel ? <span className="mt-1 block font-normal">{column.sublabel}</span> : null}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {tableRows.map((row) => (
+            <tr key={row.id}>
+              <th
+                className={`sticky left-0 z-10 border-t border-line bg-white px-2 py-3 font-semibold [overflow-wrap:anywhere] ${rowHeaderWidthClassName}`}
+                id={`${tableId}-row-${row.id}`}
+                scope="row"
+              >
+                {row.label}
+              </th>
+              {visibleColumns.map((column) => {
+                const isAvailable = row.availableFor.includes(column.id);
+                return (
+                  <td
+                    className="border-t border-line px-1.5 py-3 text-center"
+                    headers={`${tableId}-row-${row.id} ${tableId}-column-${column.id}`}
+                    key={column.id}
+                  >
+                    <span aria-hidden="true" className="text-xl font-bold text-accent">{isAvailable ? "✓" : ""}</span>
+                    <span className="sr-only">{isAvailable ? availableLabel : unavailableLabel}</span>
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  }
 
   return (
     <article
@@ -67,73 +123,32 @@ export function ProductAvailabilityMatrix<RowId extends string, ColumnId extends
       <div
         aria-label={regionLabel}
         aria-labelledby={regionLabel ? undefined : titleId}
-        className={`mt-7 overflow-x-auto overflow-y-hidden rounded-control border border-line [--matrix-scroll-left:0px] [contain:paint] ${focusRingClass}`}
-        onScroll={keepFirstColumnVisible}
+        className={`mt-7 max-h-[35.8rem] overflow-auto rounded-control border border-line [contain:paint] ${focusRingClass}`}
         role="region"
         tabIndex={0}
       >
-        <table className={`flex h-[35.8rem] w-full table-fixed flex-col border-collapse text-center text-sm ${tableMinWidthClassName}`}>
-          <caption className="sr-only">{title}</caption>
-          <thead className="block shrink-0 overflow-y-auto bg-table-header text-ink [scrollbar-gutter:stable]">
-            <tr className="table w-full table-fixed">
-              {Array.from({ length: columnGroupCount }, (_, groupIndex) => (
-                <Fragment key={`${idPrefix}-header-group-${groupIndex}`}>
-                  <th
-                    className={`w-[14%] px-2 py-4 [overflow-wrap:anywhere] ${groupIndex === 0 ? "relative z-20 bg-table-header [transform:translateX(var(--matrix-scroll-left))]" : ""}`}
-                    id={`${idPrefix}-row-header-${groupIndex}`}
-                    scope="col"
-                  >
-                    {rowHeaderLabel}
-                  </th>
-                  {visibleColumns.map((column) => (
-                    <th
-                      className="px-1.5 py-4 text-center leading-snug [overflow-wrap:anywhere]"
-                      id={`${idPrefix}-column-${groupIndex}-${column.id}`}
-                      key={`${groupIndex}-${column.id}`}
-                      lang={columnLanguage}
-                      scope="col"
-                    >
-                      <span className="block font-bold">{column.label}</span>
-                      {column.sublabel ? <span className="mt-1 block font-normal">{column.sublabel}</span> : null}
-                    </th>
-                  ))}
-                </Fragment>
+        {columnGroupCount > 1 ? (
+          <>
+            <div className={`w-full stack:hidden ${tableMinWidthClassName}`}>
+              {renderTable(rows, `${idPrefix}-compact`, title, "w-[14%]")}
+            </div>
+            <div
+              className={`hidden w-full stack:grid ${tableMinWidthClassName}`}
+              style={{ gridTemplateColumns: `repeat(${columnGroupCount}, minmax(0, 1fr))` }}
+            >
+              {rowGroups.map((rowGroup, groupIndex) => renderTable(
+                rowGroup,
+                `${idPrefix}-group-${groupIndex}`,
+                `${title} (${groupIndex + 1}/${columnGroupCount})`,
+                "w-[28%]",
               ))}
-            </tr>
-          </thead>
-          <tbody className="block min-h-0 flex-1 overflow-y-auto [scrollbar-gutter:stable]">
-            {groupedRows.map((rowGroup) => (
-              <tr className="table w-full table-fixed border-t border-line" key={rowGroup.flatMap((row) => row ? [row.id] : []).join("--")}>
-                {rowGroup.map((row, groupIndex) => row ? (
-                  <Fragment key={row.id}>
-                    <th
-                      className={`w-[14%] px-2 py-3 font-semibold [overflow-wrap:anywhere] ${groupIndex === 0 ? "relative z-10 bg-white [transform:translateX(var(--matrix-scroll-left))]" : ""}`}
-                      id={`${idPrefix}-row-${row.id}`}
-                      scope="row"
-                    >
-                      {row.label}
-                    </th>
-                    {visibleColumns.map((column) => {
-                      const isAvailable = row.availableFor.includes(column.id);
-                      return (
-                        <td
-                          className="px-1.5 py-3 text-center"
-                          headers={`${idPrefix}-row-${row.id} ${idPrefix}-column-${groupIndex}-${column.id}`}
-                          key={column.id}
-                        >
-                          <span aria-hidden="true" className="text-xl font-bold text-accent">{isAvailable ? "✓" : ""}</span>
-                          <span className="sr-only">{isAvailable ? availableLabel : unavailableLabel}</span>
-                        </td>
-                      );
-                    })}
-                  </Fragment>
-                ) : (
-                  <td aria-hidden="true" colSpan={visibleColumns.length + 1} key={`${idPrefix}-empty-${groupIndex}`} />
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            </div>
+          </>
+        ) : (
+          <div className={`w-full ${tableMinWidthClassName}`}>
+            {renderTable(rows, idPrefix, title, "w-[14%]")}
+          </div>
+        )}
       </div>
       {note ? <p className="mt-4 mb-0 font-semibold text-ink">{note}</p> : null}
     </article>
