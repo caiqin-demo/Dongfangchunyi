@@ -15,6 +15,7 @@ export type ProductSpecificationImage = Readonly<{
 }>;
 
 type ProductSpecificationCardProps = Readonly<{
+  alignRows?: boolean;
   children: ReactNode;
   details: readonly ProductSpecificationDetail[];
   experimentImage?: ProductSpecificationImage;
@@ -24,6 +25,7 @@ type ProductSpecificationCardProps = Readonly<{
 }>;
 
 export function ProductSpecificationCard({
+  alignRows = false,
   children,
   details,
   experimentImage,
@@ -38,8 +40,8 @@ export function ProductSpecificationCard({
       : "justify-start";
 
   return (
-    <article className="flex h-full min-w-0 flex-col rounded-product-card border border-line bg-white p-[clamp(1rem,2.5vw,2rem)] shadow-media">
-      <header className="min-h-36 shrink-0 max-stack:min-h-0">
+    <article className={`flex h-full min-w-0 flex-col rounded-product-card border border-line bg-white p-[clamp(1rem,2.5vw,2rem)] shadow-media ${alignRows ? "stack:row-span-4 stack:grid stack:grid-cols-1 stack:grid-rows-subgrid stack:gap-y-6" : ""}`}>
+      <header className={alignRows ? "shrink-0" : "min-h-36 shrink-0 max-stack:min-h-0"}>
         <h2 className="m-0 text-product-section-title">{title}</h2>
         <p className="mt-2 mb-0 text-base leading-[1.6] font-semibold text-ink-muted" lang="en">{subtitle}</p>
       </header>
@@ -57,7 +59,7 @@ export function ProductSpecificationCard({
 
       {children}
       {logo || experimentImage ? (
-        <div className={`mt-6 flex shrink-0 items-end gap-4 max-[1100px]:flex-col max-[1100px]:items-start ${mediaAlignment}`}>
+        <div className={`mt-6 flex shrink-0 items-end gap-4 max-[1100px]:flex-col max-[1100px]:items-start ${alignRows ? "stack:mt-0" : ""} ${mediaAlignment}`}>
           {logo ? (
             <div className="h-16 w-40 max-w-full shrink-0">
               <Image
