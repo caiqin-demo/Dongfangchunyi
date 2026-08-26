@@ -22,7 +22,7 @@ type CompactInstrument<Id extends string> = Readonly<{
   title: string;
 }>;
 
-export type LabInstrumentsPageContent = Omit<SimpleProductPageContent, "overview"> & Readonly<{
+export type LabInstrumentsPageContent = SimpleProductPageContent & Readonly<{
   compactInstruments: Readonly<{
     products: readonly [
       CompactInstrument<"domi-metal-bath">,
@@ -36,7 +36,6 @@ export type LabInstrumentsPageContent = Omit<SimpleProductPageContent, "overview
     coreTitle: string;
     features: readonly [LabInstrumentFeature, LabInstrumentFeature];
     imageAlt: string;
-    sectionTitle: string;
     skus: readonly LabInstrumentSku[];
     tagline: string;
     title: string;

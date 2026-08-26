@@ -11,10 +11,6 @@ export const zhElisaKitsContent = {
   title: "ELISA检测试剂盒",
   intro: "涵盖多种热门标靶，如白介素, INF, TNF, VEGF等。以下技术参数按所提供的产品资料整理；实时库存与发货安排请联系确认。",
   backToProducts: "返回核心产品",
-  overview: {
-    heading: "产品概览",
-    description: "上海睿星生物技术有限公司生产和销售HannaH® ELISA试剂盒，涵盖检测近300种不同种类基因的产品。",
-  },
   product: {
     title: "ELISA检测试剂盒",
     subtitle: "ELISA Kit Series",

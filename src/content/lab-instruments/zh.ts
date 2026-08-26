@@ -23,7 +23,6 @@ export const zhLabInstrumentsContent = {
     shippingOrigin: "发货地",
   },
   pipette: {
-    sectionTitle: "移液器",
     title: "CISTRO Pipette",
     tagline: "精准如丝 · 掌控随心｜以科技之力，探索生命科学的无限可能",
     imageAlt: "白色与橙色外观的 CISTRO 移液器",

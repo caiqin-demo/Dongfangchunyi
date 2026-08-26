@@ -16,6 +16,12 @@ export const jaContent = {
     productButton: "製品を見る",
     serviceButton: "サービスを見る",
   },
+  notFound: {
+    title: "ページが見つかりません",
+    description: "お探しのページは存在しないか、移動した可能性があります。",
+    homeLink: "ホームへ戻る",
+    productsLink: "主要製品を見る",
+  },
   about: {
     label: "ABOUT US",
     title: "東方純一株式会社が上海睿星生物技術有限公司の日本正規販売代理店に",

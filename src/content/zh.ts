@@ -16,6 +16,12 @@ export const zhContent = {
     productButton: "了解产品",
     serviceButton: "了解服务",
   },
+  notFound: {
+    title: "未找到页面",
+    description: "您访问的页面不存在或已被移动。",
+    homeLink: "返回首页",
+    productsLink: "查看核心产品",
+  },
   about: {
     label: "ABOUT US",
     title: "东方纯一株式会社成为上海睿星生物技术有限公司日本授权经销商",
