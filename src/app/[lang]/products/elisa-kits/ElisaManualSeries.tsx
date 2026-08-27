@@ -34,6 +34,10 @@ export function ElisaManualSeries({ content }: ElisaManualSeriesProps) {
             const copy = content.productCopy[product.id];
             const panelBackground = product.panelTone === "warm" ? "bg-manual-panel-warm" : "bg-white";
             const headingId = `elisa-manual-${product.id}`;
+            const chartSrcSet = [
+              ...product.chart.responsiveSources,
+              { src: product.chart.src, width: product.chart.width },
+            ].map(({ src, width }) => `${src} ${width}w`).join(", ");
 
             return (
               <section
@@ -68,15 +72,17 @@ export function ElisaManualSeries({ content }: ElisaManualSeriesProps) {
                 <p className="mt-9 mb-0 text-product-section-body" lang="en">{product.catalogAndPack}</p>
 
                 <div className="mt-auto pt-12">
-                  <Image
-                    alt={copy.chartAlt}
-                    className="h-auto w-full object-contain"
-                    height={product.chart.height}
-                    sizes="288px"
-                    src={product.chart.src}
-                    unoptimized
-                    width={product.chart.width}
-                  />
+                  <picture>
+                    <source sizes="288px" srcSet={chartSrcSet} type="image/webp" />
+                    <Image
+                      alt={copy.chartAlt}
+                      className="h-auto w-full object-contain"
+                      height={product.chart.height}
+                      src={product.chart.src}
+                      unoptimized
+                      width={product.chart.width}
+                    />
+                  </picture>
                 </div>
               </section>
             );

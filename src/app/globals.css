@@ -1,6 +1,10 @@
 @import "tailwindcss";
 
 @theme inline {
+  --breakpoint-compact: 31.25rem;
+  --breakpoint-stack: 50rem;
+  --breakpoint-page: 60rem;
+
   --color-ui-canvas: #23282a;
   --color-ui-hero: #0b203f;
   --color-ui-section: #0c1528;
@@ -40,6 +44,8 @@
   --spacing-about-media: 26.5rem;
 
   --container-panel: 93.75rem;
+  --container-card-media: 32rem;
+  --container-card-details: 34rem;
 
   --radius-control: 10px;
   --radius-action: 6px;

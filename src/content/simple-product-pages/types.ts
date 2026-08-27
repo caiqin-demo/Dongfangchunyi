@@ -12,9 +12,5 @@ export type SimpleProductPageContent = Readonly<{
     description: string;
     title: string;
   }>;
-  overview: Readonly<{
-    description: string;
-    heading: string;
-  }>;
   title: string;
 }>;

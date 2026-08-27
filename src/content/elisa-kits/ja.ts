@@ -11,10 +11,6 @@ export const jaElisaKitsContent = {
   title: "ELISA検出キット",
   intro: "インターロイキン、INF、TNF、VEGFなど、多くの注目標的をカバーしています。以下の技術仕様は提供された製品資料に基づいて整理しています。最新の在庫状況と出荷予定については、お問い合わせください。",
   backToProducts: "主要製品へ戻る",
-  overview: {
-    heading: "製品概要",
-    description: "上海睿星生物技術有限公司は、約300種類の異なる遺伝子を検出するHannaH® ELISAキットを製造・販売しています。",
-  },
   product: {
     title: "ELISA検出キット",
     subtitle: "ELISA Kit Series",

@@ -57,6 +57,7 @@ export function ProductCard({ product, skuLabels }: ProductCardProps) {
 
   return (
     <ProductSpecificationCard
+      alignRows
       details={product.details}
       experimentImage={{
         alt: product.experimentImageAlt,
@@ -79,7 +80,7 @@ export function ProductCard({ product, skuLabels }: ProductCardProps) {
         emptyMessage={skuLabels.incompleteSource}
         getRowKey={(sku) => sku.catalogNumber}
         rows={product.skus}
-        sectionClassName="h-[21rem] max-[800px]:h-auto"
+        sectionClassName="stack:pt-0"
         tableMinWidthClassName="min-w-[560px]"
         title={skuLabels.title}
         titleId={`${product.id}-sku-title`}

@@ -26,6 +26,10 @@ export type ElisaReferenceProduct = Readonly<{
   catalogAndPack: string;
   chart: Readonly<{
     height: number;
+    responsiveSources: readonly [
+      Readonly<{ src: string; width: 288 }>,
+      Readonly<{ src: string; width: 576 }>,
+    ];
     src: string;
     width: number;
   }>;

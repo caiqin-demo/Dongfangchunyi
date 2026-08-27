@@ -103,6 +103,12 @@ export type HomeContent = Readonly<{
     title: string;
   }>;
   nav: NavigationItems;
+  notFound: Readonly<{
+    description: string;
+    homeLink: string;
+    productsLink: string;
+    title: string;
+  }>;
   skipToContent: string;
   products: Readonly<{
     items: ProductCards;

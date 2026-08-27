@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
 import { ProductAvailabilityMatrix } from "@/components/product-pages/ProductAvailabilityMatrix";
 import { ProductPageSection } from "@/components/product-pages/ProductPageSection";
@@ -12,26 +11,17 @@ import { ProductSpecificationCard } from "@/components/product-pages/ProductSpec
 import { elisaKitsContentByLocale } from "@/content/elisa-kits";
 import { elisaCatalogColumnIds } from "@/content/elisa-kits/source-catalog";
 import type { ElisaKitSku } from "@/content/elisa-kits/types";
-import { defaultLocale, isLocale, locales } from "@/i18n/config";
+import { defaultLocale, type Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
 import { ElisaManualSeries } from "./ElisaManualSeries";
 
-type PageProps = Readonly<{ params: Promise<{ lang: string }> }>;
+type PageProps = Readonly<{ lang: Locale }>;
 
 const productPath = productPaths["elisa-kits"];
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return locales.map((lang) => ({ lang }));
-}
-
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { lang } = await params;
-  if (!isLocale(lang)) notFound();
-
+export function getElisaKitsMetadata(lang: Locale): Metadata {
   return {
     ...elisaKitsContentByLocale[lang].metadata,
     metadataBase: getSiteUrl(),
@@ -46,10 +36,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function ElisaKitsPage({ params }: PageProps) {
-  const { lang } = await params;
-  if (!isLocale(lang)) notFound();
-
+export function ElisaKitsPage({ lang }: PageProps) {
   const t = elisaKitsContentByLocale[lang];
   const catalogColumns = elisaCatalogColumnIds.map((id) => ({
     id,

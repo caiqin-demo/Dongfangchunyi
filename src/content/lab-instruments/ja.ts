@@ -23,7 +23,6 @@ export const jaLabInstrumentsContent = {
     shippingOrigin: "発送地",
   },
   pipette: {
-    sectionTitle: "ピペット",
     title: "CISTRO Pipette",
     tagline: "絹糸のような精密さ、思いのままの操作｜テクノロジーの力で生命科学の無限の可能性を探る",
     imageAlt: "白とオレンジを基調とした CISTRO ピペット",
