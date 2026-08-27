@@ -48,9 +48,9 @@ export function SiteHeader({ backLinkLabel, lang, localePath = "/", variant }: S
         </nav>
 
         <nav className="flex items-center gap-1.5 text-xs whitespace-nowrap text-on-dark-muted/85 max-page:text-[11px] max-stack:absolute max-stack:top-7 max-stack:right-5" aria-label="语言 / 言語">
-          <Link aria-current={lang === "ja" ? "page" : undefined} className={`${languageLinkClass} ${lang === "ja" ? "!text-accent" : ""}`} href={`/ja${localizedPath}`} hrefLang="ja" lang="ja">日本語</Link>
+          <Link aria-current={lang === "ja" ? "page" : undefined} className={`${languageLinkClass} ${lang === "ja" ? "!text-accent" : ""}`} href={`/ja${localizedPath}`} hrefLang="ja" lang="ja" prefetch={false}>日本語</Link>
           <span aria-hidden="true">/</span>
-          <Link aria-current={lang === "zh" ? "page" : undefined} className={`${languageLinkClass} ${lang === "zh" ? "!text-accent" : ""}`} href={`/zh${localizedPath}`} hrefLang="zh-CN" lang="zh-CN">中文</Link>
+          <Link aria-current={lang === "zh" ? "page" : undefined} className={`${languageLinkClass} ${lang === "zh" ? "!text-accent" : ""}`} href={`/zh${localizedPath}`} hrefLang="zh-CN" lang="zh-CN" prefetch={false}>中文</Link>
         </nav>
       </div>
     </header>
