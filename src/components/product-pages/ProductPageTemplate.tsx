@@ -55,7 +55,7 @@ export function ProductPageTemplate({
         <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
           {heroImageSrc ? (
             <>
-              <Image alt="" className="-z-20 object-cover object-center" fill sizes="100vw" src={heroImageSrc} />
+              <Image alt="" className="-z-20 object-cover object-center" fetchPriority="high" fill loading="eager" sizes="100vw" src={heroImageSrc} />
               <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-r from-ui-section/95 via-ui-section/80 to-ui-section/35 max-sm:from-ui-section/90 max-sm:via-ui-section/85 max-sm:to-ui-section/70" />
             </>
           ) : null}
