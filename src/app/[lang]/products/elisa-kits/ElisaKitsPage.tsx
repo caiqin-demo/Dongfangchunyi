@@ -76,6 +76,7 @@ export function ElisaKitsPage({ lang }: PageProps) {
       backToProducts={t.backToProducts}
       contact={t.contact}
       eyebrow={t.eyebrow}
+      heroImageSrc="/elisa-kits/elisa-kits-hero.jpg"
       intro={t.intro}
       lang={lang}
       productPath={productPath}
