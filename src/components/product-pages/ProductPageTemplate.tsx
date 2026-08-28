@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
@@ -20,8 +20,7 @@ type ProductPageTemplateProps = Readonly<{
   }>;
   contactSupplement?: ReactNode;
   eyebrow: string;
-  heroImageSrc?: string;
-  heroImageTreatment?: "clear-right" | "default";
+  heroImageSrc?: ImageProps["src"];
   intro: string;
   lang: Locale;
   productPath: `/${string}`;
@@ -35,7 +34,6 @@ export function ProductPageTemplate({
   contactSupplement,
   eyebrow,
   heroImageSrc,
-  heroImageTreatment = "default",
   intro,
   lang,
   productPath,
@@ -44,8 +42,6 @@ export function ProductPageTemplate({
   const home = contentByLocale[lang];
   const fontClass = lang === "ja" ? "font-sans-jp" : "font-sans-sc";
   const brandFontClass = lang === "ja" ? "font-brand-serif-jp" : "font-brand-serif-sc";
-  const usesClearRightHero = heroImageTreatment === "clear-right";
-
   return (
     <div className={`${fontClass} min-h-screen bg-ui-subtle text-ink`}>
       <a className={`fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-base font-semibold text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`} href="#main-content">
@@ -58,17 +54,8 @@ export function ProductPageTemplate({
         <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
           {heroImageSrc ? (
             <>
-              <Image alt="" className={`-z-20 object-cover object-center ${usesClearRightHero ? "max-sm:object-contain max-sm:object-bottom" : ""}`} fill loading={usesClearRightHero ? "eager" : undefined} sizes="100vw" src={heroImageSrc} unoptimized={usesClearRightHero} />
-              {usesClearRightHero ? (
-                <>
-                  <div aria-hidden="true" className="absolute inset-y-0 left-0 z-0 w-[66%] bg-linear-to-r from-ui-section/95 via-ui-section/80 to-product-hero-light max-sm:hidden" />
-                  <div aria-hidden="true" className="absolute inset-y-0 left-[66%] z-0 w-[7%] bg-linear-to-r from-product-hero-light to-transparent max-sm:hidden" />
-                  <div aria-hidden="true" className="absolute bottom-0 left-0 z-0 hidden h-[45%] w-[66%] bg-linear-to-r from-ui-section/95 via-ui-section/80 to-product-hero-light max-sm:block" />
-                  <div aria-hidden="true" className="absolute bottom-0 left-[66%] z-0 hidden h-[45%] w-[7%] bg-linear-to-r from-product-hero-light to-transparent max-sm:block" />
-                </>
-              ) : (
-                <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-r from-ui-section/95 via-ui-section/80 to-ui-section/35 max-sm:from-ui-section/90 max-sm:via-ui-section/85 max-sm:to-ui-section/70" />
-              )}
+              <Image alt="" className="-z-20 object-cover object-center" fill sizes="100vw" src={heroImageSrc} />
+              <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-r from-ui-section/95 via-ui-section/80 to-ui-section/35 max-sm:from-ui-section/90 max-sm:via-ui-section/85 max-sm:to-ui-section/70" />
             </>
           ) : null}
           <div className="relative z-10 mx-auto w-[calc(100%-4rem)] max-w-panel max-page:w-[calc(100%-2rem)] max-sm:w-[calc(100%-1.5rem)]">
@@ -77,7 +64,7 @@ export function ProductPageTemplate({
                 <p className={`mb-4 text-sm font-extrabold tracking-[.2em] text-accent ${heroImageSrc ? "w-fit rounded-action bg-ui-section px-2 py-1" : ""}`}>{eyebrow}</p>
               ) : null}
               <h1 className="m-0 max-w-[900px] text-[clamp(2.5rem,6vw,5rem)] leading-[1.08] font-extrabold tracking-[-.04em]" id="page-title">{title}</h1>
-              <p className={`mt-7 max-w-[860px] text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.8] text-on-dark-muted ${usesClearRightHero ? "max-sm:max-w-[58%]" : ""}`}>{intro}</p>
+              <p className="mt-7 max-w-[860px] text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.8] text-on-dark-muted">{intro}</p>
             </div>
           </div>
         </section>

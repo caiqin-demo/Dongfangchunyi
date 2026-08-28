@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import labInstrumentsHero from "@/assets/product-pages/lab-instruments-hero-wide-gradient.webp";
 import { ProductPageSection } from "@/components/product-pages/ProductPageSection";
 import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
 import { labInstrumentsContentByLocale } from "@/content/lab-instruments";
@@ -36,8 +37,7 @@ export function LabInstrumentsPage({ lang }: PageProps) {
       backToProducts={t.backToProducts}
       contact={t.contact}
       eyebrow={t.eyebrow}
-      heroImageSrc="/lab-instruments/lab-instruments-hero-wide-gradient.png"
-      heroImageTreatment="clear-right"
+      heroImageSrc={labInstrumentsHero}
       intro={t.intro}
       lang={lang}
       productPath={productPath}
