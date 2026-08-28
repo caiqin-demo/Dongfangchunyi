@@ -12,6 +12,7 @@
   --color-ui-card-accent: #1c273b;
   --color-ui-footer: #061021;
   --color-ui-subtle: #f7f9fc;
+  --color-product-hero-light: color(srgb 0.952 0.953 0.967);
   --color-table-header: #dbf2d0;
   --color-brand-red: rgb(68.4% 9.4% 10%);
   --color-brand-red-hover: color-mix(in srgb, var(--color-brand-red) 88%, white);

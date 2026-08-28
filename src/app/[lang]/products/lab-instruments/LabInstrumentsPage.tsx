@@ -36,6 +36,8 @@ export function LabInstrumentsPage({ lang }: PageProps) {
       backToProducts={t.backToProducts}
       contact={t.contact}
       eyebrow={t.eyebrow}
+      heroImageSrc="/lab-instruments/lab-instruments-hero-wide-gradient.png"
+      heroImageTreatment="clear-right"
       intro={t.intro}
       lang={lang}
       productPath={productPath}
