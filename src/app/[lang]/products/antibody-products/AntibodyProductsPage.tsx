@@ -9,6 +9,7 @@ import { defaultLocale, type Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
+import antibodyProductsHero from "./_assets/antibody-products-hero.jpg";
 import { ProductCard } from "./ProductCard";
 
 type PageProps = Readonly<{ lang: Locale }>;
@@ -63,7 +64,7 @@ export function AntibodyProductsPage({ lang }: PageProps) {
         </div>
       )}
       eyebrow={t.eyebrow}
-      heroImageSrc="/antibody-products/antibody-products-hero.jpg"
+      heroImageSrc={antibodyProductsHero}
       intro={t.intro}
       lang={lang}
       productPath={productPath}

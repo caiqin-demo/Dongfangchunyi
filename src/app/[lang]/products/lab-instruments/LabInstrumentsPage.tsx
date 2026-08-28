@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import labInstrumentsHero from "@/assets/product-pages/lab-instruments-hero-wide-gradient.webp";
 import { ProductPageSection } from "@/components/product-pages/ProductPageSection";
 import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
 import { labInstrumentsContentByLocale } from "@/content/lab-instruments";
@@ -8,6 +7,7 @@ import { defaultLocale, type Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
+import labInstrumentsHero from "./_assets/lab-instruments-hero-wide-gradient.webp";
 import { LabInstrumentPanels } from "./LabInstrumentPanels";
 
 type PageProps = Readonly<{ lang: Locale }>;

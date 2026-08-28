@@ -15,6 +15,7 @@ import { defaultLocale, type Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
+import elisaKitsHero from "./_assets/elisa-kits-hero.jpg";
 import { ElisaManualSeries } from "./ElisaManualSeries";
 
 type PageProps = Readonly<{ lang: Locale }>;
@@ -76,7 +77,7 @@ export function ElisaKitsPage({ lang }: PageProps) {
       backToProducts={t.backToProducts}
       contact={t.contact}
       eyebrow={t.eyebrow}
-      heroImageSrc="/elisa-kits/elisa-kits-hero.jpg"
+      heroImageSrc={elisaKitsHero}
       intro={t.intro}
       lang={lang}
       productPath={productPath}
