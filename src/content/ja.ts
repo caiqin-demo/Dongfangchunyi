@@ -10,6 +10,10 @@ export const jaContent = {
     { id: "services", label: "サービス", href: "#services" },
     { id: "contact", label: "お問い合わせ", href: "#contact" },
   ],
+  navigationLabels: {
+    language: "语言 / 言語",
+    main: "メインナビゲーション",
+  },
   hero: {
     title: "日本市場開拓を支援する最初のエンジン",
     description: "ライフサイエンス分野の市場開拓に注力し、専門的な企業経営コンサルティングサービスを提供します",

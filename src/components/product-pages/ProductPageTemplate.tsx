@@ -72,8 +72,8 @@ export function ProductPageTemplate({
         </section>
       </main>
 
-      <footer className="bg-ui-footer px-8 py-10 text-on-dark-muted max-sm:px-4">
-        <div className="mx-auto flex max-w-panel items-center justify-between gap-8 max-[700px]:flex-col max-[700px]:items-start">
+      <footer className="@container/footer bg-ui-footer px-8 py-10 text-on-dark-muted max-sm:px-4">
+        <div className="mx-auto flex max-w-panel items-center justify-between gap-8 @max-footer-stack/footer:flex-col @max-footer-stack/footer:items-start">
           <div className="flex items-center gap-3 text-on-dark">
             <Image className="h-9 w-auto object-contain" src="/Logo.png" width={36} height={37} alt="" />
             <span className={`${brandFontClass} text-base tracking-[.06em]`}>{home.brand}</span>

@@ -67,7 +67,7 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
 
   return (
     <div className="grid gap-8 max-sm:gap-6">
-      <article className="overflow-hidden rounded-product-card border border-line bg-white shadow-media" aria-labelledby="pipette-title">
+      <article className="@container/instrument overflow-hidden rounded-product-card border border-line bg-white shadow-media" aria-labelledby="pipette-title">
         <div className="grid grid-cols-[.82fr_1.18fr] max-stack:grid-cols-1">
           <div className="relative isolate min-h-[30rem] overflow-hidden bg-ui-footer max-stack:aspect-[8/5] max-stack:min-h-0 max-compact:aspect-[4/3]">
             <Image
@@ -107,7 +107,7 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
           </div>
         </div>
 
-        <div className="grid grid-cols-[.8fr_1.2fr] gap-8 border-t border-line p-[clamp(1.25rem,3vw,2.5rem)] max-[1200px]:grid-cols-1">
+        <div className="grid grid-cols-[.8fr_1.2fr] gap-8 border-t border-line p-[clamp(1.25rem,3vw,2.5rem)] @max-instrument-stack/instrument:grid-cols-1">
           <div className="grid grid-cols-[minmax(7.5rem,.46fr)_1fr] items-center gap-[clamp(1rem,2.5vw,2rem)]">
             <Image
               alt={content.pipette.imageAlt}

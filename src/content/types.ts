@@ -103,6 +103,10 @@ export type HomeContent = Readonly<{
     title: string;
   }>;
   nav: NavigationItems;
+  navigationLabels: Readonly<{
+    language: string;
+    main: string;
+  }>;
   notFound: Readonly<{
     description: string;
     homeLink: string;

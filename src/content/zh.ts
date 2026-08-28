@@ -10,6 +10,10 @@ export const zhContent = {
     { id: "services", label: "关于服务", href: "#services" },
     { id: "contact", label: "联系我们", href: "#contact" },
   ],
+  navigationLabels: {
+    language: "语言 / 言語",
+    main: "主要导航",
+  },
   hero: {
     title: "协助企业开拓日本市场的初始引擎",
     description: "专注在生命科学领域的市场开拓并提供专业的企业管理咨询服务",

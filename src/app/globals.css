@@ -46,6 +46,8 @@
   --container-panel: 93.75rem;
   --container-card-media: 32rem;
   --container-card-details: 34rem;
+  --container-footer-stack: 43.75rem;
+  --container-instrument-stack: 75rem;
 
   --radius-control: 10px;
   --radius-action: 6px;
