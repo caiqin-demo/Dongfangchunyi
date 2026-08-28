@@ -76,7 +76,7 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
               fill
               loading="eager"
               sizes="(max-width: 800px) 100vw, 42vw"
-              src="/lab-instruments/pipette-hero-background.webp"
+              src="/lab-instruments/pipette-product.webp"
             />
             <header className="absolute inset-0 text-white">
               <h2 className="absolute top-1/2 left-1/2 m-0 w-[calc(100%-2.5rem)] -translate-x-1/2 -translate-y-1/2 text-center text-[clamp(2.25rem,4.5vw,4.75rem)] leading-[1.02] font-extrabold tracking-[-.035em]" id="pipette-title">

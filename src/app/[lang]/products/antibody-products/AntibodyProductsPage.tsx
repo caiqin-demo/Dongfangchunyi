@@ -63,6 +63,7 @@ export function AntibodyProductsPage({ lang }: PageProps) {
         </div>
       )}
       eyebrow={t.eyebrow}
+      heroImageSrc="/antibody-products/antibody-products-hero.jpg"
       intro={t.intro}
       lang={lang}
       productPath={productPath}

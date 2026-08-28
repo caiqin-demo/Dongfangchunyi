@@ -20,6 +20,7 @@ type ProductPageTemplateProps = Readonly<{
   }>;
   contactSupplement?: ReactNode;
   eyebrow: string;
+  heroImageSrc?: string;
   intro: string;
   lang: Locale;
   productPath: `/${string}`;
@@ -32,6 +33,7 @@ export function ProductPageTemplate({
   contact,
   contactSupplement,
   eyebrow,
+  heroImageSrc,
   intro,
   lang,
   productPath,
@@ -50,10 +52,16 @@ export function ProductPageTemplate({
       <SiteHeader backLinkLabel={backToProducts} lang={lang} localePath={productPath} variant="subpage" />
 
       <main id="main-content" tabIndex={-1}>
-        <section className="bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
-          <div className="mx-auto w-[calc(100%-4rem)] max-w-panel max-page:w-[calc(100%-2rem)] max-sm:w-[calc(100%-1.5rem)]">
+        <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
+          {heroImageSrc ? (
+            <>
+              <Image alt="" className="-z-20 object-cover object-center" fill sizes="100vw" src={heroImageSrc} />
+              <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-r from-ui-section/95 via-ui-section/80 to-ui-section/35 max-sm:from-ui-section/90 max-sm:via-ui-section/85 max-sm:to-ui-section/70" />
+            </>
+          ) : null}
+          <div className="relative mx-auto w-[calc(100%-4rem)] max-w-panel max-page:w-[calc(100%-2rem)] max-sm:w-[calc(100%-1.5rem)]">
             <div className="max-w-[1120px]">
-              <p className="mb-4 text-sm font-extrabold tracking-[.2em] text-accent">{eyebrow}</p>
+              <p className={`mb-4 text-sm font-extrabold tracking-[.2em] text-accent ${heroImageSrc ? "w-fit rounded-action bg-ui-section px-2 py-1" : ""}`}>{eyebrow}</p>
               <h1 className="m-0 max-w-[900px] text-[clamp(2.5rem,6vw,5rem)] leading-[1.08] font-extrabold tracking-[-.04em]" id="page-title">{title}</h1>
               <p className="mt-7 max-w-[860px] text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.8] text-on-dark-muted">{intro}</p>
             </div>
