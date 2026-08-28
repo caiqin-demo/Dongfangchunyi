@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import logo from "@/assets/brand/Logo.png";
 import { contentByLocale } from "@/content";
 import { documentLanguages, type Locale } from "@/i18n/config";
 
@@ -16,7 +17,7 @@ export function LocalizedNotFoundPage({ lang }: Readonly<{ lang: Locale }>) {
       <header className="flex min-h-header items-center border-b border-accent/20 bg-ui-footer px-header-gutter text-on-dark max-page:px-6">
         <Link className={`flex items-center gap-4 rounded-action ${focusRingClass}`} href={`/${lang}`} aria-label={content.brand}>
           <span className="relative grid size-12 flex-[0_0_48px] place-items-center overflow-hidden">
-            <Image className="h-full w-auto object-contain" src="/Logo.png" width={530} height={539} alt="" preload />
+            <Image className="h-full w-auto object-contain" src={logo} width={530} height={539} alt="" preload />
           </span>
           <span className={`${brandFontClass} text-[clamp(20px,1.45vw,26px)] tracking-[.06em] whitespace-nowrap`}>{content.brand}</span>
         </Link>

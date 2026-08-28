@@ -1,13 +1,22 @@
-import Image from "next/image";
+import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { LuGraduationCap } from "react-icons/lu";
 
+import logo from "@/assets/brand/Logo.png";
 import { SiteHeader } from "@/components/SiteHeader";
 import { contentByLocale } from "@/content";
 import type { ProductCardId, ServiceCardId } from "@/content/types";
 import type { Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
+
+import aboutDna from "./_assets/landing/about-dna.webp";
+import heroBackground from "./_assets/landing/hero-background.webp";
+import productAntibody from "./_assets/landing/product-antibody.jpg";
+import productElisa from "./_assets/landing/product-elisa.webp";
+import productLabInstrument from "./_assets/landing/product-lab-instrument.webp";
+import serviceGenomeSequencing from "./_assets/landing/service-genome-sequencing.webp";
+import serviceYeastTwoHybrid from "./_assets/landing/service-yeast-two-hybrid.webp";
 
 type HomeProps = Readonly<{
   lang: Locale;
@@ -21,15 +30,15 @@ const panelContainerClass = "mx-auto mt-panel-gap w-[calc(100%-4rem)] max-w-pane
 const aboutPanelClass = `${panelContainerClass} min-h-panel-min-height p-[clamp(1.5rem,3vw,3rem)] max-page:p-6 max-sm:p-4`;
 const corePanelClass = `${panelContainerClass} grid min-h-core-panel-min-height p-[clamp(1.25rem,2.3vw,2.25rem)] max-page:min-h-panel-min-height max-page:p-6 max-sm:p-4`;
 const productImages = {
-  "antibody-products": "/product-antibody.jpg",
-  "elisa-kits": "/product-elisa.webp",
-  "lab-instruments": "/product-lab-instrument.webp",
-} satisfies Record<ProductCardId, string>;
+  "antibody-products": productAntibody,
+  "elisa-kits": productElisa,
+  "lab-instruments": productLabInstrument,
+} satisfies Record<ProductCardId, ImageProps["src"]>;
 const serviceImages = {
-  "yeast-two-hybrid": "/service-yeast-two-hybrid.webp",
-  "genome-sequencing": "/service-genome-sequencing.webp",
+  "yeast-two-hybrid": serviceYeastTwoHybrid,
+  "genome-sequencing": serviceGenomeSequencing,
   "other-business-services": null,
-} satisfies Record<ServiceCardId, string | null>;
+} satisfies Record<ServiceCardId, ImageProps["src"] | null>;
 const serviceIcons = {
   "yeast-two-hybrid": null,
   "genome-sequencing": null,
@@ -41,7 +50,7 @@ type CoreCardProps = Readonly<{
   actionLabel?: string;
   description: string;
   icon?: ReactNode;
-  imageSrc?: string;
+  imageSrc?: ImageProps["src"];
   title: string;
 }>;
 
@@ -82,7 +91,7 @@ export function LandingPage({ lang }: HomeProps) {
             fill
             loading="eager"
             sizes="100vw"
-            src="/hero-background.webp"
+            src={heroBackground}
           />
           <div className="relative z-2 mx-auto w-full max-w-[1120px] text-center max-page:max-w-[780px]">
             <h1 className="m-0 text-hero-title max-sm:text-[36px]" id="hero-title">{t.hero.title}</h1>
@@ -96,7 +105,7 @@ export function LandingPage({ lang }: HomeProps) {
 
         <section className={`relative grid grid-cols-2 items-stretch gap-[clamp(44px,5vw,80px)] bg-white shadow-about max-page:grid-cols-1 ${aboutPanelClass}`} id="about" aria-labelledby="about-title">
           <div className="relative min-h-about-media overflow-hidden rounded-control border border-line bg-ui-subtle shadow-media max-page:h-78 max-sm:min-h-60" aria-hidden="true">
-            <Image className="object-cover object-center" src="/about-dna.webp" alt="" fill loading="eager" sizes="(max-width: 960px) 100vw, 50vw" />
+            <Image className="object-cover object-center" src={aboutDna} alt="" fill loading="eager" sizes="(max-width: 960px) 100vw, 50vw" />
           </div>
           <div className="flex min-w-0 flex-col justify-center">
             <p className="mb-2 text-[15px] leading-[17px] font-extrabold tracking-[.22em] text-accent">{t.about.label}</p>
@@ -156,7 +165,7 @@ export function LandingPage({ lang }: HomeProps) {
         <div className="grid grid-cols-[1.4fr_1fr_1fr_.8fr] gap-[clamp(44px,5vw,88px)] max-page:grid-cols-2 max-page:gap-x-12 max-page:gap-y-11 max-sm:grid-cols-1 max-sm:gap-10">
           <section aria-labelledby="footer-company-title">
             <div className="flex items-center gap-[11.5px] text-white">
-              <Image className="h-9 w-auto shrink-0 object-contain" src="/Logo.png" width={36} height={37} alt="" />
+              <Image className="h-9 w-auto shrink-0 object-contain" src={logo} width={36} height={37} alt="" />
               <h2 className={`m-0 ${brandFontClass} text-base leading-[1.4] font-normal tracking-[.06em]`} id="footer-company-title">{t.brand}</h2>
             </div>
             <p className="mt-7 mb-0 text-[15px] leading-[1.85] text-on-dark-muted/90">

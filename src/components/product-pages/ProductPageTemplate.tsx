@@ -2,6 +2,7 @@ import Image, { type ImageProps } from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import logo from "@/assets/brand/Logo.png";
 import { SiteHeader } from "@/components/SiteHeader";
 import { contentByLocale } from "@/content";
 import type { Locale } from "@/i18n/config";
@@ -84,7 +85,7 @@ export function ProductPageTemplate({
       <footer className="@container/footer bg-ui-footer px-8 py-10 text-on-dark-muted max-sm:px-4">
         <div className="mx-auto flex max-w-panel items-center justify-between gap-8 @max-footer-stack/footer:flex-col @max-footer-stack/footer:items-start">
           <div className="flex items-center gap-3 text-on-dark">
-            <Image className="h-9 w-auto object-contain" src="/Logo.png" width={36} height={37} alt="" />
+            <Image className="h-9 w-auto object-contain" src={logo} width={36} height={37} alt="" />
             <span className={`${brandFontClass} text-base tracking-[.06em]`}>{home.brand}</span>
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm" aria-label={home.footer.productsTitle}>

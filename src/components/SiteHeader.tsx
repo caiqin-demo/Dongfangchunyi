@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import logo from "@/assets/brand/Logo.png";
 import { contentByLocale } from "@/content";
 import type { Locale } from "@/i18n/config";
 
@@ -26,7 +27,7 @@ export function SiteHeader({ backLinkLabel, lang, localePath = "/", variant }: S
     <header className={`${isLanding ? "absolute" : "relative"} top-0 left-0 z-10 flex h-header w-full items-center justify-between border-b border-accent/20 bg-ui-footer/96 px-header-gutter text-white max-page:px-6 max-stack:h-header-mobile max-stack:items-start max-stack:px-5 max-stack:pt-3`}>
       <Link className={`flex items-center gap-4 rounded-action ${focusRingClass}`} href={brandHref} aria-label={content.brand}>
         <span className="relative grid size-12 flex-[0_0_48px] place-items-center overflow-hidden max-sm:size-[46px] max-sm:flex-[0_0_46px]">
-          <Image className="h-full w-auto object-contain" src="/Logo.png" width={530} height={539} alt="" priority />
+          <Image className="h-full w-auto object-contain" src={logo} width={530} height={539} alt="" priority />
         </span>
         <span className={`${brandFontClass} text-[clamp(20px,1.45vw,26px)] font-normal tracking-[.06em] whitespace-nowrap text-on-dark max-page:text-xl max-sm:text-[19px]`}>{content.brand}</span>
       </Link>
