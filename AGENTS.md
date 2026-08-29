@@ -2,6 +2,7 @@
 
 ## Project baseline
 
+- When starting work in a new or empty repository, inspect the repository state before implementation. If the technology stack is absent or undecided, ask the user to confirm the runtime and version policy, framework, language, package manager, rendering architecture, deployment target, and required validation commands, then update this section before writing application code. Do not silently select or inherit an unconfirmed stack.
 - This repository is a Node.js 24.x, Next.js 16 App Router, React, and TypeScript project.
 - Keep TypeScript strict. Prefer Server Components; add `"use client"` only when a component needs state, effects, event handlers, or browser-only APIs.
 - Keep the application deployable on Vercel. Use standard Next.js build behavior and avoid machine-specific paths, persistent local filesystem state, or a custom server unless a requirement makes one necessary.
@@ -11,7 +12,7 @@
 ## Shared UI acceptance baseline
 
 - Apply this baseline to every material UI, responsive-layout, typography, localization, interaction, and accessibility change unless a more specific section adds stricter requirements.
-- Verify every supported locale at 390px, 641px, 700px, 800px, 950px, and 1440px when those widths apply. When a breakpoint changes, also inspect immediately below, at, and immediately above its threshold.
+- Use 390px, 641px, 700px, 800px, 950px, and 1440px as the initial required viewport set for every supported locale. When starting a new project, confirm the supported locales and known device or layout constraints with the user, explain any additional viewport checks required by the proposed layout and breakpoint system, and update this baseline after confirmation. When a breakpoint changes, also inspect immediately below, at, and immediately above its threshold; add or adjust project-specific checks when product requirements or client feedback establish a different need.
 - Browser acceptance must inspect computed styles, element dimensions, document and component overflow, clipping, overlap, and interaction state. Screenshots and visual impressions alone are not sufficient evidence.
 - Automated checks and computed-style parity are supporting evidence, not final proof. Human review remains required to confirm legibility, hierarchy, natural wrapping, visual meaning, and the absence of misleading or unusable presentation.
 
