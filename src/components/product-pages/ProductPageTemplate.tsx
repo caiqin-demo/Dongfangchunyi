@@ -56,7 +56,7 @@ export function ProductPageTemplate({
           {heroImageSrc ? (
             <>
               <Image alt="" className="-z-20 object-cover object-center" fetchPriority="high" fill loading="eager" sizes="100vw" src={heroImageSrc} />
-              <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-r from-ui-section/95 via-ui-section/80 to-ui-section/35 max-sm:from-ui-section/90 max-sm:via-ui-section/85 max-sm:to-ui-section/70" />
+              <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-r from-ui-section/85 via-ui-section/80 to-ui-section/20 max-sm:from-ui-section/85 max-sm:via-ui-section/80 max-sm:to-ui-section/60" />
             </>
           ) : null}
           <div className="relative z-10 mx-auto w-[calc(100%-4rem)] max-w-panel max-page:w-[calc(100%-2rem)] max-sm:w-[calc(100%-1.5rem)]">
