@@ -1,12 +1,10 @@
 import Image, { type ImageProps } from "next/image";
-import Link from "next/link";
 import type { ReactNode } from "react";
 
-import logo from "@/assets/brand/Logo.png";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { contentByLocale } from "@/content";
 import type { Locale } from "@/i18n/config";
-import { productPaths } from "@/lib/product-paths";
 
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
@@ -42,7 +40,6 @@ export function ProductPageTemplate({
 }: ProductPageTemplateProps) {
   const home = contentByLocale[lang];
   const fontClass = lang === "ja" ? "font-sans-jp" : "font-sans-sc";
-  const brandFontClass = lang === "ja" ? "font-brand-serif-jp" : "font-brand-serif-sc";
   return (
     <div className={`${fontClass} min-h-screen bg-ui-subtle text-ink`}>
       <a className={`fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-base font-semibold text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`} href="#main-content">
@@ -82,22 +79,7 @@ export function ProductPageTemplate({
         </section>
       </main>
 
-      <footer className="bg-ui-footer py-10 text-on-dark-muted">
-        <div className="@container/footer page-container">
-          <div className="flex items-center justify-between gap-8 @max-footer-stack/footer:flex-col @max-footer-stack/footer:items-start">
-            <div className="flex items-center gap-3 text-on-dark">
-              <Image className="h-9 w-auto object-contain" src={logo} width={36} height={37} alt="" />
-              <span className={`${brandFontClass} text-base tracking-[.06em]`}>{home.brand}</span>
-            </div>
-            <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm" aria-label={home.footer.productsTitle}>
-              {home.footer.productLinks.map((item) => (
-                <Link aria-current={productPaths[item.id] === productPath ? "page" : undefined} className={`inline-flex min-h-8 items-center rounded-action hover:text-accent ${focusRingClass}`} href={`/${lang}${productPaths[item.id]}`} key={item.id}>{item.label}</Link>
-              ))}
-            </nav>
-            <p className="m-0 text-xs">{home.footer.copyright}</p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter currentProductPath={productPath} lang={lang} />
     </div>
   );
 }

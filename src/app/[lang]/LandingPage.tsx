@@ -3,7 +3,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { LuGraduationCap } from "react-icons/lu";
 
-import logo from "@/assets/brand/Logo.png";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { contentByLocale } from "@/content";
 import type { ProductCardId, ServiceCardId } from "@/content/types";
@@ -23,7 +23,6 @@ type HomeProps = Readonly<{
 }>;
 
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-const footerLinkClass = `inline-flex min-h-6 items-center rounded-action text-[15px] leading-[1.7] text-on-dark-muted/90 transition-colors duration-200 hover:text-accent focus-visible:text-accent ${focusRingClass}`;
 const heroButtonClass = `inline-flex min-h-12 min-w-36 items-center justify-center rounded-action border px-6 text-base leading-6 font-normal transition-[transform,background-color] duration-200 hover:-translate-y-px max-sm:w-full ${focusRingClass}`;
 const skipLinkClass = `fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-base font-semibold text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`;
 const panelContainerClass = "page-container mt-panel-gap";
@@ -74,8 +73,6 @@ function CoreCard({ actionHref, actionLabel, description, icon, imageSrc, title 
 export function LandingPage({ lang }: HomeProps) {
   const language = lang;
   const t = contentByLocale[language];
-  const brandFontClass = language === "ja" ? "font-brand-serif-jp" : "font-brand-serif-sc";
-
   return (
     <div className={`${language === "ja" ? "font-sans-jp" : "font-sans-sc"} bg-ui-canvas`}>
       <a className={skipLinkClass} href="#main-content">{t.skipToContent}</a>
@@ -161,49 +158,7 @@ export function LandingPage({ lang }: HomeProps) {
         </section>
       </main>
 
-      <footer className={`${panelContainerClass} bg-ui-footer px-[clamp(2rem,4vw,4rem)] pt-13 pb-7 text-on-dark-muted max-page:px-8 max-sm:px-6 max-sm:pt-10`} id="contact">
-        <div className="grid grid-cols-[1.4fr_1fr_1fr_.8fr] gap-[clamp(44px,5vw,88px)] max-page:grid-cols-2 max-page:gap-x-12 max-page:gap-y-11 max-sm:grid-cols-1 max-sm:gap-10">
-          <section aria-labelledby="footer-company-title">
-            <div className="flex items-center gap-[11.5px] text-white">
-              <Image className="h-9 w-auto shrink-0 object-contain" src={logo} width={36} height={37} alt="" />
-              <h2 className={`m-0 ${brandFontClass} text-base leading-[1.4] font-normal tracking-[.06em]`} id="footer-company-title">{t.brand}</h2>
-            </div>
-            <p className="mt-7 mb-0 text-[15px] leading-[1.85] text-on-dark-muted/90">
-              <span className="block">{t.footer.tagline.primary}</span>
-              <span className="block">{t.footer.tagline.secondary}</span>
-            </p>
-          </section>
-
-          <nav aria-labelledby="footer-products-title">
-            <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-products-title">{t.footer.productsTitle}</h2>
-            <ul className="m-0 grid list-none gap-3 p-0">
-              {t.footer.productLinks.map((item) => (
-                <li key={item.id}>
-                  <Link className={footerLinkClass} href={`/${language}${productPaths[item.id]}`}>{item.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <nav aria-labelledby="footer-services-title">
-            <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-services-title">{t.footer.servicesTitle}</h2>
-            <ul className="m-0 grid list-none gap-3 p-0">
-              {t.footer.serviceLinks.map((item) => <li key={item.id}><a className={footerLinkClass} href={item.href}>{item.label}</a></li>)}
-            </ul>
-          </nav>
-
-          <nav aria-labelledby="footer-about-title">
-            <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-about-title">{t.footer.aboutTitle}</h2>
-            <ul className="m-0 grid list-none gap-3 p-0">
-              {t.footer.aboutLinks.map((item) => <li key={item.id}><a className={footerLinkClass} href={item.href}>{item.label}</a></li>)}
-            </ul>
-          </nav>
-        </div>
-
-        <div className="mt-11 border-t border-line-dark/70 pt-7 text-center text-xs leading-[1.7] text-on-dark-muted/85">
-          <p className="m-0">{t.footer.copyright}</p>
-        </div>
-      </footer>
+      <SiteFooter className="mt-panel-gap" lang={language} />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import logo from "@/assets/brand/Logo.png";
+import { SiteFooter } from "@/components/SiteFooter";
 import { contentByLocale } from "@/content";
 import { documentLanguages, type Locale } from "@/i18n/config";
 
@@ -37,9 +38,7 @@ export function LocalizedNotFoundPage({ lang }: Readonly<{ lang: Locale }>) {
         </section>
       </main>
 
-      <footer className="bg-ui-footer px-6 py-6 text-center text-xs text-on-dark-muted">
-        <p className="m-0">{content.footer.copyright}</p>
-      </footer>
+      <SiteFooter lang={lang} />
     </div>
   );
 }
