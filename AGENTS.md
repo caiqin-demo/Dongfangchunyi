@@ -60,6 +60,19 @@
 - Align repeated semantic bands across sibling cards with CSS Grid and `subgrid` where supported by the project browser baseline. Do not use fixed heights, minimum-height spacers, or empty blocks to simulate cross-card alignment; content must be allowed to grow naturally.
 - Use fixed heights only for deliberately bounded media or an explicitly designed scrolling region. Do not use them to align variable text, translated copy, specifications, tables, or complete cards.
 
+## Site Footer architecture requirements
+
+- Implement the site-wide Footer once as a shared component and use it on every public page, including localized not-found and error experiences. Do not duplicate Footer markup inside landing pages, page templates, or individual routes.
+- Define one approved Footer information architecture and render its complete content on every page. A subpage must not silently replace the full Footer with a compact subset or omit company context, navigation groups, contact or legal information merely to reduce its height.
+- Keep Footer copy and navigation in the shared typed localization content model. Use stable semantic IDs for link identity and behavior mapping, and require every supported locale to provide the same approved content structure unless a locale-specific difference is explicitly approved.
+- Build Footer destinations so they remain correct from any route. Links to a Landing-page section must include the corresponding localized Landing route before the fragment, product and content links must use their canonical localized paths, and the current destination must expose the appropriate `aria-current` state where applicable.
+- Follow the full-bleed shell and shared page-geometry requirements above: the Footer background may span the viewport, while all Footer content derives its outer alignment from the approved page measure and responsive gutters.
+- Use a named Footer container and centralized container-query thresholds when navigation groups change columns or stack. Preserve the semantic and reading order across layouts; do not hide approved groups, force fixed heights, or create document-level horizontal overflow to make the Footer fit.
+- Treat the gap between the final page section and the Footer as page-composition spacing. Apply the approved shared section-gap token at the Footer call site when separation is required; do not bake route-specific neighboring-section assumptions into the shared Footer or replace the token with a one-off value.
+- Use one `footer` landmark with separately named navigation groups, a coherent heading hierarchy, visible keyboard focus, adequate target sizes, meaningful link names, and final-composite contrast that meets the accessibility requirements. Decorative brand imagery must not create redundant announcements.
+- Any Footer omission, alternate information architecture, or visual variant requires an explicitly named typed variant, a documented product reason, and user approval. Error pages and subpages are not implicit exceptions.
+- Apply the shared UI acceptance baseline after changing the Footer. Confirm complete localized content, destinations, current states, column transitions, outer alignment, section separation, focus behavior, contrast, and the absence of clipping or horizontal overflow.
+
 ## Data table and overflow requirements
 
 - Preserve native table elements and their native display semantics. Do not change `table`, `thead`, `tbody`, `tr`, `th`, or `td` to `flex` or `block` merely to implement scrolling or layout.
