@@ -59,7 +59,7 @@ export function ProductPageTemplate({
               <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-r from-ui-section/85 via-ui-section/80 to-ui-section/20 max-sm:from-ui-section/85 max-sm:via-ui-section/80 max-sm:to-ui-section/60" />
             </>
           ) : null}
-          <div className="relative z-10 mx-auto w-[calc(100%-4rem)] max-w-panel max-page:w-[calc(100%-2rem)] max-sm:w-[calc(100%-1.5rem)]">
+          <div className="page-container relative z-10">
             <div className="max-w-[1120px]">
               {eyebrow ? (
                 <p className={`mb-4 text-sm font-extrabold tracking-[.2em] text-accent ${heroImageSrc ? "w-fit rounded-action bg-ui-section px-2 py-1" : ""}`}>{eyebrow}</p>
@@ -72,7 +72,7 @@ export function ProductPageTemplate({
 
         {children}
 
-        <section className={`mx-auto grid w-[calc(100%-4rem)] max-w-panel gap-12 py-16 max-page:w-[calc(100%-2rem)] max-sm:w-[calc(100%-1.5rem)] max-sm:py-10 ${contactSupplement ? "grid-cols-[.8fr_1.2fr] max-stack:grid-cols-1" : "grid-cols-1"}`} aria-label={contact.title}>
+        <section className={`page-container grid gap-12 py-16 max-sm:py-10 ${contactSupplement ? "grid-cols-[.8fr_1.2fr] max-stack:grid-cols-1" : "grid-cols-1"}`} aria-label={contact.title}>
           <div>
             <h2 className="m-0 text-product-section-title">{contact.title}</h2>
             <p className="mt-4 text-product-section-body text-ink-muted">{contact.description}</p>
@@ -82,18 +82,20 @@ export function ProductPageTemplate({
         </section>
       </main>
 
-      <footer className="@container/footer bg-ui-footer px-8 py-10 text-on-dark-muted max-sm:px-4">
-        <div className="mx-auto flex max-w-panel items-center justify-between gap-8 @max-footer-stack/footer:flex-col @max-footer-stack/footer:items-start">
-          <div className="flex items-center gap-3 text-on-dark">
-            <Image className="h-9 w-auto object-contain" src={logo} width={36} height={37} alt="" />
-            <span className={`${brandFontClass} text-base tracking-[.06em]`}>{home.brand}</span>
+      <footer className="bg-ui-footer py-10 text-on-dark-muted">
+        <div className="@container/footer page-container">
+          <div className="flex items-center justify-between gap-8 @max-footer-stack/footer:flex-col @max-footer-stack/footer:items-start">
+            <div className="flex items-center gap-3 text-on-dark">
+              <Image className="h-9 w-auto object-contain" src={logo} width={36} height={37} alt="" />
+              <span className={`${brandFontClass} text-base tracking-[.06em]`}>{home.brand}</span>
+            </div>
+            <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm" aria-label={home.footer.productsTitle}>
+              {home.footer.productLinks.map((item) => (
+                <Link aria-current={productPaths[item.id] === productPath ? "page" : undefined} className={`inline-flex min-h-8 items-center rounded-action hover:text-accent ${focusRingClass}`} href={`/${lang}${productPaths[item.id]}`} key={item.id}>{item.label}</Link>
+              ))}
+            </nav>
+            <p className="m-0 text-xs">{home.footer.copyright}</p>
           </div>
-          <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm" aria-label={home.footer.productsTitle}>
-            {home.footer.productLinks.map((item) => (
-              <Link aria-current={productPaths[item.id] === productPath ? "page" : undefined} className={`inline-flex min-h-8 items-center rounded-action hover:text-accent ${focusRingClass}`} href={`/${lang}${productPaths[item.id]}`} key={item.id}>{item.label}</Link>
-            ))}
-          </nav>
-          <p className="m-0 text-xs">{home.footer.copyright}</p>
         </div>
       </footer>
     </div>

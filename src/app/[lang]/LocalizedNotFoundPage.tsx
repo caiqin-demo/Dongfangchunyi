@@ -14,13 +14,15 @@ export function LocalizedNotFoundPage({ lang }: Readonly<{ lang: Locale }>) {
 
   return (
     <div className={`${fontClass} flex min-h-screen flex-col bg-ui-subtle text-ink`} lang={documentLanguages[lang]}>
-      <header className="flex min-h-header items-center border-b border-accent/20 bg-ui-footer px-header-gutter text-on-dark max-page:px-6">
-        <Link className={`flex items-center gap-4 rounded-action ${focusRingClass}`} href={`/${lang}`} aria-label={content.brand}>
-          <span className="relative grid size-12 flex-[0_0_48px] place-items-center overflow-hidden">
-            <Image className="h-full w-auto object-contain" src={logo} width={530} height={539} alt="" preload />
-          </span>
-          <span className={`${brandFontClass} text-[clamp(20px,1.45vw,26px)] tracking-[.06em] whitespace-nowrap`}>{content.brand}</span>
-        </Link>
+      <header className="border-b border-accent/20 bg-ui-footer text-on-dark">
+        <div className="page-container flex min-h-header items-center">
+          <Link className={`flex items-center gap-4 rounded-action ${focusRingClass}`} href={`/${lang}`} aria-label={content.brand}>
+            <span className="relative grid size-12 flex-[0_0_48px] place-items-center overflow-hidden">
+              <Image className="h-full w-auto object-contain" src={logo} width={530} height={539} alt="" preload />
+            </span>
+            <span className={`${brandFontClass} text-[clamp(20px,1.45vw,26px)] tracking-[.06em] whitespace-nowrap`}>{content.brand}</span>
+          </Link>
+        </div>
       </header>
 
       <main className="grid flex-1 place-items-center px-6 py-16 text-center" id="main-content">

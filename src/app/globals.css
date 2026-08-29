@@ -36,7 +36,6 @@
 
   --spacing-header: 60px;
   --spacing-header-mobile: 6.5rem;
-  --spacing-header-gutter: clamp(28px, 3vw, 58px);
   --spacing-page-gutter: max(32px, calc((100vw - 1400px) / 2));
   --spacing-panel-gap: 0.5rem;
   --spacing-panel-min-height: 30.5rem;
@@ -74,6 +73,20 @@
   --text-product-section-body: 1rem;
   --text-product-section-body--line-height: 1.65;
   --text-product-section-body--font-weight: 400;
+}
+
+@utility page-container {
+  margin-inline: auto;
+  width: calc(100% - 4rem);
+  max-width: var(--container-panel);
+
+  @variant max-page {
+    width: calc(100% - 2rem);
+  }
+
+  @variant max-sm {
+    width: calc(100% - 1.5rem);
+  }
 }
 
 @layer base {
