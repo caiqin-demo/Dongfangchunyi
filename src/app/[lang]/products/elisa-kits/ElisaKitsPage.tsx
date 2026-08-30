@@ -74,13 +74,13 @@ export function ElisaKitsPage({ lang }: PageProps) {
   ];
   return (
     <ProductPageTemplate
-      backToProducts={t.backToProducts}
+      backLinkLabel={t.backToProducts}
       contact={t.contact}
       eyebrow={t.eyebrow}
       heroImageSrc={elisaKitsHero}
       intro={t.intro}
       lang={lang}
-      productPath={productPath}
+      pagePath={productPath}
       title={t.title}
     >
       <ProductPageSection className="grid gap-6" aria-label={t.product.title}>

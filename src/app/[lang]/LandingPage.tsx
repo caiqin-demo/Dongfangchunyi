@@ -9,6 +9,7 @@ import { contentByLocale } from "@/content";
 import type { ProductCardId, ServiceCardId } from "@/content/types";
 import type { Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
+import { servicePaths } from "@/lib/service-paths";
 
 import aboutDna from "./_assets/landing/about-dna.webp";
 import heroBackground from "./_assets/landing/hero-background.webp";
@@ -43,6 +44,11 @@ const serviceIcons = {
   "genome-sequencing": null,
   "other-business-services": LuGraduationCap,
 } satisfies Record<ServiceCardId, typeof LuGraduationCap | null>;
+const serviceActionPaths = {
+  "yeast-two-hybrid": servicePaths["yeast-two-hybrid"],
+  "genome-sequencing": null,
+  "other-business-services": null,
+} satisfies Record<ServiceCardId, `/${string}` | null>;
 
 type CoreCardProps = Readonly<{
   actionHref?: string;
@@ -151,7 +157,8 @@ export function LandingPage({ lang }: HomeProps) {
             <div className="grid flex-1 grid-cols-3 gap-5.5 max-page:grid-cols-1">
               {t.services.items.map((item) => {
                 const ServiceIcon = serviceIcons[item.id];
-                return <CoreCard description={item.description} icon={ServiceIcon ? <ServiceIcon /> : undefined} imageSrc={serviceImages[item.id] ?? undefined} key={item.id} title={item.title} />;
+                const serviceActionPath = serviceActionPaths[item.id];
+                return <CoreCard actionHref={serviceActionPath ? `/${language}${serviceActionPath}` : undefined} actionLabel={serviceActionPath ? item.title : undefined} description={item.description} icon={ServiceIcon ? <ServiceIcon /> : undefined} imageSrc={serviceImages[item.id] ?? undefined} key={item.id} title={item.title} />;
               })}
             </div>
           </div>

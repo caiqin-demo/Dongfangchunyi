@@ -48,7 +48,7 @@ export function AntibodyProductsPage({ lang }: PageProps) {
 
   return (
     <ProductPageTemplate
-      backToProducts={t.backToProducts}
+      backLinkLabel={t.backToProducts}
       contact={t.contact}
       contactSupplement={(
         <div>
@@ -67,7 +67,7 @@ export function AntibodyProductsPage({ lang }: PageProps) {
       heroImageSrc={antibodyProductsHero}
       intro={t.intro}
       lang={lang}
-      productPath={productPath}
+      pagePath={productPath}
       title={t.title}
     >
       <ProductPageSection>

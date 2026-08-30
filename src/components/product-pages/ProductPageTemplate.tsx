@@ -9,7 +9,7 @@ import type { Locale } from "@/i18n/config";
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 type ProductPageTemplateProps = Readonly<{
-  backToProducts: string;
+  backLinkLabel: string;
   children: ReactNode;
   contact: Readonly<{
     description: string;
@@ -18,16 +18,17 @@ type ProductPageTemplateProps = Readonly<{
     title: string;
   }>;
   contactSupplement?: ReactNode;
-  eyebrow: string;
+  eyebrow?: string;
   heroImageSrc?: ImageProps["src"];
   intro: string;
   lang: Locale;
-  productPath: `/${string}`;
+  pagePath: `/${string}`;
   title: string;
+  variant?: "product" | "service";
 }>;
 
 export function ProductPageTemplate({
-  backToProducts,
+  backLinkLabel,
   children,
   contact,
   contactSupplement,
@@ -35,25 +36,30 @@ export function ProductPageTemplate({
   heroImageSrc,
   intro,
   lang,
-  productPath,
+  pagePath,
   title,
+  variant = "product",
 }: ProductPageTemplateProps) {
   const home = contentByLocale[lang];
   const fontClass = lang === "ja" ? "font-sans-jp" : "font-sans-sc";
+  const isService = variant === "service";
   return (
-    <div className={`${fontClass} min-h-screen bg-ui-subtle text-ink`}>
+    <div className={`${fontClass} min-h-screen ${isService ? "bg-ui-section text-on-dark" : "bg-ui-subtle text-ink"}`}>
       <a className={`fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-base font-semibold text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`} href="#main-content">
         {home.skipToContent}
       </a>
 
-      <SiteHeader backLinkLabel={backToProducts} lang={lang} localePath={productPath} variant="subpage" />
+      <SiteHeader backHref={`/${lang}#${isService ? "services" : "products"}`} backLinkLabel={backLinkLabel} lang={lang} localePath={pagePath} variant="subpage" />
 
       <main id="main-content" tabIndex={-1}>
         <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
           {heroImageSrc ? (
             <>
               <Image alt="" className="-z-20 object-cover object-center" fetchPriority="high" fill loading="eager" sizes="100vw" src={heroImageSrc} />
-              <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-r from-ui-section/85 via-ui-section/80 to-ui-section/20 max-sm:from-ui-section/85 max-sm:via-ui-section/80 max-sm:to-ui-section/60" />
+              <div
+                aria-hidden="true"
+                className={`absolute inset-0 -z-10 bg-linear-to-r ${isService ? "from-ui-section/85 via-ui-section/55 to-transparent max-sm:from-ui-section/85 max-sm:via-ui-section/80 max-sm:to-ui-section/60" : "from-ui-section/85 via-ui-section/80 to-ui-section/20 max-sm:from-ui-section/85 max-sm:via-ui-section/80 max-sm:to-ui-section/60"}`}
+              />
             </>
           ) : null}
           <div className="page-container relative z-10">
@@ -69,17 +75,17 @@ export function ProductPageTemplate({
 
         {children}
 
-        <section className={`page-container grid gap-12 py-16 max-sm:py-10 ${contactSupplement ? "grid-cols-[.8fr_1.2fr] max-stack:grid-cols-1" : "grid-cols-1"}`} aria-label={contact.title}>
+        <section className={`page-container grid gap-12 ${isService ? "mb-16 rounded-product-card border border-line-dark bg-ui-card p-8 max-sm:mb-10 max-sm:p-6" : "py-16 max-sm:py-10"} ${contactSupplement ? "grid-cols-[.8fr_1.2fr] max-stack:grid-cols-1" : "grid-cols-1"}`} aria-label={contact.title}>
           <div>
             <h2 className="m-0 text-product-section-title">{contact.title}</h2>
-            <p className="mt-4 text-product-section-body text-ink-muted">{contact.description}</p>
-            <a className={`mt-6 inline-flex min-h-12 max-w-full items-center rounded-action border border-accent bg-brand-red px-6 text-base font-semibold break-all text-on-dark transition-colors hover:bg-brand-red-hover ${focusRingClass}`} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>{contact.email}</a>
+            <p className={`mt-4 text-product-section-body ${isService ? "text-on-dark-muted" : "text-ink-muted"}`}>{contact.description}</p>
+            <a className={`mt-6 inline-flex min-h-12 max-w-full items-center rounded-action border border-accent px-6 text-base font-semibold break-all text-on-dark transition-colors ${isService ? "bg-ui-hero hover:bg-ui-card-accent" : "bg-brand-red hover:bg-brand-red-hover"} ${focusRingClass}`} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>{contact.email}</a>
           </div>
           {contactSupplement}
         </section>
       </main>
 
-      <SiteFooter currentProductPath={productPath} lang={lang} />
+      <SiteFooter currentPath={pagePath} lang={lang} />
     </div>
   );
 }

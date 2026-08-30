@@ -34,13 +34,13 @@ export function LabInstrumentsPage({ lang }: PageProps) {
 
   return (
     <ProductPageTemplate
-      backToProducts={t.backToProducts}
+      backLinkLabel={t.backToProducts}
       contact={t.contact}
       eyebrow={t.eyebrow}
       heroImageSrc={labInstrumentsHero}
       intro={t.intro}
       lang={lang}
-      productPath={productPath}
+      pagePath={productPath}
       title={t.title}
     >
       <ProductPageSection aria-label={t.title}>

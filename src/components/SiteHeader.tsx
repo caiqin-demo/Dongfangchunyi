@@ -10,13 +10,14 @@ const navLinkClass = `inline-flex min-h-6 items-center justify-center rounded-ac
 const languageLinkClass = `inline-flex min-h-6 min-w-6 items-center justify-center rounded-action text-on-dark-muted/85 transition-colors duration-200 hover:text-accent focus-visible:text-accent ${focusRingClass}`;
 
 type SiteHeaderProps = Readonly<{
+  backHref?: string;
   backLinkLabel?: string;
   lang: Locale;
   localePath?: `/${string}`;
   variant: "landing" | "subpage";
 }>;
 
-export function SiteHeader({ backLinkLabel, lang, localePath = "/", variant }: SiteHeaderProps) {
+export function SiteHeader({ backHref, backLinkLabel, lang, localePath = "/", variant }: SiteHeaderProps) {
   const content = contentByLocale[lang];
   const brandFontClass = lang === "ja" ? "font-brand-serif-jp" : "font-brand-serif-sc";
   const isLanding = variant === "landing";
@@ -45,7 +46,7 @@ export function SiteHeader({ backLinkLabel, lang, localePath = "/", variant }: S
                 {item.label}
               </a>
             )) : (
-              <Link className={navLinkClass} href={`/${lang}#products`}>← {backLinkLabel}</Link>
+              <Link className={navLinkClass} href={backHref ?? `/${lang}#products`}>← {backLinkLabel}</Link>
             )}
           </nav>
 

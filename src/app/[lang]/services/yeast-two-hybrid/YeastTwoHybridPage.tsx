@@ -1,0 +1,54 @@
+import type { Metadata } from "next";
+
+import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
+import { yeastTwoHybridContentByLocale } from "@/content/yeast-two-hybrid";
+import { defaultLocale, type Locale } from "@/i18n/config";
+import { servicePaths } from "@/lib/service-paths";
+import { getSiteUrl } from "@/lib/site-url";
+
+import yeastTwoHybridHero from "./_assets/yeast-two-hybrid-hero.jpg";
+import { YeastTwoHybridSystems } from "./YeastTwoHybridSystems";
+
+type PageProps = Readonly<{ lang: Locale }>;
+
+const servicePath = servicePaths["yeast-two-hybrid"];
+
+export function getYeastTwoHybridMetadata(lang: Locale): Metadata {
+  return {
+    ...yeastTwoHybridContentByLocale[lang].metadata,
+    metadataBase: getSiteUrl(),
+    alternates: {
+      canonical: `/${lang}${servicePath}`,
+      languages: {
+        "zh-CN": `/zh${servicePath}`,
+        ja: `/ja${servicePath}`,
+        "x-default": `/${defaultLocale}${servicePath}`,
+      },
+    },
+  };
+}
+
+export function YeastTwoHybridPage({ lang }: PageProps) {
+  const t = yeastTwoHybridContentByLocale[lang];
+
+  return (
+    <ProductPageTemplate
+      backLinkLabel={t.backToServices}
+      contact={t.contact}
+      heroImageSrc={yeastTwoHybridHero}
+      intro={t.intro}
+      lang={lang}
+      pagePath={servicePath}
+      title={t.title}
+      variant="service"
+    >
+      <YeastTwoHybridSystems
+        featureTitle={t.features.title}
+        overviewTitle={t.overview.title}
+        selectorLabel={t.systemSelectorLabel}
+        specificationTitle={t.specifications.title}
+        systems={t.systems}
+      />
+    </ProductPageTemplate>
+  );
+}
