@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
+import { ServicePageTemplate } from "@/components/service-pages/ServicePageTemplate";
 import { yeastTwoHybridContentByLocale } from "@/content/yeast-two-hybrid";
 import { defaultLocale, type Locale } from "@/i18n/config";
 import { servicePaths } from "@/lib/service-paths";
@@ -32,7 +32,7 @@ export function YeastTwoHybridPage({ lang }: PageProps) {
   const t = yeastTwoHybridContentByLocale[lang];
 
   return (
-    <ProductPageTemplate
+    <ServicePageTemplate
       backLinkLabel={t.backToServices}
       contact={t.contact}
       heroImageSrc={yeastTwoHybridHero}
@@ -40,7 +40,6 @@ export function YeastTwoHybridPage({ lang }: PageProps) {
       lang={lang}
       pagePath={servicePath}
       title={t.title}
-      variant="service"
     >
       <YeastTwoHybridSystems
         featureTitle={t.features.title}
@@ -48,6 +47,6 @@ export function YeastTwoHybridPage({ lang }: PageProps) {
         specificationTitle={t.specifications.title}
         systems={t.systems}
       />
-    </ProductPageTemplate>
+    </ServicePageTemplate>
   );
 }

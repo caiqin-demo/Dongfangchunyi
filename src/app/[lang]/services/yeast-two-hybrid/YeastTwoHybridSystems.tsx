@@ -57,29 +57,31 @@ export function YeastTwoHybridSystems({
               <span className="grid size-12 shrink-0 place-items-center rounded-control bg-accent/15 text-2xl text-accent" aria-hidden="true">
                 <LuCircleDashed />
               </span>
-              <h2 className="m-0 text-product-section-title" id="service-overview-title">{selectedSystem.label}</h2>
+              <div>
+                <h2 className="m-0 text-service-current-title" id="service-overview-title">{selectedSystem.label}</h2>
+                <p className="mt-1 mb-0 text-service-current-subtitle text-accent">{selectedSystem.overview}</p>
+              </div>
             </div>
-            <p className="mt-5 text-product-section-body text-on-dark-muted">{selectedSystem.overview}</p>
 
-            <h3 className="mt-10 mb-5 text-xl font-semibold text-white">{featureTitle}</h3>
+            <h3 className="mt-10 mb-5 text-service-section-title text-white">{featureTitle}</h3>
             <ul className="grid list-none grid-cols-2 gap-4 p-0 max-compact:grid-cols-1">
               {selectedSystem.features.map((feature) => (
                 <li className="rounded-control border border-line-dark bg-ui-card p-5" key={feature.id}>
                   <div className="flex items-center gap-3">
                     <LuCircleDashed className="shrink-0 text-xl text-accent" aria-hidden="true" />
-                    <p className="m-0 font-semibold text-white">{feature.title}</p>
+                    <p className="m-0 text-service-card-title text-white">{feature.title}</p>
                   </div>
-                  <p className="mt-2 mb-0 text-sm leading-6 text-on-dark-muted">{feature.description}</p>
+                  <p className="mt-2 mb-0 text-service-card-body text-on-dark-muted">{feature.description}</p>
                 </li>
               ))}
             </ul>
           </div>
 
           <section className="rounded-product-card border border-line-dark bg-ui-card p-6" aria-labelledby="service-specifications-title">
-            <h2 className="m-0 text-xl font-semibold text-white" id="service-specifications-title">{specificationTitle}</h2>
+            <h3 className="m-0 text-service-section-title text-white" id="service-specifications-title">{specificationTitle}</h3>
             <ul className="mt-5 grid list-none gap-4 p-0">
               {selectedSystem.specifications.map((item) => (
-                <li className="flex items-center gap-3 text-on-dark-muted" key={item.id}>
+                <li className="flex items-center gap-3 text-service-body text-on-dark-muted" key={item.id}>
                   <LuCheck className="shrink-0 text-xl text-accent" aria-hidden="true" />
                   <span>{item.label}</span>
                 </li>
