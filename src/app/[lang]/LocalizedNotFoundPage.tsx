@@ -32,8 +32,8 @@ export function LocalizedNotFoundPage({ lang }: Readonly<{ lang: Locale }>) {
           <h1 className="mt-4 mb-0 text-[clamp(2.5rem,6vw,5rem)] leading-[1.08] font-extrabold tracking-[-.04em]" id="not-found-title">{content.notFound.title}</h1>
           <p className="mx-auto mt-6 mb-0 max-w-2xl text-product-section-body text-ink-muted">{content.notFound.description}</p>
           <nav className="mt-8 flex flex-wrap justify-center gap-4" aria-label={content.notFound.title}>
-            <Link className={`inline-flex min-h-12 min-w-36 items-center justify-center rounded-action bg-brand-red px-6 text-base font-semibold text-on-dark transition-colors hover:bg-brand-red-hover ${focusRingClass}`} href={`/${lang}`}>{content.notFound.homeLink}</Link>
-            <Link className={`inline-flex min-h-12 min-w-36 items-center justify-center rounded-action border border-line-dark px-6 text-base font-semibold text-ink transition-colors hover:border-accent hover:text-accent ${focusRingClass}`} href={`/${lang}#products`}>{content.notFound.productsLink}</Link>
+            <Link className={`inline-flex min-h-12 min-w-36 items-center justify-center rounded-action bg-brand-red px-6 text-button-label text-on-dark transition-colors hover:bg-brand-red-hover ${focusRingClass}`} href={`/${lang}`}>{content.notFound.homeLink}</Link>
+            <Link className={`inline-flex min-h-12 min-w-36 items-center justify-center rounded-action border border-line-dark px-6 text-button-label text-ink transition-colors hover:border-accent hover:text-accent ${focusRingClass}`} href={`/${lang}#products`}>{content.notFound.productsLink}</Link>
           </nav>
         </section>
       </main>

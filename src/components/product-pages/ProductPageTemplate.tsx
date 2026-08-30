@@ -45,7 +45,7 @@ export function ProductPageTemplate({
   const isService = variant === "service";
   return (
     <div className={`${fontClass} min-h-screen ${isService ? "bg-ui-section text-on-dark" : "bg-ui-subtle text-ink"}`}>
-      <a className={`fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-base font-semibold text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`} href="#main-content">
+      <a className={`fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-button-label text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`} href="#main-content">
         {home.skipToContent}
       </a>
 
@@ -79,7 +79,7 @@ export function ProductPageTemplate({
           <div>
             <h2 className="m-0 text-product-section-title">{contact.title}</h2>
             <p className={`mt-4 text-product-section-body ${isService ? "text-on-dark-muted" : "text-ink-muted"}`}>{contact.description}</p>
-            <a className={`mt-6 inline-flex min-h-12 max-w-full items-center rounded-action border border-accent px-6 text-base font-semibold break-all text-on-dark transition-colors ${isService ? "bg-ui-hero hover:bg-ui-card-accent" : "bg-brand-red hover:bg-brand-red-hover"} ${focusRingClass}`} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>{contact.email}</a>
+            <a className={`mt-6 inline-flex min-h-12 max-w-full items-center rounded-action border border-accent px-6 text-button-label break-all text-on-dark transition-colors ${isService ? "bg-ui-hero hover:bg-ui-card-accent" : "bg-brand-red hover:bg-brand-red-hover"} ${focusRingClass}`} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>{contact.email}</a>
           </div>
           {contactSupplement}
         </section>

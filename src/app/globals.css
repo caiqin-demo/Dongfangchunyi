@@ -74,6 +74,9 @@
   --text-product-section-body: 1rem;
   --text-product-section-body--line-height: 1.65;
   --text-product-section-body--font-weight: 400;
+  --text-button-label: 1.125rem;
+  --text-button-label--line-height: 1;
+  --text-button-label--font-weight: 400;
 }
 
 @utility page-container {

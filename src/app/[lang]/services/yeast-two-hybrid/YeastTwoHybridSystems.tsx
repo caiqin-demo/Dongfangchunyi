@@ -36,7 +36,7 @@ export function YeastTwoHybridSystems({
               <button
                 aria-controls="yeast-two-hybrid-system-content"
                 aria-pressed={isSelected}
-                className={`inline-flex min-h-12 cursor-pointer items-center justify-center rounded-control border px-6 text-base font-semibold transition-colors ${focusRingClass} ${isSelected ? "border-accent bg-ui-hero text-white" : "border-line-dark bg-ui-card text-on-dark-muted hover:border-accent hover:bg-ui-card-accent hover:text-white"}`}
+                className={`inline-flex min-h-12 cursor-pointer items-center justify-center rounded-control border px-6 text-button-label transition-colors ${focusRingClass} ${isSelected ? "border-accent bg-ui-hero text-white" : "border-line-dark bg-ui-card text-on-dark-muted hover:border-accent hover:bg-ui-card-accent hover:text-white"}`}
                 id={`yeast-two-hybrid-${system.id}-button`}
                 key={system.id}
                 onClick={() => setSelectedSystemId(system.id)}
