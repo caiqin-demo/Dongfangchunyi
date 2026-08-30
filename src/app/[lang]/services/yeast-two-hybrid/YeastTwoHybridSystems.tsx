@@ -9,7 +9,6 @@ const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 f
 
 type YeastTwoHybridSystemsProps = Readonly<{
   featureTitle: string;
-  overviewTitle: string;
   selectorLabel: string;
   specificationTitle: string;
   systems: readonly [YeastTwoHybridSystem, YeastTwoHybridSystem];
@@ -17,7 +16,6 @@ type YeastTwoHybridSystemsProps = Readonly<{
 
 export function YeastTwoHybridSystems({
   featureTitle,
-  overviewTitle,
   selectorLabel,
   specificationTitle,
   systems,
@@ -59,7 +57,7 @@ export function YeastTwoHybridSystems({
               <span className="grid size-12 shrink-0 place-items-center rounded-control bg-accent/15 text-2xl text-accent" aria-hidden="true">
                 <LuCircleDashed />
               </span>
-              <h2 className="m-0 text-product-section-title" id="service-overview-title">{overviewTitle}</h2>
+              <h2 className="m-0 text-product-section-title" id="service-overview-title">{selectedSystem.label}</h2>
             </div>
             <p className="mt-5 text-product-section-body text-on-dark-muted">{selectedSystem.overview}</p>
 
