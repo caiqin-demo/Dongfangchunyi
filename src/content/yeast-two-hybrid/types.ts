@@ -5,26 +5,30 @@ type Feature = Readonly<{
 }>;
 
 type Specification = Readonly<{
-  id: "specification-1" | "specification-2" | "specification-3" | "specification-4" | "specification-5" | "specification-6";
+  id: "specification-1" | "specification-2" | "specification-3" | "specification-4" | "specification-5";
   label: string;
 }>;
 
+type Consultation = Readonly<{
+  emails: readonly [
+    Readonly<{ id: "market"; email: string }>,
+    Readonly<{ id: "shanghai-genomics"; email: string }>,
+  ];
+  title: string;
+}>;
+
 export type YeastTwoHybridSystem = Readonly<{
+  consultation: Consultation;
   features: readonly [Feature, Feature, Feature, Feature];
   id: "membrane" | "nuclear";
   label: string;
-  overview: string;
-  specifications: readonly [Specification, Specification, Specification, Specification, Specification, Specification];
+  body: string;
+  specifications: readonly [Specification, Specification, Specification, Specification, Specification];
+  subtitle: string;
 }>;
 
 export type YeastTwoHybridContent = Readonly<{
   backToServices: string;
-  contact: Readonly<{
-    description: string;
-    email: string;
-    emailLabel: string;
-    title: string;
-  }>;
   features: Readonly<{
     title: string;
   }>;

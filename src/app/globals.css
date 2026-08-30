@@ -10,6 +10,8 @@
   --color-ui-section: #0c1528;
   --color-ui-card: #192233;
   --color-ui-card-accent: #1c273b;
+  --color-service-consultation-card: color(srgb 0.061 0.165 0.289);
+  --color-service-system-selected: color(srgb 0.121 0.533 0.898);
   --color-ui-footer: #061021;
   --color-ui-subtle: #f7f9fc;
   --color-product-hero-light: color(srgb 0.952 0.953 0.967);

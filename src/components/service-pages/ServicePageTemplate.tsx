@@ -12,12 +12,6 @@ const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 f
 type ServicePageTemplateProps = Readonly<{
   backLinkLabel: string;
   children: ReactNode;
-  contact: Readonly<{
-    description: string;
-    email: string;
-    emailLabel: string;
-    title: string;
-  }>;
   heroImageSrc: ImageProps["src"];
   intro: string;
   lang: Locale;
@@ -28,7 +22,6 @@ type ServicePageTemplateProps = Readonly<{
 export function ServicePageTemplate({
   backLinkLabel,
   children,
-  contact,
   heroImageSrc,
   intro,
   lang,
@@ -58,12 +51,6 @@ export function ServicePageTemplate({
         </section>
 
         {children}
-
-        <section className="page-container mb-16 rounded-product-card border border-line-dark bg-ui-card p-8 max-sm:mb-10 max-sm:p-6" aria-label={contact.title}>
-          <h2 className="m-0 text-service-section-title">{contact.title}</h2>
-          <p className="mt-4 text-service-body text-on-dark-muted">{contact.description}</p>
-          <a className={`mt-6 inline-flex min-h-12 max-w-full items-center rounded-action border border-accent bg-ui-hero px-6 text-button-label break-all text-on-dark transition-colors hover:bg-ui-card-accent ${focusRingClass}`} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>{contact.email}</a>
-        </section>
       </main>
 
       <SiteFooter currentPath={pagePath} lang={lang} />

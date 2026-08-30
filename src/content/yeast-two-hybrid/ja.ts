@@ -12,17 +12,25 @@ export const jaYeastTwoHybridContent = {
     title: "サービス概要",
   },
   features: {
-    title: "サービスの特長",
+    title: "暫定",
   },
   specifications: {
-    title: "技術範囲",
+    title: "暫定",
   },
   systemSelectorLabel: "ツーハイブリッド系",
   systems: [
     {
       id: "membrane",
       label: "膜系ツーハイブリッド",
-      overview: "暫定",
+      subtitle: "暫定",
+      body: "暫定",
+      consultation: {
+        title: "暫定",
+        emails: [
+          { id: "market", email: "market@easternpurity.com" },
+          { id: "shanghai-genomics", email: "info@shanghaigenomics.com" },
+        ],
+      },
       features: [
         { id: "feature-1", title: "暫定", description: "暫定" },
         { id: "feature-2", title: "暫定", description: "暫定" },
@@ -35,13 +43,20 @@ export const jaYeastTwoHybridContent = {
         { id: "specification-3", label: "暫定" },
         { id: "specification-4", label: "暫定" },
         { id: "specification-5", label: "暫定" },
-        { id: "specification-6", label: "暫定" },
       ],
     },
     {
       id: "nuclear",
       label: "核系ツーハイブリッド",
-      overview: "暫定",
+      subtitle: "暫定",
+      body: "暫定",
+      consultation: {
+        title: "暫定",
+        emails: [
+          { id: "market", email: "market@easternpurity.com" },
+          { id: "shanghai-genomics", email: "info@shanghaigenomics.com" },
+        ],
+      },
       features: [
         { id: "feature-1", title: "暫定", description: "暫定" },
         { id: "feature-2", title: "暫定", description: "暫定" },
@@ -54,14 +69,7 @@ export const jaYeastTwoHybridContent = {
         { id: "specification-3", label: "暫定" },
         { id: "specification-4", label: "暫定" },
         { id: "specification-5", label: "暫定" },
-        { id: "specification-6", label: "暫定" },
       ],
     },
   ],
-  contact: {
-    title: "サービスについてのお問い合わせ",
-    description: "暫定",
-    emailLabel: "サービスお問い合わせメール",
-    email: "market@easternpurity.com",
-  },
 } as const satisfies YeastTwoHybridContent;

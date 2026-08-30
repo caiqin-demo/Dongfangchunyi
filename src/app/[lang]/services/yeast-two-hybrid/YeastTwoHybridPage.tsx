@@ -34,7 +34,6 @@ export function YeastTwoHybridPage({ lang }: PageProps) {
   return (
     <ServicePageTemplate
       backLinkLabel={t.backToServices}
-      contact={t.contact}
       heroImageSrc={yeastTwoHybridHero}
       intro={t.intro}
       lang={lang}

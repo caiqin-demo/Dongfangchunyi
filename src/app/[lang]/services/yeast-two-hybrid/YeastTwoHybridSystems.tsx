@@ -22,6 +22,7 @@ export function YeastTwoHybridSystems({
 }: YeastTwoHybridSystemsProps) {
   const [selectedSystemId, setSelectedSystemId] = useState<YeastTwoHybridSystem["id"]>(systems[0].id);
   const selectedSystem = systems.find(({ id }) => id === selectedSystemId) ?? systems[0];
+  const consultationTitleId = `yeast-two-hybrid-${selectedSystem.id}-consultation-title`;
 
   return (
     <section className="bg-ui-section py-8 text-on-dark" aria-labelledby="service-overview-title">
@@ -34,7 +35,7 @@ export function YeastTwoHybridSystems({
               <button
                 aria-controls="yeast-two-hybrid-system-content"
                 aria-pressed={isSelected}
-                className={`inline-flex min-h-12 cursor-pointer items-center justify-center rounded-control border px-6 text-button-label transition-colors ${focusRingClass} ${isSelected ? "border-accent bg-ui-hero text-white" : "border-line-dark bg-ui-card text-on-dark-muted hover:border-accent hover:bg-ui-card-accent hover:text-white"}`}
+                className={`inline-flex min-h-12 cursor-pointer items-center justify-center rounded-control border px-6 text-button-label transition-colors ${focusRingClass} ${isSelected ? "border-accent bg-service-system-selected text-white" : "border-line-dark bg-ui-card text-on-dark-muted hover:border-accent hover:bg-ui-card-accent hover:text-white"}`}
                 id={`yeast-two-hybrid-${system.id}-button`}
                 key={system.id}
                 onClick={() => setSelectedSystemId(system.id)}
@@ -59,9 +60,11 @@ export function YeastTwoHybridSystems({
               </span>
               <div>
                 <h2 className="m-0 text-service-current-title" id="service-overview-title">{selectedSystem.label}</h2>
-                <p className="mt-1 mb-0 text-service-current-subtitle text-accent">{selectedSystem.overview}</p>
+                <p className="mt-1 mb-0 text-service-current-subtitle text-accent">{selectedSystem.subtitle}</p>
               </div>
             </div>
+
+            <p className="mt-5 mb-0 text-service-body text-on-dark-muted">{selectedSystem.body}</p>
 
             <h3 className="mt-10 mb-5 text-service-section-title text-white">{featureTitle}</h3>
             <ul className="grid list-none grid-cols-2 gap-4 p-0 max-compact:grid-cols-1">
@@ -71,23 +74,34 @@ export function YeastTwoHybridSystems({
                     <LuCircleDashed className="shrink-0 text-xl text-accent" aria-hidden="true" />
                     <p className="m-0 text-service-card-title text-white">{feature.title}</p>
                   </div>
-                  <p className="mt-2 mb-0 text-service-card-body text-on-dark-muted">{feature.description}</p>
+                  <p className="mt-2 mb-0 whitespace-pre-line text-service-card-body text-on-dark-muted">{feature.description}</p>
                 </li>
               ))}
             </ul>
           </div>
 
-          <section className="rounded-product-card border border-line-dark bg-ui-card p-6" aria-labelledby="service-specifications-title">
-            <h3 className="m-0 text-service-section-title text-white" id="service-specifications-title">{specificationTitle}</h3>
-            <ul className="mt-5 grid list-none gap-4 p-0">
-              {selectedSystem.specifications.map((item) => (
-                <li className="flex items-center gap-3 text-service-body text-on-dark-muted" key={item.id}>
-                  <LuCheck className="shrink-0 text-xl text-accent" aria-hidden="true" />
-                  <span>{item.label}</span>
-                </li>
-              ))}
-            </ul>
-          </section>
+          <div className="flex flex-col gap-8">
+            <section className="rounded-product-card border border-line-dark bg-ui-card p-6" aria-labelledby="service-specifications-title">
+              <h3 className="m-0 text-service-section-title text-white" id="service-specifications-title">{specificationTitle}</h3>
+              <ul className="mt-5 grid list-none gap-4 p-0">
+                {selectedSystem.specifications.map((item) => (
+                  <li className="flex items-center gap-3 text-service-body text-on-dark-muted" key={item.id}>
+                    <LuCheck className="shrink-0 text-xl text-accent" aria-hidden="true" />
+                    <span>{item.label}</span>
+                  </li>
+                ))}
+              </ul>
+            </section>
+
+            <section className="rounded-product-card border border-line-dark bg-service-consultation-card p-6" aria-labelledby={consultationTitleId}>
+              <h3 className="m-0 text-service-section-title text-white" id={consultationTitleId}>{selectedSystem.consultation.title}</h3>
+              <ul className="mt-5 list-none space-y-3 p-0 text-service-body text-on-dark-muted">
+                {selectedSystem.consultation.emails.map(({ id, email }) => (
+                  <li key={id}><span className="break-all">{email}</span></li>
+                ))}
+              </ul>
+            </section>
+          </div>
         </div>
       </div>
     </section>
