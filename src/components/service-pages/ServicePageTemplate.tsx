@@ -45,9 +45,11 @@ export function ServicePageTemplate({
         <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
           <NonLandingHeroMedia src={heroImageSrc} />
           <div className="page-container relative z-10">
-            <div className="max-w-[1120px]">
-              <h1 className="m-0 max-w-[900px] text-service-hero-title" id="page-title">{title}</h1>
-              <p className="mt-7 max-w-[860px] text-service-hero-body text-on-dark-muted">{intro}</p>
+            <div className="non-landing-hero-copy-layout">
+              <div className="min-w-0">
+                <h1 className="m-0 max-w-full text-service-hero-title" id="page-title">{title}</h1>
+                <p className="mt-7 max-w-full text-service-hero-body text-on-dark-muted">{intro}</p>
+              </div>
             </div>
           </div>
         </section>
