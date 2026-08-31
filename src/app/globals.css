@@ -10,6 +10,8 @@
   --color-ui-section: #0c1528;
   --color-ui-card: #192233;
   --color-ui-card-accent: #1c273b;
+  --color-service-system-selected: var(--color-brand-red);
+  --color-service-system-selected-hover: var(--color-brand-red-hover);
   --color-ui-footer: #061021;
   --color-ui-subtle: #f7f9fc;
   --color-product-hero-light: color(srgb 0.952 0.953 0.967);
@@ -74,6 +76,41 @@
   --text-product-section-body: 1rem;
   --text-product-section-body--line-height: 1.65;
   --text-product-section-body--font-weight: 400;
+  --text-button-label: 1.125rem;
+  --text-button-label--line-height: 1;
+  --text-button-label--font-weight: 400;
+  --text-service-hero-title: 3rem;
+  --text-service-hero-title--line-height: 3rem;
+  --text-service-hero-title--letter-spacing: normal;
+  --text-service-hero-title--font-weight: 700;
+  --text-service-hero-body: 1.25rem;
+  --text-service-hero-body--line-height: 1.75rem;
+  --text-service-hero-body--letter-spacing: normal;
+  --text-service-hero-body--font-weight: 400;
+  --text-service-current-title: 1.5rem;
+  --text-service-current-title--line-height: 2rem;
+  --text-service-current-title--letter-spacing: normal;
+  --text-service-current-title--font-weight: 700;
+  --text-service-current-subtitle: 1rem;
+  --text-service-current-subtitle--line-height: 1.5rem;
+  --text-service-current-subtitle--letter-spacing: normal;
+  --text-service-current-subtitle--font-weight: 400;
+  --text-service-body: 1rem;
+  --text-service-body--line-height: 1.5rem;
+  --text-service-body--letter-spacing: normal;
+  --text-service-body--font-weight: 400;
+  --text-service-section-title: 1.25rem;
+  --text-service-section-title--line-height: 1.75rem;
+  --text-service-section-title--letter-spacing: normal;
+  --text-service-section-title--font-weight: 600;
+  --text-service-card-title: 1rem;
+  --text-service-card-title--line-height: 1.5rem;
+  --text-service-card-title--letter-spacing: normal;
+  --text-service-card-title--font-weight: 500;
+  --text-service-card-body: 0.875rem;
+  --text-service-card-body--line-height: 1.25rem;
+  --text-service-card-body--letter-spacing: normal;
+  --text-service-card-body--font-weight: 400;
 }
 
 @utility page-container {

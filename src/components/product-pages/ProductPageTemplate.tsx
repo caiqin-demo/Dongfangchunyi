@@ -1,6 +1,7 @@
-import Image, { type ImageProps } from "next/image";
+import type { ImageProps } from "next/image";
 import type { ReactNode } from "react";
 
+import { NonLandingHeroMedia } from "@/components/page-heroes/NonLandingHeroMedia";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { contentByLocale } from "@/content";
@@ -9,7 +10,7 @@ import type { Locale } from "@/i18n/config";
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 type ProductPageTemplateProps = Readonly<{
-  backToProducts: string;
+  backLinkLabel: string;
   children: ReactNode;
   contact: Readonly<{
     description: string;
@@ -18,16 +19,16 @@ type ProductPageTemplateProps = Readonly<{
     title: string;
   }>;
   contactSupplement?: ReactNode;
-  eyebrow: string;
+  eyebrow?: string;
   heroImageSrc?: ImageProps["src"];
   intro: string;
   lang: Locale;
-  productPath: `/${string}`;
+  pagePath: `/${string}`;
   title: string;
 }>;
 
 export function ProductPageTemplate({
-  backToProducts,
+  backLinkLabel,
   children,
   contact,
   contactSupplement,
@@ -35,26 +36,23 @@ export function ProductPageTemplate({
   heroImageSrc,
   intro,
   lang,
-  productPath,
+  pagePath,
   title,
 }: ProductPageTemplateProps) {
   const home = contentByLocale[lang];
   const fontClass = lang === "ja" ? "font-sans-jp" : "font-sans-sc";
   return (
     <div className={`${fontClass} min-h-screen bg-ui-subtle text-ink`}>
-      <a className={`fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-base font-semibold text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`} href="#main-content">
+      <a className={`fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-button-label text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`} href="#main-content">
         {home.skipToContent}
       </a>
 
-      <SiteHeader backLinkLabel={backToProducts} lang={lang} localePath={productPath} variant="subpage" />
+      <SiteHeader backHref={`/${lang}#products`} backLinkLabel={backLinkLabel} lang={lang} localePath={pagePath} variant="subpage" />
 
       <main id="main-content" tabIndex={-1}>
         <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
           {heroImageSrc ? (
-            <>
-              <Image alt="" className="-z-20 object-cover object-center" fetchPriority="high" fill loading="eager" sizes="100vw" src={heroImageSrc} />
-              <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-r from-ui-section/85 via-ui-section/80 to-ui-section/20 max-sm:from-ui-section/85 max-sm:via-ui-section/80 max-sm:to-ui-section/60" />
-            </>
+            <NonLandingHeroMedia src={heroImageSrc} />
           ) : null}
           <div className="page-container relative z-10">
             <div className="max-w-[1120px]">
@@ -73,13 +71,13 @@ export function ProductPageTemplate({
           <div>
             <h2 className="m-0 text-product-section-title">{contact.title}</h2>
             <p className="mt-4 text-product-section-body text-ink-muted">{contact.description}</p>
-            <a className={`mt-6 inline-flex min-h-12 max-w-full items-center rounded-action border border-accent bg-brand-red px-6 text-base font-semibold break-all text-on-dark transition-colors hover:bg-brand-red-hover ${focusRingClass}`} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>{contact.email}</a>
+            <a className={`mt-6 inline-flex min-h-12 max-w-full items-center rounded-action border border-accent bg-brand-red px-6 text-button-label break-all text-on-dark transition-colors hover:bg-brand-red-hover ${focusRingClass}`} href={`mailto:${contact.email}`} aria-label={`${contact.emailLabel}: ${contact.email}`}>{contact.email}</a>
           </div>
           {contactSupplement}
         </section>
       </main>
 
-      <SiteFooter currentProductPath={productPath} lang={lang} />
+      <SiteFooter currentPath={pagePath} lang={lang} />
     </div>
   );
 }

@@ -9,6 +9,7 @@ import { contentByLocale } from "@/content";
 import type { ProductCardId, ServiceCardId } from "@/content/types";
 import type { Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
+import { servicePaths } from "@/lib/service-paths";
 
 import aboutDna from "./_assets/landing/about-dna.webp";
 import heroBackground from "./_assets/landing/hero-background.webp";
@@ -23,8 +24,8 @@ type HomeProps = Readonly<{
 }>;
 
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-const heroButtonClass = `inline-flex min-h-12 min-w-36 items-center justify-center rounded-action border px-6 text-base leading-6 font-normal transition-[transform,background-color] duration-200 hover:-translate-y-px max-sm:w-full ${focusRingClass}`;
-const skipLinkClass = `fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-base font-semibold text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`;
+const heroButtonClass = `inline-flex min-h-12 min-w-36 items-center justify-center rounded-action border px-6 text-button-label transition-[transform,background-color] duration-200 hover:-translate-y-px max-sm:w-full ${focusRingClass}`;
+const skipLinkClass = `fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-button-label text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`;
 const panelContainerClass = "page-container mt-panel-gap";
 const aboutPanelClass = `${panelContainerClass} min-h-panel-min-height p-[clamp(1.5rem,3vw,3rem)] max-page:p-6 max-sm:p-4`;
 const corePanelClass = `${panelContainerClass} grid min-h-core-panel-min-height p-[clamp(1.25rem,2.3vw,2.25rem)] max-page:min-h-panel-min-height max-page:p-6 max-sm:p-4`;
@@ -43,6 +44,11 @@ const serviceIcons = {
   "genome-sequencing": null,
   "other-business-services": LuGraduationCap,
 } satisfies Record<ServiceCardId, typeof LuGraduationCap | null>;
+const serviceActionPaths = {
+  "yeast-two-hybrid": servicePaths["yeast-two-hybrid"],
+  "genome-sequencing": null,
+  "other-business-services": null,
+} satisfies Record<ServiceCardId, `/${string}` | null>;
 
 type CoreCardProps = Readonly<{
   actionHref?: string;
@@ -116,7 +122,7 @@ export function LandingPage({ lang }: HomeProps) {
                 </li>
               ))}
             </ul>
-            <a className={`mt-3 inline-flex min-h-11 w-fit min-w-42 items-center justify-center gap-3.5 rounded-action bg-accent px-7 text-lg leading-none font-normal text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-accent-hover ${focusRingClass}`} href="#products">
+            <a className={`mt-3 inline-flex min-h-11 w-fit min-w-42 items-center justify-center gap-3.5 rounded-action bg-accent px-7 text-button-label text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-accent-hover ${focusRingClass}`} href="#products">
               <span>{t.about.more}</span>
               <span className="text-[25px] leading-none font-light" aria-hidden="true">→</span>
             </a>
@@ -151,7 +157,8 @@ export function LandingPage({ lang }: HomeProps) {
             <div className="grid flex-1 grid-cols-3 gap-5.5 max-page:grid-cols-1">
               {t.services.items.map((item) => {
                 const ServiceIcon = serviceIcons[item.id];
-                return <CoreCard description={item.description} icon={ServiceIcon ? <ServiceIcon /> : undefined} imageSrc={serviceImages[item.id] ?? undefined} key={item.id} title={item.title} />;
+                const serviceActionPath = serviceActionPaths[item.id];
+                return <CoreCard actionHref={serviceActionPath ? `/${language}${serviceActionPath}` : undefined} actionLabel={serviceActionPath ? item.title : undefined} description={item.description} icon={ServiceIcon ? <ServiceIcon /> : undefined} imageSrc={serviceImages[item.id] ?? undefined} key={item.id} title={item.title} />;
               })}
             </div>
           </div>

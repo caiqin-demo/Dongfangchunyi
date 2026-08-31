@@ -3,19 +3,27 @@ import Link from "next/link";
 
 import logo from "@/assets/brand/Logo.png";
 import { contentByLocale } from "@/content";
+import type { ServiceCardId } from "@/content/types";
 import type { Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
+import { servicePaths } from "@/lib/service-paths";
 
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 const footerLinkClass = `inline-flex min-h-6 items-center rounded-action text-[15px] leading-[1.7] text-on-dark-muted/90 transition-colors duration-200 hover:text-accent focus-visible:text-accent ${focusRingClass}`;
 
 type SiteFooterProps = Readonly<{
   className?: string;
-  currentProductPath?: `/${string}`;
+  currentPath?: `/${string}`;
   lang: Locale;
 }>;
 
-export function SiteFooter({ className, currentProductPath, lang }: SiteFooterProps) {
+const servicePagePaths = {
+  "yeast-two-hybrid": servicePaths["yeast-two-hybrid"],
+  "genome-sequencing": null,
+  "other-business-services": null,
+} satisfies Record<ServiceCardId, `/${string}` | null>;
+
+export function SiteFooter({ className, currentPath, lang }: SiteFooterProps) {
   const content = contentByLocale[lang];
   const brandFontClass = lang === "ja" ? "font-brand-serif-jp" : "font-brand-serif-sc";
 
@@ -39,7 +47,7 @@ export function SiteFooter({ className, currentProductPath, lang }: SiteFooterPr
             <ul className="m-0 grid list-none gap-3 p-0">
               {content.footer.productLinks.map((item) => (
                 <li key={item.id}>
-                  <Link aria-current={productPaths[item.id] === currentProductPath ? "page" : undefined} className={footerLinkClass} href={`/${lang}${productPaths[item.id]}`}>{item.label}</Link>
+                  <Link aria-current={productPaths[item.id] === currentPath ? "page" : undefined} className={footerLinkClass} href={`/${lang}${productPaths[item.id]}`}>{item.label}</Link>
                 </li>
               ))}
             </ul>
@@ -48,9 +56,15 @@ export function SiteFooter({ className, currentProductPath, lang }: SiteFooterPr
           <nav aria-labelledby="footer-services-title">
             <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-services-title">{content.footer.servicesTitle}</h2>
             <ul className="m-0 grid list-none gap-3 p-0">
-              {content.footer.serviceLinks.map((item) => (
-                <li key={item.id}><Link className={footerLinkClass} href={`/${lang}${item.href}`}>{item.label}</Link></li>
-              ))}
+              {content.footer.serviceLinks.map((item) => {
+                const servicePagePath = servicePagePaths[item.id];
+                const href = servicePagePath ?? item.href;
+                return (
+                  <li key={item.id}>
+                    <Link aria-current={servicePagePath === currentPath ? "page" : undefined} className={footerLinkClass} href={`/${lang}${href}`}>{item.label}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
 
