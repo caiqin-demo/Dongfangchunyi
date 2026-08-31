@@ -34,7 +34,7 @@ export function ServicePageTemplate({
   const fontClass = lang === "ja" ? "font-sans-jp" : "font-sans-sc";
 
   return (
-    <div className={`${fontClass} min-h-screen bg-ui-section text-on-dark`}>
+    <div className={`${fontClass} min-h-screen bg-ui-subtle text-ink`}>
       <a className={`fixed top-3 left-3 z-50 -translate-y-24 rounded-action bg-white px-4 py-3 text-button-label text-ink shadow-about transition-transform focus:translate-y-0 motion-reduce:transition-none ${focusRingClass}`} href="#main-content">
         {home.skipToContent}
       </a>
@@ -43,7 +43,7 @@ export function ServicePageTemplate({
 
       <main id="main-content" tabIndex={-1}>
         <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
-          <NonLandingHeroMedia overlayVariant="service" src={heroImageSrc} />
+          <NonLandingHeroMedia src={heroImageSrc} />
           <div className="page-container relative z-10">
             <div className="max-w-[1120px]">
               <h1 className="m-0 max-w-[900px] text-service-hero-title" id="page-title">{title}</h1>

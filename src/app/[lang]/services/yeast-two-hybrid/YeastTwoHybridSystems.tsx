@@ -42,7 +42,7 @@ export function YeastTwoHybridSystems({
   };
 
   return (
-    <section className="bg-ui-section py-8 text-on-dark" aria-labelledby="service-overview-title">
+    <section className="bg-ui-subtle py-8 text-ink" aria-labelledby="service-overview-title">
       <div className="page-container">
         <Suspense fallback={null}>
           <YeastTwoHybridSystemQuerySync onSystemChange={syncSystemId} />
@@ -55,7 +55,7 @@ export function YeastTwoHybridSystems({
               <button
                 aria-controls="yeast-two-hybrid-system-content"
                 aria-pressed={isSelected}
-                className={`inline-flex min-h-12 cursor-pointer items-center justify-center rounded-control border px-6 text-button-label transition-colors ${focusRingClass} ${isSelected ? "border-accent bg-service-system-selected text-white" : "border-line-dark bg-ui-card text-on-dark-muted hover:border-accent hover:bg-ui-card-accent hover:text-white"}`}
+                className={`inline-flex min-h-12 cursor-pointer items-center justify-center rounded-action border px-6 text-button-label transition-colors ${focusRingClass} ${isSelected ? "border-accent bg-service-system-selected text-on-dark hover:bg-service-system-selected-hover" : "border-line bg-white text-ink hover:border-accent hover:bg-ui-subtle"}`}
                 id={`yeast-two-hybrid-${system.id}-button`}
                 key={system.id}
                 onClick={() => selectSystem(system.id)}

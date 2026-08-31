@@ -52,7 +52,7 @@ export function ProductPageTemplate({
       <main id="main-content" tabIndex={-1}>
         <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
           {heroImageSrc ? (
-            <NonLandingHeroMedia overlayVariant="product" src={heroImageSrc} />
+            <NonLandingHeroMedia src={heroImageSrc} />
           ) : null}
           <div className="page-container relative z-10">
             <div className="max-w-[1120px]">

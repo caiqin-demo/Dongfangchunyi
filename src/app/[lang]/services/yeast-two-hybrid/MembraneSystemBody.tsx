@@ -22,28 +22,28 @@ export function MembraneSystemBody({ system }: MembraneSystemBodyProps) {
           </div>
         </div>
 
-        <p className="mt-5 mb-0 text-service-body text-on-dark-muted">{system.body}</p>
+        <p className="mt-5 mb-0 text-service-body text-ink-muted">{system.body}</p>
 
-        <h3 className="mt-10 mb-5 text-service-section-title text-white">{system.featureTitle}</h3>
+        <h3 className="mt-10 mb-5 text-service-section-title text-ink">{system.featureTitle}</h3>
         <ul className="grid list-none grid-cols-2 gap-4 p-0 max-compact:grid-cols-1">
           {system.features.map((feature) => (
-            <li className="rounded-control border border-line-dark bg-ui-card p-5" key={feature.id}>
+            <li className="rounded-control border border-line bg-white p-5" key={feature.id}>
               <div className="flex items-center gap-3">
                 <LuCircleDashed className="shrink-0 text-xl text-accent" aria-hidden="true" />
-                <p className="m-0 text-service-card-title text-white">{feature.title}</p>
+                <p className="m-0 text-service-card-title text-ink">{feature.title}</p>
               </div>
-              <p className="mt-2 mb-0 whitespace-pre-line text-service-card-body text-on-dark-muted">{feature.description}</p>
+              <p className="mt-2 mb-0 whitespace-pre-line text-service-card-body text-ink-muted">{feature.description}</p>
             </li>
           ))}
         </ul>
       </div>
 
       <div className="flex flex-col gap-8">
-        <section className="rounded-product-card border border-line-dark bg-ui-card p-6" aria-labelledby="service-specifications-title">
-          <h3 className="m-0 text-service-section-title text-white" id="service-specifications-title">{system.specificationTitle}</h3>
+        <section className="rounded-product-card border border-line bg-white p-[clamp(1rem,2.5vw,2rem)] shadow-media" aria-labelledby="service-specifications-title">
+          <h3 className="m-0 text-service-section-title text-ink" id="service-specifications-title">{system.specificationTitle}</h3>
           <ul className="mt-5 grid list-none gap-4 p-0">
             {system.specifications.map((item) => (
-              <li className="flex items-center gap-3 text-service-body text-on-dark-muted" key={item.id}>
+              <li className="flex items-center gap-3 text-service-body text-ink-muted" key={item.id}>
                 <LuCheck className="shrink-0 text-xl text-accent" aria-hidden="true" />
                 <span>{item.label}</span>
               </li>
@@ -51,9 +51,9 @@ export function MembraneSystemBody({ system }: MembraneSystemBodyProps) {
           </ul>
         </section>
 
-        <section className="rounded-product-card border border-line-dark bg-service-consultation-card p-6" aria-labelledby={consultationTitleId}>
-          <h3 className="m-0 text-service-section-title text-white" id={consultationTitleId}>{system.consultation.title}</h3>
-          <ul className="mt-5 list-none space-y-3 p-0 text-service-body text-on-dark-muted">
+        <section className="rounded-product-card border border-line bg-white p-[clamp(1rem,2.5vw,2rem)] shadow-media" aria-labelledby={consultationTitleId}>
+          <h3 className="m-0 text-service-section-title text-ink" id={consultationTitleId}>{system.consultation.title}</h3>
+          <ul className="mt-5 list-none space-y-3 p-0 text-service-body text-ink-muted">
             {system.consultation.emails.map(({ id, email }) => (
               <li key={id}><span className="break-all">{email}</span></li>
             ))}
