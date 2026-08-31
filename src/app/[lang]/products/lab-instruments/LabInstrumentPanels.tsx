@@ -79,10 +79,10 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
               src="/lab-instruments/pipette-product.webp"
             />
             <header className="absolute inset-0 text-white">
-              <h2 className="absolute top-1/2 left-1/2 m-0 w-[calc(100%-2.5rem)] -translate-x-1/2 -translate-y-1/2 text-center text-[clamp(2.25rem,4.5vw,4.75rem)] leading-[1.02] font-extrabold tracking-[-.035em]" id="pipette-title">
+              <h2 className="absolute top-1/2 left-1/2 m-0 w-[calc(100%-2.5rem)] -translate-x-1/2 -translate-y-1/2 text-center text-product-feature-display-title" id="pipette-title">
                 {content.pipette.title}
               </h2>
-              <p className="absolute right-[clamp(1.25rem,3vw,2.5rem)] bottom-[clamp(1.25rem,3vw,2.5rem)] left-[clamp(1.25rem,3vw,2.5rem)] m-0 text-center text-[clamp(1rem,1.45vw,1.25rem)] leading-[1.65] font-semibold text-white">
+              <p className="absolute right-[clamp(1.25rem,3vw,2.5rem)] bottom-[clamp(1.25rem,3vw,2.5rem)] left-[clamp(1.25rem,3vw,2.5rem)] m-0 text-center text-product-feature-display-body text-white">
                 {content.pipette.tagline}
               </p>
             </header>
@@ -140,7 +140,7 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
 
             return (
               <article className="flex min-w-0 flex-col rounded-product-card border border-line bg-ui-subtle p-[clamp(1rem,2.5vw,2rem)]" key={product.id}>
-                <h3 className={`m-0 text-[clamp(1.6rem,3vw,2.6rem)] leading-[1.15] font-extrabold ${isDomi ? "text-brand-domi" : "text-brand-wordmark-accent"}`}>
+                <h3 className={`m-0 text-product-brand-title ${isDomi ? "text-brand-domi" : "text-brand-wordmark-accent"}`}>
                   {product.title}
                 </h3>
                 <div className="mt-6">

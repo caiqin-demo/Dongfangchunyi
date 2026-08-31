@@ -59,8 +59,8 @@ export function ProductPageTemplate({
               {eyebrow ? (
                 <p className={`mb-4 text-sm font-extrabold tracking-[.2em] text-accent ${heroImageSrc ? "w-fit rounded-action bg-ui-section px-2 py-1" : ""}`}>{eyebrow}</p>
               ) : null}
-              <h1 className="m-0 max-w-[900px] text-[clamp(2.5rem,6vw,5rem)] leading-[1.08] font-extrabold tracking-[-.04em]" id="page-title">{title}</h1>
-              <p className="mt-7 max-w-[860px] text-[clamp(1rem,1.5vw,1.25rem)] leading-[1.8] text-on-dark-muted">{intro}</p>
+              <h1 className="m-0 max-w-[900px] text-product-hero-title" id="page-title">{title}</h1>
+              <p className="mt-7 max-w-[860px] text-product-hero-body text-on-dark-muted">{intro}</p>
             </div>
           </div>
         </section>
