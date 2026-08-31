@@ -11,19 +11,16 @@ export const zhYeastTwoHybridContent = {
   overview: {
     title: "服务概述",
   },
-  features: {
-    title: "诱饵载体选择",
-  },
-  specifications: {
-    title: "技术优势",
-  },
   systemSelectorLabel: "双杂交体系",
   systems: [
     {
       id: "membrane",
+      kind: "membrane",
       label: "膜体系双杂交",
       subtitle: "Split-Ubiquitin",
       body: "在膜蛋白酵母双杂交系统中，泛素的C端相当于传统酵母双杂交中使用的转录蛋白GAL4的DNA结合结构域，连接上Bait和一个Transcription Activator LexA-VP16。而泛素的N端（113G变异）相当于传统酵母双杂交中使用的GAL4的转录激活域，可以连上Prey或者一个Library。",
+      featureTitle: "诱饵载体选择",
+      specificationTitle: "技术优势",
       consultation: {
         title: "咨询详细服务内容",
         emails: [
@@ -47,29 +44,90 @@ export const zhYeastTwoHybridContent = {
     },
     {
       id: "nuclear",
+      kind: "nuclear",
       label: "核体系双杂交",
-      subtitle: "暂定",
-      body: "暂定",
-      consultation: {
-        title: "咨询详细服务内容",
-        emails: [
-          { id: "market", email: "market@easternpurity.com" },
-          { id: "shanghai-genomics", email: "info@shanghaigenomics.com" },
+      subtitle: "GAL4",
+      body: "酵母双杂交技术用于分析蛋白质之间的相互作用。转录因子GAL4可分为两个独立的结构域（Binding Domain, BD和Activation Domain, AD)。BD与诱饵蛋白融合，cDNA文库的基因构建在AD-LIBRARY表达载体上，如果诱饵蛋白和未知蛋白互作形成复合物，AD与BD接近，启动报告基因的转录，从而进行未知蛋白的筛选和鉴定。",
+      sampleStandardsTitle: "样本标准",
+      sampleStandards: [
+        { id: "cell-sample", title: "细胞样本", description: ">1X107" },
+        { id: "animal-tissue", title: "动物组织", description: ">1g" },
+        { id: "plant-sample", title: "植物样本", description: ">2g" },
+        { id: "total-rna", title: "总RNA", description: ">300ug" },
+      ],
+      cdnaLibrary: {
+        title: "cDNA Library Available for Yeast Two Hybrid",
+        categories: [
+            {
+              id: "human-cdna-library",
+              title: "Human cDNA Library",
+              entries: [
+                { id: "human-lymphocyte-matchmaker", label: "lymphocyte Matchmaker" },
+                { id: "human-fetal-brain-matchmaker", label: "Fetal Brain Matchmaker" },
+                { id: "human-hela-matchmaker", label: "HeLa Matchmaker" },
+                { id: "human-liver-matchmaker", label: "Liver Matchmaker" },
+                { id: "human-fetal-liver-matchmaker", label: "Fetal Liver Matchmaker" },
+                { id: "human-leukocyte-matchmaker", label: "Leukocyte Matchmaker" },
+                { id: "human-spleen-matchmaker", label: "Spleen Matchmaker" },
+                { id: "human-kidney-matchmaker", label: "Kidney Matchmaker" },
+                { id: "human-pulmonary-alveolar-epithelial-cells", label: "Pulmonary Alveolar Epithelial cells" },
+                { id: "human-endometrium-normal-tumour", label: "Endometrium Normal & Tumour" },
+                { id: "human-retina-macula-peripheral-rpe", label: "Retina Macula:Periphera:RPE=1:3:3" },
+              ],
+            },
+            {
+              id: "mouse-cdna-library",
+              title: "Mouse cDNA Library",
+              entries: [
+                { id: "mouse-testis-matchmaker", label: "Testis Matchmaker" },
+                { id: "mouse-kidney-matchmaker", label: "Kidney Matchmaker" },
+                { id: "mouse-embryo-matchmaker", label: "Embryo Matchmaker" },
+                { id: "mouse-mixture-library", label: "Brain/Jejunum/Testis/Bat/Liver (mixture-Library)" },
+              ],
+            },
+            {
+              id: "plant-cdna-library",
+              title: "Plant cDNA Library",
+              entries: [
+                { id: "plant-arabidopsis", label: "拟南芥 Arabidopsis" },
+                { id: "plant-rice", label: "水稻 Rice" },
+                { id: "plant-wheat", label: "麦类 Wheat" },
+                { id: "plant-tomato", label: "番茄 Tomato" },
+                { id: "plant-goji-berry", label: "枸杞 Goji Berry" },
+                { id: "plant-wild-strawberry", label: "野生草莓 Wild Strawberry" },
+                { id: "plant-cucumber", label: "黄瓜 Cucumber" },
+                { id: "plant-pumpkin", label: "南瓜 Pumpkin" },
+                { id: "plant-poplar", label: "杨树 Poplar" },
+                { id: "plant-watermelon", label: "西瓜 Watermelon" },
+                { id: "plant-carrot", label: "胡萝卜 Carrot" },
+                { id: "plant-liriodendron", label: "鹅掌楸 Liriodendron" },
+                { id: "plant-spinach", label: "菠菜 Spinach" },
+                { id: "plant-artemisia-annua", label: "青蒿 Artemisia Annua" },
+                { id: "plant-puncturevine", label: "蒺藜 Puncturevine" },
+                { id: "plant-corn", label: "玉米 Corn" },
+                { id: "plant-caitai", label: "菜薹" },
+                { id: "plant-baimai", label: "百脉" },
+              ],
+            },
+            {
+              id: "other-cdna-library",
+              title: "Other cDNA Library",
+              entries: [
+                { id: "other-drosophila-mixture-library", label: "黑腹果蝇/(胚胎16hr,蛆,成虫) (mixture- Library)" },
+                { id: "other-schistosoma-japonicum-mixture-library", label: "日本血吸虫/(14-28天)M/F (mixture- Library)" },
+                { id: "other-pig-alveolar-macrophage", label: "猪/肺泡巨噬细胞" },
+                { id: "other-mosquito-intestine", label: "蚊子/肠道" },
+                { id: "other-zebrafish-embryo", label: "斑马鱼/胚胎 tuebingen 0.5mm/26h" },
+                { id: "other-tilapia-lymphocyte", label: "罗非鱼/淋巴细胞" },
+                { id: "other-pearl-oyster-blood", label: "马氏珠母贝/血液" },
+                { id: "other-medaka", label: "青鳉鱼" },
+                { id: "other-whiteleg-shrimp", label: "南美白对虾" },
+                { id: "other-chinese-mitten-crab-hemolymphocyte", label: "中华绒螯蟹/血淋巴细胞" },
+                { id: "other-chinese-softshell-turtle", label: "中华鳖" },
+              ],
+            },
         ],
       },
-      features: [
-        { id: "feature-1", title: "暂定", description: "暂定" },
-        { id: "feature-2", title: "暂定", description: "暂定" },
-        { id: "feature-3", title: "暂定", description: "暂定" },
-        { id: "feature-4", title: "暂定", description: "暂定" },
-      ],
-      specifications: [
-        { id: "specification-1", label: "暂定" },
-        { id: "specification-2", label: "暂定" },
-        { id: "specification-3", label: "暂定" },
-        { id: "specification-4", label: "暂定" },
-        { id: "specification-5", label: "暂定" },
-      ],
     },
   ],
 } as const satisfies YeastTwoHybridContent;

@@ -11,19 +11,16 @@ export const jaYeastTwoHybridContent = {
   overview: {
     title: "サービス概要",
   },
-  features: {
-    title: "ベイトベクターの選択",
-  },
-  specifications: {
-    title: "技術的特長",
-  },
   systemSelectorLabel: "ツーハイブリッド系",
   systems: [
     {
       id: "membrane",
+      kind: "membrane",
       label: "膜系ツーハイブリッド",
       subtitle: "Split-Ubiquitin",
       body: "膜タンパク質酵母ツーハイブリッドシステムでは、ユビキチンC末端は、従来の酵母ツーハイブリッドで用いられる転写タンパク質GAL4のDNA結合ドメインに相当し、BaitおよびTranscription Activator LexA-VP16と連結されます。一方、ユビキチンN末端（113G変異）は、従来の酵母ツーハイブリッドで用いられるGAL4の転写活性化ドメインに相当し、PreyまたはLibraryと連結できます。",
+      featureTitle: "ベイトベクターの選択",
+      specificationTitle: "技術的特長",
       consultation: {
         title: "サービス内容の詳細に関するお問い合わせ",
         emails: [
@@ -47,29 +44,90 @@ export const jaYeastTwoHybridContent = {
     },
     {
       id: "nuclear",
+      kind: "nuclear",
       label: "核系ツーハイブリッド",
       subtitle: "暫定",
       body: "暫定",
-      consultation: {
-        title: "暫定",
-        emails: [
-          { id: "market", email: "market@easternpurity.com" },
-          { id: "shanghai-genomics", email: "info@shanghaigenomics.com" },
+      sampleStandardsTitle: "暫定",
+      sampleStandards: [
+        { id: "cell-sample", title: "暫定", description: "暫定" },
+        { id: "animal-tissue", title: "暫定", description: "暫定" },
+        { id: "plant-sample", title: "暫定", description: "暫定" },
+        { id: "total-rna", title: "暫定", description: "暫定" },
+      ],
+      cdnaLibrary: {
+        title: "cDNA Library Available for Yeast Two Hybrid",
+        categories: [
+            {
+              id: "human-cdna-library",
+              title: "Human cDNA Library",
+              entries: [
+                { id: "human-lymphocyte-matchmaker", label: "暫定" },
+                { id: "human-fetal-brain-matchmaker", label: "暫定" },
+                { id: "human-hela-matchmaker", label: "暫定" },
+                { id: "human-liver-matchmaker", label: "暫定" },
+                { id: "human-fetal-liver-matchmaker", label: "暫定" },
+                { id: "human-leukocyte-matchmaker", label: "暫定" },
+                { id: "human-spleen-matchmaker", label: "暫定" },
+                { id: "human-kidney-matchmaker", label: "暫定" },
+                { id: "human-pulmonary-alveolar-epithelial-cells", label: "暫定" },
+                { id: "human-endometrium-normal-tumour", label: "暫定" },
+                { id: "human-retina-macula-peripheral-rpe", label: "暫定" },
+              ],
+            },
+            {
+              id: "mouse-cdna-library",
+              title: "Mouse cDNA Library",
+              entries: [
+                { id: "mouse-testis-matchmaker", label: "暫定" },
+                { id: "mouse-kidney-matchmaker", label: "暫定" },
+                { id: "mouse-embryo-matchmaker", label: "暫定" },
+                { id: "mouse-mixture-library", label: "暫定" },
+              ],
+            },
+            {
+              id: "plant-cdna-library",
+              title: "Plant cDNA Library",
+              entries: [
+                { id: "plant-arabidopsis", label: "暫定" },
+                { id: "plant-rice", label: "暫定" },
+                { id: "plant-wheat", label: "暫定" },
+                { id: "plant-tomato", label: "暫定" },
+                { id: "plant-goji-berry", label: "暫定" },
+                { id: "plant-wild-strawberry", label: "暫定" },
+                { id: "plant-cucumber", label: "暫定" },
+                { id: "plant-pumpkin", label: "暫定" },
+                { id: "plant-poplar", label: "暫定" },
+                { id: "plant-watermelon", label: "暫定" },
+                { id: "plant-carrot", label: "暫定" },
+                { id: "plant-liriodendron", label: "暫定" },
+                { id: "plant-spinach", label: "暫定" },
+                { id: "plant-artemisia-annua", label: "暫定" },
+                { id: "plant-puncturevine", label: "暫定" },
+                { id: "plant-corn", label: "暫定" },
+                { id: "plant-caitai", label: "暫定" },
+                { id: "plant-baimai", label: "暫定" },
+              ],
+            },
+            {
+              id: "other-cdna-library",
+              title: "Other cDNA Library",
+              entries: [
+                { id: "other-drosophila-mixture-library", label: "暫定" },
+                { id: "other-schistosoma-japonicum-mixture-library", label: "暫定" },
+                { id: "other-pig-alveolar-macrophage", label: "暫定" },
+                { id: "other-mosquito-intestine", label: "暫定" },
+                { id: "other-zebrafish-embryo", label: "暫定" },
+                { id: "other-tilapia-lymphocyte", label: "暫定" },
+                { id: "other-pearl-oyster-blood", label: "暫定" },
+                { id: "other-medaka", label: "暫定" },
+                { id: "other-whiteleg-shrimp", label: "暫定" },
+                { id: "other-chinese-mitten-crab-hemolymphocyte", label: "暫定" },
+                { id: "other-chinese-softshell-turtle", label: "暫定" },
+              ],
+            },
         ],
       },
-      features: [
-        { id: "feature-1", title: "暫定", description: "暫定" },
-        { id: "feature-2", title: "暫定", description: "暫定" },
-        { id: "feature-3", title: "暫定", description: "暫定" },
-        { id: "feature-4", title: "暫定", description: "暫定" },
-      ],
-      specifications: [
-        { id: "specification-1", label: "暫定" },
-        { id: "specification-2", label: "暫定" },
-        { id: "specification-3", label: "暫定" },
-        { id: "specification-4", label: "暫定" },
-        { id: "specification-5", label: "暫定" },
-      ],
     },
   ],
 } as const satisfies YeastTwoHybridContent;

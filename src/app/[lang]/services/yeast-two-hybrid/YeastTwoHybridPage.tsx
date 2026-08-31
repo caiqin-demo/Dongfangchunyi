@@ -41,9 +41,7 @@ export function YeastTwoHybridPage({ lang }: PageProps) {
       title={t.title}
     >
       <YeastTwoHybridSystems
-        featureTitle={t.features.title}
         selectorLabel={t.systemSelectorLabel}
-        specificationTitle={t.specifications.title}
         systems={t.systems}
       />
     </ServicePageTemplate>
