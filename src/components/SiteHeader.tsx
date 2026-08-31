@@ -1,9 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Suspense } from "react";
 
 import logo from "@/assets/brand/Logo.png";
 import { contentByLocale } from "@/content";
 import type { Locale } from "@/i18n/config";
+
+import { SiteLocaleLinks } from "./SiteLocaleLinks";
+import { SiteLocaleSwitcher } from "./SiteLocaleSwitcher";
 
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 const navLinkClass = `inline-flex min-h-6 items-center justify-center rounded-action whitespace-nowrap text-[clamp(15px,1.15vw,18px)] text-on-dark/85 transition-colors duration-200 hover:text-accent focus-visible:text-accent max-sm:text-xs ${focusRingClass}`;
@@ -14,10 +18,11 @@ type SiteHeaderProps = Readonly<{
   backLinkLabel?: string;
   lang: Locale;
   localePath?: `/${string}`;
+  preserveLocaleSearchParamKeys?: readonly string[];
   variant: "landing" | "subpage";
 }>;
 
-export function SiteHeader({ backHref, backLinkLabel, lang, localePath = "/", variant }: SiteHeaderProps) {
+export function SiteHeader({ backHref, backLinkLabel, lang, localePath = "/", preserveLocaleSearchParamKeys = [], variant }: SiteHeaderProps) {
   const content = contentByLocale[lang];
   const brandFontClass = lang === "ja" ? "font-brand-serif-jp" : "font-brand-serif-sc";
   const isLanding = variant === "landing";
@@ -51,9 +56,9 @@ export function SiteHeader({ backHref, backLinkLabel, lang, localePath = "/", va
           </nav>
 
           <nav className="flex items-center gap-1.5 text-xs whitespace-nowrap text-on-dark-muted/85 max-page:text-[11px] max-stack:absolute max-stack:top-7 max-stack:right-0" aria-label={content.navigationLabels.language}>
-            <Link aria-current={lang === "ja" ? "page" : undefined} className={`${languageLinkClass} ${lang === "ja" ? "!text-accent" : ""}`} href={`/ja${localizedPath}`} hrefLang="ja" lang="ja" prefetch={false}>日本語</Link>
-            <span aria-hidden="true">/</span>
-            <Link aria-current={lang === "zh" ? "page" : undefined} className={`${languageLinkClass} ${lang === "zh" ? "!text-accent" : ""}`} href={`/zh${localizedPath}`} hrefLang="zh-CN" lang="zh-CN" prefetch={false}>中文</Link>
+            <Suspense fallback={<SiteLocaleLinks currentLocale={lang} languageLinkClass={languageLinkClass} localizedPath={localizedPath} search="" />}>
+              <SiteLocaleSwitcher currentLocale={lang} languageLinkClass={languageLinkClass} localizedPath={localizedPath} preserveLocaleSearchParamKeys={preserveLocaleSearchParamKeys} />
+            </Suspense>
           </nav>
         </div>
       </div>

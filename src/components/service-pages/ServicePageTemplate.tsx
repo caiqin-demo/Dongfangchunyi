@@ -16,6 +16,7 @@ type ServicePageTemplateProps = Readonly<{
   intro: string;
   lang: Locale;
   pagePath: `/${string}`;
+  preserveLocaleSearchParamKeys?: readonly string[];
   title: string;
 }>;
 
@@ -26,6 +27,7 @@ export function ServicePageTemplate({
   intro,
   lang,
   pagePath,
+  preserveLocaleSearchParamKeys,
   title,
 }: ServicePageTemplateProps) {
   const home = contentByLocale[lang];
@@ -37,7 +39,7 @@ export function ServicePageTemplate({
         {home.skipToContent}
       </a>
 
-      <SiteHeader backHref={`/${lang}#services`} backLinkLabel={backLinkLabel} lang={lang} localePath={pagePath} variant="subpage" />
+      <SiteHeader backHref={`/${lang}#services`} backLinkLabel={backLinkLabel} lang={lang} localePath={pagePath} preserveLocaleSearchParamKeys={preserveLocaleSearchParamKeys} variant="subpage" />
 
       <main id="main-content" tabIndex={-1}>
         <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">

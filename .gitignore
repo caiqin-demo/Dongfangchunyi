@@ -36,3 +36,5 @@ pnpm-debug.log*
 # typescript
 /next-env.d.ts
 *.tsbuildinfo
+
+/docs

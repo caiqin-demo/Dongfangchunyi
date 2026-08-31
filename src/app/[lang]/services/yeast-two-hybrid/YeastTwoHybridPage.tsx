@@ -38,6 +38,7 @@ export function YeastTwoHybridPage({ lang }: PageProps) {
       intro={t.intro}
       lang={lang}
       pagePath={servicePath}
+      preserveLocaleSearchParamKeys={["system"]}
       title={t.title}
     >
       <YeastTwoHybridSystems
