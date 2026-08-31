@@ -8,6 +8,28 @@ Read this file for Header, Footer, page templates, localized not-found/error pag
 - Separate full-bleed shell paint from bounded content geometry. Header/Footer backgrounds, borders, or shadows may span the viewport; their content stays in the centered shared inner container.
 - Do not apply edge-to-edge distribution directly to an unconstrained shell when groups can drift toward viewport edges. Position compact navigation, locale controls, menus, and Footer groups against the shared inner container, not the viewport.
 
+## Non-Landing Hero content geometry
+
+<a id="rule-nlhc-01"></a>
+
+- At the named `hero-copy` breakpoint (40rem / 640 CSS px) and above, non-Landing Hero copy occupies the first of two equal columns inside the shared `page-container`, aligned to its left edge.
+
+<a id="rule-nlhc-02"></a>
+
+- Below the named `hero-copy` breakpoint, non-Landing Hero copy uses the full shared container width in one column; use natural wrapping rather than a narrower desktop copy measure.
+
+<a id="rule-nlhc-03"></a>
+
+- An approved Hero eyebrow is transparent, pure text. Do not add a background, pill, padding, or image-conditioned surface to make it legible.
+
+<a id="rule-nlhc-04"></a>
+
+- Product and service page templates remain independent owners of their Hero typography and localized content. They may share only the named copy-geometry utility and existing site infrastructure.
+
+<a id="rule-nlhc-05"></a>
+
+- Keep Hero layer responsibilities separate: `NonLandingHeroMedia` owns decorative image delivery, fit, and overlay; the page template owns foreground content; the copy-geometry utility owns only grid placement and width.
+
 ## Footer
 
 - Implement one shared site Footer on every public page, including localized not-found/error pages. Do not duplicate it in routes or templates.

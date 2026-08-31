@@ -2,6 +2,7 @@
 
 @theme inline {
   --breakpoint-compact: 31.25rem;
+  --breakpoint-hero-copy: 40rem;
   --breakpoint-stack: 50rem;
   --breakpoint-page: 60rem;
 
@@ -96,12 +97,12 @@
   --text-button-label: 1.125rem;
   --text-button-label--line-height: 1;
   --text-button-label--font-weight: 400;
-  --text-service-hero-title: 3rem;
-  --text-service-hero-title--line-height: 3rem;
-  --text-service-hero-title--letter-spacing: normal;
-  --text-service-hero-title--font-weight: 700;
-  --text-service-hero-body: 1.25rem;
-  --text-service-hero-body--line-height: 1.75rem;
+  --text-service-hero-title: 2.5rem;
+  --text-service-hero-title--line-height: 1.08;
+  --text-service-hero-title--letter-spacing: -0.04em;
+  --text-service-hero-title--font-weight: 800;
+  --text-service-hero-body: 1rem;
+  --text-service-hero-body--line-height: 1.8;
   --text-service-hero-body--letter-spacing: normal;
   --text-service-hero-body--font-weight: 400;
   --text-service-current-title: 1.5rem;
@@ -141,6 +142,15 @@
 
   @variant max-sm {
     width: calc(100% - 1.5rem);
+  }
+}
+
+@utility non-landing-hero-copy-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+
+  @variant hero-copy {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
