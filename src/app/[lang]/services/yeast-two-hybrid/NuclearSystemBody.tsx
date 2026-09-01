@@ -44,7 +44,7 @@ export function NuclearSystemBody({ system }: NuclearSystemBodyProps) {
         <h3 className="m-0 text-service-current-title text-ink" id={catalogTitleId} lang="en">{system.cdnaLibrary.title}</h3>
         <div className="mt-6 grid grid-cols-4 gap-6 max-page:grid-cols-2 max-compact:grid-cols-1">
           {system.cdnaLibrary.categories.map((category) => (
-            <section className="min-w-0 border-l border-line pl-6 first:border-l-0 first:pl-0 max-page:odd:border-l-0 max-page:odd:pl-0 max-compact:border-l-0 max-compact:pl-0" aria-labelledby={`yeast-two-hybrid-${system.id}-${category.id}-title`} key={category.id}>
+            <section className="min-w-0 border-l border-yeast-library-divider pl-6 first:border-l-0 first:pl-0 max-page:odd:border-l-0 max-page:odd:pl-0 max-compact:border-l-0 max-compact:pl-0" aria-labelledby={`yeast-two-hybrid-${system.id}-${category.id}-title`} key={category.id}>
               <h4 className="m-0 text-service-card-title text-ink" id={`yeast-two-hybrid-${system.id}-${category.id}-title`} lang="en">{category.title}</h4>
               <ul className="mt-4 list-none space-y-2 p-0 text-service-card-body text-ink-muted">
                 {category.entries.map((entry) => (
