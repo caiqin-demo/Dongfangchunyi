@@ -64,19 +64,19 @@ export function ContactPage({ lang }: PageProps) {
         <h2 className="m-0 text-about-page-section-title" id="contact-page-title">{content.main.title}</h2>
         <p className="mx-auto mt-4 mb-0 max-w-2xl text-about-page-section-body text-ink-muted">{content.main.subtitle}</p>
 
-        <ul className="m-0 mt-[clamp(2.5rem,5vw,4rem)] grid list-none gap-6 p-0 min-page:grid-cols-3">
+        <ul className="mx-auto mt-[clamp(2.5rem,5vw,4rem)] grid list-none gap-5 p-0 min-page:w-3/4 min-page:grid-cols-3">
           {content.details.map((detail) => {
             const Icon = contactDetailIcons[detail.id];
             const value = details[detail.id];
             const ValueElement = detail.id === "address" ? "address" : "p";
 
             return (
-              <li className="rounded-product-card border border-line-dark bg-ui-card p-[clamp(2rem,3vw,3rem)] text-on-dark" key={detail.id}>
-                <span className="mx-auto grid size-16 place-items-center rounded-round bg-ui-card-accent text-accent" aria-hidden="true">
-                  <Icon aria-hidden="true" className="size-8" />
+              <li className="rounded-product-card border border-line bg-white p-[clamp(1.5rem,2.25vw,2.25rem)] shadow-media" key={detail.id}>
+                <span className="mx-auto grid size-12 place-items-center rounded-round bg-ui-subtle text-accent" aria-hidden="true">
+                  <Icon aria-hidden="true" className="size-6" />
                 </span>
-                <h3 className="mt-6 mb-0 text-about-page-section-title text-on-dark">{detail.label}</h3>
-                <ValueElement className="mt-4 mb-0 break-words text-about-page-section-body not-italic text-on-dark-muted" lang={value.language}>
+                <h3 className="mt-5 mb-0 text-about-page-section-title text-ink">{detail.label}</h3>
+                <ValueElement className="mt-3 mb-0 break-words text-about-page-section-body not-italic text-ink-muted" lang={value.language}>
                   {value.lines.map((line) => <span className="block" key={line}>{line}</span>)}
                 </ValueElement>
               </li>
