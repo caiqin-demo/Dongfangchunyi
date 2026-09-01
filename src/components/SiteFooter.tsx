@@ -7,6 +7,7 @@ import type { ServiceCardId } from "@/content/types";
 import type { Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
 import { servicePaths } from "@/lib/service-paths";
+import { aboutPaths } from "@/lib/about-paths";
 
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 const footerLinkClass = `inline-flex min-h-6 items-center rounded-action text-[15px] leading-[1.7] text-on-dark-muted/90 transition-colors duration-200 hover:text-accent focus-visible:text-accent ${focusRingClass}`;
@@ -22,6 +23,11 @@ const servicePagePaths = {
   "genome-sequencing": null,
   "other-business-services": null,
 } satisfies Record<ServiceCardId, `/${string}` | null>;
+
+const aboutPagePaths = {
+  "company-profile": null,
+  contact: aboutPaths.contact,
+} as const;
 
 export function SiteFooter({ className, currentPath, lang }: SiteFooterProps) {
   const content = contentByLocale[lang];
@@ -71,9 +77,15 @@ export function SiteFooter({ className, currentPath, lang }: SiteFooterProps) {
           <nav aria-labelledby="footer-about-title">
             <h2 className="mt-0 mb-5 text-[15px] leading-[1.7] font-bold text-white" id="footer-about-title">{content.footer.aboutTitle}</h2>
             <ul className="m-0 grid list-none gap-3 p-0">
-              {content.footer.aboutLinks.map((item) => (
-                <li key={item.id}><Link className={footerLinkClass} href={`/${lang}${item.href}`}>{item.label}</Link></li>
-              ))}
+              {content.footer.aboutLinks.map((item) => {
+                const aboutPagePath = aboutPagePaths[item.id];
+                const href = aboutPagePath ?? item.href;
+                return (
+                  <li key={item.id}>
+                    <Link aria-current={aboutPagePath === currentPath ? "page" : undefined} className={footerLinkClass} href={`/${lang}${href}`}>{item.label}</Link>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
