@@ -1,13 +1,14 @@
 import type { MetadataRoute } from "next";
 
 import { defaultLocale, locales } from "@/i18n/config";
+import { aboutPaths } from "@/lib/about-paths";
 import { productPaths } from "@/lib/product-paths";
 import { servicePaths } from "@/lib/service-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
-  const paths = ["", ...Object.values(productPaths), ...Object.values(servicePaths)] as const;
+  const paths = ["", ...Object.values(productPaths), ...Object.values(servicePaths), ...Object.values(aboutPaths)] as const;
 
   return paths.flatMap((path) => {
     const languages = {

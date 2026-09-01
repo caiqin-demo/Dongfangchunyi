@@ -130,6 +130,22 @@
   --text-service-card-body--line-height: 1.25rem;
   --text-service-card-body--letter-spacing: normal;
   --text-service-card-body--font-weight: 400;
+  --text-about-page-hero-title: 2.5rem;
+  --text-about-page-hero-title--line-height: 1.08;
+  --text-about-page-hero-title--letter-spacing: -0.04em;
+  --text-about-page-hero-title--font-weight: 800;
+  --text-about-page-hero-body: 1rem;
+  --text-about-page-hero-body--line-height: 1.8;
+  --text-about-page-hero-body--letter-spacing: normal;
+  --text-about-page-hero-body--font-weight: 400;
+  --text-about-page-section-title: 1.5rem;
+  --text-about-page-section-title--line-height: 2rem;
+  --text-about-page-section-title--letter-spacing: normal;
+  --text-about-page-section-title--font-weight: 700;
+  --text-about-page-section-body: 1rem;
+  --text-about-page-section-body--line-height: 1.5rem;
+  --text-about-page-section-body--letter-spacing: normal;
+  --text-about-page-section-body--font-weight: 400;
 }
 
 @utility page-container {

@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import logo from "@/assets/brand/Logo.png";
 import { contentByLocale } from "@/content";
 import type { Locale } from "@/i18n/config";
+import { aboutPaths } from "@/lib/about-paths";
 
 import { SiteLocaleLinks } from "./SiteLocaleLinks";
 import { SiteLocaleSwitcher } from "./SiteLocaleSwitcher";
@@ -41,16 +42,26 @@ export function SiteHeader({ backHref, backLinkLabel, lang, localePath = "/", pr
 
         <div className="flex items-center gap-[clamp(20px,2vw,32px)] max-page:gap-3.5 max-sm:static">
           <nav className="flex items-center gap-[clamp(26px,2.7vw,48px)] max-page:gap-5 max-stack:absolute max-stack:top-16 max-stack:left-0 max-stack:w-full max-stack:justify-between max-stack:gap-0 max-stack:overflow-visible max-stack:pb-3" aria-label={content.navigationLabels.main}>
-            {isLanding ? content.nav.map((item) => (
-              <a
-                aria-current={item.id === "home" ? "page" : undefined}
-                className={`${navLinkClass} ${item.id === "home" ? "!text-accent" : ""}`}
-                href={item.href}
-                key={item.id}
-              >
-                {item.label}
-              </a>
-            )) : (
+            {isLanding ? content.nav.map((item) => {
+              if (item.id === "contact") {
+                return (
+                  <Link className={navLinkClass} href={`/${lang}${aboutPaths.contact}`} key={item.id}>
+                    {item.label}
+                  </Link>
+                );
+              }
+
+              return (
+                <a
+                  aria-current={item.id === "home" ? "page" : undefined}
+                  className={`${navLinkClass} ${item.id === "home" ? "!text-accent" : ""}`}
+                  href={item.href}
+                  key={item.id}
+                >
+                  {item.label}
+                </a>
+              );
+            }) : (
               <Link className={navLinkClass} href={backHref ?? `/${lang}#products`}>← {backLinkLabel}</Link>
             )}
           </nav>
