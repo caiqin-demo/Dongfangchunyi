@@ -1,6 +1,6 @@
 import type { ContactDetailId, ContactDetailValue } from "./types";
 
-export const contactDetails = {
+export const contactDetails: Readonly<Record<ContactDetailId, ContactDetailValue>> = {
   email: {
     lines: ["market@easternpurity.com"],
   },
@@ -14,4 +14,4 @@ export const contactDetails = {
       "大阪府大阪峡山市峡山5丁目2252番地の3（201室）",
     ],
   },
-} as const satisfies Record<ContactDetailId, ContactDetailValue>;
+};

@@ -1,22 +1,22 @@
 import type { ContactPageContent } from "./types";
 
 export const jaContactPageContent = {
-  backToAbout: "暂定",
+  backToAbout: "会社案内へ戻る",
   details: [
-    { id: "email", label: "暂定" },
-    { id: "phone", label: "暂定" },
-    { id: "address", label: "暂定" },
+    { id: "email", label: "メール" },
+    { id: "phone", label: "電話" },
+    { id: "address", label: "所在地" },
   ],
   hero: {
-    title: "暂定",
-    intro: "暂定",
+    title: "東方純一株式会社",
+    intro: "ライフサイエンス市場の国境を越えた展開への道を拓く",
   },
   main: {
-    title: "暂定",
-    subtitle: "暂定",
+    title: "お問い合わせ",
+    subtitle: "ご不明な点がございましたら、お気軽にお問い合わせください。",
   },
   metadata: {
-    title: "暂定",
-    description: "暂定",
+    title: "お問い合わせ | 東方純一株式会社",
+    description: "ご不明な点がございましたら、東方純一株式会社までお気軽にお問い合わせください。",
   },
 } as const satisfies ContactPageContent;

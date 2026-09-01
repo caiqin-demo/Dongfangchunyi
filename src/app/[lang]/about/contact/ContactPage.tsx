@@ -3,7 +3,7 @@ import type { IconType } from "react-icons";
 import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 
 import { AboutPageTemplate } from "@/components/about-pages/AboutPageTemplate";
-import { contactDetails, contactPageContentByLocale, type ContactDetailId, type ContactDetailValue } from "@/content/about/contact";
+import { contactDetails, contactPageContentByLocale, type ContactDetailId } from "@/content/about/contact";
 import { defaultLocale, type Locale } from "@/i18n/config";
 import { aboutPaths } from "@/lib/about-paths";
 import { getSiteUrl } from "@/lib/site-url";
@@ -17,18 +17,6 @@ const contactDetailIcons = {
   phone: LuPhone,
   address: LuMapPin,
 } satisfies Record<ContactDetailId, IconType>;
-
-function getContactDetails(lang: Locale): Record<ContactDetailId, ContactDetailValue> {
-  if (lang === "ja") {
-    return {
-      email: { lines: ["暂定"] },
-      phone: { lines: ["暂定"] },
-      address: { lines: ["暂定"] },
-    };
-  }
-
-  return contactDetails;
-}
 
 export function getContactPageMetadata(lang: Locale): Metadata {
   const metadata = contactPageContentByLocale[lang].metadata;
@@ -49,7 +37,6 @@ export function getContactPageMetadata(lang: Locale): Metadata {
 
 export function ContactPage({ lang }: PageProps) {
   const content = contactPageContentByLocale[lang];
-  const details = getContactDetails(lang);
 
   return (
     <AboutPageTemplate
@@ -67,7 +54,7 @@ export function ContactPage({ lang }: PageProps) {
         <ul className="mx-auto mt-[clamp(2.5rem,5vw,4rem)] grid list-none gap-5 p-0 min-page:w-3/4 min-page:grid-cols-3">
           {content.details.map((detail) => {
             const Icon = contactDetailIcons[detail.id];
-            const value = details[detail.id];
+            const value = contactDetails[detail.id];
             const ValueElement = detail.id === "address" ? "address" : "p";
 
             return (
@@ -75,8 +62,8 @@ export function ContactPage({ lang }: PageProps) {
                 <span className="mx-auto grid size-12 place-items-center rounded-round bg-ui-subtle text-accent" aria-hidden="true">
                   <Icon aria-hidden="true" className="size-6" />
                 </span>
-                <h3 className="mt-5 mb-0 text-about-page-section-title text-ink">{detail.label}</h3>
-                <ValueElement className="mt-3 mb-0 break-words text-about-page-section-body not-italic text-ink-muted" lang={value.language}>
+                <h3 className="mt-5 mb-0 text-contact-page-section-title text-ink">{detail.label}</h3>
+                <ValueElement className="mt-3 mb-0 break-words text-contact-page-section-body not-italic text-ink-muted" lang={value.language}>
                   {value.lines.map((line) => <span className="block" key={line}>{line}</span>)}
                 </ValueElement>
               </li>
