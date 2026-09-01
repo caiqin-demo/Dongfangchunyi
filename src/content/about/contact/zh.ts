@@ -9,7 +9,7 @@ export const zhContactPageContent = {
   ],
   hero: {
     title: "东方纯一株式会社",
-    intro: "为生命科学市场的跨国界延申铺路",
+    intro: "为生命科学市场的跨国界延伸铺路",
   },
   main: {
     title: "联系我们",

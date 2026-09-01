@@ -9,7 +9,7 @@ export const jaContactPageContent = {
   ],
   hero: {
     title: "東方純一株式会社",
-    intro: "ライフサイエンス市場の国境を越えた展開への道を拓く",
+    intro: "ライフサイエンス市場の国境を越えた展開への道を切り拓きます。",
   },
   main: {
     title: "お問い合わせ",
