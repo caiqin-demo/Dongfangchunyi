@@ -8,7 +8,7 @@ import { defaultLocale, type Locale } from "@/i18n/config";
 import { aboutPaths } from "@/lib/about-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
-import yeastTwoHybridHero from "../../services/yeast-two-hybrid/_assets/yeast-two-hybrid-hero.jpg";
+import contactHero from "./_assets/contact-hero.jpg";
 
 type PageProps = Readonly<{ lang: Locale }>;
 
@@ -54,7 +54,7 @@ export function ContactPage({ lang }: PageProps) {
   return (
     <AboutPageTemplate
       backLinkLabel={content.backToAbout}
-      heroImageSrc={yeastTwoHybridHero}
+      heroImageSrc={contactHero}
       intro={content.hero.intro}
       lang={lang}
       pagePath={aboutPaths.contact}
