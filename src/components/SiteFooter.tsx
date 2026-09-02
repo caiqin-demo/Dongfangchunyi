@@ -25,7 +25,7 @@ const servicePagePaths = {
 } satisfies Record<ServiceCardId, `/${string}` | null>;
 
 const aboutPagePaths = {
-  "company-profile": null,
+  "company-profile": aboutPaths["company-profile"],
   contact: aboutPaths.contact,
 } as const;
 
