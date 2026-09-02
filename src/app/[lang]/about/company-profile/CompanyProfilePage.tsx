@@ -3,6 +3,7 @@ import Image from "next/image";
 import type { IconType } from "react-icons";
 import { LuGlobe, LuGraduationCap, LuPackageSearch } from "react-icons/lu";
 
+import logo from "@/assets/brand/Logo.png";
 import { AboutPageTemplate } from "@/components/about-pages/AboutPageTemplate";
 import { companyProfileContentByLocale, type CompanyProfileCapabilityId } from "@/content/about/company-profile";
 import { defaultLocale, type Locale } from "@/i18n/config";
@@ -53,7 +54,12 @@ export function CompanyProfilePage({ lang }: PageProps) {
       <section className="page-container py-[clamp(3.5rem,7vw,7rem)]">
           <section className="grid items-center gap-[clamp(2.5rem,6vw,6rem)] min-page:grid-cols-2" aria-labelledby="company-introduction-title">
             <div className="min-w-0">
-              <h2 className="m-0 text-about-page-section-title" id="company-introduction-title">{content.introduction.heading}</h2>
+              <div className="flex items-center gap-3">
+                <span className="grid size-12 shrink-0 place-items-center rounded-round bg-white" aria-hidden="true">
+                  <Image className="h-9 w-auto object-contain" src={logo} width={36} height={37} alt="" />
+                </span>
+                <h2 className="m-0 text-about-page-section-title" id="company-introduction-title">{content.introduction.heading}</h2>
+              </div>
               {content.introduction.paragraphs.map((paragraph) => <p className="mt-5 mb-0 text-about-page-section-body text-ink-muted" key={paragraph}>{paragraph}</p>)}
             </div>
             <Image className="h-auto w-full rounded-product-card min-page:w-1/2 min-page:justify-self-end" src={companyProfileShanghai} alt="" sizes="(min-width: 60rem) min(25vw, 350px), calc(100vw - 3rem)" />
