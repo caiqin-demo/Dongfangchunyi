@@ -50,7 +50,7 @@ export const jaYeastTwoHybridContent = {
       body: "酵母ツーハイブリッド法は、タンパク質間相互作用の解析に用いられます。転写因子GAL4は、二つの独立したドメイン（Binding Domain、BD、およびActivation Domain、AD）に分けられます。BDはベイトタンパク質と融合され、cDNAライブラリーの遺伝子はAD-LIBRARY発現ベクター上に構築されます。ベイトタンパク質と未知タンパク質が相互作用して複合体を形成すると、ADとBDが近接し、レポーター遺伝子の転写が開始されます。これにより、未知タンパク質をスクリーニングし、同定できます。",
       sampleStandardsTitle: "サンプル基準",
       sampleStandards: [
-        { id: "cell-sample", title: "細胞サンプル", description: ">1X107" },
+        { id: "cell-sample", title: "細胞サンプル", description: "> 1×10⁷" },
         { id: "animal-tissue", title: "動物組織", description: ">1g" },
         { id: "plant-sample", title: "植物サンプル", description: ">2g" },
         { id: "total-rna", title: "総RNA", description: ">300ug" },

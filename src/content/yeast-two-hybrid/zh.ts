@@ -50,7 +50,7 @@ export const zhYeastTwoHybridContent = {
       body: "酵母双杂交技术用于分析蛋白质之间的相互作用。转录因子GAL4可分为两个独立的结构域（Binding Domain, BD和Activation Domain, AD)。BD与诱饵蛋白融合，cDNA文库的基因构建在AD-LIBRARY表达载体上，如果诱饵蛋白和未知蛋白互作形成复合物，AD与BD接近，启动报告基因的转录，从而进行未知蛋白的筛选和鉴定。",
       sampleStandardsTitle: "样本标准",
       sampleStandards: [
-        { id: "cell-sample", title: "细胞样本", description: ">1X107" },
+        { id: "cell-sample", title: "细胞样本", description: "> 1×10⁷" },
         { id: "animal-tissue", title: "动物组织", description: ">1g" },
         { id: "plant-sample", title: "植物样本", description: ">2g" },
         { id: "total-rna", title: "总RNA", description: ">300ug" },
