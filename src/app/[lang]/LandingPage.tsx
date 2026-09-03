@@ -85,7 +85,7 @@ export function LandingPage({ lang }: HomeProps) {
       <SiteHeader lang={language} variant="landing" />
 
       <main id="main-content" tabIndex={-1}>
-        <section className={`relative grid min-h-hero grid-cols-1 items-center justify-items-center overflow-hidden bg-ui-hero px-page-gutter pt-[114px] pb-[72px] text-white max-page:min-h-[432px] max-page:px-7 max-page:pt-24 max-page:pb-[60px] max-stack:pt-28 max-sm:min-h-[456px] ${language === "ja" ? "max-sm:pb-2.5" : "max-sm:pb-10"}`} id="top" aria-labelledby="hero-title">
+        <section className="relative grid min-h-hero grid-cols-1 items-center justify-items-center overflow-hidden bg-ui-hero pt-[114px] pb-[72px] text-white max-page:min-h-[432px] max-page:pt-24 max-page:pb-[60px] max-stack:pt-28 max-sm:min-h-[456px] max-sm:pb-10" id="top" aria-labelledby="hero-title">
           <Image
             alt=""
             aria-hidden="true"
@@ -96,19 +96,21 @@ export function LandingPage({ lang }: HomeProps) {
             sizes="100vw"
             src={heroBackground}
           />
-          <div className="relative z-2 mx-auto w-full max-w-[1120px] text-center max-page:max-w-[780px]">
-            <h1 className="m-0 text-hero-title max-sm:text-[36px]" id="hero-title">{t.hero.title}</h1>
-            <p className="mx-auto mt-[38px] max-w-[1120px] text-[clamp(22px,2.1vw,30px)] leading-[1.6] text-on-dark-muted max-page:max-w-[780px] max-sm:mt-[26px] max-sm:max-w-[320px] max-sm:text-lg max-sm:leading-[1.75]">{t.hero.description}</p>
-            <div className="mt-12.5 flex justify-center gap-2.5 max-sm:mx-auto max-sm:mt-4.5 max-sm:w-54 max-sm:max-w-full max-sm:flex-col" aria-label={language === "ja" ? "ページ案内" : "页面快速入口"}>
-              <a className={`${heroButtonClass} border-accent/90 bg-accent/90`} href="#products">{t.hero.productButton}</a>
-              <a className={`${heroButtonClass} border-accent/80 bg-transparent text-accent`} href="#services">{t.hero.serviceButton}</a>
+          <div className="page-container relative z-2">
+            <div className="mx-auto w-full max-w-[1120px] text-center max-page:max-w-[780px]">
+              <h1 className="m-0 text-hero-title max-sm:text-[36px]" id="hero-title">{t.hero.title}</h1>
+              <p className="mx-auto mt-[38px] max-w-[1120px] text-[clamp(22px,2.1vw,30px)] leading-[1.6] text-on-dark-muted max-page:max-w-[780px] max-sm:mt-[26px] max-sm:max-w-[320px] max-sm:text-lg max-sm:leading-[1.75]">{t.hero.description}</p>
+              <div className="mt-12.5 flex justify-center gap-2.5 max-sm:mx-auto max-sm:mt-4.5 max-sm:w-54 max-sm:max-w-full max-sm:flex-col" aria-label={language === "ja" ? "ページ案内" : "页面快速入口"}>
+                <a className={`${heroButtonClass} border-accent/90 bg-accent/90`} href="#products">{t.hero.productButton}</a>
+                <a className={`${heroButtonClass} border-accent/80 bg-transparent text-accent`} href="#services">{t.hero.serviceButton}</a>
+              </div>
             </div>
           </div>
         </section>
 
         <section className={`relative grid grid-cols-2 items-stretch gap-[clamp(44px,5vw,80px)] bg-white shadow-about max-page:grid-cols-1 ${aboutPanelClass}`} id="about" aria-labelledby="about-title">
           <div className="relative min-h-about-media overflow-hidden rounded-control border border-line bg-ui-subtle shadow-media max-page:h-78 max-sm:min-h-60" aria-hidden="true">
-            <Image className="object-cover object-center" src={aboutDna} alt="" fill loading="eager" sizes="(max-width: 960px) 100vw, 50vw" />
+            <Image className="object-cover object-center" src={aboutDna} alt="" fill loading="eager" sizes="(min-width: 84rem) 560px, (min-width: 60rem) calc(44.5vw - 32px), (min-width: 40rem) calc(100vw - 80px), calc(100vw - 56px)" />
           </div>
           <div className="flex min-w-0 flex-col justify-center">
             <p className="mb-2 text-[15px] leading-[17px] font-extrabold tracking-[.22em] text-accent">{t.about.label}</p>

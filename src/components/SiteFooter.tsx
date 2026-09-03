@@ -36,7 +36,7 @@ export function SiteFooter({ className, currentPath, lang }: SiteFooterProps) {
   return (
     <footer className={`bg-ui-footer py-10 text-on-dark-muted ${className ?? ""}`} id="contact">
       <div className="@container/footer page-container">
-        <div className="grid grid-cols-[1.4fr_1fr_1fr_.8fr] gap-[clamp(44px,5vw,88px)] @max-footer-columns/footer:grid-cols-2 @max-footer-columns/footer:gap-x-12 @max-footer-columns/footer:gap-y-11 @max-footer-stack/footer:grid-cols-1 @max-footer-stack/footer:gap-10">
+        <div className="grid grid-cols-[1.4fr_1fr_1fr_.8fr] gap-[var(--spacing-footer-column-gap)] @max-footer-columns/footer:grid-cols-2 @max-footer-columns/footer:gap-x-12 @max-footer-columns/footer:gap-y-11 @max-footer-stack/footer:grid-cols-1 @max-footer-stack/footer:gap-10">
           <section aria-labelledby="footer-company-title">
             <div className="flex items-center gap-[11.5px] text-white">
               <Image className="h-9 w-auto shrink-0 object-contain" src={logo} width={36} height={37} alt="" />

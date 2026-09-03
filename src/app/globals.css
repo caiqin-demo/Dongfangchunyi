@@ -40,14 +40,14 @@
 
   --spacing-header: 60px;
   --spacing-header-mobile: 6.5rem;
-  --spacing-page-gutter: max(32px, calc((100vw - 1400px) / 2));
+  --spacing-footer-column-gap: clamp(2.25rem, 5cqw, 4rem);
   --spacing-panel-gap: 0.5rem;
   --spacing-panel-min-height: 30.5rem;
   --spacing-core-panel-min-height: 25.5rem;
   --spacing-hero: 474px;
   --spacing-about-media: 26.5rem;
 
-  --container-panel: 93.75rem;
+  --container-page: 80rem;
   --container-card-media: 32rem;
   --container-card-details: 34rem;
   --container-footer-columns: 60rem;
@@ -160,7 +160,7 @@
 @utility page-container {
   margin-inline: auto;
   width: calc(100% - 4rem);
-  max-width: var(--container-panel);
+  max-width: var(--container-page);
 
   @variant max-page {
     width: calc(100% - 2rem);
