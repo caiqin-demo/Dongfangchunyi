@@ -29,7 +29,7 @@ export function ElisaManualSeries({ content }: ElisaManualSeriesProps) {
         role="region"
         tabIndex={0}
       >
-        <div className="grid min-w-[81.25rem] grid-cols-5 items-stretch">
+        <div className="grid min-w-[75rem] grid-cols-5 items-stretch">
           {content.products.map((product) => {
             const copy = content.productCopy[product.id];
             const panelBackground = product.panelTone === "warm" ? "bg-manual-panel-warm" : "bg-white";
