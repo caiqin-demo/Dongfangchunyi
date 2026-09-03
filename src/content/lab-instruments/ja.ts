@@ -14,7 +14,6 @@ export const jaLabInstrumentsContent = {
   eyebrow: "",
   title: "実験室用小型機器",
   intro: "実験台をもっとカラフルで生き生きと",
-  backToProducts: "主要製品へ戻る",
   skuLabels: {
     title: "仕様・品番",
     specification: "仕様 / 製品",

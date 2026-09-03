@@ -40,7 +40,6 @@ export function ContactPage({ lang }: PageProps) {
 
   return (
     <AboutPageTemplate
-      backLinkLabel={content.backToAbout}
       heroImageSrc={contactHero}
       intro={content.hero.intro}
       lang={lang}

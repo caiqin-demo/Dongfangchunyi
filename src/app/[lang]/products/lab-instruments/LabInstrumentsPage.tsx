@@ -34,7 +34,6 @@ export function LabInstrumentsPage({ lang }: PageProps) {
 
   return (
     <ProductPageTemplate
-      backLinkLabel={t.backToProducts}
       contact={t.contact}
       eyebrow={t.eyebrow}
       heroImageSrc={labInstrumentsHero}

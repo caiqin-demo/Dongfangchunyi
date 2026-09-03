@@ -10,7 +10,6 @@ export const jaAntibodyProductsContent = {
   eyebrow: "GNI® 抗体シリーズ",
   title: "抗体および対応担体製品",
   intro: "タグ抗体、HRP結合抗体、Affinity Gel、Magnetic Beadsの製品情報です。技術仕様は提供資料に基づきます。在庫と出荷予定はお問い合わせ時にご確認ください。",
-  backToProducts: "主要製品へ戻る",
   products: createAntibodyProducts({
     mab: {
       title: "Anti-Flag マウスモノクローナル抗体",

@@ -1,7 +1,6 @@
 import type { CompanyProfileContent } from "./types";
 
 export const jaCompanyProfileContent = {
-  backToAbout: "会社案内へ戻る",
   hero: {
     title: "会社紹介",
     intro: "ライフサイエンス製品・サービスの海外市場開拓に注力しています。",

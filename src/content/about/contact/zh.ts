@@ -1,7 +1,6 @@
 import type { ContactPageContent } from "./types";
 
 export const zhContactPageContent = {
-  backToAbout: "关于我们",
   details: [
     { id: "email", label: "邮箱" },
     { id: "phone", label: "电话" },

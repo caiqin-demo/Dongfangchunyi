@@ -15,15 +15,13 @@ const navLinkClass = `inline-flex min-h-6 items-center justify-center rounded-ac
 const languageLinkClass = `inline-flex min-h-6 min-w-6 items-center justify-center rounded-action text-on-dark-muted/85 transition-colors duration-200 hover:text-accent focus-visible:text-accent ${focusRingClass}`;
 
 type SiteHeaderProps = Readonly<{
-  backHref?: string;
-  backLinkLabel?: string;
   lang: Locale;
   localePath?: `/${string}`;
   preserveLocaleSearchParamKeys?: readonly string[];
   variant: "landing" | "subpage";
 }>;
 
-export function SiteHeader({ backHref, backLinkLabel, lang, localePath = "/", preserveLocaleSearchParamKeys = [], variant }: SiteHeaderProps) {
+export function SiteHeader({ lang, localePath = "/", preserveLocaleSearchParamKeys = [], variant }: SiteHeaderProps) {
   const content = contentByLocale[lang];
   const brandFontClass = lang === "ja" ? "font-brand-serif-jp" : "font-brand-serif-sc";
   const isLanding = variant === "landing";
@@ -42,7 +40,7 @@ export function SiteHeader({ backHref, backLinkLabel, lang, localePath = "/", pr
 
         <div className="flex items-center gap-[clamp(20px,2vw,32px)] max-page:gap-3.5 max-sm:static">
           <nav className="flex items-center gap-[clamp(26px,2.7vw,48px)] max-page:gap-5 max-stack:absolute max-stack:top-16 max-stack:left-0 max-stack:w-full max-stack:justify-between max-stack:gap-0 max-stack:overflow-visible max-stack:pb-3" aria-label={content.navigationLabels.main}>
-            {isLanding ? content.nav.map((item) => {
+            {content.nav.map((item) => {
               if (item.id === "contact") {
                 return (
                   <Link className={navLinkClass} href={`/${lang}${aboutPaths.contact}`} key={item.id}>
@@ -51,19 +49,25 @@ export function SiteHeader({ backHref, backLinkLabel, lang, localePath = "/", pr
                 );
               }
 
+              if (isLanding) {
+                return (
+                  <a
+                    aria-current={item.id === "home" ? "page" : undefined}
+                    className={`${navLinkClass} ${item.id === "home" ? "!text-accent" : ""}`}
+                    href={item.href}
+                    key={item.id}
+                  >
+                    {item.label}
+                  </a>
+                );
+              }
+
               return (
-                <a
-                  aria-current={item.id === "home" ? "page" : undefined}
-                  className={`${navLinkClass} ${item.id === "home" ? "!text-accent" : ""}`}
-                  href={item.href}
-                  key={item.id}
-                >
+                <Link className={navLinkClass} href={`/${lang}${item.href}`} key={item.id}>
                   {item.label}
-                </a>
+                </Link>
               );
-            }) : (
-              <Link className={navLinkClass} href={backHref ?? `/${lang}#products`}>← {backLinkLabel}</Link>
-            )}
+            })}
           </nav>
 
           <nav className="flex items-center gap-1.5 text-xs whitespace-nowrap text-on-dark-muted/85 max-page:text-[11px] max-stack:absolute max-stack:top-7 max-stack:right-0" aria-label={content.navigationLabels.language}>

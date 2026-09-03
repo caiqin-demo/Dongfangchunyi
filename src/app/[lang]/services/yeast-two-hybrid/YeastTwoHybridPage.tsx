@@ -33,7 +33,6 @@ export function YeastTwoHybridPage({ lang }: PageProps) {
 
   return (
     <ServicePageTemplate
-      backLinkLabel={t.backToServices}
       heroImageSrc={yeastTwoHybridHero}
       intro={t.intro}
       lang={lang}

@@ -10,7 +10,6 @@ export const jaElisaKitsContent = {
   eyebrow: "HannaH®キットシリーズ",
   title: "ELISA検出キット",
   intro: "インターロイキン、INF、TNF、VEGFなど、多くの注目標的をカバーしています。以下の技術仕様は提供された製品資料に基づいて整理しています。最新の在庫状況と出荷予定については、お問い合わせください。",
-  backToProducts: "主要製品へ戻る",
   product: {
     title: "ELISA検出キット",
     subtitle: "ELISA Kit Series",

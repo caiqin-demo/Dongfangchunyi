@@ -7,7 +7,6 @@ export const jaYeastTwoHybridContent = {
   },
   title: "Yeast Two Hybrid",
   intro: "酵母転写因子GAL4を基盤とするツーハイブリッドシステム。20年のサービス実績",
-  backToServices: "主要サービスへ戻る",
   overview: {
     title: "サービス概要",
   },
