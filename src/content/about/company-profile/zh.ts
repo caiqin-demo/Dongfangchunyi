@@ -1,7 +1,6 @@
 import type { CompanyProfileContent } from "./types";
 
 export const zhCompanyProfileContent = {
-  backToAbout: "下一步",
   hero: {
     title: "关于我们",
     intro: "专注于生命科学产品和服务在海外市场开拓",

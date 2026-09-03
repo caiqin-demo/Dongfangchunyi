@@ -14,7 +14,6 @@ export const zhLabInstrumentsContent = {
   eyebrow: "",
   title: "实验室小仪器",
   intro: "让实验桌面变得更加多彩和生动",
-  backToProducts: "返回核心产品",
   skuLabels: {
     title: "规格与货号",
     specification: "规格 / 产品",

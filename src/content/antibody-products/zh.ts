@@ -13,7 +13,6 @@ export const zhAntibodyProductsContent = {
   eyebrow: "GNI® 抗体系列",
   title: "抗体及相应填料产品",
   intro: "标签抗体、HRP 偶联抗体、Affinity Gel 与 Magnetic Beads 产品信息。以下技术参数按所提供的产品资料整理；实时库存与发货安排请联系确认。",
-  backToProducts: "返回核心产品",
   products: createAntibodyProducts({
     mab: {
       title: "Anti-Flag 鼠单克隆抗体",

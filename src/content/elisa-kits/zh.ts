@@ -10,7 +10,6 @@ export const zhElisaKitsContent = {
   eyebrow: "HannaH®试剂盒系列",
   title: "ELISA检测试剂盒",
   intro: "涵盖多种热门标靶，如白介素, INF, TNF, VEGF等。以下技术参数按所提供的产品资料整理；实时库存与发货安排请联系确认。",
-  backToProducts: "返回核心产品",
   product: {
     title: "ELISA检测试剂盒",
     subtitle: "ELISA Kit Series",

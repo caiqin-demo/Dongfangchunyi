@@ -74,7 +74,6 @@ export function ElisaKitsPage({ lang }: PageProps) {
   ];
   return (
     <ProductPageTemplate
-      backLinkLabel={t.backToProducts}
       contact={t.contact}
       eyebrow={t.eyebrow}
       heroImageSrc={elisaKitsHero}

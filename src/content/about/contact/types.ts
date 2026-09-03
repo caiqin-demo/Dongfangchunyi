@@ -11,7 +11,6 @@ export type ContactDetailValue = Readonly<{
 }>;
 
 export type ContactPageContent = Readonly<{
-  backToAbout: string;
   details: readonly [
     ContactDetailLabel<"email">,
     ContactDetailLabel<"phone">,

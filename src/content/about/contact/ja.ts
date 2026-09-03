@@ -1,7 +1,6 @@
 import type { ContactPageContent } from "./types";
 
 export const jaContactPageContent = {
-  backToAbout: "会社案内へ戻る",
   details: [
     { id: "email", label: "メール" },
     { id: "phone", label: "電話" },

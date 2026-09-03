@@ -48,7 +48,6 @@ export function AntibodyProductsPage({ lang }: PageProps) {
 
   return (
     <ProductPageTemplate
-      backLinkLabel={t.backToProducts}
       contact={t.contact}
       contactSupplement={(
         <div>

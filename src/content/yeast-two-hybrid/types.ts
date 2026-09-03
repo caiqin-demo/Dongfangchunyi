@@ -86,7 +86,6 @@ export type NuclearSystem = Readonly<{
 export type YeastTwoHybridSystem = MembraneSystem | NuclearSystem;
 
 export type YeastTwoHybridContent = Readonly<{
-  backToServices: string;
   intro: string;
   metadata: Readonly<{
     description: string;

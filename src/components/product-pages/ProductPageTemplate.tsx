@@ -10,7 +10,6 @@ import type { Locale } from "@/i18n/config";
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 type ProductPageTemplateProps = Readonly<{
-  backLinkLabel: string;
   children: ReactNode;
   contact: Readonly<{
     description: string;
@@ -28,7 +27,6 @@ type ProductPageTemplateProps = Readonly<{
 }>;
 
 export function ProductPageTemplate({
-  backLinkLabel,
   children,
   contact,
   contactSupplement,
@@ -47,7 +45,7 @@ export function ProductPageTemplate({
         {home.skipToContent}
       </a>
 
-      <SiteHeader backHref={`/${lang}#products`} backLinkLabel={backLinkLabel} lang={lang} localePath={pagePath} variant="subpage" />
+      <SiteHeader lang={lang} localePath={pagePath} variant="subpage" />
 
       <main id="main-content" tabIndex={-1}>
         <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">

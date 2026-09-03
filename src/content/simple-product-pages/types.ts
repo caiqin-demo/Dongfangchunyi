@@ -1,5 +1,4 @@
 export type SimpleProductPageContent = Readonly<{
-  backToProducts: string;
   contact: Readonly<{
     description: string;
     email: string;

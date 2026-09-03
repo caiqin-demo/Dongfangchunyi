@@ -10,7 +10,6 @@ import type { Locale } from "@/i18n/config";
 const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 type AboutPageTemplateProps = Readonly<{
-  backLinkLabel: string;
   children: ReactNode;
   heroImageSrc: ImageProps["src"];
   intro: string;
@@ -19,7 +18,7 @@ type AboutPageTemplateProps = Readonly<{
   title: string;
 }>;
 
-export function AboutPageTemplate({ backLinkLabel, children, heroImageSrc, intro, lang, pagePath, title }: AboutPageTemplateProps) {
+export function AboutPageTemplate({ children, heroImageSrc, intro, lang, pagePath, title }: AboutPageTemplateProps) {
   const home = contentByLocale[lang];
   const fontClass = lang === "ja" ? "font-sans-jp" : "font-sans-sc";
 
@@ -29,7 +28,7 @@ export function AboutPageTemplate({ backLinkLabel, children, heroImageSrc, intro
         {home.skipToContent}
       </a>
 
-      <SiteHeader backHref={`/${lang}#about`} backLinkLabel={backLinkLabel} lang={lang} localePath={pagePath} variant="subpage" />
+      <SiteHeader lang={lang} localePath={pagePath} variant="subpage" />
 
       <main id="main-content" tabIndex={-1}>
         <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">

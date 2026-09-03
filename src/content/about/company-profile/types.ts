@@ -10,7 +10,6 @@ type Capability<Id extends CompanyProfileCapabilityId> = Readonly<{
 }>;
 
 export type CompanyProfileContent = Readonly<{
-  backToAbout: string;
   capabilities: Readonly<{
     heading: string;
     items: readonly [

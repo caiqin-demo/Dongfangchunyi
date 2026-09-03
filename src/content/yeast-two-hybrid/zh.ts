@@ -7,7 +7,6 @@ export const zhYeastTwoHybridContent = {
   },
   title: "Yeast Two Hybrid",
   intro: "基于酵母转录基因子GAL4的双杂交系统，20年服务经验",
-  backToServices: "返回核心服务",
   overview: {
     title: "服务概述",
   },

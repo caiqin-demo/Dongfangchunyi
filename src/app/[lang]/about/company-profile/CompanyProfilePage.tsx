@@ -44,7 +44,6 @@ export function CompanyProfilePage({ lang }: PageProps) {
 
   return (
     <AboutPageTemplate
-      backLinkLabel={content.backToAbout}
       heroImageSrc={companyProfileHero}
       intro={content.hero.intro}
       lang={lang}

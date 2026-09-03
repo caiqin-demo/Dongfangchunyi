@@ -22,7 +22,6 @@ export type AntibodyProductsContent = Readonly<{
   eyebrow: string;
   title: string;
   intro: string;
-  backToProducts: string;
   products: readonly [
     AntibodyProductContent,
     AntibodyProductContent,
