@@ -63,7 +63,7 @@ export function ElisaKitsPage({ lang }: PageProps) {
       label: t.skuLabels.shippingOrigin,
       getValue: (sku) => sku.shippingOrigin,
       cellClassName: "leading-5 text-ink-muted",
-      weight: 22,
+      weight: 26,
     },
     {
       id: "availability",
@@ -99,6 +99,8 @@ export function ElisaKitsPage({ lang }: PageProps) {
             columns={skuColumns}
             getRowKey={(sku) => sku.id}
             rows={t.product.skus}
+            sectionClassName="max-w-[420px]"
+            tableMinWidthClassName="min-w-[420px]"
             title={t.skuLabels.title}
             titleId="elisa-sku-title"
           />
