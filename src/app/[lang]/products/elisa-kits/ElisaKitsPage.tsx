@@ -99,7 +99,7 @@ export function ElisaKitsPage({ lang }: PageProps) {
             columns={skuColumns}
             getRowKey={(sku) => sku.id}
             rows={t.product.skus}
-            sectionClassName="max-w-[420px]"
+            sectionClassName="max-w-[422px]"
             tableMinWidthClassName="min-w-[420px]"
             title={t.skuLabels.title}
             titleId="elisa-sku-title"
