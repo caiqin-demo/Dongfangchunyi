@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { GenomeSequencingBody } from "@/app/[lang]/services/genome-sequencing/GenomeSequencingBody";
 import { GenomeSequencingOptions } from "@/app/[lang]/services/genome-sequencing/GenomeSequencingOptions";
 import { ServicePageTemplate } from "@/components/service-pages/ServicePageTemplate";
 import { genomeSequencingContentByLocale } from "@/content/genome-sequencing";
@@ -8,6 +9,7 @@ import { servicePaths } from "@/lib/service-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
 import genomeSequencingHero from "./_assets/genome-sequencing-hero.jpeg";
+import genomeSequencingTeam from "./_assets/genome-sequencing-team.jpg";
 
 type PageProps = Readonly<{ lang: Locale }>;
 
@@ -43,6 +45,7 @@ export function GenomeSequencingPage({ lang }: PageProps) {
         optionGroupLabel={t.optionGroupLabel}
         options={t.options}
       />
+      <GenomeSequencingBody body={t.body} teamImage={genomeSequencingTeam} />
     </ServicePageTemplate>
   );
 }

@@ -10,7 +10,7 @@ export function GenomeSequencingOptions({
   options,
 }: GenomeSequencingOptionsProps) {
   return (
-    <section className="bg-ui-subtle py-8 text-ink" aria-label={optionGroupLabel}>
+    <section className="bg-ui-subtle pt-8 text-ink" aria-label={optionGroupLabel}>
       <div className="page-container">
         <div className="flex flex-wrap justify-center gap-3">
           {options.map((option) => (
