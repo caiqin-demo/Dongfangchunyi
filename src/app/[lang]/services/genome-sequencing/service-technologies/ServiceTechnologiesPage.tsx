@@ -3,12 +3,15 @@ import type { Metadata } from "next";
 import { GenomeSequencingOptions } from "@/app/[lang]/services/genome-sequencing/GenomeSequencingOptions";
 import { GenomeSequencingBodyFrame } from "@/app/[lang]/services/genome-sequencing/GenomeSequencingBodyFrame";
 import { ServicePageTemplate } from "@/components/service-pages/ServicePageTemplate";
+import { genomeSequencingContentByLocale } from "@/content/genome-sequencing";
 import { serviceTechnologiesContentByLocale } from "@/content/service-technologies";
 import { defaultLocale, type Locale } from "@/i18n/config";
 import { genomeSequencingServiceTechnologiesPath } from "@/lib/service-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
 import serviceTechnologiesHero from "./_assets/service-technologies-hero.jpg";
+import genomeResequencingZh from "./_assets/genome-resequencing-zh.jpg";
+import { ServiceTechnologiesBodyCard } from "./ServiceTechnologiesBodyCard";
 
 type PageProps = Readonly<{ lang: Locale }>;
 
@@ -29,6 +32,7 @@ export function getServiceTechnologiesMetadata(lang: Locale): Metadata {
 
 export function ServiceTechnologiesPage({ lang }: PageProps) {
   const content = serviceTechnologiesContentByLocale[lang];
+  const categories = genomeSequencingContentByLocale[lang].body.categories;
 
   return (
     <ServicePageTemplate
@@ -44,7 +48,11 @@ export function ServiceTechnologiesPage({ lang }: PageProps) {
         options={content.options}
       />
       <GenomeSequencingBodyFrame contact={content.contact}>
-        <div aria-hidden="true" className="min-h-[clamp(16rem,30vw,24rem)] rounded-product-card border border-line bg-white shadow-media" />
+        <ServiceTechnologiesBodyCard
+          assets={{ "genome-resequencing-zh": genomeResequencingZh }}
+          card={content.bodyCard}
+          categories={categories}
+        />
       </GenomeSequencingBodyFrame>
     </ServicePageTemplate>
   );
