@@ -87,7 +87,7 @@ test("service technologies locale maps are exhaustive and keep Japanese card con
   assert.match(zh, /alt: "基因组重测序技术路线图"/);
   assert.match(zh, /assetId: "marine-microbiology-research-zh"/);
   assert.match(zh, /alt: "海洋微生物研究技术路线图"/);
-  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 11);
+  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 12);
   assert.match(ja, /categoryLabelMode: "placeholder"/);
   assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 0);
   assert.match(
@@ -278,6 +278,33 @@ test("service technologies maps all single-cell sequencing rows to the approved 
     /import singleCellSequencingZh from "\.\/\_assets\/single-cell-sequencing-zh\.jpg"/,
   );
   assert.match(page, /"single-cell-sequencing-zh":\s*singleCellSequencingZh/);
+});
+
+test("service technologies maps all genome de novo sequencing rows to the approved Chinese image", () => {
+  const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/genome-de-novo-sequencing-zh.jpg", import.meta.url);
+  const bytes = readFileSync(asset);
+  const genomeZh = readSource("src/content/genome-sequencing/zh.ts");
+  const zh = readSource("src/content/service-technologies/zh.ts");
+  const ja = readSource("src/content/service-technologies/ja.ts");
+  const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
+
+  assert.equal(statSync(asset).size, 851520);
+  assert.equal(bytes.subarray(0, 3).toString("hex"), "ffd8ff");
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    "d7f090f0c9e18793455c1bb2374ef400063ffb062f6f98e8b757f848b48405a1",
+  );
+  assert.equal((genomeZh.match(/id: "genome-de-novo-sequencing"/g) ?? []).length, 3);
+  assert.match(
+    zh,
+    /"genome-de-novo-sequencing": \{\s+kind: "ready",\s+assetId: "genome-de-novo-sequencing-zh",\s+alt: "基因组de novo测序技术路线图"/,
+  );
+  assert.match(ja, /"genome-de-novo-sequencing": \{ kind: "pending", label: "暂定" \}/);
+  assert.match(
+    page,
+    /import genomeDeNovoSequencingZh from "\.\/\_assets\/genome-de-novo-sequencing-zh\.jpg"/,
+  );
+  assert.match(page, /"genome-de-novo-sequencing-zh":\s*genomeDeNovoSequencingZh/);
 });
 
 test("service technologies maps whole-transcriptome sequencing to the approved Chinese image", () => {

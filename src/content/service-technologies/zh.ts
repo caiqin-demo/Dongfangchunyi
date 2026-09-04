@@ -23,7 +23,11 @@ export const zhServiceTechnologiesContent = {
         assetId: "single-cell-sequencing-zh",
         alt: "单细胞测序技术路线图",
       },
-      "genome-de-novo-sequencing": { kind: "pending", label: "暂定" },
+      "genome-de-novo-sequencing": {
+        kind: "ready",
+        assetId: "genome-de-novo-sequencing-zh",
+        alt: "基因组de novo测序技术路线图",
+      },
       "absolute-quantification-microbial-diversity-sequencing": {
         kind: "ready",
         assetId: "absolute-quantification-microbial-diversity-sequencing-zh",

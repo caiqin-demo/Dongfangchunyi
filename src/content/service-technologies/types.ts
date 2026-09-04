@@ -9,6 +9,7 @@ export type ServiceTechnologySelectionKey =
 
 export type ServiceTechnologyAssetId =
   | "absolute-quantification-microbial-diversity-sequencing-zh"
+  | "genome-de-novo-sequencing-zh"
   | "genome-resequencing-zh"
   | "marine-microbiology-research-zh"
   | "multidimensional-analysis-platform-zh"
