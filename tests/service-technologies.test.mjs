@@ -73,7 +73,7 @@ test("service technologies card has accessible buttons and exact approved displa
   assert.doesNotMatch(card, /总共12种|鼠标指向黑色字体/);
 });
 
-test("service technologies locale maps are exhaustive and keep Japanese card content pending", () => {
+test("service technologies locale maps are exhaustive and keep Japanese details pending", () => {
   const zh = readSource("src/content/service-technologies/zh.ts");
   const ja = readSource("src/content/service-technologies/ja.ts");
 
@@ -89,14 +89,21 @@ test("service technologies locale maps are exhaustive and keep Japanese card con
   assert.match(zh, /assetId: "marine-microbiology-research-zh"/);
   assert.match(zh, /alt: "海洋微生物研究技术路线图"/);
   assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 13);
-  assert.match(ja, /categoryLabelMode: "placeholder"/);
+  assert.match(ja, /metadata: \{\s+title: "サービス関連技術 \| 東方純一",\s+description: "ゲノムシーケンシング技術の応用およびその他の分子間相互作用機構と発現制御",\s+\}/);
+  assert.match(ja, /title: "サービス関連技術"/);
+  assert.match(ja, /intro: "ゲノムシーケンシング技術の応用およびその他の分子間相互作用機構と発現制御"/);
+  assert.match(ja, /optionGroupLabel: "シーケンシングの選択肢"/);
+  assert.match(ja, /categoryLabelMode: "source"/);
+  assert.match(ja, /placeholderLabel: "準備中"/);
+  assert.match(ja, /label: "お問い合わせ"/);
   assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 0);
   assert.match(
     ja,
-    /"absolute-quantification-microbial-diversity-sequencing": \{ kind: "pending", label: "暂定" \}/,
+    /"absolute-quantification-microbial-diversity-sequencing": \{ kind: "pending", label: "準備中" \}/,
   );
   const jaDisplayMap = ja.match(/displayByItemId: \{([\s\S]*?)\n    \},\n  \},\n  contact:/)?.[1] ?? "";
-  assert.equal((jaDisplayMap.match(/label: "暂定"/g) ?? []).length, 13);
+  assert.equal((jaDisplayMap.match(/label: "準備中"/g) ?? []).length, 13);
+  assert.doesNotMatch(ja, /暂定/);
 });
 
 test("service technologies preserves the approved resequencing image bytes", () => {
@@ -182,7 +189,7 @@ test("service technologies maps multidimensional platform items to the approved 
       zh,
       new RegExp(`"${id}": \\{\\s+kind: "ready",\\s+assetId: "multidimensional-analysis-platform-zh"`),
     );
-    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "暂定" \\}`));
+    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "準備中" \\}`));
   }
   assert.match(
     page,
@@ -212,7 +219,7 @@ test("service technologies maps molecular interaction items to the approved Chin
       zh,
       new RegExp(`"${id}": \\{\\s+kind: "ready",\\s+assetId: "multidimensional-analysis-platform-interactions-zh"`),
     );
-    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "暂定" \\}`));
+    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "準備中" \\}`));
   }
   assert.match(
     page,
@@ -242,7 +249,7 @@ test("service technologies maps proteomics and multiomics items to the approved 
       zh,
       new RegExp(`"${id}": \\{\\s+kind: "ready",\\s+assetId: "multidimensional-analysis-platform-multiomics-zh"`),
     );
-    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "暂定" \\}`));
+    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "準備中" \\}`));
   }
   assert.match(
     page,
@@ -273,7 +280,7 @@ test("service technologies maps all single-cell sequencing rows to the approved 
     zh,
     /"single-cell-sequencing": \{\s+kind: "ready",\s+assetId: "single-cell-sequencing-zh",\s+alt: "单细胞测序技术路线图"/,
   );
-  assert.match(ja, /"single-cell-sequencing": \{ kind: "pending", label: "暂定" \}/);
+  assert.match(ja, /"single-cell-sequencing": \{ kind: "pending", label: "準備中" \}/);
   assert.match(
     page,
     /import singleCellSequencingZh from "\.\/\_assets\/single-cell-sequencing-zh\.jpg"/,
@@ -300,7 +307,7 @@ test("service technologies maps all genome de novo sequencing rows to the approv
     zh,
     /"genome-de-novo-sequencing": \{\s+kind: "ready",\s+assetId: "genome-de-novo-sequencing-zh",\s+alt: "基因组de novo测序技术路线图"/,
   );
-  assert.match(ja, /"genome-de-novo-sequencing": \{ kind: "pending", label: "暂定" \}/);
+  assert.match(ja, /"genome-de-novo-sequencing": \{ kind: "pending", label: "準備中" \}/);
   assert.match(
     page,
     /import genomeDeNovoSequencingZh from "\.\/\_assets\/genome-de-novo-sequencing-zh\.jpg"/,
@@ -327,7 +334,7 @@ test("service technologies maps all DAP-seq technical service rows to the approv
     zh,
     /"dap-seq-technical-service": \{\s+kind: "ready",\s+assetId: "dap-seq-technical-service-zh",\s+alt: "DAP-seq技术服务路线图"/,
   );
-  assert.match(ja, /"dap-seq-technical-service": \{ kind: "pending", label: "暂定" \}/);
+  assert.match(ja, /"dap-seq-technical-service": \{ kind: "pending", label: "準備中" \}/);
   assert.match(
     page,
     /import dapSeqTechnicalServiceZh from "\.\/\_assets\/dap-seq-technical-service-zh\.jpg"/,
@@ -352,7 +359,7 @@ test("service technologies maps whole-transcriptome sequencing to the approved C
     zh,
     /"whole-transcriptome-sequencing": \{\s+kind: "ready",\s+assetId: "whole-transcriptome-sequencing-zh",\s+alt: "全转录组测序技术路线图"/,
   );
-  assert.match(ja, /"whole-transcriptome-sequencing": \{ kind: "pending", label: "暂定" \}/);
+  assert.match(ja, /"whole-transcriptome-sequencing": \{ kind: "pending", label: "準備中" \}/);
   assert.match(
     page,
     /import wholeTranscriptomeSequencingZh from "\.\/\_assets\/whole-transcriptome-sequencing-zh\.jpg"/,
