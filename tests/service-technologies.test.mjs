@@ -33,6 +33,7 @@ test("service technologies card preserves the approved component boundary and da
   assert.match(page, /absoluteQuantificationMicrobialDiversitySequencingZh/);
   assert.match(page, /genomeResequencingZh/);
   assert.match(page, /marineMicrobiologyResearchZh/);
+  assert.match(page, /multidimensionalAnalysisPlatformZh/);
   assert.doesNotMatch(page, /aria-hidden="true" className="min-h-/);
   assert.match(card, /^"use client";/);
   assert.match(card, /useState<ServiceTechnologySelectionKey \| null>\(null\)/);
@@ -84,7 +85,7 @@ test("service technologies locale maps are exhaustive and keep Japanese card con
   assert.match(zh, /alt: "基因组重测序技术路线图"/);
   assert.match(zh, /assetId: "marine-microbiology-research-zh"/);
   assert.match(zh, /alt: "海洋微生物研究技术路线图"/);
-  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 3);
+  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 5);
   assert.match(ja, /categoryLabelMode: "placeholder"/);
   assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 0);
   assert.match(
@@ -157,5 +158,35 @@ test("service technologies maps marine microbiology research to the approved Chi
   assert.match(
     page,
     /"marine-microbiology-research-zh":\s*marineMicrobiologyResearchZh/,
+  );
+});
+
+test("service technologies maps multidimensional platform items to the approved Chinese image", () => {
+  const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/multidimensional-analysis-platform-zh.jpg", import.meta.url);
+  const bytes = readFileSync(asset);
+  const zh = readSource("src/content/service-technologies/zh.ts");
+  const ja = readSource("src/content/service-technologies/ja.ts");
+  const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
+
+  assert.equal(statSync(asset).size, 799557);
+  assert.equal(bytes.subarray(0, 3).toString("hex"), "ffd8ff");
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    "678261e9b09a0787658f6f9bbce07092540e6bbf995df540a33711500d25a65a",
+  );
+  for (const id of ["epigenetics-service", "mrna-in-situ-hybridization"]) {
+    assert.match(
+      zh,
+      new RegExp(`"${id}": \\{\\s+kind: "ready",\\s+assetId: "multidimensional-analysis-platform-zh"`),
+    );
+    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "暂定" \\}`));
+  }
+  assert.match(
+    page,
+    /import multidimensionalAnalysisPlatformZh from "\.\/\_assets\/multidimensional-analysis-platform-zh\.jpg"/,
+  );
+  assert.match(
+    page,
+    /"multidimensional-analysis-platform-zh":\s*multidimensionalAnalysisPlatformZh/,
   );
 });

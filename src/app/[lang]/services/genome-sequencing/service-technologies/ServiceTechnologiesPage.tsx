@@ -13,6 +13,7 @@ import serviceTechnologiesHero from "./_assets/service-technologies-hero.jpg";
 import absoluteQuantificationMicrobialDiversitySequencingZh from "./_assets/absolute-quantification-microbial-diversity-sequencing-zh.jpg";
 import genomeResequencingZh from "./_assets/genome-resequencing-zh.jpg";
 import marineMicrobiologyResearchZh from "./_assets/marine-microbiology-research-zh.jpg";
+import multidimensionalAnalysisPlatformZh from "./_assets/multidimensional-analysis-platform-zh.jpg";
 import { ServiceTechnologiesBodyCard } from "./ServiceTechnologiesBodyCard";
 
 type PageProps = Readonly<{ lang: Locale }>;
@@ -56,6 +57,8 @@ export function ServiceTechnologiesPage({ lang }: PageProps) {
               absoluteQuantificationMicrobialDiversitySequencingZh,
             "genome-resequencing-zh": genomeResequencingZh,
             "marine-microbiology-research-zh": marineMicrobiologyResearchZh,
+            "multidimensional-analysis-platform-zh":
+              multidimensionalAnalysisPlatformZh,
           }}
           card={content.bodyCard}
           categories={categories}

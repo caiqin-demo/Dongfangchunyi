@@ -37,8 +37,16 @@ export const zhServiceTechnologiesContent = {
         assetId: "marine-microbiology-research-zh",
         alt: "海洋微生物研究技术路线图",
       },
-      "epigenetics-service": { kind: "pending", label: "暂定" },
-      "mrna-in-situ-hybridization": { kind: "pending", label: "暂定" },
+      "epigenetics-service": {
+        kind: "ready",
+        assetId: "multidimensional-analysis-platform-zh",
+        alt: "多维度解析平台技术路线图",
+      },
+      "mrna-in-situ-hybridization": {
+        kind: "ready",
+        assetId: "multidimensional-analysis-platform-zh",
+        alt: "多维度解析平台技术路线图",
+      },
       "yeast-two-hybrid": { kind: "pending", label: "暂定" },
       "spr-molecular-interaction-research": { kind: "pending", label: "暂定" },
       "proteomics-and-metabolomics": { kind: "pending", label: "暂定" },
