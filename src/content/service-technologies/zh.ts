@@ -20,7 +20,11 @@ export const zhServiceTechnologiesContent = {
     displayByItemId: {
       "single-cell-sequencing": { kind: "pending", label: "暂定" },
       "genome-de-novo-sequencing": { kind: "pending", label: "暂定" },
-      "absolute-quantification-microbial-diversity-sequencing": { kind: "pending", label: "暂定" },
+      "absolute-quantification-microbial-diversity-sequencing": {
+        kind: "ready",
+        assetId: "absolute-quantification-microbial-diversity-sequencing-zh",
+        alt: "绝对定量微生物多样性测序技术路线图",
+      },
       "dap-seq-technical-service": { kind: "pending", label: "暂定" },
       "genome-resequencing": {
         kind: "ready",

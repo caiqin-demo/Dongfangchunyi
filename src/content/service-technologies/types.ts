@@ -7,7 +7,9 @@ import type {
 export type ServiceTechnologySelectionKey =
   `${GenomeSequencingOptionId}:${GenomeSequencingServiceItemId}`;
 
-export type ServiceTechnologyAssetId = "genome-resequencing-zh";
+export type ServiceTechnologyAssetId =
+  | "absolute-quantification-microbial-diversity-sequencing-zh"
+  | "genome-resequencing-zh";
 
 export type ServiceTechnologyDisplay =
   | Readonly<{

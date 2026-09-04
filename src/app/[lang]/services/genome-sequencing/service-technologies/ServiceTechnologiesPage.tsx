@@ -10,6 +10,7 @@ import { genomeSequencingServiceTechnologiesPath } from "@/lib/service-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
 import serviceTechnologiesHero from "./_assets/service-technologies-hero.jpg";
+import absoluteQuantificationMicrobialDiversitySequencingZh from "./_assets/absolute-quantification-microbial-diversity-sequencing-zh.jpg";
 import genomeResequencingZh from "./_assets/genome-resequencing-zh.jpg";
 import { ServiceTechnologiesBodyCard } from "./ServiceTechnologiesBodyCard";
 
@@ -49,7 +50,11 @@ export function ServiceTechnologiesPage({ lang }: PageProps) {
       />
       <GenomeSequencingBodyFrame contact={content.contact}>
         <ServiceTechnologiesBodyCard
-          assets={{ "genome-resequencing-zh": genomeResequencingZh }}
+          assets={{
+            "absolute-quantification-microbial-diversity-sequencing-zh":
+              absoluteQuantificationMicrobialDiversitySequencingZh,
+            "genome-resequencing-zh": genomeResequencingZh,
+          }}
           card={content.bodyCard}
           categories={categories}
         />

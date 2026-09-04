@@ -30,6 +30,7 @@ test("service technologies card preserves the approved component boundary and da
   assert.match(page, /GenomeSequencingBodyFrame contact=\{content\.contact\}/);
   assert.match(page, /<ServiceTechnologiesBodyCard/);
   assert.match(page, /categories=\{categories\}/);
+  assert.match(page, /absoluteQuantificationMicrobialDiversitySequencingZh/);
   assert.match(page, /genomeResequencingZh/);
   assert.doesNotMatch(page, /aria-hidden="true" className="min-h-/);
   assert.match(card, /^"use client";/);
@@ -76,11 +77,17 @@ test("service technologies locale maps are exhaustive and keep Japanese card con
     assert.match(ja, new RegExp(`"${id}"`));
   }
   assert.match(zh, /categoryLabelMode: "source"/);
+  assert.match(zh, /assetId: "absolute-quantification-microbial-diversity-sequencing-zh"/);
+  assert.match(zh, /alt: "绝对定量微生物多样性测序技术路线图"/);
   assert.match(zh, /assetId: "genome-resequencing-zh"/);
   assert.match(zh, /alt: "基因组重测序技术路线图"/);
-  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 1);
+  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 2);
   assert.match(ja, /categoryLabelMode: "placeholder"/);
   assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 0);
+  assert.match(
+    ja,
+    /"absolute-quantification-microbial-diversity-sequencing": \{ kind: "pending", label: "暂定" \}/,
+  );
   const jaDisplayMap = ja.match(/displayByItemId: \{([\s\S]*?)\n    \},\n  \},\n  contact:/)?.[1] ?? "";
   assert.equal((jaDisplayMap.match(/label: "暂定"/g) ?? []).length, 13);
 });
@@ -96,4 +103,30 @@ test("service technologies preserves the approved resequencing image bytes", () 
     "8477d88aafdc9c4144ee5098873d6977d714f6bee93b9e8880ff0003970de5fa",
   );
   assert.match(readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx"), /import genomeResequencingZh from "\.\/\_assets\/genome-resequencing-zh\.jpg"/);
+});
+
+test("service technologies maps all absolute quantification rows to the approved Chinese image", () => {
+  const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/absolute-quantification-microbial-diversity-sequencing-zh.jpg", import.meta.url);
+  const bytes = readFileSync(asset);
+  const genomeZh = readSource("src/content/genome-sequencing/zh.ts");
+  const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
+
+  assert.equal(statSync(asset).size, 873987);
+  assert.equal(bytes.subarray(0, 3).toString("hex"), "ffd8ff");
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    "ff16ee454c3b4a0f65de785923552c6c37bb3045b05d477831c18b8a7fa925a9",
+  );
+  assert.equal(
+    (genomeZh.match(/id: "absolute-quantification-microbial-diversity-sequencing"/g) ?? []).length,
+    3,
+  );
+  assert.match(
+    page,
+    /import absoluteQuantificationMicrobialDiversitySequencingZh from "\.\/\_assets\/absolute-quantification-microbial-diversity-sequencing-zh\.jpg"/,
+  );
+  assert.match(
+    page,
+    /"absolute-quantification-microbial-diversity-sequencing-zh":\s*absoluteQuantificationMicrobialDiversitySequencingZh/,
+  );
 });
