@@ -15,6 +15,7 @@ export const zhGenomeSequencingContent = {
     { id: "multidimensional-analysis-platform", label: "多维度解析平台" },
   ],
   body: {
+    technicalRouteLabel: "技术路线+",
     contact: {
       label: "咨询请联系",
       emails: ["market@easternpurity.com", "info@shanghaigenomics.com"],

@@ -50,30 +50,49 @@ test("genome sequencing body keeps the approved Chinese structure and copy", () 
   assert.match(content, /上海睿星生物技术有限公司测序核心团队有着20多年的二代基因组测序经验/);
 });
 
-test("Japanese body content remains structurally equivalent and provisional", () => {
+test("Japanese genome sequencing content is translated and structurally equivalent", () => {
   const content = readSource("src/content/genome-sequencing/ja.ts");
+  const chineseContent = readSource("src/content/genome-sequencing/zh.ts");
 
-  assert.equal((content.match(/"暂定"/g) ?? []).length, 57);
+  assert.equal((content.match(/暂定/g) ?? []).length, 0);
+  assert.match(content, /title: "ゲノムシーケンシング \| 東方純一"/);
+  assert.match(content, /description: "動植物および微生物分野における第二・第三世代ゲノムおよびトランスクリプトームシーケンシング関連サービスに注力しています。"/);
+  assert.match(content, /intro: "動植物および微生物分野における第二・第三世代ゲノムおよびトランスクリプトームシーケンシング関連サービスに注力しています。"/);
+  assert.match(content, /optionGroupLabel: "シーケンシングの選択肢"/);
+  assert.match(content, /technicalRouteLabel: "技術フロー\+"/);
+  assert.match(content, /label: "お問い合わせ"/);
+  assert.match(content, /emails: \["market@easternpurity\.com", "info@shanghaigenomics\.com"\]/);
   assert.deepEqual(
-    [...content.matchAll(/id: "(plant-and-cell|animal-and-cell|microorganism|multidimensional-analysis-platform)"/g)].map(([, id]) => id),
+    [...content.matchAll(/id: "(plant-and-cell|animal-and-cell|microorganism|multidimensional-analysis-platform)", label: "([^"]+)"/g)].map(([, id, label]) => ({ id, label })),
     [
-      "plant-and-cell",
-      "animal-and-cell",
-      "microorganism",
-      "multidimensional-analysis-platform",
-      "plant-and-cell",
-      "animal-and-cell",
-      "microorganism",
-      "multidimensional-analysis-platform",
+      { id: "plant-and-cell", label: "植物・細胞" },
+      { id: "animal-and-cell", label: "動物・細胞" },
+      { id: "microorganism", label: "微生物" },
+      { id: "multidimensional-analysis-platform", label: "多次元解析プラットフォーム" },
+      { id: "plant-and-cell", label: "植物・細胞" },
+      { id: "animal-and-cell", label: "動物・細胞" },
+      { id: "microorganism", label: "微生物" },
+      { id: "multidimensional-analysis-platform", label: "多次元解析プラットフォーム" },
     ],
   );
-  assert.match(content, /id: "heng-xu-2026-07-15", citation: "暂定", title: "暂定"/);
-  assert.match(content, /id: "chaocheng-guo-2025-03-17", citation: "暂定", title: "暂定"/);
+  assert.match(content, /id: "genome-de-novo-sequencing", label: "de novoゲノムシーケンシング"/);
+  assert.equal((content.match(/de novoゲノムシーケンシング/g) ?? []).length, 3);
+  assert.match(content, /id: "whole-transcriptome-sequencing", label: "全トランスクリプトームシーケンシング"/);
+  assert.match(content, /title: "お客様による発表論文"/);
+  assert.match(content, /title: "シーケンシング中核チーム"/);
+  assert.match(content, /上海睿星生物技術有限公司のシーケンシング中核チームは、20年以上にわたる第二世代ゲノムシーケンシングの経験を有しています。特に植物学および微生物学の分野では、中国科学院分子植物科学卓越イノベーションセンターと長年にわたり協力し、これらの分野におけるシーケンシングとバイオインフォマティクス解析の豊富な経験を蓄積してきました。/);
+  assert.match(content, /2つの主要なシーケンシングプラットフォームであるIlluminaとBGIにより、さまざまなお客様のニーズに対応できます。また、経験豊富なバイオインフォマティクス解析力を活かし、お客様一人ひとりに最適なシーケンシングサービスを提供できます。現在、当社では計画に沿って、一部の技術サービスの日本市場への展開を進めています。/);
+  assert.doesNotMatch(content, /ゲノムde novoシーケンシング|各分野|バイオインフォマティクス解析チーム/);
+  assert.deepEqual(
+    [...content.matchAll(/\{ id: "([^"]+)", citation: "([^"]+)", title: "([^"]+)" \}/g)].map(([, id, citation, title]) => [id, citation, title]),
+    [...chineseContent.matchAll(/\{ id: "([^"]+)", citation: "([^"]+)", title: "([^"]+)" \}/g)].map(([, id, citation, title]) => [id, citation, title]),
+  );
 });
 
 test("genome sequencing body is static, structured, and uses the team image", () => {
   const page = readSource("src/app/[lang]/services/genome-sequencing/GenomeSequencingPage.tsx");
   const body = readSource("src/app/[lang]/services/genome-sequencing/GenomeSequencingBody.tsx");
+  const types = readSource("src/content/genome-sequencing/types.ts");
   const globals = readSource("src/app/globals.css");
   const asset = new URL("../src/app/[lang]/services/genome-sequencing/_assets/genome-sequencing-team.jpg", import.meta.url);
 
@@ -94,8 +113,10 @@ test("genome sequencing body is static, structured, and uses the team image", ()
   assert.doesNotMatch(body, /col-span-full|mt-12 grid grid-cols-4 max-page:grid-cols-2 max-compact:grid-cols-1/);
   assert.match(body, /<Image alt="" aria-hidden="true" className="object-cover object-center" fill loading="lazy" sizes=/);
   assert.match(body, /<div className="relative z-10 max-w-1\/3 max-compact:max-w-none">/);
-  assert.match(body, /<button[^>]*disabled[^>]*type="button">技术路线\+<\/button>/);
-  assert.doesNotMatch(body, /技术规格|云托管服务|技术路线这里有链接到同一个子页面|use client|useState|useEffect|useRouter|searchParams|onClick|aria-(?:controls|pressed|selected)|<form|href=/);
+  assert.match(types, /technicalRouteLabel: string;/);
+  assert.match(readSource("src/content/genome-sequencing/zh.ts"), /technicalRouteLabel: "技术路线\+"/);
+  assert.match(body, /<button[^>]*disabled[^>]*type="button">\{body\.technicalRouteLabel\}<\/button>/);
+  assert.doesNotMatch(body, /技术路线\+|技术规格|云托管服务|技术路线这里有链接到同一个子页面|use client|useState|useEffect|useRouter|searchParams|onClick|aria-(?:controls|pressed|selected)|<form|href=/);
   assert.doesNotMatch(body, /bg-linear-to-r|from-ui-section|via-ui-section|to-ui-section|max-compact:bg-none/);
   assert.doesNotMatch(body, /color\(|rgb\(|rgba\(|#[0-9A-Fa-f]{3,8}/);
   assert.equal(statSync(asset).size, 250757);

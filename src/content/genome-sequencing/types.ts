@@ -45,6 +45,7 @@ type GenomeSequencingBodyContent = Readonly<{
     paragraphs: readonly string[];
     title: string;
   }>;
+  technicalRouteLabel: string;
 }>;
 
 export type GenomeSequencingContent = Readonly<{

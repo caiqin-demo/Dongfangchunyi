@@ -33,7 +33,7 @@ export function GenomeSequencingBody({ body, teamImage }: GenomeSequencingBodyPr
                       ))}
                     </ul>
                   </div>
-                  <button className="justify-self-start pl-6 text-left text-service-body text-genome-sequencing-accent disabled:cursor-not-allowed disabled:opacity-100" disabled type="button">技术路线+</button>
+                  <button className="justify-self-start pl-6 text-left text-service-body text-genome-sequencing-accent disabled:cursor-not-allowed disabled:opacity-100" disabled type="button">{body.technicalRouteLabel}</button>
                 </section>
               ))}
             </div>
