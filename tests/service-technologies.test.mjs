@@ -35,6 +35,7 @@ test("service technologies card preserves the approved component boundary and da
   assert.match(page, /marineMicrobiologyResearchZh/);
   assert.match(page, /multidimensionalAnalysisPlatformZh/);
   assert.match(page, /singleCellSequencingZh/);
+  assert.match(page, /wholeTranscriptomeSequencingZh/);
   assert.doesNotMatch(page, /aria-hidden="true" className="min-h-/);
   assert.match(card, /^"use client";/);
   assert.match(card, /useState<ServiceTechnologySelectionKey \| null>\(null\)/);
@@ -86,7 +87,7 @@ test("service technologies locale maps are exhaustive and keep Japanese card con
   assert.match(zh, /alt: "基因组重测序技术路线图"/);
   assert.match(zh, /assetId: "marine-microbiology-research-zh"/);
   assert.match(zh, /alt: "海洋微生物研究技术路线图"/);
-  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 10);
+  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 11);
   assert.match(ja, /categoryLabelMode: "placeholder"/);
   assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 0);
   assert.match(
@@ -277,4 +278,32 @@ test("service technologies maps all single-cell sequencing rows to the approved 
     /import singleCellSequencingZh from "\.\/\_assets\/single-cell-sequencing-zh\.jpg"/,
   );
   assert.match(page, /"single-cell-sequencing-zh":\s*singleCellSequencingZh/);
+});
+
+test("service technologies maps whole-transcriptome sequencing to the approved Chinese image", () => {
+  const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/whole-transcriptome-sequencing-zh.jpg", import.meta.url);
+  const bytes = readFileSync(asset);
+  const zh = readSource("src/content/service-technologies/zh.ts");
+  const ja = readSource("src/content/service-technologies/ja.ts");
+  const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
+
+  assert.equal(statSync(asset).size, 851526);
+  assert.equal(bytes.subarray(0, 3).toString("hex"), "ffd8ff");
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    "fdb94fcc68d8804c3c8e3c4842fb420f609dd64d3629b947fa57fd9e8547a1e8",
+  );
+  assert.match(
+    zh,
+    /"whole-transcriptome-sequencing": \{\s+kind: "ready",\s+assetId: "whole-transcriptome-sequencing-zh",\s+alt: "全转录组测序技术路线图"/,
+  );
+  assert.match(ja, /"whole-transcriptome-sequencing": \{ kind: "pending", label: "暂定" \}/);
+  assert.match(
+    page,
+    /import wholeTranscriptomeSequencingZh from "\.\/\_assets\/whole-transcriptome-sequencing-zh\.jpg"/,
+  );
+  assert.match(
+    page,
+    /"whole-transcriptome-sequencing-zh":\s*wholeTranscriptomeSequencingZh/,
+  );
 });

@@ -14,7 +14,8 @@ export type ServiceTechnologyAssetId =
   | "multidimensional-analysis-platform-zh"
   | "multidimensional-analysis-platform-interactions-zh"
   | "multidimensional-analysis-platform-multiomics-zh"
-  | "single-cell-sequencing-zh";
+  | "single-cell-sequencing-zh"
+  | "whole-transcriptome-sequencing-zh";
 
 export type ServiceTechnologyDisplay =
   | Readonly<{

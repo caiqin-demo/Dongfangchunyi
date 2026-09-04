@@ -17,6 +17,7 @@ import multidimensionalAnalysisPlatformZh from "./_assets/multidimensional-analy
 import multidimensionalAnalysisPlatformInteractionsZh from "./_assets/multidimensional-analysis-platform-interactions-zh.jpg";
 import multidimensionalAnalysisPlatformMultiomicsZh from "./_assets/multidimensional-analysis-platform-multiomics-zh.jpg";
 import singleCellSequencingZh from "./_assets/single-cell-sequencing-zh.jpg";
+import wholeTranscriptomeSequencingZh from "./_assets/whole-transcriptome-sequencing-zh.jpg";
 import { ServiceTechnologiesBodyCard } from "./ServiceTechnologiesBodyCard";
 
 type PageProps = Readonly<{ lang: Locale }>;
@@ -67,6 +68,7 @@ export function ServiceTechnologiesPage({ lang }: PageProps) {
             "multidimensional-analysis-platform-multiomics-zh":
               multidimensionalAnalysisPlatformMultiomicsZh,
             "single-cell-sequencing-zh": singleCellSequencingZh,
+            "whole-transcriptome-sequencing-zh": wholeTranscriptomeSequencingZh,
           }}
           card={content.bodyCard}
           categories={categories}

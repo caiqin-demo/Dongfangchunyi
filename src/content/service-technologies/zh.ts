@@ -35,7 +35,11 @@ export const zhServiceTechnologiesContent = {
         assetId: "genome-resequencing-zh",
         alt: "基因组重测序技术路线图",
       },
-      "whole-transcriptome-sequencing": { kind: "pending", label: "暂定" },
+      "whole-transcriptome-sequencing": {
+        kind: "ready",
+        assetId: "whole-transcriptome-sequencing-zh",
+        alt: "全转录组测序技术路线图",
+      },
       "marine-microbiology-research": {
         kind: "ready",
         assetId: "marine-microbiology-research-zh",
