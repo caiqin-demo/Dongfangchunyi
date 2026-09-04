@@ -9,7 +9,8 @@ export type ServiceTechnologySelectionKey =
 
 export type ServiceTechnologyAssetId =
   | "absolute-quantification-microbial-diversity-sequencing-zh"
-  | "genome-resequencing-zh";
+  | "genome-resequencing-zh"
+  | "marine-microbiology-research-zh";
 
 export type ServiceTechnologyDisplay =
   | Readonly<{

@@ -32,7 +32,11 @@ export const zhServiceTechnologiesContent = {
         alt: "基因组重测序技术路线图",
       },
       "whole-transcriptome-sequencing": { kind: "pending", label: "暂定" },
-      "marine-microbiology-research": { kind: "pending", label: "暂定" },
+      "marine-microbiology-research": {
+        kind: "ready",
+        assetId: "marine-microbiology-research-zh",
+        alt: "海洋微生物研究技术路线图",
+      },
       "epigenetics-service": { kind: "pending", label: "暂定" },
       "mrna-in-situ-hybridization": { kind: "pending", label: "暂定" },
       "yeast-two-hybrid": { kind: "pending", label: "暂定" },

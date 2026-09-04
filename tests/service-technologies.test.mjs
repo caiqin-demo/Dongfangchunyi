@@ -32,6 +32,7 @@ test("service technologies card preserves the approved component boundary and da
   assert.match(page, /categories=\{categories\}/);
   assert.match(page, /absoluteQuantificationMicrobialDiversitySequencingZh/);
   assert.match(page, /genomeResequencingZh/);
+  assert.match(page, /marineMicrobiologyResearchZh/);
   assert.doesNotMatch(page, /aria-hidden="true" className="min-h-/);
   assert.match(card, /^"use client";/);
   assert.match(card, /useState<ServiceTechnologySelectionKey \| null>\(null\)/);
@@ -81,7 +82,9 @@ test("service technologies locale maps are exhaustive and keep Japanese card con
   assert.match(zh, /alt: "绝对定量微生物多样性测序技术路线图"/);
   assert.match(zh, /assetId: "genome-resequencing-zh"/);
   assert.match(zh, /alt: "基因组重测序技术路线图"/);
-  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 2);
+  assert.match(zh, /assetId: "marine-microbiology-research-zh"/);
+  assert.match(zh, /alt: "海洋微生物研究技术路线图"/);
+  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 3);
   assert.match(ja, /categoryLabelMode: "placeholder"/);
   assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 0);
   assert.match(
@@ -128,5 +131,31 @@ test("service technologies maps all absolute quantification rows to the approved
   assert.match(
     page,
     /"absolute-quantification-microbial-diversity-sequencing-zh":\s*absoluteQuantificationMicrobialDiversitySequencingZh/,
+  );
+});
+
+test("service technologies maps marine microbiology research to the approved Chinese image", () => {
+  const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/marine-microbiology-research-zh.jpg", import.meta.url);
+  const bytes = readFileSync(asset);
+  const genomeZh = readSource("src/content/genome-sequencing/zh.ts");
+  const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
+
+  assert.equal(statSync(asset).size, 888372);
+  assert.equal(bytes.subarray(0, 3).toString("hex"), "ffd8ff");
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    "8c6be642cf657b2252a92c85058d876d10e8d227b50cc3db465101e7a0dd7011",
+  );
+  assert.equal(
+    (genomeZh.match(/id: "marine-microbiology-research"/g) ?? []).length,
+    1,
+  );
+  assert.match(
+    page,
+    /import marineMicrobiologyResearchZh from "\.\/\_assets\/marine-microbiology-research-zh\.jpg"/,
+  );
+  assert.match(
+    page,
+    /"marine-microbiology-research-zh":\s*marineMicrobiologyResearchZh/,
   );
 });
