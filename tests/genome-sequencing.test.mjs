@@ -74,18 +74,28 @@ test("Japanese body content remains structurally equivalent and provisional", ()
 test("genome sequencing body is static, structured, and uses the team image", () => {
   const page = readSource("src/app/[lang]/services/genome-sequencing/GenomeSequencingPage.tsx");
   const body = readSource("src/app/[lang]/services/genome-sequencing/GenomeSequencingBody.tsx");
+  const globals = readSource("src/app/globals.css");
   const asset = new URL("../src/app/[lang]/services/genome-sequencing/_assets/genome-sequencing-team.jpg", import.meta.url);
 
   assert.match(page, /GenomeSequencingOptions/);
   assert.match(page, /GenomeSequencingBody body=\{t\.body\} teamImage=\{genomeSequencingTeam\}/);
-  assert.match(body, /<div className="page-container">\s*<div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-2">[\s\S]*?body\.contact\.label[\s\S]*?body\.contact\.emails[\s\S]*?<\/div>\s*<article/);
+  assert.match(body, /<div className="page-container">\s*<div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3">[\s\S]*?body\.contact\.label[\s\S]*?body\.contact\.emails[\s\S]*?<\/div>\s*<article/);
   assert.match(body, /<article className="overflow-hidden rounded-product-card border border-line bg-white shadow-media">/);
-  assert.match(body, /border-t-4 border-accent/);
+  assert.match(globals, /--color-genome-sequencing-accent: color\(srgb 0 0\.621 0\.858\)/);
+  assert.match(body, /border-l border-genome-sequencing-accent/);
+  assert.match(body, /border-t-4 border-genome-sequencing-accent/);
+  assert.match(body, /text-genome-sequencing-accent/);
+  assert.match(body, /<h2 className="m-0 text-service-body font-bold text-genome-sequencing-accent" id="genome-sequencing-publications-title">/);
+  assert.match(body, /const publicationTextClass = "text-service-card-body text-ink-muted"/);
+  assert.equal((body.match(/className=\{`[^`]*\$\{publicationTextClass\}`\}/g) ?? []).length, 2);
+  assert.match(body, /<section className="min-w-0 border-l border-genome-sequencing-accent[\s\S]*?<\/section>\s*\)\)}\s*\n\s*\n\s*<div className="col-span-full mt-12 grid grid-cols-4 max-page:grid-cols-2 max-compact:grid-cols-1">/);
+  assert.match(body, /<div className="col-span-full mt-12 grid grid-cols-4 max-page:grid-cols-2 max-compact:grid-cols-1">[\s\S]*?<button className="justify-self-start pl-6 text-left text-service-body text-genome-sequencing-accent first:pl-0 max-page:odd:pl-0 max-compact:pl-0/);
   assert.match(body, /<Image alt="" aria-hidden="true" className="object-cover object-center" fill loading="lazy" sizes=/);
   assert.match(body, /<div className="relative z-10 max-w-1\/3 max-compact:max-w-none">/);
-  assert.match(body, /<button[^>]*disabled type="button">技术路线\+<\/button>/);
+  assert.match(body, /<button[^>]*disabled[^>]*type="button">技术路线\+<\/button>/);
   assert.doesNotMatch(body, /技术规格|云托管服务|技术路线这里有链接到同一个子页面|use client|useState|useEffect|useRouter|searchParams|onClick|aria-(?:controls|pressed|selected)|<form|href=/);
   assert.doesNotMatch(body, /bg-linear-to-r|from-ui-section|via-ui-section|to-ui-section|max-compact:bg-none/);
+  assert.doesNotMatch(body, /color\(|rgb\(|rgba\(|#[0-9A-Fa-f]{3,8}/);
   assert.equal(statSync(asset).size, 250757);
   assert.match(readFileSync(asset).subarray(0, 3).toString("hex"), /^ffd8ff$/);
 });
