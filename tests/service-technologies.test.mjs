@@ -53,6 +53,10 @@ test("service technologies card has accessible buttons and exact approved displa
   assert.match(card, /aria-live="polite"/);
   assert.match(card, /border-l border-genome-sequencing-accent/);
   assert.match(card, /max-stack:border-t max-stack:border-l-0/);
+  assert.match(card, /grid-cols-\[fit-content\(30%\)_minmax\(0,1fr\)\]/);
+  assert.match(card, /max-stack:grid-cols-1/);
+  assert.doesNotMatch(card, /grid-cols-\[minmax\(0,\.6fr\)_minmax\(0,1\.4fr\)\]/);
+  assert.doesNotMatch(card, /grid-cols-\[minmax\(0,\.72fr\)_minmax\(0,1\.28fr\)\]/);
   assert.match(card, /<Image/);
   assert.match(card, /alt=\{display\.alt\}/);
   assert.match(card, /object-contain/);

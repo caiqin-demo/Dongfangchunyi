@@ -42,7 +42,7 @@ export function ServiceTechnologiesBodyCard({
 
   return (
     <article className="min-w-0 rounded-product-card border border-line bg-white shadow-media">
-      <div className="grid grid-cols-[minmax(0,.72fr)_minmax(0,1.28fr)] max-stack:grid-cols-1">
+      <div className="grid grid-cols-[fit-content(30%)_minmax(0,1fr)] max-stack:grid-cols-1">
         <div className="min-w-0 p-[clamp(1.5rem,3vw,2.5rem)]">
           {categories.map((category, categoryIndex) => {
             const categoryLabel =
