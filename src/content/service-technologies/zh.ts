@@ -57,8 +57,16 @@ export const zhServiceTechnologiesContent = {
         assetId: "multidimensional-analysis-platform-interactions-zh",
         alt: "酵母双杂交和 SPR 分子互作研究技术路线图",
       },
-      "proteomics-and-metabolomics": { kind: "pending", label: "暂定" },
-      "multiomics-combined-analysis": { kind: "pending", label: "暂定" },
+      "proteomics-and-metabolomics": {
+        kind: "ready",
+        assetId: "multidimensional-analysis-platform-multiomics-zh",
+        alt: "蛋白质组学与多组学联合分析技术路线图",
+      },
+      "multiomics-combined-analysis": {
+        kind: "ready",
+        assetId: "multidimensional-analysis-platform-multiomics-zh",
+        alt: "蛋白质组学与多组学联合分析技术路线图",
+      },
     },
   },
   contact: {

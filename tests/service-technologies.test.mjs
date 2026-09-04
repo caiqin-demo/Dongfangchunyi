@@ -85,7 +85,7 @@ test("service technologies locale maps are exhaustive and keep Japanese card con
   assert.match(zh, /alt: "基因组重测序技术路线图"/);
   assert.match(zh, /assetId: "marine-microbiology-research-zh"/);
   assert.match(zh, /alt: "海洋微生物研究技术路线图"/);
-  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 7);
+  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 9);
   assert.match(ja, /categoryLabelMode: "placeholder"/);
   assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 0);
   assert.match(
@@ -218,5 +218,35 @@ test("service technologies maps molecular interaction items to the approved Chin
   assert.match(
     page,
     /"multidimensional-analysis-platform-interactions-zh":\s*multidimensionalAnalysisPlatformInteractionsZh/,
+  );
+});
+
+test("service technologies maps proteomics and multiomics items to the approved Chinese image", () => {
+  const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/multidimensional-analysis-platform-multiomics-zh.jpg", import.meta.url);
+  const bytes = readFileSync(asset);
+  const zh = readSource("src/content/service-technologies/zh.ts");
+  const ja = readSource("src/content/service-technologies/ja.ts");
+  const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
+
+  assert.equal(statSync(asset).size, 915736);
+  assert.equal(bytes.subarray(0, 3).toString("hex"), "ffd8ff");
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    "076b9556899d67823199db20dac883d951349c36e768968f1ada3033297b6541",
+  );
+  for (const id of ["proteomics-and-metabolomics", "multiomics-combined-analysis"]) {
+    assert.match(
+      zh,
+      new RegExp(`"${id}": \\{\\s+kind: "ready",\\s+assetId: "multidimensional-analysis-platform-multiomics-zh"`),
+    );
+    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "暂定" \\}`));
+  }
+  assert.match(
+    page,
+    /import multidimensionalAnalysisPlatformMultiomicsZh from "\.\/\_assets\/multidimensional-analysis-platform-multiomics-zh\.jpg"/,
+  );
+  assert.match(
+    page,
+    /"multidimensional-analysis-platform-multiomics-zh":\s*multidimensionalAnalysisPlatformMultiomicsZh/,
   );
 });
