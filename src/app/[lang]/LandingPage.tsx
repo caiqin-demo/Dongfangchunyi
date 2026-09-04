@@ -46,7 +46,7 @@ const serviceIcons = {
 } satisfies Record<ServiceCardId, typeof LuGraduationCap | null>;
 const serviceActionPaths = {
   "yeast-two-hybrid": servicePaths["yeast-two-hybrid"],
-  "genome-sequencing": null,
+  "genome-sequencing": servicePaths["genome-sequencing"],
   "other-business-services": null,
 } satisfies Record<ServiceCardId, `/${string}` | null>;
 
