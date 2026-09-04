@@ -18,7 +18,11 @@ export const zhServiceTechnologiesContent = {
     categoryLabelMode: "source",
     placeholderLabel: "暂定",
     displayByItemId: {
-      "single-cell-sequencing": { kind: "pending", label: "暂定" },
+      "single-cell-sequencing": {
+        kind: "ready",
+        assetId: "single-cell-sequencing-zh",
+        alt: "单细胞测序技术路线图",
+      },
       "genome-de-novo-sequencing": { kind: "pending", label: "暂定" },
       "absolute-quantification-microbial-diversity-sequencing": {
         kind: "ready",

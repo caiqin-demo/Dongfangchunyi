@@ -13,7 +13,8 @@ export type ServiceTechnologyAssetId =
   | "marine-microbiology-research-zh"
   | "multidimensional-analysis-platform-zh"
   | "multidimensional-analysis-platform-interactions-zh"
-  | "multidimensional-analysis-platform-multiomics-zh";
+  | "multidimensional-analysis-platform-multiomics-zh"
+  | "single-cell-sequencing-zh";
 
 export type ServiceTechnologyDisplay =
   | Readonly<{

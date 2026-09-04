@@ -34,6 +34,7 @@ test("service technologies card preserves the approved component boundary and da
   assert.match(page, /genomeResequencingZh/);
   assert.match(page, /marineMicrobiologyResearchZh/);
   assert.match(page, /multidimensionalAnalysisPlatformZh/);
+  assert.match(page, /singleCellSequencingZh/);
   assert.doesNotMatch(page, /aria-hidden="true" className="min-h-/);
   assert.match(card, /^"use client";/);
   assert.match(card, /useState<ServiceTechnologySelectionKey \| null>\(null\)/);
@@ -85,7 +86,7 @@ test("service technologies locale maps are exhaustive and keep Japanese card con
   assert.match(zh, /alt: "基因组重测序技术路线图"/);
   assert.match(zh, /assetId: "marine-microbiology-research-zh"/);
   assert.match(zh, /alt: "海洋微生物研究技术路线图"/);
-  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 9);
+  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 10);
   assert.match(ja, /categoryLabelMode: "placeholder"/);
   assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 0);
   assert.match(
@@ -249,4 +250,31 @@ test("service technologies maps proteomics and multiomics items to the approved 
     page,
     /"multidimensional-analysis-platform-multiomics-zh":\s*multidimensionalAnalysisPlatformMultiomicsZh/,
   );
+});
+
+test("service technologies maps all single-cell sequencing rows to the approved Chinese image", () => {
+  const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/single-cell-sequencing-zh.jpg", import.meta.url);
+  const bytes = readFileSync(asset);
+  const genomeZh = readSource("src/content/genome-sequencing/zh.ts");
+  const zh = readSource("src/content/service-technologies/zh.ts");
+  const ja = readSource("src/content/service-technologies/ja.ts");
+  const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
+
+  assert.equal(statSync(asset).size, 1041141);
+  assert.equal(bytes.subarray(0, 3).toString("hex"), "ffd8ff");
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    "b7b98188cfb2bb6c3de37ef27c6fccd2538812d1e861c532cc7686f85bcf63c7",
+  );
+  assert.equal((genomeZh.match(/id: "single-cell-sequencing"/g) ?? []).length, 3);
+  assert.match(
+    zh,
+    /"single-cell-sequencing": \{\s+kind: "ready",\s+assetId: "single-cell-sequencing-zh",\s+alt: "单细胞测序技术路线图"/,
+  );
+  assert.match(ja, /"single-cell-sequencing": \{ kind: "pending", label: "暂定" \}/);
+  assert.match(
+    page,
+    /import singleCellSequencingZh from "\.\/\_assets\/single-cell-sequencing-zh\.jpg"/,
+  );
+  assert.match(page, /"single-cell-sequencing-zh":\s*singleCellSequencingZh/);
 });

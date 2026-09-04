@@ -16,6 +16,7 @@ import marineMicrobiologyResearchZh from "./_assets/marine-microbiology-research
 import multidimensionalAnalysisPlatformZh from "./_assets/multidimensional-analysis-platform-zh.jpg";
 import multidimensionalAnalysisPlatformInteractionsZh from "./_assets/multidimensional-analysis-platform-interactions-zh.jpg";
 import multidimensionalAnalysisPlatformMultiomicsZh from "./_assets/multidimensional-analysis-platform-multiomics-zh.jpg";
+import singleCellSequencingZh from "./_assets/single-cell-sequencing-zh.jpg";
 import { ServiceTechnologiesBodyCard } from "./ServiceTechnologiesBodyCard";
 
 type PageProps = Readonly<{ lang: Locale }>;
@@ -65,6 +66,7 @@ export function ServiceTechnologiesPage({ lang }: PageProps) {
               multidimensionalAnalysisPlatformInteractionsZh,
             "multidimensional-analysis-platform-multiomics-zh":
               multidimensionalAnalysisPlatformMultiomicsZh,
+            "single-cell-sequencing-zh": singleCellSequencingZh,
           }}
           card={content.bodyCard}
           categories={categories}
