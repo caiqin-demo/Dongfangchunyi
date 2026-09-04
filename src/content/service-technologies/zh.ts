@@ -47,8 +47,16 @@ export const zhServiceTechnologiesContent = {
         assetId: "multidimensional-analysis-platform-zh",
         alt: "多维度解析平台技术路线图",
       },
-      "yeast-two-hybrid": { kind: "pending", label: "暂定" },
-      "spr-molecular-interaction-research": { kind: "pending", label: "暂定" },
+      "yeast-two-hybrid": {
+        kind: "ready",
+        assetId: "multidimensional-analysis-platform-interactions-zh",
+        alt: "酵母双杂交和 SPR 分子互作研究技术路线图",
+      },
+      "spr-molecular-interaction-research": {
+        kind: "ready",
+        assetId: "multidimensional-analysis-platform-interactions-zh",
+        alt: "酵母双杂交和 SPR 分子互作研究技术路线图",
+      },
       "proteomics-and-metabolomics": { kind: "pending", label: "暂定" },
       "multiomics-combined-analysis": { kind: "pending", label: "暂定" },
     },

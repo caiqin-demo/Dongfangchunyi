@@ -11,7 +11,8 @@ export type ServiceTechnologyAssetId =
   | "absolute-quantification-microbial-diversity-sequencing-zh"
   | "genome-resequencing-zh"
   | "marine-microbiology-research-zh"
-  | "multidimensional-analysis-platform-zh";
+  | "multidimensional-analysis-platform-zh"
+  | "multidimensional-analysis-platform-interactions-zh";
 
 export type ServiceTechnologyDisplay =
   | Readonly<{

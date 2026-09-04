@@ -85,7 +85,7 @@ test("service technologies locale maps are exhaustive and keep Japanese card con
   assert.match(zh, /alt: "基因组重测序技术路线图"/);
   assert.match(zh, /assetId: "marine-microbiology-research-zh"/);
   assert.match(zh, /alt: "海洋微生物研究技术路线图"/);
-  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 5);
+  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 7);
   assert.match(ja, /categoryLabelMode: "placeholder"/);
   assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 0);
   assert.match(
@@ -188,5 +188,35 @@ test("service technologies maps multidimensional platform items to the approved 
   assert.match(
     page,
     /"multidimensional-analysis-platform-zh":\s*multidimensionalAnalysisPlatformZh/,
+  );
+});
+
+test("service technologies maps molecular interaction items to the approved Chinese image", () => {
+  const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/multidimensional-analysis-platform-interactions-zh.jpg", import.meta.url);
+  const bytes = readFileSync(asset);
+  const zh = readSource("src/content/service-technologies/zh.ts");
+  const ja = readSource("src/content/service-technologies/ja.ts");
+  const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
+
+  assert.equal(statSync(asset).size, 835814);
+  assert.equal(bytes.subarray(0, 3).toString("hex"), "ffd8ff");
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    "df2864c883d5315762a5945d81acbe62e4bd139ea7fde31ef09f515347cb7224",
+  );
+  for (const id of ["yeast-two-hybrid", "spr-molecular-interaction-research"]) {
+    assert.match(
+      zh,
+      new RegExp(`"${id}": \\{\\s+kind: "ready",\\s+assetId: "multidimensional-analysis-platform-interactions-zh"`),
+    );
+    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "暂定" \\}`));
+  }
+  assert.match(
+    page,
+    /import multidimensionalAnalysisPlatformInteractionsZh from "\.\/\_assets\/multidimensional-analysis-platform-interactions-zh\.jpg"/,
+  );
+  assert.match(
+    page,
+    /"multidimensional-analysis-platform-interactions-zh":\s*multidimensionalAnalysisPlatformInteractionsZh/,
   );
 });
