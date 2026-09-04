@@ -15,7 +15,7 @@ export const zhServiceTechnologiesContent = {
     { id: "multidimensional-analysis-platform", label: "多维度解析平台" },
   ],
   contact: {
-    label: "咨询请联系",
+    label: "咨询请联系：",
     emails: ["market@easternpurity.com", "info@shanghaigenomics.com"],
   },
 } as const satisfies ServiceTechnologiesContent;
