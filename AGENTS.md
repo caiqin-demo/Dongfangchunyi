@@ -31,6 +31,8 @@
 - Before editing or validating, confirm that the working directory is the main checkout without writing its machine-specific absolute path into repository files. Base the final change summary and proposed commit message exclusively on the main repository diff.
 - Before editing, confirm repository/branch/status and preserve all user changes in a dirty worktree. Make the narrowest complete change; do not refactor, reformat, delete, stage, or clean unrelated work.
 - Do not commit or push unless the user explicitly asks. Every implementation handoff still proposes a concise English Git commit message.
+- When work uses a subagent, the main agent's final handoff must include every subagent finding that affects the user's next action, including suggested commit messages, commit/push status, validation results, failures or blockers, unresolved risks, and required user decisions or manual steps.
+- For any main-agent addition, deletion, or modification in the project directory that Git reports as an unstaged change or untracked file and that is not ignored, the final handoff must propose a concise English Git commit message.
 - Never place personal/local information, usernames, home/temp paths, hostnames/IPs, account data, credentials, tokens, secrets, or machine identifiers in repository content. Use repository-relative paths or generic placeholders and scan the final diff.
 - When work introduces generated/cache/log/local/editor/OS artifacts, classify them and add the narrowest safe `.gitignore` entry. Never ignore required source/configuration, use broad patterns that hide source, or assume ignoring untracks an existing file.
 
