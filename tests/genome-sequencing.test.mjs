@@ -112,12 +112,12 @@ test("genome sequencing body is static, structured, and uses the team image", ()
   assert.match(body, /<section className="row-span-2 grid grid-rows-subgrid first:\[&>div\]:border-l-0 first:\[&>div\]:pl-0 first:\[&>button\]:pl-0 max-page:odd:\[&>div\]:border-l-0 max-page:odd:\[&>div\]:pl-0 max-page:odd:\[&>button\]:pl-0"[\s\S]*?<div className="min-w-0 border-l border-genome-sequencing-accent pl-6">[\s\S]*?<\/div>\s*<button className="justify-self-start pl-6 text-left text-service-body text-genome-sequencing-accent/);
   assert.doesNotMatch(body, /col-span-full|mt-12 grid grid-cols-4 max-page:grid-cols-2 max-compact:grid-cols-1/);
   assert.match(body, /<Image alt="" aria-hidden="true" className="object-cover object-center" fill loading="lazy" sizes=/);
-  assert.match(body, /<div className="relative z-10 max-w-1\/3 max-compact:max-w-none">/);
+  assert.match(body, /<div className="relative z-10 w-full min-w-0 hero-copy:max-w-1\/3">\s*<h2[\s\S]*?\{body\.team\.title\}[\s\S]*?body\.team\.paragraphs\.map/);
   assert.match(types, /technicalRouteLabel: string;/);
   assert.match(readSource("src/content/genome-sequencing/zh.ts"), /technicalRouteLabel: "技术路线\+"/);
   assert.match(body, /<button[^>]*disabled[^>]*type="button">\{body\.technicalRouteLabel\}<\/button>/);
   assert.doesNotMatch(body, /技术路线\+|技术规格|云托管服务|技术路线这里有链接到同一个子页面|use client|useState|useEffect|useRouter|searchParams|onClick|aria-(?:controls|pressed|selected)|<form|href=/);
-  assert.doesNotMatch(body, /bg-linear-to-r|from-ui-section|via-ui-section|to-ui-section|max-compact:bg-none/);
+  assert.doesNotMatch(body, /max-compact:max-w-none|max-w-1\/3 max-compact|fixed|h-\[|min-h-|max-h-|nowrap|truncate|lang ===|bg-linear-to-r|from-ui-section|via-ui-section|to-ui-section|max-compact:bg-none/);
   assert.doesNotMatch(body, /color\(|rgb\(|rgba\(|#[0-9A-Fa-f]{3,8}/);
   assert.equal(statSync(asset).size, 250757);
   assert.match(readFileSync(asset).subarray(0, 3).toString("hex"), /^ffd8ff$/);

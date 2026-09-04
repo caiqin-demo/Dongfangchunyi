@@ -53,7 +53,7 @@ export function GenomeSequencingBody({ body, teamImage }: GenomeSequencingBodyPr
 
           <section className="relative isolate overflow-hidden px-[clamp(1.5rem,3vw,2.5rem)] py-[clamp(2.5rem,5vw,5rem)] text-on-dark" aria-labelledby="genome-sequencing-team-title">
             <Image alt="" aria-hidden="true" className="object-cover object-center" fill loading="lazy" sizes="(min-width: 80rem) 80rem, (min-width: 60rem) calc(100vw - 4rem), calc(100vw - 1.5rem)" src={teamImage} />
-            <div className="relative z-10 max-w-1/3 max-compact:max-w-none">
+            <div className="relative z-10 w-full min-w-0 hero-copy:max-w-1/3">
               <h2 className="m-0 text-service-current-title" id="genome-sequencing-team-title">{body.team.title}</h2>
               {body.team.paragraphs.map((paragraph, index) => (
                 <p className="mt-5 mb-0 text-service-body text-on-dark" key={`${body.team.title}-${index}`}>{paragraph}</p>
