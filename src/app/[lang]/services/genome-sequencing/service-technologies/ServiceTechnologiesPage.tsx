@@ -11,6 +11,7 @@ import { getSiteUrl } from "@/lib/site-url";
 
 import serviceTechnologiesHero from "./_assets/service-technologies-hero.jpg";
 import absoluteQuantificationMicrobialDiversitySequencingZh from "./_assets/absolute-quantification-microbial-diversity-sequencing-zh.jpg";
+import dapSeqTechnicalServiceZh from "./_assets/dap-seq-technical-service-zh.jpg";
 import genomeDeNovoSequencingZh from "./_assets/genome-de-novo-sequencing-zh.jpg";
 import genomeResequencingZh from "./_assets/genome-resequencing-zh.jpg";
 import marineMicrobiologyResearchZh from "./_assets/marine-microbiology-research-zh.jpg";
@@ -60,6 +61,7 @@ export function ServiceTechnologiesPage({ lang }: PageProps) {
           assets={{
             "absolute-quantification-microbial-diversity-sequencing-zh":
               absoluteQuantificationMicrobialDiversitySequencingZh,
+            "dap-seq-technical-service-zh": dapSeqTechnicalServiceZh,
             "genome-de-novo-sequencing-zh": genomeDeNovoSequencingZh,
             "genome-resequencing-zh": genomeResequencingZh,
             "marine-microbiology-research-zh": marineMicrobiologyResearchZh,

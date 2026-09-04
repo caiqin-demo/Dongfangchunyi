@@ -33,7 +33,11 @@ export const zhServiceTechnologiesContent = {
         assetId: "absolute-quantification-microbial-diversity-sequencing-zh",
         alt: "绝对定量微生物多样性测序技术路线图",
       },
-      "dap-seq-technical-service": { kind: "pending", label: "暂定" },
+      "dap-seq-technical-service": {
+        kind: "ready",
+        assetId: "dap-seq-technical-service-zh",
+        alt: "DAP-seq技术服务路线图",
+      },
       "genome-resequencing": {
         kind: "ready",
         assetId: "genome-resequencing-zh",

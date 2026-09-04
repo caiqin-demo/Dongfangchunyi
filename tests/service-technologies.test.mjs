@@ -31,6 +31,7 @@ test("service technologies card preserves the approved component boundary and da
   assert.match(page, /<ServiceTechnologiesBodyCard/);
   assert.match(page, /categories=\{categories\}/);
   assert.match(page, /absoluteQuantificationMicrobialDiversitySequencingZh/);
+  assert.match(page, /dapSeqTechnicalServiceZh/);
   assert.match(page, /genomeResequencingZh/);
   assert.match(page, /marineMicrobiologyResearchZh/);
   assert.match(page, /multidimensionalAnalysisPlatformZh/);
@@ -87,7 +88,7 @@ test("service technologies locale maps are exhaustive and keep Japanese card con
   assert.match(zh, /alt: "基因组重测序技术路线图"/);
   assert.match(zh, /assetId: "marine-microbiology-research-zh"/);
   assert.match(zh, /alt: "海洋微生物研究技术路线图"/);
-  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 12);
+  assert.equal((zh.match(/kind: "ready"/g) ?? []).length, 13);
   assert.match(ja, /categoryLabelMode: "placeholder"/);
   assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 0);
   assert.match(
@@ -305,6 +306,33 @@ test("service technologies maps all genome de novo sequencing rows to the approv
     /import genomeDeNovoSequencingZh from "\.\/\_assets\/genome-de-novo-sequencing-zh\.jpg"/,
   );
   assert.match(page, /"genome-de-novo-sequencing-zh":\s*genomeDeNovoSequencingZh/);
+});
+
+test("service technologies maps all DAP-seq technical service rows to the approved Chinese image", () => {
+  const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/dap-seq-technical-service-zh.jpg", import.meta.url);
+  const bytes = readFileSync(asset);
+  const genomeZh = readSource("src/content/genome-sequencing/zh.ts");
+  const zh = readSource("src/content/service-technologies/zh.ts");
+  const ja = readSource("src/content/service-technologies/ja.ts");
+  const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
+
+  assert.equal(statSync(asset).size, 743651);
+  assert.equal(bytes.subarray(0, 3).toString("hex"), "ffd8ff");
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    "8fd6d8284749685b02a877d7f3e4cb7d02717a1e6921b990aa9517f39f6b9444",
+  );
+  assert.equal((genomeZh.match(/id: "dap-seq-technical-service"/g) ?? []).length, 3);
+  assert.match(
+    zh,
+    /"dap-seq-technical-service": \{\s+kind: "ready",\s+assetId: "dap-seq-technical-service-zh",\s+alt: "DAP-seq技术服务路线图"/,
+  );
+  assert.match(ja, /"dap-seq-technical-service": \{ kind: "pending", label: "暂定" \}/);
+  assert.match(
+    page,
+    /import dapSeqTechnicalServiceZh from "\.\/\_assets\/dap-seq-technical-service-zh\.jpg"/,
+  );
+  assert.match(page, /"dap-seq-technical-service-zh":\s*dapSeqTechnicalServiceZh/);
 });
 
 test("service technologies maps whole-transcriptome sequencing to the approved Chinese image", () => {
