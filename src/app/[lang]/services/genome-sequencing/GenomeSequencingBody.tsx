@@ -22,23 +22,20 @@ export function GenomeSequencingBody({ body, teamImage }: GenomeSequencingBodyPr
 
         <article className="overflow-hidden rounded-product-card border border-line bg-white shadow-media">
           <section>
-            <div className="grid grid-cols-4 px-[clamp(1.5rem,3vw,2.5rem)] py-[clamp(2rem,4vw,3.5rem)] max-page:grid-cols-2 max-compact:grid-cols-1">
+            <div className="grid grid-cols-4 grid-rows-[auto_auto] gap-y-12 px-[clamp(1.5rem,3vw,2.5rem)] py-[clamp(2rem,4vw,3.5rem)] max-page:grid-cols-2">
               {body.categories.map((category) => (
-                <section className="min-w-0 border-l border-genome-sequencing-accent pl-6 first:border-l-0 first:pl-0 max-page:odd:border-l-0 max-page:odd:pl-0 max-compact:border-l-0 max-compact:pl-0" aria-labelledby={`genome-sequencing-${category.id}-title`} key={category.id}>
-                  <h2 className="m-0 text-service-current-title text-genome-sequencing-accent" id={`genome-sequencing-${category.id}-title`}>{category.label}</h2>
-                  <ul className="mt-4 list-none space-y-2 p-0 text-service-body text-ink-muted">
-                    {category.items.map((item) => (
-                      <li className="break-words" key={item.id}>{item.label}</li>
-                    ))}
-                  </ul>
+                <section className="row-span-2 grid grid-rows-subgrid first:[&>div]:border-l-0 first:[&>div]:pl-0 first:[&>button]:pl-0 max-page:odd:[&>div]:border-l-0 max-page:odd:[&>div]:pl-0 max-page:odd:[&>button]:pl-0" aria-labelledby={`genome-sequencing-${category.id}-title`} key={category.id}>
+                  <div className="min-w-0 border-l border-genome-sequencing-accent pl-6">
+                    <h2 className="m-0 text-service-current-title text-genome-sequencing-accent" id={`genome-sequencing-${category.id}-title`}>{category.label}</h2>
+                    <ul className="mt-4 list-none space-y-2 p-0 text-service-body text-ink-muted">
+                      {category.items.map((item) => (
+                        <li className="break-words" key={item.id}>{item.label}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <button className="justify-self-start pl-6 text-left text-service-body text-genome-sequencing-accent disabled:cursor-not-allowed disabled:opacity-100" disabled type="button">技术路线+</button>
                 </section>
               ))}
-
-              <div className="col-span-full mt-12 grid grid-cols-4 max-page:grid-cols-2 max-compact:grid-cols-1">
-                {body.categories.map((category) => (
-                  <button className="justify-self-start pl-6 text-left text-service-body text-genome-sequencing-accent first:pl-0 max-page:odd:pl-0 max-compact:pl-0 disabled:cursor-not-allowed disabled:opacity-100" disabled key={category.id} type="button">技术路线+</button>
-                ))}
-              </div>
             </div>
           </section>
 

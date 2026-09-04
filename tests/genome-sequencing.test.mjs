@@ -88,8 +88,10 @@ test("genome sequencing body is static, structured, and uses the team image", ()
   assert.match(body, /<h2 className="m-0 text-service-body font-bold text-genome-sequencing-accent" id="genome-sequencing-publications-title">/);
   assert.match(body, /const publicationTextClass = "text-service-card-body text-ink-muted"/);
   assert.equal((body.match(/className=\{`[^`]*\$\{publicationTextClass\}`\}/g) ?? []).length, 2);
-  assert.match(body, /<section className="min-w-0 border-l border-genome-sequencing-accent[\s\S]*?<\/section>\s*\)\)}\s*\n\s*\n\s*<div className="col-span-full mt-12 grid grid-cols-4 max-page:grid-cols-2 max-compact:grid-cols-1">/);
-  assert.match(body, /<div className="col-span-full mt-12 grid grid-cols-4 max-page:grid-cols-2 max-compact:grid-cols-1">[\s\S]*?<button className="justify-self-start pl-6 text-left text-service-body text-genome-sequencing-accent first:pl-0 max-page:odd:pl-0 max-compact:pl-0/);
+  assert.match(body, /<div className="grid grid-cols-4 grid-rows-\[auto_auto\] gap-y-12 px-\[clamp\(1\.5rem,3vw,2\.5rem\)\] py-\[clamp\(2rem,4vw,3\.5rem\)\] max-page:grid-cols-2">/);
+  assert.equal((body.match(/body\.categories\.map/g) ?? []).length, 1);
+  assert.match(body, /<section className="row-span-2 grid grid-rows-subgrid first:\[&>div\]:border-l-0 first:\[&>div\]:pl-0 first:\[&>button\]:pl-0 max-page:odd:\[&>div\]:border-l-0 max-page:odd:\[&>div\]:pl-0 max-page:odd:\[&>button\]:pl-0"[\s\S]*?<div className="min-w-0 border-l border-genome-sequencing-accent pl-6">[\s\S]*?<\/div>\s*<button className="justify-self-start pl-6 text-left text-service-body text-genome-sequencing-accent/);
+  assert.doesNotMatch(body, /col-span-full|mt-12 grid grid-cols-4 max-page:grid-cols-2 max-compact:grid-cols-1/);
   assert.match(body, /<Image alt="" aria-hidden="true" className="object-cover object-center" fill loading="lazy" sizes=/);
   assert.match(body, /<div className="relative z-10 max-w-1\/3 max-compact:max-w-none">/);
   assert.match(body, /<button[^>]*disabled[^>]*type="button">技术路线\+<\/button>/);
