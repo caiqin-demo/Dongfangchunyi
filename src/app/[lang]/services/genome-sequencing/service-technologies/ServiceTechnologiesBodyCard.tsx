@@ -1,7 +1,8 @@
 "use client";
 
 import Image, { type StaticImageData } from "next/image";
-import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Suspense, useCallback, useMemo, useRef, useState } from "react";
 
 import type { GenomeSequencingContent } from "@/content/genome-sequencing/types";
 import type {
@@ -9,6 +10,13 @@ import type {
   ServiceTechnologySelectionKey,
   ServiceTechnologiesBodyCardContent,
 } from "@/content/service-technologies/types";
+import type { Locale } from "@/i18n/config";
+
+import { ServiceTechnologySelectionQuerySync } from "./ServiceTechnologySelectionQuerySync";
+import {
+  flattenServiceTechnologyRows,
+  resolveDefaultServiceTechnologySelection,
+} from "./ServiceTechnologySelection";
 
 const detailsRegionId = "service-technologies-details";
 
@@ -16,32 +24,95 @@ type ServiceTechnologiesBodyCardProps = Readonly<{
   assets: Readonly<Record<ServiceTechnologyAssetId, StaticImageData>>;
   card: ServiceTechnologiesBodyCardContent;
   categories: GenomeSequencingContent["body"]["categories"];
+  lang: Locale;
 }>;
 
 export function ServiceTechnologiesBodyCard({
   assets,
   card,
   categories,
+  lang,
 }: ServiceTechnologiesBodyCardProps) {
-  const [selectedRowKey, setSelectedRowKey] =
-    useState<ServiceTechnologySelectionKey | null>(null);
+  const router = useRouter();
+  const rows = useMemo(() => flattenServiceTechnologyRows(categories), [categories]);
+  const defaultSelectionKey = useMemo(
+    () => resolveDefaultServiceTechnologySelection(rows, card.displayByItemId),
+    [card.displayByItemId, rows],
+  );
+  const [selectedRowState, setSelectedRowState] = useState<ServiceTechnologySelectionKey | null>(
+    () => defaultSelectionKey,
+  );
+  const internalQueryEcho = useRef<Readonly<{ lang: Locale; values: readonly string[] }> | null>(null);
+  const selectedRowKey = rows.some((row) => row.selectionKey === selectedRowState)
+    ? selectedRowState
+    : defaultSelectionKey;
 
   const selectedItem = selectedRowKey
-    ? categories
-        .flatMap((category) => category.items.map((item) => ({ category, item })))
-        .find(({ category, item }) => `${category.id}:${item.id}` === selectedRowKey)
+    ? rows.find((row) => row.selectionKey === selectedRowKey)
     : null;
   const display = selectedItem
-    ? card.displayByItemId[selectedItem.item.id]
+    ? card.displayByItemId[selectedItem.itemId]
     : null;
+  const selectedCategory = selectedItem
+    ? categories.find((category) => category.id === selectedItem.categoryId)
+    : null;
+  const selectedItemIndex = selectedCategory?.items.findIndex(
+    (item) => item.id === selectedItem?.itemId,
+  );
   const selectedLabel = selectedItem
     ? card.categoryLabelMode === "placeholder"
-      ? `${card.placeholderLabel} ${categories.findIndex((category) => category.id === selectedItem.category.id) + 1}-${selectedItem.category.items.findIndex((item) => item.id === selectedItem.item.id) + 1}`
-      : selectedItem.item.label
+      ? `${card.placeholderLabel} ${categories.findIndex((category) => category.id === selectedItem.categoryId) + 1}-${selectedItemIndex === undefined ? 0 : selectedItemIndex + 1}`
+      : selectedCategory?.items.find((item) => item.id === selectedItem.itemId)?.label ?? null
     : null;
+  const selectedButtonId = selectedRowKey
+    ? `service-technologies-row-${selectedRowKey}`
+    : undefined;
+
+  const consumeInternalEcho = useCallback((nextLang: Locale, values: readonly string[]) => {
+    const pendingEcho = internalQueryEcho.current;
+    if (
+      pendingEcho === null ||
+      pendingEcho.lang !== nextLang ||
+      pendingEcho.values.length !== values.length ||
+      pendingEcho.values.some((value, index) => value !== values[index])
+    ) {
+      return false;
+    }
+
+    internalQueryEcho.current = null;
+    return true;
+  }, []);
+
+  const selectRow = (selectionKey: ServiceTechnologySelectionKey) => {
+    setSelectedRowState(selectionKey);
+
+    const values = selectionKey === defaultSelectionKey ? [] : [selectionKey];
+    const url = new URL(window.location.href);
+    const currentUrl = `${url.pathname}${url.search}${url.hash}`;
+    url.searchParams.delete("technology");
+    if (values.length === 1) {
+      url.searchParams.set("technology", selectionKey);
+    }
+
+    const nextUrl = `${url.pathname}${url.search}${url.hash}`;
+    if (nextUrl !== currentUrl) {
+      internalQueryEcho.current = { lang, values };
+      router.replace(nextUrl, { scroll: false });
+    }
+  };
 
   return (
     <article className="min-w-0 rounded-product-card border border-line bg-white shadow-media">
+      <Suspense fallback={null}>
+        <ServiceTechnologySelectionQuerySync
+          consumeInternalEcho={consumeInternalEcho}
+          defaultSelectionKey={defaultSelectionKey}
+          displayByItemId={card.displayByItemId}
+          lang={lang}
+          onSelectionChange={setSelectedRowState}
+          rows={rows}
+        />
+      </Suspense>
       <div className="grid grid-cols-[fit-content(30%)_minmax(0,1fr)] max-stack:grid-cols-1">
         <div className="min-w-0 p-[clamp(1.5rem,3vw,2.5rem)]">
           {categories.map((category, categoryIndex) => {
@@ -65,7 +136,7 @@ export function ServiceTechnologiesBodyCard({
                 </h2>
                 <ul className="mt-4 list-none space-y-2 p-0">
                   {category.items.map((item, itemIndex) => {
-                    const selectionKey = `${category.id}:${item.id}` as ServiceTechnologySelectionKey;
+                    const selectionKey: ServiceTechnologySelectionKey = `${category.id}:${item.id}`;
                     const isSelected = selectedRowKey === selectionKey;
                     const itemLabel =
                       card.categoryLabelMode === "source"
@@ -78,7 +149,8 @@ export function ServiceTechnologiesBodyCard({
                           aria-controls={detailsRegionId}
                           aria-pressed={isSelected}
                           className="w-full rounded-control py-1 text-left text-service-body text-ink-muted hover:text-ink hover:underline hover:decoration-genome-sequencing-accent aria-pressed:font-bold aria-pressed:text-ink aria-pressed:underline aria-pressed:decoration-genome-sequencing-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
-                          onClick={() => setSelectedRowKey(selectionKey)}
+                          id={`service-technologies-row-${selectionKey}`}
+                          onClick={() => selectRow(selectionKey)}
                           type="button"
                         >
                           {itemLabel}
@@ -97,7 +169,9 @@ export function ServiceTechnologiesBodyCard({
 
         <div
           className="min-w-0 border-l border-genome-sequencing-accent p-[clamp(1.5rem,3vw,2.5rem)] max-stack:border-t max-stack:border-l-0"
+          aria-labelledby={selectedButtonId}
           id={detailsRegionId}
+          role="region"
         >
           {display?.kind === "ready" ? (
             <Image
