@@ -21,7 +21,7 @@ type SiteFooterProps = Readonly<{
 const servicePagePaths = {
   "yeast-two-hybrid": servicePaths["yeast-two-hybrid"],
   "genome-sequencing": servicePaths["genome-sequencing"],
-  "other-business-services": null,
+  "other-business-services": servicePaths["other-business-services"],
 } satisfies Record<ServiceCardId, `/${string}` | null>;
 
 const aboutPagePaths = {

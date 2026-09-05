@@ -47,7 +47,7 @@ const serviceIcons = {
 const serviceActionPaths = {
   "yeast-two-hybrid": servicePaths["yeast-two-hybrid"],
   "genome-sequencing": servicePaths["genome-sequencing"],
-  "other-business-services": null,
+  "other-business-services": servicePaths["other-business-services"],
 } satisfies Record<ServiceCardId, `/${string}` | null>;
 
 type CoreCardProps = Readonly<{

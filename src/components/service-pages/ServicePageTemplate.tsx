@@ -11,8 +11,12 @@ const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 f
 
 type ServicePageTemplateProps = Readonly<{
   children: ReactNode;
+  heroAppearance?: "default" | "pale-dark-copy";
+  heroContentLanguage?: string;
   heroImageSrc: ImageProps["src"];
-  heroOverlay?: "default" | "none";
+  heroOverlay?: "default" | "none" | "pale";
+  heroSupplement?: ReactNode;
+  heroSupplementPosition?: "flow" | "wide-overlay";
   intro: string;
   lang: Locale;
   pagePath: `/${string}`;
@@ -22,8 +26,12 @@ type ServicePageTemplateProps = Readonly<{
 
 export function ServicePageTemplate({
   children,
+  heroAppearance = "default",
+  heroContentLanguage,
   heroImageSrc,
   heroOverlay,
+  heroSupplement,
+  heroSupplementPosition = "flow",
   intro,
   lang,
   pagePath,
@@ -32,6 +40,7 @@ export function ServicePageTemplate({
 }: ServicePageTemplateProps) {
   const home = contentByLocale[lang];
   const fontClass = lang === "ja" ? "font-sans-jp" : "font-sans-sc";
+  const usesDarkHeroCopy = heroAppearance === "pale-dark-copy";
 
   return (
     <div className={`${fontClass} min-h-screen bg-ui-subtle text-ink`}>
@@ -42,16 +51,21 @@ export function ServicePageTemplate({
       <SiteHeader lang={lang} localePath={pagePath} preserveLocaleSearchParamKeys={preserveLocaleSearchParamKeys} variant="subpage" />
 
       <main id="main-content" tabIndex={-1}>
-        <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
+        <section className={`relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] ${usesDarkHeroCopy ? "text-ink" : "text-on-dark"}`} aria-labelledby="page-title">
           <NonLandingHeroMedia overlay={heroOverlay} src={heroImageSrc} />
           <div className="page-container relative z-10">
             <div className="non-landing-hero-copy-layout">
-              <div className="min-w-0">
+              <div className="min-w-0" lang={heroContentLanguage}>
                 <h1 className="m-0 max-w-full text-service-hero-title" id="page-title">{title}</h1>
-                <p className="mt-7 max-w-full text-service-hero-body text-on-dark-muted">{intro}</p>
+                <p className={`mt-7 max-w-full text-service-hero-body ${usesDarkHeroCopy ? "text-ink" : "text-on-dark-muted"}`}>{intro}</p>
               </div>
             </div>
           </div>
+          {heroSupplement ? (
+            <div className={heroSupplementPosition === "wide-overlay" ? "static page:absolute page:inset-x-0 page:bottom-5 page:z-10" : undefined}>
+            {heroSupplement}
+            </div>
+          ) : null}
         </section>
 
         {children}
