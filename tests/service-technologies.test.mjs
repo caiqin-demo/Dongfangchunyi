@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFileSync, statSync } from "node:fs";
 import test from "node:test";
@@ -24,12 +25,15 @@ const itemIds = [
 test("service technologies card preserves the approved component boundary and data contract", () => {
   const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
   const card = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesBodyCard.tsx");
+  const selection = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologySelection.ts");
   const types = readSource("src/content/service-technologies/types.ts");
   const genomeTypes = readSource("src/content/genome-sequencing/types.ts");
 
   assert.match(page, /GenomeSequencingBodyFrame contact=\{content\.contact\}/);
   assert.match(page, /<ServiceTechnologiesBodyCard/);
   assert.match(page, /categories=\{categories\}/);
+  assert.match(page, /lang=\{lang\}/);
+  assert.match(page, /preserveLocaleSearchParamKeys=\{\["technology"\]\}/);
   assert.match(page, /absoluteQuantificationMicrobialDiversitySequencingZh/);
   assert.match(page, /dapSeqTechnicalServiceZh/);
   assert.match(page, /genomeResequencingZh/);
@@ -39,11 +43,119 @@ test("service technologies card preserves the approved component boundary and da
   assert.match(page, /wholeTranscriptomeSequencingZh/);
   assert.doesNotMatch(page, /aria-hidden="true" className="min-h-/);
   assert.match(card, /^"use client";/);
-  assert.match(card, /useState<ServiceTechnologySelectionKey \| null>\(null\)/);
+  assert.match(card, /useState<ServiceTechnologySelectionKey \| null>\(\s*\(\) => defaultSelectionKey/);
+  assert.match(card, /resolveDefaultServiceTechnologySelection\(rows, card\.displayByItemId\)/);
+  assert.match(selection, /rows\.find\(\(row\) => displayByItemId\[row\.itemId\]\.kind === "ready"\)/);
+  assert.match(selection, /rows\[0\]\?\.selectionKey/);
   assert.match(types, /\$\{GenomeSequencingOptionId\}:\$\{GenomeSequencingServiceItemId\}/);
   assert.match(types, /Record<GenomeSequencingServiceItemId, ServiceTechnologyDisplay>/);
   assert.equal((genomeTypes.match(/^  \| "/gm) ?? []).length, 17);
   for (const id of itemIds) assert.match(genomeTypes, new RegExp(`"${id}"`));
+});
+
+test("service technologies resolves and synchronizes only validated technology selections", () => {
+  const card = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesBodyCard.tsx");
+  const selection = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologySelection.ts");
+  const sync = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologySelectionQuerySync.tsx");
+
+  assert.match(selection, /const exactRow = rows\.find\(\(row\) => row\.selectionKey === rawSelectionKey\)/);
+  assert.match(selection, /const parts = rawSelectionKey\.split\(":"\)/);
+  assert.match(selection, /parts\.length !== 2/);
+  assert.match(selection, /const hasKnownCategory = rows\.some/);
+  assert.match(selection, /const matchingReadyRow = rows\.find/);
+  assert.match(selection, /displayByItemId\[exactRow\.itemId\]\.kind !== "ready"/);
+  assert.match(selection, /shouldNormalize: true/);
+  assert.doesNotMatch(selection, /as ServiceTechnologySelectionKey/);
+
+  assert.match(card, /<Suspense fallback=\{null\}>/);
+  assert.match(card, /<ServiceTechnologySelectionQuerySync/);
+  assert.match(card, /internalQueryEcho/);
+  assert.match(card, /url\.searchParams\.delete\("technology"\)/);
+  assert.match(card, /if \(nextUrl !== currentUrl\)/);
+  assert.match(card, /router\.replace\(nextUrl, \{ scroll: false \}\)/);
+  assert.match(card, /id=\{`service-technologies-row-\$\{selectionKey\}`\}/);
+  assert.match(card, /aria-labelledby=\{selectedButtonId\}/);
+  assert.match(card, /role="region"/);
+
+  assert.match(sync, /searchParams\.getAll\("technology"\)/);
+  assert.match(sync, /consumeInternalEcho\(lang, values\)/);
+  assert.match(sync, /resolveRequestedServiceTechnologySelection/);
+  assert.match(sync, /normalizedSearchParams\.delete\("technology"\)/);
+  assert.match(sync, /if \(url !== currentUrl\)/);
+  assert.match(sync, /router\.replace\(url, \{ scroll: false \}\)/);
+  assert.match(sync, /\$\{window\.location\.hash\}/);
+});
+
+test("service technologies selection resolver handles default, fallback, and invalid query states", () => {
+  const moduleUrl = new URL(
+    "../src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologySelection.ts",
+    import.meta.url,
+  ).href;
+  const script = `
+    import {
+      resolveDefaultServiceTechnologySelection,
+      resolveRequestedServiceTechnologySelection,
+    } from ${JSON.stringify(moduleUrl)};
+
+    const rows = [
+      { categoryId: "plant-and-cell", itemId: "single-cell-sequencing", selectionKey: "plant-and-cell:single-cell-sequencing" },
+      { categoryId: "animal-and-cell", itemId: "genome-resequencing", selectionKey: "animal-and-cell:genome-resequencing" },
+      { categoryId: "multidimensional-analysis-platform", itemId: "genome-de-novo-sequencing", selectionKey: "multidimensional-analysis-platform:genome-de-novo-sequencing" },
+    ];
+    const display = {
+      "single-cell-sequencing": { kind: "pending", label: "Pending" },
+      "genome-resequencing": { kind: "ready", assetId: "test", alt: "Ready" },
+      "genome-de-novo-sequencing": { kind: "ready", assetId: "test", alt: "Moved" },
+    };
+    const defaultKey = resolveDefaultServiceTechnologySelection(rows, display);
+    console.log(JSON.stringify({
+      defaultKey,
+      exact: resolveRequestedServiceTechnologySelection(["multidimensional-analysis-platform:genome-de-novo-sequencing"], rows, display, defaultKey),
+      defaultExplicit: resolveRequestedServiceTechnologySelection(["animal-and-cell:genome-resequencing"], rows, display, defaultKey),
+      pending: resolveRequestedServiceTechnologySelection(["plant-and-cell:single-cell-sequencing"], rows, display, defaultKey),
+      moved: resolveRequestedServiceTechnologySelection(["plant-and-cell:genome-de-novo-sequencing"], rows, display, defaultKey),
+      unknown: resolveRequestedServiceTechnologySelection(["plant-and-cell:unknown"], rows, display, defaultKey),
+      repeated: resolveRequestedServiceTechnologySelection(["animal-and-cell:genome-resequencing", "animal-and-cell:genome-resequencing"], rows, display, defaultKey),
+      noReady: resolveDefaultServiceTechnologySelection(rows.slice(0, 1), display),
+      noRows: resolveDefaultServiceTechnologySelection([], display),
+    }));
+  `;
+  const result = spawnSync(
+    process.execPath,
+    ["--no-warnings", "--experimental-strip-types", "--input-type=module", "--eval", script],
+    { encoding: "utf8" },
+  );
+
+  assert.equal(result.status, 0, result.stderr);
+  const resolution = JSON.parse(result.stdout);
+
+  assert.equal(resolution.defaultKey, "animal-and-cell:genome-resequencing");
+  assert.deepEqual(resolution.exact, {
+    selectionKey: "multidimensional-analysis-platform:genome-de-novo-sequencing",
+    shouldNormalize: false,
+  });
+  assert.deepEqual(resolution.defaultExplicit, {
+    selectionKey: "animal-and-cell:genome-resequencing",
+    shouldNormalize: true,
+  });
+  assert.deepEqual(resolution.pending, {
+    selectionKey: "animal-and-cell:genome-resequencing",
+    shouldNormalize: true,
+  });
+  assert.deepEqual(resolution.moved, {
+    selectionKey: "multidimensional-analysis-platform:genome-de-novo-sequencing",
+    shouldNormalize: true,
+  });
+  assert.deepEqual(resolution.unknown, {
+    selectionKey: "animal-and-cell:genome-resequencing",
+    shouldNormalize: true,
+  });
+  assert.deepEqual(resolution.repeated, {
+    selectionKey: "animal-and-cell:genome-resequencing",
+    shouldNormalize: true,
+  });
+  assert.equal(resolution.noReady, "plant-and-cell:single-cell-sequencing");
+  assert.equal(resolution.noRows, null);
 });
 
 test("service technologies card has accessible buttons and exact approved display behavior", () => {

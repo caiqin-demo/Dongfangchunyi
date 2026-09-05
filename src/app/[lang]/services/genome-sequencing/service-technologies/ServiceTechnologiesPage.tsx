@@ -60,6 +60,7 @@ export function ServiceTechnologiesPage({ lang }: PageProps) {
       intro={content.intro}
       lang={lang}
       pagePath={genomeSequencingServiceTechnologiesPath}
+      preserveLocaleSearchParamKeys={["technology"]}
       title={content.title}
     >
       <GenomeSequencingOptions
@@ -100,6 +101,7 @@ export function ServiceTechnologiesPage({ lang }: PageProps) {
           }}
           card={content.bodyCard}
           categories={categories}
+          lang={lang}
         />
       </GenomeSequencingBodyFrame>
     </ServicePageTemplate>
