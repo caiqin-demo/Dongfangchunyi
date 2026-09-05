@@ -9,15 +9,25 @@ export type ServiceTechnologySelectionKey =
 
 export type ServiceTechnologyAssetId =
   | "absolute-quantification-microbial-diversity-sequencing-zh"
+  | "absolute-quantification-microbial-diversity-sequencing-ja"
   | "dap-seq-technical-service-zh"
+  | "dap-seq-technical-service-ja"
   | "genome-de-novo-sequencing-zh"
+  | "genome-de-novo-sequencing-ja"
   | "genome-resequencing-zh"
+  | "genome-resequencing-ja"
   | "marine-microbiology-research-zh"
+  | "marine-microbiology-research-ja"
   | "multidimensional-analysis-platform-zh"
+  | "multidimensional-analysis-platform-ja"
   | "multidimensional-analysis-platform-interactions-zh"
+  | "multidimensional-analysis-platform-interactions-ja"
   | "multidimensional-analysis-platform-multiomics-zh"
+  | "multidimensional-analysis-platform-multiomics-ja"
   | "single-cell-sequencing-zh"
-  | "whole-transcriptome-sequencing-zh";
+  | "single-cell-sequencing-ja"
+  | "whole-transcriptome-sequencing-zh"
+  | "whole-transcriptome-sequencing-ja";
 
 export type ServiceTechnologyDisplay =
   | Readonly<{

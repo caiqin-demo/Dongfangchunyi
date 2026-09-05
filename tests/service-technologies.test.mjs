@@ -73,7 +73,7 @@ test("service technologies card has accessible buttons and exact approved displa
   assert.doesNotMatch(card, /总共12种|鼠标指向黑色字体/);
 });
 
-test("service technologies locale maps are exhaustive and keep Japanese details pending", () => {
+test("service technologies locale maps are exhaustive and preserve Japanese page copy", () => {
   const zh = readSource("src/content/service-technologies/zh.ts");
   const ja = readSource("src/content/service-technologies/ja.ts");
 
@@ -96,14 +96,58 @@ test("service technologies locale maps are exhaustive and keep Japanese details 
   assert.match(ja, /categoryLabelMode: "source"/);
   assert.match(ja, /placeholderLabel: "準備中"/);
   assert.match(ja, /label: "お問い合わせ"/);
-  assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 0);
-  assert.match(
-    ja,
-    /"absolute-quantification-microbial-diversity-sequencing": \{ kind: "pending", label: "準備中" \}/,
-  );
-  const jaDisplayMap = ja.match(/displayByItemId: \{([\s\S]*?)\n    \},\n  \},\n  contact:/)?.[1] ?? "";
-  assert.equal((jaDisplayMap.match(/label: "準備中"/g) ?? []).length, 13);
+  assert.equal((ja.match(/kind: "ready"/g) ?? []).length, 13);
+  assert.doesNotMatch(ja, /kind: "pending"/);
   assert.doesNotMatch(ja, /暂定/);
+});
+
+test("service technologies maps each supplied Japanese asset to the matching ready items", () => {
+  const ja = readSource("src/content/service-technologies/ja.ts");
+  const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
+  const assets = [
+    ["absolute-quantification-microbial-diversity-sequencing-ja", 1037073, "5dd23ffd1910e17593681cb714b07d1e09d37f5c635926d0255a086befa80901"],
+    ["dap-seq-technical-service-ja", 769040, "540364fbd83ae90025c4feffb30fa3ea3a2b1f9a077df4cebf80013547501bdd"],
+    ["genome-de-novo-sequencing-ja", 851820, "7ec16544567b2df778263637109a2393d64b66bd4bb4a5b98eb9ef1146fd2ba2"],
+    ["genome-resequencing-ja", 613454, "f83be915da06f69a98140ff0c3c8457f5159e31910007868390529e5852f7d31"],
+    ["marine-microbiology-research-ja", 959124, "1a024b5047c7ea2940d87fe2eb6f7440117a09f3e19f1350900f9d5eacc4cbce"],
+    ["multidimensional-analysis-platform-ja", 799257, "33b99a51fd44aa704713e234e6df9d8a90a49b31da87fdbc086ddb08a2200376"],
+    ["multidimensional-analysis-platform-interactions-ja", 835814, "0ff8b694371969d91761d9398c70c1e7c24019e84908d7d04e65d6136d2cf041"],
+    ["multidimensional-analysis-platform-multiomics-ja", 1001580, "6ee44cf9f877add051ec2cff76bf12626a750a75441de4e1f2e7de4c9e0d0284"],
+    ["single-cell-sequencing-ja", 825630, "ed4698f4559cb221d5cd0a7be98e944c571cc38b48198f6f28d522c2a9865b33"],
+    ["whole-transcriptome-sequencing-ja", 851226, "b54f020e816a8b969a3b76a82fa5f5ca6e81c5c8801ea352f7f8782bedcf50c9"],
+  ];
+
+  for (const [assetId, size, sha256] of assets) {
+    const asset = new URL(`../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/${assetId}.jpg`, import.meta.url);
+    const bytes = readFileSync(asset);
+
+    assert.equal(statSync(asset).size, size);
+    assert.equal(bytes.subarray(0, 3).toString("hex"), "ffd8ff");
+    assert.equal(createHash("sha256").update(bytes).digest("hex"), sha256);
+    assert.match(page, new RegExp(`"${assetId}":`));
+  }
+
+  for (const [itemId, assetId] of [
+    ["absolute-quantification-microbial-diversity-sequencing", "absolute-quantification-microbial-diversity-sequencing-ja"],
+    ["dap-seq-technical-service", "dap-seq-technical-service-ja"],
+    ["genome-de-novo-sequencing", "genome-de-novo-sequencing-ja"],
+    ["genome-resequencing", "genome-resequencing-ja"],
+    ["marine-microbiology-research", "marine-microbiology-research-ja"],
+    ["single-cell-sequencing", "single-cell-sequencing-ja"],
+    ["whole-transcriptome-sequencing", "whole-transcriptome-sequencing-ja"],
+  ]) {
+    assert.match(ja, new RegExp(`"${itemId}": \\{\\s+kind: "ready",\\s+assetId: "${assetId}"`));
+  }
+
+  for (const [assetId, itemIdsForAsset] of [
+    ["multidimensional-analysis-platform-ja", ["epigenetics-service", "mrna-in-situ-hybridization"]],
+    ["multidimensional-analysis-platform-interactions-ja", ["yeast-two-hybrid", "spr-molecular-interaction-research"]],
+    ["multidimensional-analysis-platform-multiomics-ja", ["proteomics-and-metabolomics", "multiomics-combined-analysis"]],
+  ]) {
+    for (const itemId of itemIdsForAsset) {
+      assert.match(ja, new RegExp(`"${itemId}": \\{\\s+kind: "ready",\\s+assetId: "${assetId}"`));
+    }
+  }
 });
 
 test("service technologies preserves the approved resequencing image bytes", () => {
@@ -175,7 +219,6 @@ test("service technologies maps multidimensional platform items to the approved 
   const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/multidimensional-analysis-platform-zh.jpg", import.meta.url);
   const bytes = readFileSync(asset);
   const zh = readSource("src/content/service-technologies/zh.ts");
-  const ja = readSource("src/content/service-technologies/ja.ts");
   const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
 
   assert.equal(statSync(asset).size, 799557);
@@ -189,7 +232,6 @@ test("service technologies maps multidimensional platform items to the approved 
       zh,
       new RegExp(`"${id}": \\{\\s+kind: "ready",\\s+assetId: "multidimensional-analysis-platform-zh"`),
     );
-    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "準備中" \\}`));
   }
   assert.match(
     page,
@@ -205,7 +247,6 @@ test("service technologies maps molecular interaction items to the approved Chin
   const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/multidimensional-analysis-platform-interactions-zh.jpg", import.meta.url);
   const bytes = readFileSync(asset);
   const zh = readSource("src/content/service-technologies/zh.ts");
-  const ja = readSource("src/content/service-technologies/ja.ts");
   const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
 
   assert.equal(statSync(asset).size, 835814);
@@ -219,7 +260,6 @@ test("service technologies maps molecular interaction items to the approved Chin
       zh,
       new RegExp(`"${id}": \\{\\s+kind: "ready",\\s+assetId: "multidimensional-analysis-platform-interactions-zh"`),
     );
-    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "準備中" \\}`));
   }
   assert.match(
     page,
@@ -235,7 +275,6 @@ test("service technologies maps proteomics and multiomics items to the approved 
   const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/multidimensional-analysis-platform-multiomics-zh.jpg", import.meta.url);
   const bytes = readFileSync(asset);
   const zh = readSource("src/content/service-technologies/zh.ts");
-  const ja = readSource("src/content/service-technologies/ja.ts");
   const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
 
   assert.equal(statSync(asset).size, 915736);
@@ -249,7 +288,6 @@ test("service technologies maps proteomics and multiomics items to the approved 
       zh,
       new RegExp(`"${id}": \\{\\s+kind: "ready",\\s+assetId: "multidimensional-analysis-platform-multiomics-zh"`),
     );
-    assert.match(ja, new RegExp(`"${id}": \\{ kind: "pending", label: "準備中" \\}`));
   }
   assert.match(
     page,
@@ -266,7 +304,6 @@ test("service technologies maps all single-cell sequencing rows to the approved 
   const bytes = readFileSync(asset);
   const genomeZh = readSource("src/content/genome-sequencing/zh.ts");
   const zh = readSource("src/content/service-technologies/zh.ts");
-  const ja = readSource("src/content/service-technologies/ja.ts");
   const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
 
   assert.equal(statSync(asset).size, 1041141);
@@ -280,7 +317,6 @@ test("service technologies maps all single-cell sequencing rows to the approved 
     zh,
     /"single-cell-sequencing": \{\s+kind: "ready",\s+assetId: "single-cell-sequencing-zh",\s+alt: "单细胞测序技术路线图"/,
   );
-  assert.match(ja, /"single-cell-sequencing": \{ kind: "pending", label: "準備中" \}/);
   assert.match(
     page,
     /import singleCellSequencingZh from "\.\/\_assets\/single-cell-sequencing-zh\.jpg"/,
@@ -293,7 +329,6 @@ test("service technologies maps all genome de novo sequencing rows to the approv
   const bytes = readFileSync(asset);
   const genomeZh = readSource("src/content/genome-sequencing/zh.ts");
   const zh = readSource("src/content/service-technologies/zh.ts");
-  const ja = readSource("src/content/service-technologies/ja.ts");
   const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
 
   assert.equal(statSync(asset).size, 851520);
@@ -307,7 +342,6 @@ test("service technologies maps all genome de novo sequencing rows to the approv
     zh,
     /"genome-de-novo-sequencing": \{\s+kind: "ready",\s+assetId: "genome-de-novo-sequencing-zh",\s+alt: "基因组de novo测序技术路线图"/,
   );
-  assert.match(ja, /"genome-de-novo-sequencing": \{ kind: "pending", label: "準備中" \}/);
   assert.match(
     page,
     /import genomeDeNovoSequencingZh from "\.\/\_assets\/genome-de-novo-sequencing-zh\.jpg"/,
@@ -320,7 +354,6 @@ test("service technologies maps all DAP-seq technical service rows to the approv
   const bytes = readFileSync(asset);
   const genomeZh = readSource("src/content/genome-sequencing/zh.ts");
   const zh = readSource("src/content/service-technologies/zh.ts");
-  const ja = readSource("src/content/service-technologies/ja.ts");
   const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
 
   assert.equal(statSync(asset).size, 743651);
@@ -334,7 +367,6 @@ test("service technologies maps all DAP-seq technical service rows to the approv
     zh,
     /"dap-seq-technical-service": \{\s+kind: "ready",\s+assetId: "dap-seq-technical-service-zh",\s+alt: "DAP-seq技术服务路线图"/,
   );
-  assert.match(ja, /"dap-seq-technical-service": \{ kind: "pending", label: "準備中" \}/);
   assert.match(
     page,
     /import dapSeqTechnicalServiceZh from "\.\/\_assets\/dap-seq-technical-service-zh\.jpg"/,
@@ -346,7 +378,6 @@ test("service technologies maps whole-transcriptome sequencing to the approved C
   const asset = new URL("../src/app/[lang]/services/genome-sequencing/service-technologies/_assets/whole-transcriptome-sequencing-zh.jpg", import.meta.url);
   const bytes = readFileSync(asset);
   const zh = readSource("src/content/service-technologies/zh.ts");
-  const ja = readSource("src/content/service-technologies/ja.ts");
   const page = readSource("src/app/[lang]/services/genome-sequencing/service-technologies/ServiceTechnologiesPage.tsx");
 
   assert.equal(statSync(asset).size, 851526);
@@ -359,7 +390,6 @@ test("service technologies maps whole-transcriptome sequencing to the approved C
     zh,
     /"whole-transcriptome-sequencing": \{\s+kind: "ready",\s+assetId: "whole-transcriptome-sequencing-zh",\s+alt: "全转录组测序技术路线图"/,
   );
-  assert.match(ja, /"whole-transcriptome-sequencing": \{ kind: "pending", label: "準備中" \}/);
   assert.match(
     page,
     /import wholeTranscriptomeSequencingZh from "\.\/\_assets\/whole-transcriptome-sequencing-zh\.jpg"/,
