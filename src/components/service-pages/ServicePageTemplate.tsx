@@ -12,6 +12,7 @@ const focusRingClass = "focus-visible:outline-2 focus-visible:outline-offset-2 f
 type ServicePageTemplateProps = Readonly<{
   children: ReactNode;
   heroImageSrc: ImageProps["src"];
+  heroOverlay?: "default" | "none";
   intro: string;
   lang: Locale;
   pagePath: `/${string}`;
@@ -22,6 +23,7 @@ type ServicePageTemplateProps = Readonly<{
 export function ServicePageTemplate({
   children,
   heroImageSrc,
+  heroOverlay,
   intro,
   lang,
   pagePath,
@@ -41,7 +43,7 @@ export function ServicePageTemplate({
 
       <main id="main-content" tabIndex={-1}>
         <section className="relative isolate overflow-hidden bg-ui-section py-[clamp(3.5rem,7vw,7rem)] text-on-dark" aria-labelledby="page-title">
-          <NonLandingHeroMedia src={heroImageSrc} />
+          <NonLandingHeroMedia overlay={heroOverlay} src={heroImageSrc} />
           <div className="page-container relative z-10">
             <div className="non-landing-hero-copy-layout">
               <div className="min-w-0">

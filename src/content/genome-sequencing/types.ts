@@ -4,13 +4,28 @@ export type GenomeSequencingOptionId =
   | "microorganism"
   | "multidimensional-analysis-platform";
 
+export type GenomeSequencingServiceItemId =
+  | "single-cell-sequencing"
+  | "genome-de-novo-sequencing"
+  | "absolute-quantification-microbial-diversity-sequencing"
+  | "dap-seq-technical-service"
+  | "genome-resequencing"
+  | "whole-transcriptome-sequencing"
+  | "marine-microbiology-research"
+  | "epigenetics-service"
+  | "mrna-in-situ-hybridization"
+  | "yeast-two-hybrid"
+  | "spr-molecular-interaction-research"
+  | "proteomics-and-metabolomics"
+  | "multiomics-combined-analysis";
+
 type GenomeSequencingOption<Id extends GenomeSequencingOptionId> = Readonly<{
   id: Id;
   label: string;
 }>;
 
 type GenomeSequencingServiceItem = Readonly<{
-  id: string;
+  id: GenomeSequencingServiceItemId;
   label: string;
 }>;
 

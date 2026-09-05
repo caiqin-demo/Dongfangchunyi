@@ -1,26 +1,26 @@
+import Link from "next/link";
 import Image, { type StaticImageData } from "next/image";
 
 import type { GenomeSequencingContent } from "@/content/genome-sequencing/types";
+
+import { GenomeSequencingBodyFrame } from "./GenomeSequencingBodyFrame";
 
 const publicationTextClass = "text-service-card-body text-ink-muted";
 
 type GenomeSequencingBodyProps = Readonly<{
   body: GenomeSequencingContent["body"];
+  technicalRoutePath: string;
   teamImage: StaticImageData;
 }>;
 
-export function GenomeSequencingBody({ body, teamImage }: GenomeSequencingBodyProps) {
+export function GenomeSequencingBody({
+  body,
+  technicalRoutePath,
+  teamImage,
+}: GenomeSequencingBodyProps) {
   return (
-    <section className="bg-ui-subtle pb-[clamp(3.5rem,7vw,7rem)] text-ink">
-      <div className="page-container">
-        <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 py-3">
-          <p className="m-0 text-service-section-title">{body.contact.label}</p>
-          {body.contact.emails.map((email) => (
-            <p className="m-0 break-all text-service-body text-ink-muted" key={email}>{email}</p>
-          ))}
-        </div>
-
-        <article className="overflow-hidden rounded-product-card border border-line bg-white shadow-media">
+    <GenomeSequencingBodyFrame contact={body.contact}>
+      <article className="overflow-hidden rounded-product-card border border-line bg-white shadow-media">
           <section>
             <div className="grid grid-cols-4 grid-rows-[auto_auto] gap-y-12 px-[clamp(1.5rem,3vw,2.5rem)] py-[clamp(2rem,4vw,3.5rem)] max-page:grid-cols-2">
               {body.categories.map((category) => (
@@ -33,7 +33,7 @@ export function GenomeSequencingBody({ body, teamImage }: GenomeSequencingBodyPr
                       ))}
                     </ul>
                   </div>
-                  <button className="justify-self-start pl-6 text-left text-service-body text-genome-sequencing-accent disabled:cursor-not-allowed disabled:opacity-100" disabled type="button">{body.technicalRouteLabel}</button>
+                  <Link className="justify-self-start pl-6 text-left text-service-body text-genome-sequencing-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" href={technicalRoutePath}>{body.technicalRouteLabel}</Link>
                 </section>
               ))}
             </div>
@@ -60,8 +60,7 @@ export function GenomeSequencingBody({ body, teamImage }: GenomeSequencingBodyPr
               ))}
             </div>
           </section>
-        </article>
-      </div>
-    </section>
+      </article>
+    </GenomeSequencingBodyFrame>
   );
 }
