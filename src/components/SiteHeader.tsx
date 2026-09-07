@@ -49,6 +49,14 @@ export function SiteHeader({ lang, localePath = "/", preserveLocaleSearchParamKe
                 );
               }
 
+              if (item.id === "about") {
+                return (
+                  <Link className={navLinkClass} href={`/${lang}${aboutPaths["company-profile"]}`} key={item.id}>
+                    {item.label}
+                  </Link>
+                );
+              }
+
               if (isLanding) {
                 return (
                   <a
