@@ -51,7 +51,7 @@ export function CoachingProgramPart({ bulletLayout, content, image, imageSide }:
             ))}
           </ul>
 
-          <div className="mt-8 flex flex-col gap-4 border-t border-line pt-6 page:flex-row page:items-start page:gap-8">
+          <div className="mt-8 flex flex-col gap-4 page:flex-row page:items-start page:gap-8">
             <h3 className="m-0 font-bold text-ink">{content.courseStructure.label}</h3>
             {content.courseStructure.kind === "plan" ? (
               <p className="mt-3 mb-0 text-product-section-body text-ink-muted">{content.courseStructure.description}</p>
