@@ -8,8 +8,10 @@ import { servicePaths } from "@/lib/service-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
 import businessConsultingPort from "./_assets/business-consulting-port.png";
+import coachingLeadershipTraining from "./_assets/coaching-leadership-training.png";
 import otherBusinessServicesHero from "./_assets/employee-training-is-important.png";
-import { BusinessConsultingCard } from "./BusinessConsultingCard";
+import selfCoachingWorkshop from "./_assets/self-coaching-workshop.jpeg";
+import { OtherBusinessServicesBody } from "./OtherBusinessServicesBody";
 
 type PageProps = Readonly<{ lang: Locale }>;
 
@@ -59,7 +61,12 @@ export function OtherBusinessServicesPage({ lang }: PageProps) {
       pagePath={servicePath}
       title={content.title}
     >
-      <BusinessConsultingCard content={content.businessConsulting} image={businessConsultingPort} />
+      <OtherBusinessServicesBody
+        businessConsultingImage={businessConsultingPort}
+        coachingLeadershipImage={coachingLeadershipTraining}
+        content={content}
+        selfCoachingImage={selfCoachingWorkshop}
+      />
     </ServicePageTemplate>
   );
 }

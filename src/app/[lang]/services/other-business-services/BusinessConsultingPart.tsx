@@ -2,17 +2,16 @@ import Image, { type ImageProps } from "next/image";
 
 import type { OtherBusinessServicesContent } from "@/content/other-business-services";
 
-type BusinessConsultingCardProps = Readonly<{
+type BusinessConsultingPartProps = Readonly<{
   content: OtherBusinessServicesContent["businessConsulting"];
   image: ImageProps["src"];
 }>;
 
-export function BusinessConsultingCard({ content, image }: BusinessConsultingCardProps) {
+export function BusinessConsultingPart({ content, image }: BusinessConsultingPartProps) {
   return (
-    <section className="bg-ui-subtle py-8" aria-labelledby="business-consulting-title" lang="zh-CN">
-      <article className="page-container overflow-hidden rounded-product-card border border-line bg-white shadow-media">
-        <div className="grid page:grid-cols-[2fr_5fr]">
-          <div className="relative isolate aspect-[161/100] overflow-hidden bg-ui-subtle page:aspect-auto">
+    <section aria-labelledby="business-consulting-title" lang="zh-CN">
+      <div className="grid page:grid-cols-[2fr_5fr]">
+        <div className="relative isolate aspect-[161/100] overflow-hidden bg-ui-subtle page:aspect-auto">
           <Image
             alt=""
             className="-z-10 object-cover object-center"
@@ -20,9 +19,9 @@ export function BusinessConsultingCard({ content, image }: BusinessConsultingCar
             sizes="(min-width: 1280px) 26vw, (min-width: 960px) 29vw, 100vw"
             src={image}
           />
-          </div>
+        </div>
 
-          <div className="min-w-0 border-t border-line p-[clamp(1.25rem,3vw,2.5rem)] page:border-t-0 page:border-l">
+        <div className="min-w-0 border-t border-line p-[clamp(1.25rem,3vw,2.5rem)] page:border-t-0 page:border-l">
           <h2 className="m-0 text-product-section-title" id="business-consulting-title">{content.title}</h2>
           <p className="mt-2 mb-0 text-base leading-[1.6] font-semibold text-ink-muted">{content.subtitle}</p>
 
@@ -36,8 +35,7 @@ export function BusinessConsultingCard({ content, image }: BusinessConsultingCar
             ))}
           </ul>
         </div>
-        </div>
-      </article>
+      </div>
     </section>
   );
 }
