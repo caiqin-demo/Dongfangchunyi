@@ -15,6 +15,10 @@
   --color-service-system-selected-hover: var(--color-brand-red-hover);
   --color-ui-footer: #061021;
   --color-ui-subtle: #f7f9fc;
+  --color-service-hero-pale-overlay: rgb(255 255 255 / 65%);
+  --color-other-business-service-contact: color(srgb 0.002 0.621 0.869);
+  --color-service-hero-panel: color(srgb 0.497 0.808 0.927 / 72%);
+  --color-other-business-service-workshop: color(srgb 0.512 0.583 0.743);
   --color-product-hero-light: color(srgb 0.952 0.953 0.967);
   --color-table-header: #dbf2d0;
   --color-brand-red: rgb(68.4% 9.4% 10%);
