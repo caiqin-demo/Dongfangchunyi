@@ -26,7 +26,7 @@ export function OtherBusinessServicesBody({
       <article className="page-container overflow-hidden rounded-product-card border border-line bg-white shadow-media">
         <BusinessConsultingPart content={content.businessConsulting} image={businessConsultingImage} />
         <SelfCoachingWorkshopPart content={selfCoaching} image={selfCoachingImage} />
-        <CoachingProgramPart content={coachingLeadership} image={coachingLeadershipImage} imageSide="left" />
+        <CoachingProgramPart bulletLayout="desktop-row" content={coachingLeadership} image={coachingLeadershipImage} imageSide="left" />
       </article>
     </section>
   );

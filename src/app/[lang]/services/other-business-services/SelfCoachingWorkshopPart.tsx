@@ -28,7 +28,7 @@ export function SelfCoachingWorkshopPart({ content, image }: SelfCoachingWorksho
 
           <ul className="mt-6 list-none space-y-3 p-0 page:grid page:grid-cols-[repeat(3,max-content)] page:justify-between page:gap-x-1 page:space-y-0">
             {content.bullets.map((bullet) => (
-              <li className="grid grid-cols-[min-content_minmax(0,1fr)] gap-x-3 text-product-section-body font-normal page:whitespace-nowrap" key={bullet}>
+              <li className="grid grid-cols-[min-content_minmax(0,1fr)] gap-x-3 text-product-section-body font-normal page:text-service-card-body page:whitespace-nowrap" key={bullet}>
                 <span className="mt-[0.45em] size-3 rounded-round border border-on-dark" aria-hidden="true" />
                 <span>{bullet}</span>
               </li>
