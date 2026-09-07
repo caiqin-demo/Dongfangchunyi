@@ -51,14 +51,14 @@ export function CoachingProgramPart({ bulletLayout, content, image, imageSide }:
             ))}
           </ul>
 
-          <div className="mt-8 border-t border-line pt-6">
+          <div className="mt-8 flex flex-col gap-4 border-t border-line pt-6 page:flex-row page:items-start page:gap-8">
             <h3 className="m-0 font-bold text-ink">{content.courseStructure.label}</h3>
             {content.courseStructure.kind === "plan" ? (
               <p className="mt-3 mb-0 text-product-section-body text-ink-muted">{content.courseStructure.description}</p>
             ) : (
-              <dl className="mt-3 grid gap-y-3 text-product-section-body text-ink-muted">
+              <dl className="m-0 grid gap-4 text-product-section-body text-ink-muted page:flex-1 page:grid-cols-2 page:gap-x-8">
                 {content.courseStructure.levels.map((level) => (
-                  <div className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-2" key={level.id}>
+                  <div className="grid gap-y-1" key={level.id}>
                     <dt className="font-bold text-ink">{level.label}</dt>
                     <dd className="m-0">{level.description}</dd>
                   </div>

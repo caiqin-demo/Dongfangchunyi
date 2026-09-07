@@ -42,8 +42,8 @@ export const zhOtherBusinessServicesContent = {
         kind: "levels",
         label: "课程结构：",
         levels: [
-          { id: "basic", label: "基础课程：", description: "学会去信任身教带人" },
-          { id: "advanced", label: "进阶课程：", description: "讲组织构架，从有效运作走向高度启动" },
+          { id: "basic", label: "基础课程", description: "学会去信任身教带人" },
+          { id: "advanced", label: "进阶课程", description: "讲组织构架，从有效运作走向高度启动" },
         ],
       },
     },
