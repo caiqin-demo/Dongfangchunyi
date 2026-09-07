@@ -7,7 +7,9 @@ import { defaultLocale, type Locale } from "@/i18n/config";
 import { servicePaths } from "@/lib/service-paths";
 import { getSiteUrl } from "@/lib/site-url";
 
+import businessConsultingPort from "./_assets/business-consulting-port.png";
 import otherBusinessServicesHero from "./_assets/employee-training-is-important.png";
+import { BusinessConsultingCard } from "./BusinessConsultingCard";
 
 type PageProps = Readonly<{ lang: Locale }>;
 
@@ -57,9 +59,7 @@ export function OtherBusinessServicesPage({ lang }: PageProps) {
       pagePath={servicePath}
       title={content.title}
     >
-      <div className="bg-ui-subtle py-8">
-        <div className="page-container" />
-      </div>
+      <BusinessConsultingCard content={content.businessConsulting} image={businessConsultingPort} />
     </ServicePageTemplate>
   );
 }
