@@ -48,6 +48,14 @@ export const zhOtherBusinessServicesContent = {
       },
     },
   ],
+  contact: {
+    companyName: "东方纯一株式会社",
+    postalCode: "〒589-0005",
+    address: "大阪府大阪狭山市狭山5丁目2252番地の3（201室）",
+    phone: "+81 090-9867 4333",
+    email: "market@easternpurity.com",
+    language: "ja",
+  },
   metadata: {
     title: "企业人效提升 | 东方纯一",
     description: "教练及领导力课程（中/英）",

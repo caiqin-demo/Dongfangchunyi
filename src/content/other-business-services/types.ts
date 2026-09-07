@@ -46,6 +46,15 @@ export type CoachingProgram = Readonly<{
   title: string;
 }>;
 
+export type OtherBusinessServicesContact = Readonly<{
+  address: string;
+  companyName: string;
+  email: string;
+  language: "ja";
+  phone: string;
+  postalCode: string;
+}>;
+
 export type OtherBusinessServicesContent = Readonly<{
   businessConsulting: Readonly<{
     offerings: readonly [
@@ -61,6 +70,7 @@ export type OtherBusinessServicesContent = Readonly<{
     CoachingProgram & Readonly<{ id: "self-coaching-workshop" }>,
     CoachingProgram & Readonly<{ id: "coaching-leadership-training" }>,
   ];
+  contact: OtherBusinessServicesContact;
   intro: string;
   metadata: Readonly<{
     description: string;

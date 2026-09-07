@@ -4,6 +4,7 @@ import type { OtherBusinessServicesContent } from "@/content/other-business-serv
 
 import { BusinessConsultingPart } from "./BusinessConsultingPart";
 import { CoachingProgramPart } from "./CoachingProgramPart";
+import { OtherBusinessServicesContact } from "./OtherBusinessServicesContact";
 import { SelfCoachingWorkshopPart } from "./SelfCoachingWorkshopPart";
 
 type OtherBusinessServicesBodyProps = Readonly<{
@@ -22,12 +23,16 @@ export function OtherBusinessServicesBody({
   const [selfCoaching, coachingLeadership] = content.coachingPrograms;
 
   return (
-    <section className="bg-ui-subtle py-8" lang="zh-CN">
-      <article className="page-container overflow-hidden rounded-product-card border border-line bg-white shadow-media">
-        <BusinessConsultingPart content={content.businessConsulting} image={businessConsultingImage} />
-        <SelfCoachingWorkshopPart content={selfCoaching} image={selfCoachingImage} />
-        <CoachingProgramPart bulletLayout="desktop-row" content={coachingLeadership} image={coachingLeadershipImage} imageSide="left" />
-      </article>
-    </section>
+    <>
+      <section className="bg-ui-subtle py-8" lang="zh-CN">
+        <article className="page-container overflow-hidden rounded-product-card border border-line bg-white shadow-media">
+          <BusinessConsultingPart content={content.businessConsulting} image={businessConsultingImage} />
+          <SelfCoachingWorkshopPart content={selfCoaching} image={selfCoachingImage} />
+          <CoachingProgramPart bulletLayout="desktop-row" content={coachingLeadership} image={coachingLeadershipImage} imageSide="left" />
+        </article>
+      </section>
+
+      <OtherBusinessServicesContact contact={content.contact} />
+    </>
   );
 }
