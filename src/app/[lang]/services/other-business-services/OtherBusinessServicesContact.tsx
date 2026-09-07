@@ -7,7 +7,7 @@ type OtherBusinessServicesContactProps = Readonly<{
 export function OtherBusinessServicesContact({ contact }: OtherBusinessServicesContactProps) {
   return (
     <section className="bg-ui-subtle pb-[clamp(3.5rem,7vw,7rem)] text-other-business-service-contact">
-      <div className="page-container pt-[clamp(1.75rem,3.5vw,3.5rem)]">
+      <div className="page-container">
         <address className="not-italic text-product-section-body" lang={contact.language}>
           <p className="m-0">{contact.companyName}</p>
           <p className="m-0">{contact.postalCode}</p>

@@ -24,7 +24,7 @@ export function OtherBusinessServicesBody({
 
   return (
     <>
-      <section className="bg-ui-subtle py-8" lang="zh-CN">
+      <section className="bg-ui-subtle pt-8 pb-16" lang="zh-CN">
         <article className="page-container overflow-hidden rounded-product-card border border-line bg-white shadow-media">
           <BusinessConsultingPart content={content.businessConsulting} image={businessConsultingImage} />
           <SelfCoachingWorkshopPart content={selfCoaching} image={selfCoachingImage} />
