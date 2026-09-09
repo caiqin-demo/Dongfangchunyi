@@ -22,13 +22,13 @@ export function SelfCoachingWorkshopPart({ content, image }: SelfCoachingWorksho
         </div>
 
         <div className="min-w-0 border-t border-line bg-other-business-service-workshop p-[clamp(1.25rem,3vw,2.5rem)] text-on-dark page:border-t-0 page:border-r">
-          <h2 className="m-0 text-product-section-title" id={`${content.id}-title`}>{content.title}</h2>
+          <h2 className="m-0 text-section-title-prominent" id={`${content.id}-title`}>{content.title}</h2>
           <p className="mt-2 mb-0 text-base leading-[1.6] font-normal">{content.subtitle}</p>
-          <p className="mt-6 mb-0 text-product-section-body font-normal">{content.lead}</p>
+          <p className="mt-6 mb-0 text-body-relaxed font-normal">{content.lead}</p>
 
           <ul className="mt-6 list-none space-y-3 p-0 page:grid page:grid-cols-[repeat(3,max-content)] page:justify-between page:gap-x-1 page:space-y-0">
             {content.bullets.map((bullet) => (
-              <li className="grid grid-cols-[min-content_minmax(0,1fr)] gap-x-3 text-product-section-body font-normal page:text-service-card-body page:whitespace-nowrap" key={bullet}>
+              <li className="grid grid-cols-[min-content_minmax(0,1fr)] gap-x-3 text-body-relaxed font-normal page:text-card-body page:whitespace-nowrap" key={bullet}>
                 <span className="mt-[0.45em] size-3 rounded-round border border-on-dark" aria-hidden="true" />
                 <span>{bullet}</span>
               </li>
@@ -38,7 +38,7 @@ export function SelfCoachingWorkshopPart({ content, image }: SelfCoachingWorksho
           <div className="mt-8 flex flex-wrap items-baseline gap-x-2 gap-y-1">
             <h3 className="m-0 font-normal">{content.courseStructure.label}</h3>
             {content.courseStructure.kind === "plan" ? (
-              <p className="m-0 text-product-section-body font-normal">{content.courseStructure.description}</p>
+              <p className="m-0 text-body-relaxed font-normal">{content.courseStructure.description}</p>
             ) : null}
           </div>
         </div>

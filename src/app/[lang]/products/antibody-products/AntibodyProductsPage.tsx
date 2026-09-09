@@ -51,7 +51,7 @@ export function AntibodyProductsPage({ lang }: PageProps) {
       contact={t.contact}
       contactSupplement={(
         <div>
-          <h2 className="m-0 text-product-section-title">{t.publications.title}</h2>
+          <h2 className="m-0 text-section-title-prominent">{t.publications.title}</h2>
           <ul className="mt-5 grid list-none gap-5 p-0">
             {t.publications.items.map((publication) => (
               <li className="rounded-control border border-line bg-white p-5" key={publication.id}>

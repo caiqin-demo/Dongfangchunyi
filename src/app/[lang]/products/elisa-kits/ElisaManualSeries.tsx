@@ -11,10 +11,10 @@ export function ElisaManualSeries({ content }: ElisaManualSeriesProps) {
   return (
     <article className="min-w-0 overflow-hidden rounded-product-card border border-line bg-white shadow-media">
       <header className="p-[clamp(1.25rem,3vw,2.5rem)]">
-        <h2 className="m-0 text-product-section-title">
+        <h2 className="m-0 text-section-title-prominent">
           H<span className="text-brand-wordmark-accent">a</span>nn<span className="text-brand-wordmark-accent">a</span>H
         </h2>
-        <address className="mt-5 text-product-section-body not-italic text-ui-hero">
+        <address className="mt-5 text-body-relaxed not-italic text-ui-hero">
           <p className="m-0 font-extrabold">{elisaCompanyDetails.name}</p>
           <p className="m-0 font-bold" lang="ja">{elisaCompanyDetails.nameJa}</p>
           <p className="mt-2 mb-0">
@@ -57,7 +57,7 @@ export function ElisaManualSeries({ content }: ElisaManualSeriesProps) {
                   <span className="block">{copy.manualLabel}</span>
                 </p>
 
-                <dl className="mt-7 grid min-w-0 grid-cols-[4.75rem_1fr] gap-x-2 gap-y-2 text-product-section-body">
+                <dl className="mt-7 grid min-w-0 grid-cols-[4.75rem_1fr] gap-x-2 gap-y-2 text-body-relaxed">
                   <dt lang="en">{content.labels.sensitivity}</dt>
                   <dd className="m-0">{product.sensitivity}</dd>
                   <dt lang="en">{content.labels.range}</dt>
@@ -69,7 +69,7 @@ export function ElisaManualSeries({ content }: ElisaManualSeriesProps) {
                   </dd>
                 </dl>
 
-                <p className="mt-9 mb-0 text-product-section-body" lang="en">{product.catalogAndPack}</p>
+                <p className="mt-9 mb-0 text-body-relaxed" lang="en">{product.catalogAndPack}</p>
 
                 <div className="mt-auto pt-12">
                   <picture>

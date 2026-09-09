@@ -42,7 +42,7 @@ export function ProductSpecificationCard({
   return (
     <article className={`flex h-full min-w-0 flex-col rounded-product-card border border-line bg-white p-[clamp(1rem,2.5vw,2rem)] shadow-media ${alignRows ? "stack:row-span-4 stack:grid stack:grid-cols-1 stack:grid-rows-subgrid stack:gap-y-6" : ""}`}>
       <header className={alignRows ? "shrink-0" : "min-h-36 shrink-0 max-stack:min-h-0"}>
-        <h2 className="m-0 text-product-section-title">{title}</h2>
+        <h2 className="m-0 text-section-title-prominent">{title}</h2>
         <p className="mt-2 mb-0 text-base leading-[1.6] font-semibold text-ink-muted" lang="en">{subtitle}</p>
       </header>
 
@@ -51,7 +51,7 @@ export function ProductSpecificationCard({
           {details.map((detail) => (
             <div className="grid grid-cols-1 gap-1 border-b border-line py-3 last:border-b-0 @card-details/details-card:grid-cols-[minmax(8.5rem,.38fr)_1fr] @card-details/details-card:gap-4" key={detail.id}>
               <dt className="font-bold text-ink">{detail.label}</dt>
-              <dd className="m-0 min-w-0 text-product-section-body whitespace-pre-line [overflow-wrap:anywhere] text-ink-muted">{detail.value}</dd>
+              <dd className="m-0 min-w-0 text-body-relaxed whitespace-pre-line [overflow-wrap:anywhere] text-ink-muted">{detail.value}</dd>
             </div>
           ))}
         </dl>

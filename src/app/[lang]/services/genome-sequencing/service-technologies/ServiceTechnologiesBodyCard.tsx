@@ -129,7 +129,7 @@ export function ServiceTechnologiesBodyCard({
                 key={category.id}
               >
                 <h2
-                  className="m-0 text-service-current-title text-genome-sequencing-accent"
+                  className="m-0 text-section-title text-genome-sequencing-accent"
                   id={categoryTitleId}
                 >
                   {categoryLabel}
@@ -148,7 +148,7 @@ export function ServiceTechnologiesBodyCard({
                         <button
                           aria-controls={detailsRegionId}
                           aria-pressed={isSelected}
-                          className="w-full rounded-control py-1 text-left text-service-body text-ink-muted hover:text-ink hover:underline hover:decoration-genome-sequencing-accent aria-pressed:font-bold aria-pressed:text-ink aria-pressed:underline aria-pressed:decoration-genome-sequencing-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                          className="w-full rounded-control py-1 text-left text-body text-ink-muted hover:text-ink hover:underline hover:decoration-genome-sequencing-accent aria-pressed:font-bold aria-pressed:text-ink aria-pressed:underline aria-pressed:decoration-genome-sequencing-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                           id={`service-technologies-row-${selectionKey}`}
                           onClick={() => selectRow(selectionKey)}
                           type="button"
@@ -184,7 +184,7 @@ export function ServiceTechnologiesBodyCard({
             />
           ) : null}
           {display?.kind === "pending" ? (
-            <p className="m-0 flex min-h-32 items-center justify-center text-service-body text-ink-muted">
+            <p className="m-0 flex min-h-32 items-center justify-center text-body text-ink-muted">
               {display.label}
             </p>
           ) : null}

@@ -57,9 +57,9 @@ export function CompanyProfilePage({ lang }: PageProps) {
                 <span className="grid size-12 shrink-0 place-items-center rounded-round bg-white" aria-hidden="true">
                   <Image className="h-9 w-auto object-contain" src={logo} width={36} height={37} alt="" />
                 </span>
-                <h2 className="m-0 text-about-page-section-title" id="company-introduction-title">{content.introduction.heading}</h2>
+                <h2 className="m-0 text-section-title" id="company-introduction-title">{content.introduction.heading}</h2>
               </div>
-              {content.introduction.paragraphs.map((paragraph) => <p className="mt-5 mb-0 text-about-page-section-body text-ink-muted" key={paragraph}>{paragraph}</p>)}
+              {content.introduction.paragraphs.map((paragraph) => <p className="mt-5 mb-0 text-body text-ink-muted" key={paragraph}>{paragraph}</p>)}
             </div>
             <div className="relative aspect-[4/3] w-2/3 overflow-hidden rounded-product-card min-page:justify-self-end">
               <Image className="object-cover object-center" src={companyProfileShanghai} alt="" fill sizes="(min-width: 75rem) min(30vw, 400px), (min-width: 60rem) calc(31.333vw - 21.333px), calc(66.667vw - 1rem)" />
@@ -70,7 +70,7 @@ export function CompanyProfilePage({ lang }: PageProps) {
             <div className="mx-auto @min-company-capability-row/company-capabilities:max-w-[75rem]">
               <div className="grid gap-[clamp(2.5rem,6vw,6rem)] @min-company-capability-row/company-capabilities:grid-cols-[minmax(0,.38fr)_minmax(0,1fr)] @min-company-capability-row/company-capabilities:items-start @min-company-capability-row/company-capabilities:gap-x-12">
               <div className="min-w-0 @min-company-capability-row/company-capabilities:col-start-2 @min-company-capability-row/company-capabilities:row-start-1 @min-company-capability-row/company-capabilities:pt-10">
-                <h2 className="m-0 text-about-page-section-title" id="company-capabilities-title">{content.capabilities.heading}</h2>
+                <h2 className="m-0 text-section-title" id="company-capabilities-title">{content.capabilities.heading}</h2>
                 <ul className="mt-6 grid list-none gap-4 p-0 @min-company-capability-row/company-capabilities:mt-7 @min-company-capability-row/company-capabilities:grid-cols-3 @min-company-capability-row/company-capabilities:gap-10">
                   {content.capabilities.items.map((capability) => {
                     const Icon = capabilityIcons[capability.id];
@@ -81,8 +81,8 @@ export function CompanyProfilePage({ lang }: PageProps) {
                           <span className="mx-auto grid size-12 place-items-center rounded-round bg-ui-subtle text-accent" aria-hidden="true">
                             <Icon aria-hidden="true" className="size-5" />
                           </span>
-                          <h3 className="mt-5 mb-0 text-contact-page-section-title text-ink @min-company-capability-row/company-capabilities:mt-4">{capability.title}</h3>
-                          <p className="mt-3 mb-0 text-contact-page-section-body text-ink-muted @min-company-capability-row/company-capabilities:mt-2">{capability.description}</p>
+                          <h3 className="mt-5 mb-0 text-card-title text-ink @min-company-capability-row/company-capabilities:mt-4">{capability.title}</h3>
+                          <p className="mt-3 mb-0 text-card-body text-ink-muted @min-company-capability-row/company-capabilities:mt-2">{capability.description}</p>
                         </article>
                       </li>
                     );
