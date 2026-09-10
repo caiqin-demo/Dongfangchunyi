@@ -30,7 +30,7 @@ export function LocalizedNotFoundPage({ lang }: Readonly<{ lang: Locale }>) {
         <section className="w-full max-w-3xl rounded-product-card border border-line bg-white px-[clamp(1.5rem,5vw,4rem)] py-[clamp(3rem,7vw,6rem)] shadow-media" aria-labelledby="not-found-title">
           <p className="m-0 text-sm font-extrabold tracking-[.2em] text-accent">404</p>
           <h1 className="mt-4 mb-0 text-[clamp(2.5rem,6vw,5rem)] leading-[1.08] font-extrabold tracking-[-.04em]" id="not-found-title">{content.notFound.title}</h1>
-          <p className="mx-auto mt-6 mb-0 max-w-2xl text-product-section-body text-ink-muted">{content.notFound.description}</p>
+          <p className="mx-auto mt-6 mb-0 max-w-2xl text-body-relaxed text-ink-muted">{content.notFound.description}</p>
           <nav className="mt-8 flex flex-wrap justify-center gap-4" aria-label={content.notFound.title}>
             <Link className={`inline-flex min-h-12 min-w-36 items-center justify-center rounded-action bg-brand-red px-6 text-button-label text-on-dark transition-colors hover:bg-brand-red-hover ${focusRingClass}`} href={`/${lang}`}>{content.notFound.homeLink}</Link>
             <Link className={`inline-flex min-h-12 min-w-36 items-center justify-center rounded-action border border-line-dark px-6 text-button-label text-ink transition-colors hover:border-accent hover:text-accent ${focusRingClass}`} href={`/${lang}#products`}>{content.notFound.productsLink}</Link>

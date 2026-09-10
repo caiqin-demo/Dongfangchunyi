@@ -21,7 +21,7 @@ import {
 const detailsRegionId = "service-technologies-details";
 
 type ServiceTechnologiesBodyCardProps = Readonly<{
-  assets: Readonly<Record<ServiceTechnologyAssetId, StaticImageData>>;
+  assets: Readonly<Partial<Record<ServiceTechnologyAssetId, StaticImageData>>>;
   card: ServiceTechnologiesBodyCardContent;
   categories: GenomeSequencingContent["body"]["categories"];
   lang: Locale;
@@ -53,6 +53,7 @@ export function ServiceTechnologiesBodyCard({
   const display = selectedItem
     ? card.displayByItemId[selectedItem.itemId]
     : null;
+  const image = display?.kind === "ready" ? assets[display.assetId] : null;
   const selectedCategory = selectedItem
     ? categories.find((category) => category.id === selectedItem.categoryId)
     : null;
@@ -129,7 +130,7 @@ export function ServiceTechnologiesBodyCard({
                 key={category.id}
               >
                 <h2
-                  className="m-0 text-service-current-title text-genome-sequencing-accent"
+                  className="m-0 text-section-title text-genome-sequencing-accent"
                   id={categoryTitleId}
                 >
                   {categoryLabel}
@@ -148,7 +149,7 @@ export function ServiceTechnologiesBodyCard({
                         <button
                           aria-controls={detailsRegionId}
                           aria-pressed={isSelected}
-                          className="w-full rounded-control py-1 text-left text-service-body text-ink-muted hover:text-ink hover:underline hover:decoration-genome-sequencing-accent aria-pressed:font-bold aria-pressed:text-ink aria-pressed:underline aria-pressed:decoration-genome-sequencing-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                          className="w-full rounded-control py-1 text-left text-body text-ink-muted hover:text-ink hover:underline hover:decoration-genome-sequencing-accent aria-pressed:font-bold aria-pressed:text-ink aria-pressed:underline aria-pressed:decoration-genome-sequencing-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
                           id={`service-technologies-row-${selectionKey}`}
                           onClick={() => selectRow(selectionKey)}
                           type="button"
@@ -173,18 +174,20 @@ export function ServiceTechnologiesBodyCard({
           id={detailsRegionId}
           role="region"
         >
-          {display?.kind === "ready" ? (
-            <Image
-              alt={display.alt}
-              className="h-auto w-full object-contain"
-              loading="lazy"
-              sizes="(min-width: 50rem) 55vw, 100vw"
-              src={assets[display.assetId]}
-              unoptimized
-            />
-          ) : null}
+          {display?.kind === "ready"
+            ? image ? (
+                <Image
+                  alt={display.alt}
+                  className="h-auto w-full object-contain"
+                  loading="lazy"
+                  sizes="(min-width: 50rem) 55vw, 100vw"
+                  src={image}
+                  unoptimized
+                />
+              ) : null
+            : null}
           {display?.kind === "pending" ? (
-            <p className="m-0 flex min-h-32 items-center justify-center text-service-body text-ink-muted">
+            <p className="m-0 flex min-h-32 items-center justify-center text-body text-ink-muted">
               {display.label}
             </p>
           ) : null}

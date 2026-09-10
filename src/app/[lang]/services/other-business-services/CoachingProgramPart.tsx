@@ -18,8 +18,8 @@ export function CoachingProgramPart({ bulletLayout, content, image, imageSide }:
     ? "mt-6 grid list-none gap-3 p-0 page:grid-cols-[repeat(3,max-content)] page:justify-between page:gap-x-1"
     : "mt-6 list-none space-y-3 p-0";
   const bulletItemClass = hasDesktopBulletRow
-    ? "grid grid-cols-[min-content_minmax(0,1fr)] gap-x-2 text-product-section-body text-ink-muted page:text-service-card-body page:whitespace-nowrap"
-    : "grid grid-cols-[min-content_minmax(0,1fr)] gap-x-3 text-product-section-body text-ink-muted";
+    ? "grid grid-cols-[min-content_minmax(0,1fr)] gap-x-2 text-body-relaxed text-ink-muted page:text-card-body page:whitespace-nowrap"
+    : "grid grid-cols-[min-content_minmax(0,1fr)] gap-x-3 text-body-relaxed text-ink-muted";
   const bulletMarkerClass = hasDesktopBulletRow
     ? "mt-[0.5em] size-3 rounded-round border border-ink-muted page:size-2"
     : "mt-[0.45em] size-3 rounded-round border border-ink-muted";
@@ -38,9 +38,9 @@ export function CoachingProgramPart({ bulletLayout, content, image, imageSide }:
         </div>
 
         <div className={`min-w-0 border-t border-line p-[clamp(1.25rem,3vw,2.5rem)] page:border-t-0 ${contentBorderClass}`}>
-          <h2 className="m-0 text-product-section-title" id={`${content.id}-title`}>{content.title}</h2>
+          <h2 className="m-0 text-section-title-prominent" id={`${content.id}-title`}>{content.title}</h2>
           <p className="mt-2 mb-0 text-base leading-[1.6] font-semibold text-ink-muted">{content.subtitle}</p>
-          <p className="mt-6 mb-0 text-product-section-body font-bold text-ink">{content.lead}</p>
+          <p className="mt-6 mb-0 text-body-relaxed font-bold text-ink">{content.lead}</p>
 
           <ul className={bulletsClass}>
             {content.bullets.map((bullet) => (
@@ -54,9 +54,9 @@ export function CoachingProgramPart({ bulletLayout, content, image, imageSide }:
           <div className="mt-8 flex flex-col gap-4 page:flex-row page:items-start page:gap-8">
             <h3 className="m-0 font-bold text-ink">{content.courseStructure.label}</h3>
             {content.courseStructure.kind === "plan" ? (
-              <p className="mt-3 mb-0 text-product-section-body text-ink-muted">{content.courseStructure.description}</p>
+              <p className="mt-3 mb-0 text-body-relaxed text-ink-muted">{content.courseStructure.description}</p>
             ) : (
-              <dl className="m-0 grid gap-4 text-product-section-body text-ink-muted page:flex-1 page:grid-cols-2 page:gap-x-8">
+              <dl className="m-0 grid gap-4 text-body-relaxed text-ink-muted page:flex-1 page:grid-cols-2 page:gap-x-8">
                 {content.courseStructure.levels.map((level) => (
                   <div className="grid gap-y-1" key={level.id}>
                     <dt className="font-bold text-ink">{level.label}</dt>

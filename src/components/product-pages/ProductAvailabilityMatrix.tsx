@@ -113,7 +113,7 @@ export function ProductAvailabilityMatrix<RowId extends string, ColumnId extends
       aria-labelledby={titleId}
       className={`min-w-0 rounded-product-card border border-line bg-white p-[clamp(1rem,2.5vw,2rem)] shadow-media ${className ?? ""}`}
     >
-      <h2 className="m-0 text-product-section-title" id={titleId}>{title}</h2>
+      <h2 className="m-0 text-section-title-prominent" id={titleId}>{title}</h2>
       <div
         aria-label={regionLabel}
         aria-labelledby={regionLabel ? undefined : titleId}

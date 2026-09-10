@@ -47,8 +47,8 @@ export function ContactPage({ lang }: PageProps) {
       title={content.hero.title}
     >
       <section className="page-container py-[clamp(3.5rem,7vw,7rem)] text-center" aria-labelledby="contact-page-title">
-        <h2 className="m-0 text-about-page-section-title" id="contact-page-title">{content.main.title}</h2>
-        <p className="mx-auto mt-4 mb-0 max-w-2xl text-about-page-section-body text-ink-muted">{content.main.subtitle}</p>
+        <h2 className="m-0 text-section-title" id="contact-page-title">{content.main.title}</h2>
+        <p className="mx-auto mt-4 mb-0 max-w-2xl text-body text-ink-muted">{content.main.subtitle}</p>
 
         <ul className="mx-auto mt-[clamp(2.5rem,5vw,4rem)] grid list-none gap-5 p-0 min-page:w-3/4 min-page:grid-cols-3">
           {content.details.map((detail) => {
@@ -61,8 +61,8 @@ export function ContactPage({ lang }: PageProps) {
                 <span className="mx-auto grid size-12 place-items-center rounded-round bg-ui-subtle text-accent" aria-hidden="true">
                   <Icon aria-hidden="true" className="size-6" />
                 </span>
-                <h3 className="mt-5 mb-0 text-contact-page-section-title text-ink">{detail.label}</h3>
-                <ValueElement className="mt-3 mb-0 break-words text-contact-page-section-body not-italic text-ink-muted" lang={value.language}>
+                <h3 className="mt-5 mb-0 text-card-title text-ink">{detail.label}</h3>
+                <ValueElement className="mt-3 mb-0 break-words text-card-body not-italic text-ink-muted" lang={value.language}>
                   {value.lines.map((line) => <span className="block" key={line}>{line}</span>)}
                 </ValueElement>
               </li>

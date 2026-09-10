@@ -22,7 +22,7 @@ function FeatureList({
       {features.map((feature) => (
         <li className={showAccent ? "border-l-4 border-accent pl-4" : undefined} key={feature.id}>
           <h3 className="m-0 text-lg font-extrabold leading-[1.4] text-ink">{feature.title}</h3>
-          <p className="mt-1 mb-0 text-product-section-body text-ink-muted">{feature.description}</p>
+          <p className="mt-1 mb-0 text-body-relaxed text-ink-muted">{feature.description}</p>
         </li>
       ))}
     </ul>
@@ -102,7 +102,7 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
             <div>
               <p className="m-0 text-sm font-extrabold tracking-[.16em] text-accent">{content.pipette.coreLabel}</p>
               <h3 className="mt-2 mb-0 text-2xl font-extrabold text-ink">{content.pipette.coreTitle}</h3>
-              <p className="mt-4 mb-0 text-product-section-body text-ink-muted">{content.pipette.coreDescription}</p>
+              <p className="mt-4 mb-0 text-body-relaxed text-ink-muted">{content.pipette.coreDescription}</p>
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@ export function LabInstrumentPanels({ content }: Readonly<{ content: LabInstrume
       </article>
 
       <section className="rounded-product-card border border-line bg-white p-[clamp(1.25rem,3vw,2.5rem)] shadow-media" aria-labelledby="compact-instruments-title">
-        <h2 className="m-0 text-product-section-title" id="compact-instruments-title">{content.compactInstruments.title}</h2>
+        <h2 className="m-0 text-section-title-prominent" id="compact-instruments-title">{content.compactInstruments.title}</h2>
         <div className="mt-7 grid grid-cols-2 gap-6 max-stack:grid-cols-1">
           {content.compactInstruments.products.map((product) => {
             const isDomi = product.id === "domi-metal-bath";

@@ -33,6 +33,7 @@ test("service technologies card preserves the approved component boundary and da
   assert.match(page, /<ServiceTechnologiesBodyCard/);
   assert.match(page, /categories=\{categories\}/);
   assert.match(page, /lang=\{lang\}/);
+  assert.match(page, /assets=\{serviceTechnologyAssetsByLocale\[lang\]\}/);
   assert.match(page, /preserveLocaleSearchParamKeys=\{\["technology"\]\}/);
   assert.match(page, /absoluteQuantificationMicrobialDiversitySequencingZh/);
   assert.match(page, /dapSeqTechnicalServiceZh/);
@@ -41,6 +42,8 @@ test("service technologies card preserves the approved component boundary and da
   assert.match(page, /multidimensionalAnalysisPlatformZh/);
   assert.match(page, /singleCellSequencingZh/);
   assert.match(page, /wholeTranscriptomeSequencingZh/);
+  assert.equal((page.match(/-zh":/g) ?? []).length, 10);
+  assert.equal((page.match(/-ja":/g) ?? []).length, 10);
   assert.doesNotMatch(page, /aria-hidden="true" className="min-h-/);
   assert.match(card, /^"use client";/);
   assert.match(card, /useState<ServiceTechnologySelectionKey \| null>\(\s*\(\) => defaultSelectionKey/);

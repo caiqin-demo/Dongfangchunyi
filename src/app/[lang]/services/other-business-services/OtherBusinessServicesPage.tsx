@@ -50,7 +50,10 @@ export function OtherBusinessServicesPage({ lang }: PageProps) {
         <div className="page-container page:w-2/5">
           <ul className="mt-12 grid list-none gap-3 p-0 hero-copy:grid-cols-3 page:mt-0" lang="en">
             {content.panels.map((panel) => (
-              <li className="bg-service-hero-panel px-3 py-1 text-center whitespace-pre-line text-service-card-body text-ink" key={panel.id}>{panel.label}</li>
+              <li className="bg-service-hero-panel px-3 py-1 text-center text-card-body text-ink" key={panel.id}>
+                <span className="block">{panel.title}</span>
+                {panel.qualifier ? <span className="block">{panel.qualifier}</span> : null}
+              </li>
             ))}
           </ul>
         </div>

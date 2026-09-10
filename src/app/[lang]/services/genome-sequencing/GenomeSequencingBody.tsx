@@ -5,7 +5,7 @@ import type { GenomeSequencingContent } from "@/content/genome-sequencing/types"
 
 import { GenomeSequencingBodyFrame } from "./GenomeSequencingBodyFrame";
 
-const publicationTextClass = "text-service-card-body text-ink-muted";
+const publicationTextClass = "text-card-body text-ink-muted";
 
 type GenomeSequencingBodyProps = Readonly<{
   body: GenomeSequencingContent["body"];
@@ -26,21 +26,21 @@ export function GenomeSequencingBody({
               {body.categories.map((category) => (
                 <section className="row-span-2 grid grid-rows-subgrid first:[&>div]:border-l-0 first:[&>div]:pl-0 first:[&>button]:pl-0 max-page:odd:[&>div]:border-l-0 max-page:odd:[&>div]:pl-0 max-page:odd:[&>button]:pl-0" aria-labelledby={`genome-sequencing-${category.id}-title`} key={category.id}>
                   <div className="min-w-0 border-l border-genome-sequencing-accent pl-6">
-                    <h2 className="m-0 text-service-current-title text-genome-sequencing-accent" id={`genome-sequencing-${category.id}-title`}>{category.label}</h2>
-                    <ul className="mt-4 list-none space-y-2 p-0 text-service-body text-ink-muted">
+                    <h2 className="m-0 text-section-title text-genome-sequencing-accent" id={`genome-sequencing-${category.id}-title`}>{category.label}</h2>
+                    <ul className="mt-4 list-none space-y-2 p-0 text-body text-ink-muted">
                       {category.items.map((item) => (
                         <li className="break-words" key={item.id}>{item.label}</li>
                       ))}
                     </ul>
                   </div>
-                  <Link className="justify-self-start pl-6 text-left text-service-body text-genome-sequencing-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" href={technicalRoutePath}>{body.technicalRouteLabel}</Link>
+                  <Link className="justify-self-start pl-6 text-left text-body text-genome-sequencing-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" href={technicalRoutePath}>{body.technicalRouteLabel}</Link>
                 </section>
               ))}
             </div>
           </section>
 
           <section className="border-t-4 border-genome-sequencing-accent px-[clamp(1.5rem,3vw,2.5rem)] py-[clamp(2rem,4vw,3.5rem)]" aria-labelledby="genome-sequencing-publications-title">
-            <h2 className="m-0 text-service-body font-bold text-genome-sequencing-accent" id="genome-sequencing-publications-title">{body.publications.title}</h2>
+            <h2 className="m-0 text-body font-bold text-genome-sequencing-ink" id="genome-sequencing-publications-title">{body.publications.title}</h2>
             <ul className="mt-6 list-none space-y-5 p-0">
               {body.publications.items.map((publication) => (
                 <li className="relative pl-5 before:absolute before:top-0 before:left-0 before:text-genome-sequencing-accent before:content-['*']" key={publication.id}>
@@ -54,9 +54,9 @@ export function GenomeSequencingBody({
           <section className="relative isolate overflow-hidden px-[clamp(1.5rem,3vw,2.5rem)] py-[clamp(2.5rem,5vw,5rem)] text-on-dark" aria-labelledby="genome-sequencing-team-title">
             <Image alt="" aria-hidden="true" className="object-cover object-center" fill loading="lazy" sizes="(min-width: 80rem) 80rem, (min-width: 60rem) calc(100vw - 4rem), calc(100vw - 1.5rem)" src={teamImage} />
             <div className="relative z-10 w-full min-w-0 hero-copy:max-w-1/3">
-              <h2 className="m-0 text-service-current-title" id="genome-sequencing-team-title">{body.team.title}</h2>
+              <h2 className="m-0 text-section-title" id="genome-sequencing-team-title">{body.team.title}</h2>
               {body.team.paragraphs.map((paragraph, index) => (
-                <p className="mt-5 mb-0 text-service-body text-on-dark" key={`${body.team.title}-${index}`}>{paragraph}</p>
+                <p className="mt-5 mb-0 text-body text-on-dark" key={`${body.team.title}-${index}`}>{paragraph}</p>
               ))}
             </div>
           </section>
