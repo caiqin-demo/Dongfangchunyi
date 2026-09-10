@@ -77,9 +77,9 @@ export type OtherBusinessServicesContent = Readonly<{
     title: string;
   }>;
   panels: readonly [
-    Readonly<{ id: "business-consulting"; label: string }>,
-    Readonly<{ id: "self-coaching-workshop"; label: string }>,
-    Readonly<{ id: "coaching-leadership-training"; label: string }>,
+    Readonly<{ id: "business-consulting"; qualifier?: string; title: string }>,
+    Readonly<{ id: "self-coaching-workshop"; qualifier?: string; title: string }>,
+    Readonly<{ id: "coaching-leadership-training"; qualifier?: string; title: string }>,
   ];
   title: string;
 }>;

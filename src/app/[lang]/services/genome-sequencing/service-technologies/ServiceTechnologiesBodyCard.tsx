@@ -21,7 +21,7 @@ import {
 const detailsRegionId = "service-technologies-details";
 
 type ServiceTechnologiesBodyCardProps = Readonly<{
-  assets: Readonly<Record<ServiceTechnologyAssetId, StaticImageData>>;
+  assets: Readonly<Partial<Record<ServiceTechnologyAssetId, StaticImageData>>>;
   card: ServiceTechnologiesBodyCardContent;
   categories: GenomeSequencingContent["body"]["categories"];
   lang: Locale;
@@ -53,6 +53,7 @@ export function ServiceTechnologiesBodyCard({
   const display = selectedItem
     ? card.displayByItemId[selectedItem.itemId]
     : null;
+  const image = display?.kind === "ready" ? assets[display.assetId] : null;
   const selectedCategory = selectedItem
     ? categories.find((category) => category.id === selectedItem.categoryId)
     : null;
@@ -173,16 +174,18 @@ export function ServiceTechnologiesBodyCard({
           id={detailsRegionId}
           role="region"
         >
-          {display?.kind === "ready" ? (
-            <Image
-              alt={display.alt}
-              className="h-auto w-full object-contain"
-              loading="lazy"
-              sizes="(min-width: 50rem) 55vw, 100vw"
-              src={assets[display.assetId]}
-              unoptimized
-            />
-          ) : null}
+          {display?.kind === "ready"
+            ? image ? (
+                <Image
+                  alt={display.alt}
+                  className="h-auto w-full object-contain"
+                  loading="lazy"
+                  sizes="(min-width: 50rem) 55vw, 100vw"
+                  src={image}
+                  unoptimized
+                />
+              ) : null
+            : null}
           {display?.kind === "pending" ? (
             <p className="m-0 flex min-h-32 items-center justify-center text-body text-ink-muted">
               {display.label}

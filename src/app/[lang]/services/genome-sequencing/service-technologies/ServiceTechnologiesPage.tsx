@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import type { StaticImageData } from "next/image";
 
 import { GenomeSequencingOptions } from "@/app/[lang]/services/genome-sequencing/GenomeSequencingOptions";
 import { GenomeSequencingBodyFrame } from "@/app/[lang]/services/genome-sequencing/GenomeSequencingBodyFrame";
 import { ServicePageTemplate } from "@/components/service-pages/ServicePageTemplate";
 import { genomeSequencingContentByLocale } from "@/content/genome-sequencing";
 import { serviceTechnologiesContentByLocale } from "@/content/service-technologies";
+import type { ServiceTechnologyAssetId } from "@/content/service-technologies/types";
 import { defaultLocale, type Locale } from "@/i18n/config";
 import { genomeSequencingServiceTechnologiesPath } from "@/lib/service-paths";
 import { getSiteUrl } from "@/lib/site-url";
@@ -33,6 +35,43 @@ import wholeTranscriptomeSequencingJa from "./_assets/whole-transcriptome-sequen
 import { ServiceTechnologiesBodyCard } from "./ServiceTechnologiesBodyCard";
 
 type PageProps = Readonly<{ lang: Locale }>;
+
+const serviceTechnologyAssetsByLocale = {
+  zh: {
+    "absolute-quantification-microbial-diversity-sequencing-zh":
+      absoluteQuantificationMicrobialDiversitySequencingZh,
+    "dap-seq-technical-service-zh": dapSeqTechnicalServiceZh,
+    "genome-de-novo-sequencing-zh": genomeDeNovoSequencingZh,
+    "genome-resequencing-zh": genomeResequencingZh,
+    "marine-microbiology-research-zh": marineMicrobiologyResearchZh,
+    "multidimensional-analysis-platform-zh": multidimensionalAnalysisPlatformZh,
+    "multidimensional-analysis-platform-interactions-zh":
+      multidimensionalAnalysisPlatformInteractionsZh,
+    "multidimensional-analysis-platform-multiomics-zh":
+      multidimensionalAnalysisPlatformMultiomicsZh,
+    "single-cell-sequencing-zh": singleCellSequencingZh,
+    "whole-transcriptome-sequencing-zh": wholeTranscriptomeSequencingZh,
+  },
+  ja: {
+    "absolute-quantification-microbial-diversity-sequencing-ja":
+      absoluteQuantificationMicrobialDiversitySequencingJa,
+    "dap-seq-technical-service-ja": dapSeqTechnicalServiceJa,
+    "genome-de-novo-sequencing-ja": genomeDeNovoSequencingJa,
+    "genome-resequencing-ja": genomeResequencingJa,
+    "marine-microbiology-research-ja": marineMicrobiologyResearchJa,
+    "multidimensional-analysis-platform-ja": multidimensionalAnalysisPlatformJa,
+    "multidimensional-analysis-platform-interactions-ja":
+      multidimensionalAnalysisPlatformInteractionsJa,
+    "multidimensional-analysis-platform-multiomics-ja":
+      multidimensionalAnalysisPlatformMultiomicsJa,
+    "single-cell-sequencing-ja": singleCellSequencingJa,
+    "whole-transcriptome-sequencing-ja": wholeTranscriptomeSequencingJa,
+  },
+} satisfies {
+  [Lang in Locale]: Readonly<
+    Record<Extract<ServiceTechnologyAssetId, `${string}-${Lang}`>, StaticImageData>
+  >;
+};
 
 export function getServiceTechnologiesMetadata(lang: Locale): Metadata {
   return {
@@ -69,36 +108,7 @@ export function ServiceTechnologiesPage({ lang }: PageProps) {
       />
       <GenomeSequencingBodyFrame contact={content.contact}>
         <ServiceTechnologiesBodyCard
-          assets={{
-            "absolute-quantification-microbial-diversity-sequencing-zh":
-              absoluteQuantificationMicrobialDiversitySequencingZh,
-            "absolute-quantification-microbial-diversity-sequencing-ja":
-              absoluteQuantificationMicrobialDiversitySequencingJa,
-            "dap-seq-technical-service-zh": dapSeqTechnicalServiceZh,
-            "dap-seq-technical-service-ja": dapSeqTechnicalServiceJa,
-            "genome-de-novo-sequencing-zh": genomeDeNovoSequencingZh,
-            "genome-de-novo-sequencing-ja": genomeDeNovoSequencingJa,
-            "genome-resequencing-zh": genomeResequencingZh,
-            "genome-resequencing-ja": genomeResequencingJa,
-            "marine-microbiology-research-zh": marineMicrobiologyResearchZh,
-            "marine-microbiology-research-ja": marineMicrobiologyResearchJa,
-            "multidimensional-analysis-platform-zh":
-              multidimensionalAnalysisPlatformZh,
-            "multidimensional-analysis-platform-ja":
-              multidimensionalAnalysisPlatformJa,
-            "multidimensional-analysis-platform-interactions-zh":
-              multidimensionalAnalysisPlatformInteractionsZh,
-            "multidimensional-analysis-platform-interactions-ja":
-              multidimensionalAnalysisPlatformInteractionsJa,
-            "multidimensional-analysis-platform-multiomics-zh":
-              multidimensionalAnalysisPlatformMultiomicsZh,
-            "multidimensional-analysis-platform-multiomics-ja":
-              multidimensionalAnalysisPlatformMultiomicsJa,
-            "single-cell-sequencing-zh": singleCellSequencingZh,
-            "single-cell-sequencing-ja": singleCellSequencingJa,
-            "whole-transcriptome-sequencing-zh": wholeTranscriptomeSequencingZh,
-            "whole-transcriptome-sequencing-ja": wholeTranscriptomeSequencingJa,
-          }}
+          assets={serviceTechnologyAssetsByLocale[lang]}
           card={content.bodyCard}
           categories={categories}
           lang={lang}

@@ -63,8 +63,8 @@ export const zhOtherBusinessServicesContent = {
   title: "企业人效提升",
   intro: "教练及领导力课程（中/英）",
   panels: [
-    { id: "business-consulting", label: "Business Consulting\nCH/EN" },
-    { id: "self-coaching-workshop", label: "Self- Coaching\nWorkShop" },
-    { id: "coaching-leadership-training", label: "Coaching\nLeadership Training" },
+    { id: "business-consulting", title: "Business Consulting", qualifier: "CH/EN" },
+    { id: "self-coaching-workshop", title: "Self-Coaching", qualifier: "WorkShop" },
+    { id: "coaching-leadership-training", title: "Coaching", qualifier: "Leadership Training" },
   ],
 } as const satisfies OtherBusinessServicesContent;
