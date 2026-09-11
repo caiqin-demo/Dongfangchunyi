@@ -21,7 +21,7 @@ import genomeDeNovoSequencingJa from "./_assets/genome-de-novo-sequencing-ja.jpg
 import genomeResequencingZh from "./_assets/genome-resequencing-zh.jpg";
 import genomeResequencingJa from "./_assets/genome-resequencing-ja.jpg";
 import marineMicrobiologyResearchZh from "./_assets/marine-microbiology-research-zh.jpg";
-import marineMicrobiologyResearchJa from "./_assets/marine-microbiology-research-ja.jpg";
+import marineMicrobiologyResearchJa from "./_assets/marine-microbiology-research-v2-ja.jpg";
 import multidimensionalAnalysisPlatformZh from "./_assets/multidimensional-analysis-platform-zh.jpg";
 import multidimensionalAnalysisPlatformJa from "./_assets/multidimensional-analysis-platform-ja.jpg";
 import multidimensionalAnalysisPlatformInteractionsZh from "./_assets/multidimensional-analysis-platform-interactions-zh.jpg";
@@ -58,7 +58,7 @@ const serviceTechnologyAssetsByLocale = {
     "dap-seq-technical-service-ja": dapSeqTechnicalServiceJa,
     "genome-de-novo-sequencing-ja": genomeDeNovoSequencingJa,
     "genome-resequencing-ja": genomeResequencingJa,
-    "marine-microbiology-research-ja": marineMicrobiologyResearchJa,
+    "marine-microbiology-research-v2-ja": marineMicrobiologyResearchJa,
     "multidimensional-analysis-platform-ja": multidimensionalAnalysisPlatformJa,
     "multidimensional-analysis-platform-interactions-ja":
       multidimensionalAnalysisPlatformInteractionsJa,

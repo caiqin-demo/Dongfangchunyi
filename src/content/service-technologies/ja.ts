@@ -50,7 +50,7 @@ export const jaServiceTechnologiesContent = {
       },
       "marine-microbiology-research": {
         kind: "ready",
-        assetId: "marine-microbiology-research-ja",
+        assetId: "marine-microbiology-research-v2-ja",
         alt: "海洋微生物研究技術のフロー図",
       },
       "epigenetics-service": {
