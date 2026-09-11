@@ -17,7 +17,7 @@ export type ServiceTechnologyAssetId =
   | "genome-resequencing-zh"
   | "genome-resequencing-ja"
   | "marine-microbiology-research-zh"
-  | "marine-microbiology-research-ja"
+  | "marine-microbiology-research-v2-ja"
   | "multidimensional-analysis-platform-zh"
   | "multidimensional-analysis-platform-ja"
   | "multidimensional-analysis-platform-interactions-zh"

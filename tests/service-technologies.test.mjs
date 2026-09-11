@@ -224,7 +224,7 @@ test("service technologies maps each supplied Japanese asset to the matching rea
     ["dap-seq-technical-service-ja", 769040, "540364fbd83ae90025c4feffb30fa3ea3a2b1f9a077df4cebf80013547501bdd"],
     ["genome-de-novo-sequencing-ja", 851820, "7ec16544567b2df778263637109a2393d64b66bd4bb4a5b98eb9ef1146fd2ba2"],
     ["genome-resequencing-ja", 613454, "f83be915da06f69a98140ff0c3c8457f5159e31910007868390529e5852f7d31"],
-    ["marine-microbiology-research-ja", 959124, "1a024b5047c7ea2940d87fe2eb6f7440117a09f3e19f1350900f9d5eacc4cbce"],
+    ["marine-microbiology-research-v2-ja", 951338, "1506a2d05700632bc482083c36b2a4823d8956ee367036331ab2b0b20a92c5e8"],
     ["multidimensional-analysis-platform-ja", 799257, "33b99a51fd44aa704713e234e6df9d8a90a49b31da87fdbc086ddb08a2200376"],
     ["multidimensional-analysis-platform-interactions-ja", 835814, "0ff8b694371969d91761d9398c70c1e7c24019e84908d7d04e65d6136d2cf041"],
     ["multidimensional-analysis-platform-multiomics-ja", 1001580, "6ee44cf9f877add051ec2cff76bf12626a750a75441de4e1f2e7de4c9e0d0284"],
@@ -247,7 +247,7 @@ test("service technologies maps each supplied Japanese asset to the matching rea
     ["dap-seq-technical-service", "dap-seq-technical-service-ja"],
     ["genome-de-novo-sequencing", "genome-de-novo-sequencing-ja"],
     ["genome-resequencing", "genome-resequencing-ja"],
-    ["marine-microbiology-research", "marine-microbiology-research-ja"],
+    ["marine-microbiology-research", "marine-microbiology-research-v2-ja"],
     ["single-cell-sequencing", "single-cell-sequencing-ja"],
     ["whole-transcriptome-sequencing", "whole-transcriptome-sequencing-ja"],
   ]) {
