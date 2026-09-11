@@ -117,6 +117,11 @@ test("adapters delegate locale UI, and instrumentation emits one record per invo
   assert.match(localized, /onClick=\{\(\) => window\.location\.reload\(\)\}/);
   assert.match(localized, /aria-live="polite"/);
   assert.match(localized, /aria-atomic="true"/);
+  assert.match(localized, /import Image from "next\/image"/);
+  assert.match(localized, /runtime-error-agent\.webp/);
+  assert.match(localized, /alt=""/);
+  assert.match(localized, /aria-hidden="true"/);
+  assert.doesNotMatch(localized, /(?:HTTP\s*)?500|服务器错误|サーバーエラー/);
   assert.match(localized, /SiteFooter lang=\{lang\}/);
   assert.doesNotMatch(localized, /error\.(?:message|stack|cause|digest)/);
   assert.match(global, /<html lang="ja">/);

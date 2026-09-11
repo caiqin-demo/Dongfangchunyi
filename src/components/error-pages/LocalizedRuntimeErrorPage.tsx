@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 
+import runtimeErrorAgent from "@/assets/error-pages/runtime-error-agent.webp";
 import { SiteFooter } from "@/components/SiteFooter";
 import { runtimeErrorContentByLocale } from "@/content/runtime-error";
 import { documentLanguages, type Locale } from "@/i18n/config";
@@ -58,8 +60,15 @@ export function LocalizedRuntimeErrorPage({ error, lang, retry }: LocalizedRunti
 
       <main className="grid flex-1 place-items-center px-6 py-16 text-center" id="main-content" tabIndex={-1}>
         <section className="w-full max-w-3xl rounded-product-card border border-line bg-white px-[clamp(1.5rem,5vw,4rem)] py-[clamp(3rem,7vw,6rem)] shadow-media" aria-labelledby="runtime-error-title">
+          <Image
+            alt=""
+            aria-hidden="true"
+            className="mx-auto h-auto w-48"
+            sizes="12rem"
+            src={runtimeErrorAgent}
+          />
           <h1
-            className="m-0 rounded-action text-section-title-prominent focus:outline-2 focus:outline-offset-4 focus:outline-accent"
+            className="mt-6 mb-0 rounded-action text-section-title-prominent focus:outline-2 focus:outline-offset-4 focus:outline-accent"
             id="runtime-error-title"
             ref={titleRef}
             tabIndex={-1}
