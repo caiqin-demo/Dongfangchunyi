@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { ServicePageTemplate } from "@/components/service-pages/ServicePageTemplate";
 import { contentByLocale } from "@/content";
 import { zhOtherBusinessServicesContent } from "@/content/other-business-services";
-import { defaultLocale, type Locale } from "@/i18n/config";
+import { type Locale } from "@/i18n/config";
+import { getLocalizedMetadata } from "@/lib/localized-metadata";
 import { servicePaths } from "@/lib/service-paths";
-import { getSiteUrl } from "@/lib/site-url";
 
 import businessConsultingPort from "./_assets/business-consulting-port.png";
 import coachingLeadershipTraining from "./_assets/coaching-leadership-training.png";
@@ -22,19 +22,7 @@ export function getOtherBusinessServicesMetadata(lang: Locale): Metadata {
     ? zhOtherBusinessServicesContent.metadata
     : contentByLocale.ja.services.items[2];
 
-  return {
-    title: metadata.title,
-    description: metadata.description,
-    metadataBase: getSiteUrl(),
-    alternates: {
-      canonical: `/${lang}${servicePath}`,
-      languages: {
-        "zh-CN": `/zh${servicePath}`,
-        ja: `/ja${servicePath}`,
-        "x-default": `/${defaultLocale}${servicePath}`,
-      },
-    },
-  };
+  return getLocalizedMetadata(lang, servicePath, metadata);
 }
 
 export function OtherBusinessServicesPage({ lang }: PageProps) {

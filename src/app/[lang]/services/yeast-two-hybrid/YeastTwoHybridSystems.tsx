@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useCallback, useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import type { YeastTwoHybridContent, YeastTwoHybridSystem } from "@/content/yeast-two-hybrid/types";
@@ -23,10 +23,6 @@ export function YeastTwoHybridSystems({
   const [selectedSystemId, setSelectedSystemId] = useState<YeastTwoHybridSystem["id"]>(systems[0].id);
   const router = useRouter();
   const selectedSystem = systems.find(({ id }) => id === selectedSystemId) ?? systems[0];
-  const syncSystemId = useCallback((systemId: YeastTwoHybridSystem["id"]) => {
-    setSelectedSystemId(systemId);
-  }, []);
-
   const selectSystem = (systemId: YeastTwoHybridSystem["id"]) => {
     setSelectedSystemId(systemId);
 
@@ -45,7 +41,7 @@ export function YeastTwoHybridSystems({
     <section className="bg-ui-subtle py-8 text-ink" aria-labelledby="service-overview-title">
       <div className="page-container">
         <Suspense fallback={null}>
-          <YeastTwoHybridSystemQuerySync onSystemChange={syncSystemId} />
+          <YeastTwoHybridSystemQuerySync onSystemChange={setSelectedSystemId} />
         </Suspense>
         <div className="mb-12 flex flex-wrap justify-center gap-3" role="group" aria-label={selectorLabel}>
           {systems.map((system) => {

@@ -6,9 +6,9 @@ import { LuGlobe, LuGraduationCap, LuPackageSearch } from "react-icons/lu";
 import logo from "@/assets/brand/Logo.png";
 import { AboutPageTemplate } from "@/components/about-pages/AboutPageTemplate";
 import { companyProfileContentByLocale, type CompanyProfileCapabilityId } from "@/content/about/company-profile";
-import { defaultLocale, type Locale } from "@/i18n/config";
+import { type Locale } from "@/i18n/config";
 import { aboutPaths } from "@/lib/about-paths";
-import { getSiteUrl } from "@/lib/site-url";
+import { getLocalizedMetadata } from "@/lib/localized-metadata";
 
 import companyProfileBuilding from "./_assets/company-profile-building.jpg";
 import companyProfileHero from "./_assets/company-profile-hero.jpg";
@@ -25,18 +25,7 @@ const capabilityIcons = {
 export function getCompanyProfilePageMetadata(lang: Locale): Metadata {
   const metadata = companyProfileContentByLocale[lang].metadata;
 
-  return {
-    ...metadata,
-    metadataBase: getSiteUrl(),
-    alternates: {
-      canonical: `/${lang}${aboutPaths["company-profile"]}`,
-      languages: {
-        "zh-CN": `/zh${aboutPaths["company-profile"]}`,
-        ja: `/ja${aboutPaths["company-profile"]}`,
-        "x-default": `/${defaultLocale}${aboutPaths["company-profile"]}`,
-      },
-    },
-  };
+  return getLocalizedMetadata(lang, aboutPaths["company-profile"], metadata);
 }
 
 export function CompanyProfilePage({ lang }: PageProps) {
