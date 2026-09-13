@@ -1,26 +1,17 @@
-export const otherBusinessServicesPanelIds = [
-  "business-consulting",
-  "self-coaching-workshop",
-  "coaching-leadership-training",
-] as const;
+export type OtherBusinessServicesPanelId =
+  | "business-consulting"
+  | "self-coaching-workshop"
+  | "coaching-leadership-training";
 
-export type OtherBusinessServicesPanelId = (typeof otherBusinessServicesPanelIds)[number];
+export type BusinessConsultingOfferingId =
+  | "strategy-consulting"
+  | "organization-talent-development"
+  | "operations-management"
+  | "market-brand";
 
-export const businessConsultingOfferingIds = [
-  "strategy-consulting",
-  "organization-talent-development",
-  "operations-management",
-  "market-brand",
-] as const;
-
-export type BusinessConsultingOfferingId = (typeof businessConsultingOfferingIds)[number];
-
-export const coachingProgramIds = [
-  "self-coaching-workshop",
-  "coaching-leadership-training",
-] as const;
-
-export type CoachingProgramId = (typeof coachingProgramIds)[number];
+export type CoachingProgramId =
+  | "self-coaching-workshop"
+  | "coaching-leadership-training";
 
 type CoachingProgramCourseStructure =
   | Readonly<{

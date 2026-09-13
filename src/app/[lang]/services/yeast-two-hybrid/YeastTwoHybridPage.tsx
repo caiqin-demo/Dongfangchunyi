@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 
 import { ServicePageTemplate } from "@/components/service-pages/ServicePageTemplate";
 import { yeastTwoHybridContentByLocale } from "@/content/yeast-two-hybrid";
-import { defaultLocale, type Locale } from "@/i18n/config";
+import { type Locale } from "@/i18n/config";
+import { getLocalizedMetadata } from "@/lib/localized-metadata";
 import { servicePaths } from "@/lib/service-paths";
-import { getSiteUrl } from "@/lib/site-url";
 
 import yeastTwoHybridHero from "./_assets/yeast-two-hybrid-hero.jpg";
 import { YeastTwoHybridSystems } from "./YeastTwoHybridSystems";
@@ -14,18 +14,7 @@ type PageProps = Readonly<{ lang: Locale }>;
 const servicePath = servicePaths["yeast-two-hybrid"];
 
 export function getYeastTwoHybridMetadata(lang: Locale): Metadata {
-  return {
-    ...yeastTwoHybridContentByLocale[lang].metadata,
-    metadataBase: getSiteUrl(),
-    alternates: {
-      canonical: `/${lang}${servicePath}`,
-      languages: {
-        "zh-CN": `/zh${servicePath}`,
-        ja: `/ja${servicePath}`,
-        "x-default": `/${defaultLocale}${servicePath}`,
-      },
-    },
-  };
+  return getLocalizedMetadata(lang, servicePath, yeastTwoHybridContentByLocale[lang].metadata);
 }
 
 export function YeastTwoHybridPage({ lang }: PageProps) {

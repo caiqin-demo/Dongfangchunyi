@@ -5,9 +5,9 @@ import { ProductPageSection } from "@/components/product-pages/ProductPageSectio
 import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
 import { antibodyProductsContentByLocale } from "@/content/antibody-products";
 import type { AntibodyProductId } from "@/content/antibody-products/types";
-import { defaultLocale, type Locale } from "@/i18n/config";
+import { type Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
-import { getSiteUrl } from "@/lib/site-url";
+import { getLocalizedMetadata } from "@/lib/localized-metadata";
 
 import antibodyProductsHero from "./_assets/antibody-products-hero.jpg";
 import { ProductCard } from "./ProductCard";
@@ -19,18 +19,7 @@ const productIds = ["mab", "hrp", "affinity-gel", "magnetic-beads"] as const sat
 
 export function getAntibodyProductsMetadata(lang: Locale): Metadata {
   const metadata = antibodyProductsContentByLocale[lang].metadata;
-  return {
-    ...metadata,
-    metadataBase: getSiteUrl(),
-    alternates: {
-      canonical: `/${lang}${productPath}`,
-      languages: {
-        "zh-CN": `/zh${productPath}`,
-        ja: `/ja${productPath}`,
-        "x-default": `/${defaultLocale}${productPath}`,
-      },
-    },
-  };
+  return getLocalizedMetadata(lang, productPath, metadata);
 }
 
 export function AntibodyProductsPage({ lang }: PageProps) {

@@ -4,9 +4,9 @@ import { LuMail, LuMapPin, LuPhone } from "react-icons/lu";
 
 import { AboutPageTemplate } from "@/components/about-pages/AboutPageTemplate";
 import { contactDetails, contactPageContentByLocale, type ContactDetailId } from "@/content/about/contact";
-import { defaultLocale, type Locale } from "@/i18n/config";
+import { type Locale } from "@/i18n/config";
 import { aboutPaths } from "@/lib/about-paths";
-import { getSiteUrl } from "@/lib/site-url";
+import { getLocalizedMetadata } from "@/lib/localized-metadata";
 
 import contactHero from "./_assets/contact-hero.jpg";
 
@@ -21,18 +21,7 @@ const contactDetailIcons = {
 export function getContactPageMetadata(lang: Locale): Metadata {
   const metadata = contactPageContentByLocale[lang].metadata;
 
-  return {
-    ...metadata,
-    metadataBase: getSiteUrl(),
-    alternates: {
-      canonical: `/${lang}${aboutPaths.contact}`,
-      languages: {
-        "zh-CN": `/zh${aboutPaths.contact}`,
-        ja: `/ja${aboutPaths.contact}`,
-        "x-default": `/${defaultLocale}${aboutPaths.contact}`,
-      },
-    },
-  };
+  return getLocalizedMetadata(lang, aboutPaths.contact, metadata);
 }
 
 export function ContactPage({ lang }: PageProps) {

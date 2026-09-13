@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { ProductPageSection } from "@/components/product-pages/ProductPageSection";
 import { ProductPageTemplate } from "@/components/product-pages/ProductPageTemplate";
 import { labInstrumentsContentByLocale } from "@/content/lab-instruments";
-import { defaultLocale, type Locale } from "@/i18n/config";
+import { type Locale } from "@/i18n/config";
+import { getLocalizedMetadata } from "@/lib/localized-metadata";
 import { productPaths } from "@/lib/product-paths";
-import { getSiteUrl } from "@/lib/site-url";
 
 import labInstrumentsHero from "./_assets/lab-instruments-hero-wide-gradient.webp";
 import { LabInstrumentPanels } from "./LabInstrumentPanels";
@@ -15,18 +15,7 @@ type PageProps = Readonly<{ lang: Locale }>;
 const productPath = productPaths["lab-instruments"];
 
 export function getLabInstrumentsMetadata(lang: Locale): Metadata {
-  return {
-    ...labInstrumentsContentByLocale[lang].metadata,
-    metadataBase: getSiteUrl(),
-    alternates: {
-      canonical: `/${lang}${productPath}`,
-      languages: {
-        "zh-CN": `/zh${productPath}`,
-        ja: `/ja${productPath}`,
-        "x-default": `/${defaultLocale}${productPath}`,
-      },
-    },
-  };
+  return getLocalizedMetadata(lang, productPath, labInstrumentsContentByLocale[lang].metadata);
 }
 
 export function LabInstrumentsPage({ lang }: PageProps) {

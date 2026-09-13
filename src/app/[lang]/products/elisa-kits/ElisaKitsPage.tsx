@@ -11,9 +11,9 @@ import { ProductSpecificationCard } from "@/components/product-pages/ProductSpec
 import { elisaKitsContentByLocale } from "@/content/elisa-kits";
 import { elisaCatalogColumnIds } from "@/content/elisa-kits/source-catalog";
 import type { ElisaKitSku } from "@/content/elisa-kits/types";
-import { defaultLocale, type Locale } from "@/i18n/config";
+import { type Locale } from "@/i18n/config";
 import { productPaths } from "@/lib/product-paths";
-import { getSiteUrl } from "@/lib/site-url";
+import { getLocalizedMetadata } from "@/lib/localized-metadata";
 
 import elisaKitsHero from "./_assets/elisa-kits-hero.jpg";
 import { ElisaManualSeries } from "./ElisaManualSeries";
@@ -23,18 +23,7 @@ type PageProps = Readonly<{ lang: Locale }>;
 const productPath = productPaths["elisa-kits"];
 
 export function getElisaKitsMetadata(lang: Locale): Metadata {
-  return {
-    ...elisaKitsContentByLocale[lang].metadata,
-    metadataBase: getSiteUrl(),
-    alternates: {
-      canonical: `/${lang}${productPath}`,
-      languages: {
-        "zh-CN": `/zh${productPath}`,
-        ja: `/ja${productPath}`,
-        "x-default": `/${defaultLocale}${productPath}`,
-      },
-    },
-  };
+  return getLocalizedMetadata(lang, productPath, elisaKitsContentByLocale[lang].metadata);
 }
 
 export function ElisaKitsPage({ lang }: PageProps) {

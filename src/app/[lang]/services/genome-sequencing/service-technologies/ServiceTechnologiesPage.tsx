@@ -7,9 +7,9 @@ import { ServicePageTemplate } from "@/components/service-pages/ServicePageTempl
 import { genomeSequencingContentByLocale } from "@/content/genome-sequencing";
 import { serviceTechnologiesContentByLocale } from "@/content/service-technologies";
 import type { ServiceTechnologyAssetId } from "@/content/service-technologies/types";
-import { defaultLocale, type Locale } from "@/i18n/config";
+import { type Locale } from "@/i18n/config";
+import { getLocalizedMetadata } from "@/lib/localized-metadata";
 import { genomeSequencingServiceTechnologiesPath } from "@/lib/service-paths";
-import { getSiteUrl } from "@/lib/site-url";
 
 import serviceTechnologiesHero from "./_assets/service-technologies-hero.jpg";
 import absoluteQuantificationMicrobialDiversitySequencingZh from "./_assets/absolute-quantification-microbial-diversity-sequencing-zh.jpg";
@@ -74,18 +74,11 @@ const serviceTechnologyAssetsByLocale = {
 };
 
 export function getServiceTechnologiesMetadata(lang: Locale): Metadata {
-  return {
-    ...serviceTechnologiesContentByLocale[lang].metadata,
-    metadataBase: getSiteUrl(),
-    alternates: {
-      canonical: `/${lang}${genomeSequencingServiceTechnologiesPath}`,
-      languages: {
-        "zh-CN": `/zh${genomeSequencingServiceTechnologiesPath}`,
-        ja: `/ja${genomeSequencingServiceTechnologiesPath}`,
-        "x-default": `/${defaultLocale}${genomeSequencingServiceTechnologiesPath}`,
-      },
-    },
-  };
+  return getLocalizedMetadata(
+    lang,
+    genomeSequencingServiceTechnologiesPath,
+    serviceTechnologiesContentByLocale[lang].metadata,
+  );
 }
 
 export function ServiceTechnologiesPage({ lang }: PageProps) {

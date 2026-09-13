@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
-import { defaultLocale, type Locale } from "@/i18n/config";
-import { getSiteUrl } from "@/lib/site-url";
+import { type Locale } from "@/i18n/config";
+import { getLocalizedMetadata } from "@/lib/localized-metadata";
 
 const localizedMetadata: Record<Locale, Pick<Metadata, "title" | "description">> = {
   zh: {
@@ -17,16 +17,5 @@ const localizedMetadata: Record<Locale, Pick<Metadata, "title" | "description">>
 };
 
 export function getLandingMetadata(lang: Locale): Metadata {
-  return {
-    ...localizedMetadata[lang],
-    metadataBase: getSiteUrl(),
-    alternates: {
-      canonical: `/${lang}`,
-      languages: {
-        "zh-CN": "/zh",
-        ja: "/ja",
-        "x-default": `/${defaultLocale}`,
-      },
-    },
-  };
+  return getLocalizedMetadata(lang, "", localizedMetadata[lang]);
 }
