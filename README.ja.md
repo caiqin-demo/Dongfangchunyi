@@ -127,4 +127,4 @@ npm run build
 
 ## ライセンス
 
-現在、このリポジトリにはライセンスファイルが含まれていません。ソースまたはアセットを再利用する前に、リポジトリ所有者へお問い合わせください。
+[MIT](https://github.com/caiqin-demo/Dongfangchunyi/blob/main/LICENSE). The shortest license that works.
