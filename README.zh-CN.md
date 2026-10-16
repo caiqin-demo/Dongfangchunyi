@@ -2,7 +2,7 @@
 
 [English](./README.md) | [日本語](./README.ja.md)
 
-这是东方纯一株式会社（Eastern Purity Co., Ltd.）面向生命科学领域的多语言 B2B 官网，使用 Next.js 构建，并提供中文（`zh`）和日文（`ja`）公开路由。
+这是东方纯一株式会社（Eastern Purity Co., Ltd. 上海睿星基因技术有限公司日本子公司）面向生命科学领域的多语言 B2B 官网，使用 Next.js 构建，并提供中文（`zh`）和日文（`ja`）公开路由。
 
 ## 网站范围
 
