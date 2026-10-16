@@ -2,7 +2,7 @@
 
 Live website: [https://www.easternpurity.com/](https://www.easternpurity.com/)
 
-[简体中文](./README.zh-CN.md) | [日本語](./README.ja.md)
+__Language:__ [简体中文](./README.zh-CN.md) | [日本語](./README.ja.md)
 
 This is the official multilingual website of Eastern Purity Co., Ltd. (`東方純一株式会社`), which is the Japanese subsidiary of Shanghai Genomics Technology Ltd., a B2B company serving the life-science sector. It is built with Next.js and provides Chinese (`zh`) and Japanese (`ja`) public routes.
 
