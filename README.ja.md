@@ -1,5 +1,7 @@
 # 東方純一株式会社
 
+公式サイト：[https://www.easternpurity.com/](https://www.easternpurity.com/)
+
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
 これは、ライフサイエンス分野にサービスを提供する東方純一株式会社（Eastern Purity Co., Ltd.）の多言語 B2B 公式 Web サイトです。Next.js で構築され、中国語（`zh`）と日本語（`ja`）の公開ルートを提供します。
